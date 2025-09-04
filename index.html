@@ -637,7 +637,6 @@
             }
           };
     
-          // ======= 2) 通用渲染逻辑：对每个 .papers-section 初始化 =======
           (function initAllPapersSections(){
             document.querySelectorAll('.papers-section').forEach(section => initPapersSection(section));
           })();
@@ -688,7 +687,7 @@
               meta.textContent = [
                 item.authors || '',
                 item.venue ? `${item.venue}${item.year?` · ${item.year}`:''}` : (item.year||'')
-              ].filter(Boolean).join(' ｜ ');
+              ].filter(Boolean).join(' | ');
     
               const links = document.createElement('div');
               links.className = 'links';
@@ -719,7 +718,6 @@
                 const panelEl = panels[subKey];
                 const listEl  = lists[subKey];
 
-                // 若不存在“展开区”，就创建一个
                 let ctrlEl = panelEl.querySelector('.showmore-wrap');
                 if(!ctrlEl){
                     ctrlEl = document.createElement('div');
@@ -727,16 +725,13 @@
                     panelEl.appendChild(ctrlEl);
                 }
 
-                // 用 dataset 记录是否展开；当搜索关键词变化时，保持当前状态不变
                 if(panelEl.dataset.expanded === undefined){
                     panelEl.dataset.expanded = "false";
                 }
                 const expanded = panelEl.dataset.expanded === "true";
 
-                // 选择要展示的条目
                 const shown = expanded ? items : items.slice(0, INITIAL);
 
-                // 渲染列表
                 listEl.innerHTML = '';
                 if(items.length===0){
                     const empty = document.createElement('div');
@@ -751,10 +746,8 @@
                     it, subKey==='A'?1: subKey==='B'?2: subKey==='C'?3:4
                 )));
 
-                // 计数：显示“当前/总数”
                 countEl.textContent = `${shown.length}/${items.length} items`;
 
-                // 控制按钮（当总数 > INITIAL 时才显示）
                 if(items.length > INITIAL){
                     ctrlEl.innerHTML = `
                     <button class="showmore-btn" type="button">
@@ -763,10 +756,10 @@
                     const btn = ctrlEl.querySelector('button');
                     btn.onclick = () => {
                     panelEl.dataset.expanded = expanded ? "false" : "true";
-                    renderList(subKey); // 重新渲染
+                    renderList(subKey);
                     };
                 }else{
-                    ctrlEl.innerHTML = ''; // 不需要按钮
+                    ctrlEl.innerHTML = '';
                 }
                 }
 

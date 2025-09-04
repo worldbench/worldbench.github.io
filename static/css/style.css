@@ -1514,6 +1514,14 @@ iframe {
 .showmore-btn:hover { background: #f3f4f6; }
 .showmore-btn:active { transform: translateY(1px); }
 
+.papers-section .list .card:nth-child(odd)  { background: #f9e1e1; }
+.papers-section .list .card:nth-child(even) { background: #e2ecff; }
+
+.papers-section .list .card {
+  border: 1px solid #eef1f5;
+  border-radius: 12px;
+}
+
 .papers-section{
   --bg:#fafafa;
   --card:#ffffff;
