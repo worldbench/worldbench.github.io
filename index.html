@@ -315,7 +315,7 @@
             <section id="definition">
                 <h2>Projects</h2>
             </section>
-            <section id="video-papers" class="papers-section" data-section-key="video">
+            <section id="video-papers" class="papers-section" data-section-key="video" data-initial="3">
                 <h2>Video Generation</h2>
                 <div class="bar" aria-live="polite">
                   <div class="tabs" role="tablist" aria-label="Video Generation Categories">
@@ -369,7 +369,7 @@
                 </section>
                 <section id="video-panel-d" class="panel" role="tabpanel" aria-labelledby="video-tab-d" aria-hidden="true">
                     <div class="list"></div>
-                  </section>
+                </section>
               </section>
 
               <section id="lidar-papers" class="papers-section" data-section-key="lidar">
@@ -393,6 +393,9 @@
                 </section>
                 <section id="lidar-panel-c" class="panel" role="tabpanel" aria-labelledby="lidar-tab-c" aria-hidden="true">
                   <div class="list"></div>
+                </section>
+                <section id="video-panel-d" class="panel" role="tabpanel" aria-labelledby="video-tab-d" aria-hidden="true">
+                    <div class="list"></div>
                 </section>
               </section>
 
@@ -423,11 +426,7 @@
 
         <!-- 统一的数据与初始化脚本 -->
         <script>
-          // ======= 1) 在这里维护所有章节-子方向的数据 =======
-          // 结构：paperStore[sectionKey][subKey] = array of items
-          // sectionKey ∈ { video, occupancy, lidar }
-          // subKey ∈ { A(=Data Engines), B(=Action Interpreters), C(=Neural Simulators) }
-          // item: { title, authors, venue, year, paper, code, project }
+
           const paperStore = {
             video: {
               A: [
@@ -586,8 +585,41 @@
             },
             lidar: {
               A: [
-                { title:"LiDARCrafter: Dynamic 4D World Modeling", authors:"Liang et al.", venue:"CVPR", year:2025,
-                  paper:"#", code:"#", project:"#"}
+              { title:"DUSty: Learning to Drop Points for LiDAR Scan Synthesis", authors:"", venue:"IROS", year:2021, paper:"https://arxiv.org/abs/2102.11952", code:"https://github.com/kazuto1011/dusty-gan", project:"https://kazuto1011.github.io/dusty-gan/" },
+                { title:"LiDARGen: Learning to Generate Realistic LiDAR Point Clouds", authors:"", venue:"ECCV", year:2022, paper:"https://arxiv.org/abs/2209.03954", code:"https://github.com/vzyrianov/lidargen", project:"#"},
+                { title:"DUSty v2: Generative Range Imaging for Learning Scene Priors of 3D LiDAR Data", authors:"", venue:"WACV", year:2023, paper:"https://arxiv.org/abs/2210.11750", code:"https://github.com/kazuto1011/dusty-gan-v2", project:"https://kazuto1011.github.io/dusty-gan-v2/"},
+                { title:"UltraLiDAR: Learning Compact Representations for LiDAR Completion and Generation", authors:"", venue:"CVPR", year:2023, paper:"https://arxiv.org/abs/2311.01448", code:"#", project:"https://waabi.ai/ultralidar/"},
+                { title:"Copilot4D: Learning Unsupervised World Models for Autonomous Driving via Discrete Diffusion", authors:"", venue:"ICLR", year:2024, paper:"https://arxiv.org/abs/2311.01017", code:"#", project:"https://waabi.ai/research/copilot-4d"},
+                { title:"R2DM: LiDAR Data Synthesis with Denoising Diffusion Probabilistic Models", authors:"", venue:"ICRA", year:2024, paper:"https://arxiv.org/abs/2309.09256", code:"https://github.com/kazuto1011/r2dm", project:"https://kazuto1011.github.io/r2dm"},
+                { title:"ViDAR: Visual Point Cloud Forecasting enables Scalable Autonomous Driving", authors:"", venue:"CVPR", year:2024, paper:"https://arxiv.org/abs/2312.17655", code:"https://github.com/OpenDriveLab/ViDAR", project:"#"},
+                { title:"LiDiff: Scaling Diffusion Models to Real-World 3D LiDAR Scene Completion", authors:"", venue:"CVPR", year:2024, paper:"https://arxiv.org/abs/2403.13470", code:"https://github.com/PRBonn/LiDiff", project:"#"},
+                { title:"LiDM: Towards Realistic Scene Generation with LiDAR Diffusion Models", authors:"", venue:"CVPR", year:2024, paper:"https://arxiv.org/abs/2404.00815", code:"https://github.com/hancyran/LiDAR-Diffusion/tree/8416ddbbda881553088109a66badf71ff11999e0", project:"#"},
+                { title:"RangeLDM: Fast Realistic LiDAR Point Cloud Generation", authors:"", venue:"ECCV", year:2024, paper:"https://arxiv.org/abs/2403.10094", code:"https://github.com/WoodwindHu/RangeLDM", project:"#"},
+                { title:"Text2LiDAR: Text-Guided LiDAR Point Cloud Generation via Equirectangular Transformer", authors:"", venue:"ECCV", year:2024, paper:"https://arxiv.org/abs/2407.19628", code:"https://github.com/wuyang98/Text2LiDAR", project:"#"},
+                { title:"LiDARGRIT: Taming Transformers for Realistic Lidar Point Cloud Generation", authors:"", venue:"arXiv", year:2024, paper:"https://arxiv.org/abs/2404.05505", code:"https://github.com/hamedhaghighi/LidarGRIT", project:"#"},
+                { title:"BEVWorld: A Multimodal World Simulator for Autonomous Driving via Scene-Level BEV Latents", authors:"", venue:"arXiv", year:2024, paper:"https://arxiv.org/abs/2407.05679", code:"https://github.com/zympsyche/BevWorld", project:"#"},
+                { title:"SDS: Simultaneous Diffusion Sampling for Conditional LiDAR Generation", authors:"", venue:"arXiv", year:2024, paper:"https://arxiv.org/abs/2410.11628", code:"#", project:"#"},
+                { title:"DiffSSC: Semantic LiDAR Scan Completion using Denoising Diffusion Probabilistic Models", authors:"", venue:"IROS", year:2025, paper:"https://arxiv.org/abs/2409.18092", code:"#", project:"#"},
+                { title:"HoloDrive: Holistic 2D-3D Multi-Modal Street Scene Generation for Autonomous Driving", authors:"", venue:"arXiv", year:2024, paper:"https://arxiv.org/abs/2412.01407", code:"#", project:"#"},
+                { title:"LOGen: Toward Lidar Object Generation by Point Diffusion", authors:"", venue:"arXiv", year:2024, paper:"https://arxiv.org/abs/2412.07385", code:"https://github.com/valeoai/LOGen", project:"https://nerminsamet.github.io/logen/"},
+                { title:"OLiDM: Object-Aware LiDAR Diffusion Models for Autonomous Driving", authors:"", venue:"AAAI", year:2025, paper:"https://arxiv.org/abs/2412.17226", code:"https://github.com/yanty123/OLiDM", project:"https://yanty123.github.io/OLiDM"},
+                { title:"X-Drive: Cross-Modality Consistent Multi-Sensor Data Synthesis for Driving Scenarios", authors:"", venue:"ICLR", year:2025, paper:"https://arxiv.org/abs/2411.01123", code:"https://github.com/yichen928/X-Drive", project:"#"},
+                { title:"LidarDM: Generative LiDAR Simulation in a Generated World", authors:"", venue:"ICRA", year:2025, paper:"https://arxiv.org/abs/2404.02903", code:"https://github.com/vzyrianov/lidardm", project:"https://zyrianov.org/lidardm/"},
+                { title:"LiDAR-EDIT: LiDAR Data Generation by Editing the Object Layouts in Real-World Scenes", authors:"", venue:"ICRA", year:2025, paper:"https://arxiv.org/abs/2412.00592", code:"https://github.com/HoAdrian/ICRA2025_lidar_edit", project:"https://sites.google.com/view/lidar-edit"},
+                { title:"R2Flow: Fast LiDAR Data Generation with Rectified Flows", authors:"", venue:"ICRA", year:2025, paper:"https://arxiv.org/abs/2412.02241", code:"https://github.com/kazuto1011/r2flow", project:"https://kazuto1011.github.io/r2flow/"},
+                { title:"WeatherGen: A Unified Diverse Weather Generator for LiDAR Point Clouds via Spider Mamba Diffusion", authors:"", venue:"CVPR", year:2025, paper:"https://arxiv.org/abs/2504.13561", code:"https://github.com/wuyang98/weathergen", project:"#"},
+                { title:"LiDPM: Rethinking Point Diffusion for Lidar Scene Completion", authors:"", venue:"IV", year:2025, paper:"https://arxiv.org/abs/2504.17791", code:"https://github.com/astra-vision/LiDPM", project:"https://astra-vision.github.io/LiDPM/"},
+                { title:"HERMES: A Unified Self-Driving World Model for Simultaneous 3D Scene Understanding and Generation", authors:"", venue:"ICCV", year:2025, paper:"https://arxiv.org/abs/2501.14729", code:"https://github.com/LMD0311/HERMES", project:"https://lmd0311.github.io/HERMES/"},
+                { title:"SuperPC: A Single Diffusion Model for Point Cloud Completion, Upsampling, Denoising, and Colorization", authors:"", venue:"CVPR", year:2025, paper:"https://arxiv.org/abs/2503.14558", code:"#", project:"https://sairlab.org/superpc/"},
+                { title:"3DiSS: Towards Generating Realistic 3D Semantic Training Data for Autonomous Driving", authors:"", venue:"arXiv", year:2025, paper:"https://arxiv.org/abs/2503.21449", code:"https://github.com/PRBonn/3DiSS", project:"#"},
+                { title:"Distill-DPO: Diffusion Distillation With Direct Preference Optimization For Efficient 3D LiDAR Scene Completion", authors:"", venue:"arXiv", year:2025, paper:"https://arxiv.org/abs/2504.11447", code:"https://github.com/happyw1nd/DistillationDPO", project:"#"},
+                { title:"DriveX: Omni Scene Modeling for Learning Generalizable World Knowledge in Autonomous Driving", authors:"", venue:"arXiv", year:2025, paper:"https://arxiv.org/abs/2505.19239", code:"#", project:"#"},
+                { title:"OpenDWM: Open Driving World Models", authors:"", venue:"arXiv", year:2025, paper:"https://github.com/SenseTime-FVG/OpenDWM", code:"https://github.com/SenseTime-FVG/OpenDWM", project:"#"},
+                { title:"SPIRAL: Semantic-Aware Progressive LiDAR Scene Generation", authors:"", venue:"arXiv", year:2025, paper:"https://arxiv.org/abs/2505.22643", code:"#", project:"#"},
+                { title:"La La LiDAR: Large-Scale Layout Generation from LiDAR Data", authors:"", venue:"arXiv", year:2025, paper:"https://arxiv.org/abs/2508.03691", code:"#", project:"#"},
+                { title:"Veila: Panoramic LiDAR Generation from a Monocular RGB Image", authors:"", venue:"arXiv", year:2025, paper:"https://arxiv.org/abs/2508.03690", code:"#", project:"#"},
+                { title:"LiDARCrafter: Dynamic 4D World Modeling from LiDAR Sequences", authors:"", venue:"arXiv", year:2025, paper:"https://arxiv.org/abs/2508.03692", code:"https://github.com/lidarcrafter/toolkit", project:"https://lidarcrafter.github.io/" }
+  
               ],
               B: [
               { title:"Copilot4D: Learning Unsupervised World Models for Autonomous Driving via Discrete Diffusion", authors:"", venue:"ICLR", year:2024, paper:"https://arxiv.org/abs/2311.01017", code:"#", project:"https://waabi.ai/research/copilot-4d"},
@@ -680,25 +712,68 @@
             }
     
             function renderList(subKey){
-              const data = (paperStore[sectionKey] && paperStore[sectionKey][subKey]) || [];
-              const items = data.filter(it=>match(it, keyword));
-              const target = lists[subKey];
-              target.innerHTML = '';
-              if(items.length===0){
-                const empty = document.createElement('div');
-                empty.className = 'empty';
-                empty.textContent = 'No data or no match.';
-                target.appendChild(empty);
-              }else{
-                items.forEach(it => target.appendChild(makeCard(
-                  it, subKey==='A'?1: subKey==='B'?2: subKey==='C'?3:4
+                const INITIAL = Number(root.dataset.initial || 3); // 默认 3
+                const data = (paperStore[sectionKey] && paperStore[sectionKey][subKey]) || [];
+                const items = data.filter(it=>match(it, keyword));
+
+                const panelEl = panels[subKey];
+                const listEl  = lists[subKey];
+
+                // 若不存在“展开区”，就创建一个
+                let ctrlEl = panelEl.querySelector('.showmore-wrap');
+                if(!ctrlEl){
+                    ctrlEl = document.createElement('div');
+                    ctrlEl.className = 'showmore-wrap';
+                    panelEl.appendChild(ctrlEl);
+                }
+
+                // 用 dataset 记录是否展开；当搜索关键词变化时，保持当前状态不变
+                if(panelEl.dataset.expanded === undefined){
+                    panelEl.dataset.expanded = "false";
+                }
+                const expanded = panelEl.dataset.expanded === "true";
+
+                // 选择要展示的条目
+                const shown = expanded ? items : items.slice(0, INITIAL);
+
+                // 渲染列表
+                listEl.innerHTML = '';
+                if(items.length===0){
+                    const empty = document.createElement('div');
+                    empty.className = 'empty';
+                    empty.textContent = 'No data or no match.';
+                    listEl.appendChild(empty);
+                    ctrlEl.innerHTML = '';
+                    countEl.textContent = `0 items`;
+                    return;
+                }
+                shown.forEach(it => listEl.appendChild(makeCard(
+                    it, subKey==='A'?1: subKey==='B'?2: subKey==='C'?3:4
                 )));
-              }
-              countEl.textContent = `${items.length} items`;
-            }
+
+                // 计数：显示“当前/总数”
+                countEl.textContent = `${shown.length}/${items.length} items`;
+
+                // 控制按钮（当总数 > INITIAL 时才显示）
+                if(items.length > INITIAL){
+                    ctrlEl.innerHTML = `
+                    <button class="showmore-btn" type="button">
+                        ${expanded ? "Collapse" : `Expand (${items.length - INITIAL})`}
+                    </button>`;
+                    const btn = ctrlEl.querySelector('button');
+                    btn.onclick = () => {
+                    panelEl.dataset.expanded = expanded ? "false" : "true";
+                    renderList(subKey); // 重新渲染
+                    };
+                }else{
+                    ctrlEl.innerHTML = ''; // 不需要按钮
+                }
+                }
+
     
             function switchTo(subKey){
               activeKey = subKey;
+              panels[activeKey].dataset.expanded = "false";
               tabs.forEach(btn=>{
                 const isSelected = btn.id.endsWith(subKey.toLowerCase());
                 btn.setAttribute('aria-selected', String(isSelected));
@@ -717,14 +792,15 @@
               });
             });
             root.addEventListener('keydown', (e)=>{
-              if(e.key==='ArrowRight' || e.key==='ArrowLeft'){
+            if(e.key==='ArrowRight' || e.key==='ArrowLeft'){
                 e.preventDefault();
-                const order = ['A','B','C','D'];
+                const order = ['A','B','C','D'].filter(k => panels[k]); // 只保留存在的面板
                 const idx = order.indexOf(activeKey);
-                const next = e.key==='ArrowRight' ? (idx+1)%3 : (idx+2)%3;
+                const len = order.length;
+                const next = e.key==='ArrowRight' ? (idx+1)%len : (idx-1+len)%len;
                 switchTo(order[next]);
                 root.querySelector(`[id$="tab-${order[next].toLowerCase()}"]`)?.focus();
-              }
+            }
             });
             searchInput.addEventListener('input', ()=>{
               keyword = normalize(searchInput.value);

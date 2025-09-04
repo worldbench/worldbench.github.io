@@ -1,5 +1,5 @@
 body {
-  font-family: Charter;
+  font-family: Inter;
 }
 
 .header-wrapper {
@@ -1502,6 +1502,17 @@ iframe {
   height: 150px;
   border: none;
 } */
+
+/* papers */
+
+.showmore-wrap { margin-top: 8px; display: flex; justify-content: center; }
+.showmore-btn {
+  padding: 6px 12px; border-radius: 999px; border: 1px solid #e5e7eb;
+  background: #fafafa; cursor: pointer; font-size: 14px;
+  transition: background .15s ease, transform .05s ease;
+}
+.showmore-btn:hover { background: #f3f4f6; }
+.showmore-btn:active { transform: translateY(1px); }
 
 .papers-section{
   --bg:#fafafa;
