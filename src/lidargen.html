@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>LiDARGen Models Summary</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<style>
+  /* 横向滑动 + 单行不换行 */
+  .table-scroll.nowrap { overflow-x:auto; overflow-y:hidden; -webkit-overflow-scrolling:touch; border-radius:10px; box-shadow:0 1px 6px rgba(0,0,0,.06); background:#fff; }
+  /* 表格基础 */
+  .models-table{ border-collapse:separate; border-spacing:0; width:100%; min-width:1400px; white-space:nowrap; font-size:14px; }
+  .models-table thead th{ text-align:left; background:#f7f8fb; font-weight:700; padding:10px 12px; border-bottom:1px solid #e8ebf3; position:sticky; top:0; z-index:3; }
+  .models-table tbody td{ padding:10px 12px; border-bottom:1px solid #f0f2f7; vertical-align:middle; }
+  .models-table tbody tr:nth-child(odd) td{ background:#fff; }
+  .models-table tbody tr:nth-child(even) td{ background:#f3f8ff; }
+  .models-table tbody tr:hover td{ background:#f8fbff; }
+  /* 粘性首两列 */
+  .models-table .sticky-col{ position:sticky; left:0; z-index:2; background:inherit; }
+  .models-table .sticky-col-2{ position:sticky; left:60px; z-index:2; background:inherit; }
+  .models-table td:first-child, .models-table th:first-child{ width:60px; }
+  /* 图标尺寸 */
+  .icon{ height:18px; width:auto; vertical-align:middle; transform:translateY(1px); }
+  .icon-latent{ height:20px; }
+  .icon-num{ height:20px; transform:translateY(2px); }
+  /* 条件 chips */
+  .chips{ display:inline-flex; gap:6px; align-items:center; }
+  .chip{ display:inline-flex; align-items:center; gap:4px; padding:2px 6px; border-radius:6px; background:#f4f6fb; border:1px solid #e8ebf3; font-family:ui-monospace,Menlo,Consolas,monospace; font-size:12px; font-weight:600; }
+  /* 说明 */
+  .legend{ margin:8px 0 12px; line-height:1.45; color:#374151; font-size:14px; }
+  .legend b{ font-weight:700; }
+  .legend .row{ margin:4px 0; }
+  .legend .icons{ display:inline-flex; gap:10px; margin-left:6px; }
+  .legend .icons span{ display:inline-flex; align-items:center; gap:6px; }
+  a.ext{ text-decoration:none; border-bottom:1px dotted #94a3b8; }
+</style>
+</head>
+<body>
+<section>
+  <h3 style="margin:0 0 6px;">Summary of LiDAR-based generation (<b>LiDARGen</b>) models</h3>
+
+  <div class="legend">
+    <div class="row"><b>• Datasets:</b> KITTI, SemanticKITTI, nuScenes, KITTI-360, PandaSet, Carla, SeeingThroughFog, Waymo, NAVSIM, Argoverse 2, OmniDrive-nuScenes.</div>
+    <div class="row">
+      <b>• Input &amp; Output:</b>
+      <span class="icons">
+        <span><img class="icon icon-latent" src="/figures/icons/latent.png" alt="latent"> Noisy Latent</span>
+        <span><img class="icon" src="/figures/icons/latent_codebook.png" alt="codebook"> Latent Codebook</span>
+        <span><img class="icon" src="/figures/icons/lidar_noisy.png" alt="lidar noisy"> Noisy LiDAR</span>
+        <span><img class="icon" src="/figures/icons/lidar.png" alt="lidar"> LiDAR</span>
+        <span><img class="icon" src="/figures/icons/lidar4d.png" alt="lidar4d"> LiDAR Seq</span>
+        <span><img class="icon" src="/figures/icons/video.png" alt="video"> Images/Video</span>
+      </span>
+    </div>
+    <div class="row"><b>• Arch.:</b> GAN, Enc-Dec, LDM, AR, DiT, LLM.</div>
+    <div class="row"><b>• Tasks:</b> LG, L4G, SEG, DET, SC, OP, E2E.</div>
+    <div class="row">
+      <b>• Categories:</b>
+      <span class="icons">
+        <span><img class="icon icon-num" src="/figures/icons/number-1.png" alt="1"> Data Engine</span>
+        <span><img class="icon icon-num" src="/figures/icons/number-2.png" alt="2"> Action Forecaster</span>
+        <span><img class="icon icon-num" src="/figures/icons/number-3.png" alt="3"> Autoregressive Simulator</span>
+      </span>
+    </div>
+  </div>
+
+  <div class="table-scroll nowrap">
+    <table class="models-table" id="lidargen-table">
+      <thead>
+        <tr>
+          <th class="sticky-col">#</th>
+          <th class="sticky-col-2">Model</th>
+          <th>Venue</th>
+          <th>Dataset</th>
+          <th>Input</th>
+          <th>Output</th>
+          <th>Condition</th>
+          <th>Len.</th>
+          <th>Arch.</th>
+          <th>Task</th>
+          <th>Cat.</th>
+          <th>URL</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+</section>
+
+<script>
+/* ===== 图标映射 ===== */
+const ICONS = {
+  latent: '/figures/icons/latent.png',
+  codebook: '/figures/icons/latent_codebook.png',
+  lidar_noisy: '/figures/icons/lidar_noisy.png',
+  lidar: '/figures/icons/lidar.png',
+  lidar4d: '/figures/icons/lidar4d.png',
+  video: '/figures/icons/video.png',
+  num1: '/figures/icons/number-1.png',
+  num2: '/figures/icons/number-2.png',
+  num3: '/figures/icons/number-3.png',
+};
+
+function iconImg(src, cls='icon', alt=''){ return `<img class="${cls}" src="${src}" alt="${alt}">`; }
+function renderIO(keys){
+  const map = {
+    latent:'latent', 'latent_codebook':'codebook', codebook:'codebook',
+    lidar_noisy:'lidar_noisy', lidar:'lidar', lidar4d:'lidar4d',
+    video:'video', images:'video'
+  };
+  return keys.map(k => {
+    const kk = map[k] ?? k;
+    const cls = (kk === 'latent') ? 'icon icon-latent' : 'icon';
+    return iconImg(ICONS[kk], cls, kk);
+  }).join(' ');
+}
+const chip = (t)=> `<span class="chip">${t}</span>`;
+const renderConds = (arr)=> arr && arr.length ? `<span class="chips">${arr.map(chip).join('')}</span>` : 'N/A';
+const renderCat = (nums)=> nums.map(n => iconImg(ICONS['num'+n], 'icon icon-num', 'Cat '+n)).join(' ');
+
+/* ===== 数据行（#1–#34）===== */
+const rows = [
+  { n:1,  model:'DUSty', venue:"IROS'21", dataset:'KITTI', input:['latent'], output:['lidar'], conds:[], len:'1', arch:'GAN', task:'LG, SC', cat:[1], url:'https://arxiv.org/abs/2102.11952' },
+  { n:2,  model:'LiDARGen', venue:"ECCV'22", dataset:'KITTI-360, nuScenes', input:['lidar_noisy'], output:['lidar'], conds:[], len:'1', arch:'Enc-Dec', task:'LG, SEG, SC', cat:[1], url:'https://arxiv.org/abs/2209.03954' },
+  { n:3,  model:'DUSty v2', venue:"WACV'23", dataset:'KITTI', input:['latent'], output:['lidar'], conds:['LiDARPattern'], len:'1', arch:'GAN', task:'LG, SEG', cat:[1], url:'https://arxiv.org/abs/2210.11750' },
+  { n:4,  model:'UltraLiDAR', venue:"CVPR'23", dataset:'SemanticKITTI, KITTI, PandaSet', input:['codebook'], output:['lidar'], conds:['PartialPointCloud'], len:'1', arch:'Enc-Dec', task:'LG, DET, SC', cat:[1], url:'https://arxiv.org/abs/2311.01448' },
+  { n:5,  model:'Copilot4D', venue:"ICLR'24", dataset:'Argoverse 2, KITTI, nuScenes', input:['codebook'], output:['lidar4d'], conds:['EgoTrajectory'], len:'6', arch:'LDM, AR', task:'L4G', cat:[1,2], url:'https://arxiv.org/abs/2311.01017' },
+  { n:6,  model:'R2DM', venue:"ICRA'24", dataset:'KITTI-360, KITTI', input:['lidar_noisy'], output:['lidar'], conds:[], len:'1', arch:'Enc-Dec', task:'LG, SC', cat:[1], url:'https://arxiv.org/abs/2309.09256' },
+  { n:7,  model:'ViDAR', venue:"CVPR'24", dataset:'nuScenes', input:['video'], output:['lidar4d'], conds:[], len:'6', arch:'Enc-Dec', task:'L4G, DET, OP, E2E', cat:[1,2], url:'https://arxiv.org/abs/2312.17655' },
+  { n:8,  model:'LiDiff', venue:"CVPR'24", dataset:'KITTI-360, SemanticKITTI', input:['lidar_noisy'], output:['lidar'], conds:['PartialPointCloud'], len:'1', arch:'Enc-Dec', task:'LG, SC', cat:[1], url:'https://arxiv.org/abs/2403.13470' },
+  { n:9,  model:'LiDM', venue:"CVPR'24", dataset:'KITTI-360, nuScenes, SemanticKITTI', input:['latent'], output:['lidar'], conds:['SemanticMask','RGBFrame','TextPrompt'], len:'1', arch:'LDM', task:'LG', cat:[1], url:'https://arxiv.org/abs/2404.00815' },
+  { n:10, model:'RangeLDM', venue:"ECCV'24", dataset:'KITTI-360, nuScenes', input:['latent'], output:['lidar'], conds:[], len:'1', arch:'LDM', task:'LG, SC', cat:[1], url:'https://arxiv.org/abs/2403.10094' },
+  { n:11, model:'Text2LiDAR', venue:"ECCV'24", dataset:'KITTI-360, nuScenes', input:['lidar_noisy'], output:['lidar'], conds:['TextPrompt'], len:'1', arch:'Enc-Dec', task:'LG, SC', cat:[1], url:'https://arxiv.org/abs/2407.19628' },
+  { n:12, model:'LiDARGRIT', venue:"arXiv'24", dataset:'KITTI-360, KITTI', input:['codebook'], output:['lidar'], conds:[], len:'1', arch:'Enc-Dec, AR', task:'LG', cat:[1], url:'https://arxiv.org/abs/2404.05505' },
+  { n:13, model:'BEVWorld', venue:"arXiv'24", dataset:'Carla, nuScenes', input:['latent'], output:['video','lidar4d'], conds:['EgoTrajectory'], len:'6', arch:'LDM', task:'L4G, DET', cat:[1,2], url:'https://arxiv.org/abs/2407.05679' },
+  { n:14, model:'SDS', venue:"arXiv'24", dataset:'KITTI-360', input:['lidar_noisy'], output:['lidar'], conds:['PartialPointCloud'], len:'1', arch:'Enc-Dec', task:'LG, SC', cat:[1], url:'https://arxiv.org/abs/2410.11628' },
+  { n:15, model:'HoloDrive', venue:"arXiv'24", dataset:'nuScenes', input:['video','lidar4d'], output:['video','lidar4d'], conds:['BBox','TextPrompt'], len:'8', arch:'LDM', task:'L4G', cat:[1,3], url:'https://arxiv.org/abs/2412.01407' },
+  { n:16, model:'LOGen', venue:"arXiv'24", dataset:'nuScenes', input:['latent'], output:['lidar'], conds:['BBox'], len:'-', arch:'DiT', task:'LG', cat:[1], url:'https://arxiv.org/abs/2412.07385' },
+  { n:17, model:'OLiDM', venue:"AAAI'25", dataset:'KITTI-360, nuScenes', input:['lidar_noisy'], output:['lidar'], conds:['TextPrompt','BBox','ObjectCoordinate'], len:'1', arch:'Enc-Dec', task:'LG, DET, SC', cat:[1], url:'https://arxiv.org/abs/2412.17226' },
+  { n:18, model:'X-Drive', venue:"ICLR'25", dataset:'nuScenes', input:['latent'], output:['lidar','video'], conds:['BBox','TextPrompt'], len:'1', arch:'LDM', task:'LG, DET', cat:[1], url:'https://arxiv.org/abs/2411.01123' },
+  { n:19, model:'LidarDM', venue:"ICRA'25", dataset:'KITTI-360, Waymo', input:['latent'], output:['lidar4d'], conds:['HDMap'], len:'-', arch:'LDM', task:'L4G, DET', cat:[1,3], url:'https://arxiv.org/abs/2404.02903' },
+  { n:20, model:'LiDAR-EDIT', venue:"ICRA'25", dataset:'nuScenes', input:['codebook'], output:['lidar'], conds:['PartialPointCloud'], len:'1', arch:'Enc-Dec', task:'LG, SC, DET', cat:[1], url:'https://arxiv.org/abs/2412.00592' },
+  { n:21, model:'R2Flow', venue:"ICRA'25", dataset:'KITTI-360, nuScenes', input:['lidar_noisy'], output:['lidar'], conds:[], len:'1', arch:'DiT', task:'LG', cat:[1], url:'https://arxiv.org/abs/2412.02241' },
+  { n:22, model:'WeatherGen', venue:"CVPR'25", dataset:'KITTI-360, SeeingThroughFog', input:['lidar_noisy'], output:['lidar'], conds:['PartialPointCloud'], len:'1', arch:'Enc-Dec', task:'LG, DET', cat:[1], url:'https://arxiv.org/abs/2504.13561' },
+  { n:23, model:'LiDPM', venue:"IV'25", dataset:'SemanticKITTI', input:['lidar_noisy'], output:['lidar'], conds:['PartialPointCloud'], len:'1', arch:'Enc-Dec', task:'LG, SC', cat:[1], url:'https://arxiv.org/abs/2504.17791' },
+  { n:24, model:'DiffSSC', venue:"IROS'25", dataset:'SemanticKITTI, KITTI-360', input:['lidar_noisy'], output:['lidar'], conds:['PartialPointCloud','SemanticMask'], len:'1', arch:'Enc-Dec', task:'LG, SC', cat:[1], url:'https://arxiv.org/abs/2409.18092' },
+  { n:25, model:'HERMES', venue:"ICCV'25", dataset:'OmniDrive-nuScenes, nuScenes', input:['video'], output:['lidar4d'], conds:['EgoTrajectory','TextPrompt'], len:'-', arch:'AR, LLM', task:'L4G, E2E', cat:[1,2], url:'https://arxiv.org/abs/2501.14729' },
+  { n:26, model:'SuperPC', venue:"CVPR'25", dataset:'KITTI-360', input:['lidar_noisy'], output:['lidar'], conds:['RGBFrame','PartialPointCloud'], len:'1', arch:'Enc-Dec', task:'LG, SC', cat:[1], url:'https://arxiv.org/abs/2503.14558' },
+  { n:27, model:'3DiSS', venue:"arXiv'25", dataset:'SemanticKITTI, KITTI-360', input:['latent'], output:['lidar'], conds:[], len:'1', arch:'LDM', task:'LG, SEG', cat:[1], url:'https://arxiv.org/abs/2503.21449' },
+  { n:28, model:'Distill-DPO', venue:"arXiv'25", dataset:'SemanticKITTI', input:['lidar_noisy'], output:['lidar'], conds:['PartialPointCloud'], len:'1', arch:'Enc-Dec', task:'LG, SC', cat:[1], url:'https://arxiv.org/abs/2504.11447' },
+  { n:29, model:'DriveX', venue:"arXiv'25", dataset:'nuScenes, NAVSIM', input:['video'], output:['video','lidar4d'], conds:['EgoTrajectory'], len:'6', arch:'Enc-Dec', task:'L4G, OP, E2E', cat:[1,2], url:'https://arxiv.org/abs/2505.19239' },
+  { n:30, model:'OpenDWM', venue:"arXiv'25", dataset:'Argoverse 2, KITTI-360, nuScenes, Waymo', input:['lidar_noisy'], output:['lidar','lidar4d'], conds:['BBox','HDMap'], len:'-', arch:'VQ-VAE', task:'LG, L4G', cat:[1,3], url:'https://github.com/SenseTime-FVG/OpenDWM' },
+  { n:31, model:'SPIRAL', venue:"arXiv'25", dataset:'SemanticKITTI, nuScenes', input:['lidar_noisy'], output:['lidar'], conds:['SemanticMask'], len:'1', arch:'Enc-Dec', task:'LG, SEG', cat:[1], url:'https://arxiv.org/abs/2505.22643' },
+  { n:32, model:'La La LiDAR', venue:"arXiv'25", dataset:'nuScenes, Waymo', input:['lidar_noisy'], output:['lidar'], conds:['ObjectCoordinate'], len:'1', arch:'Enc-Dec', task:'LG, SEG, DET, SC', cat:[1], url:'https://arxiv.org/abs/2508.03691' },
+  { n:33, model:'Veila', venue:"arXiv'25", dataset:'KITTI, SemanticKITTI, nuScenes', input:['lidar_noisy'], output:['lidar'], conds:['RGBFrame'], len:'1', arch:'Enc-Dec', task:'LG, SEG', cat:[1], url:'https://arxiv.org/abs/2508.03690' },
+  { n:34, model:'LiDARCrafter', venue:"arXiv'25", dataset:'nuScenes', input:['lidar_noisy'], output:['lidar4d'], conds:['BBox','ObjectCoordinate'], len:'6', arch:'Enc-Dec', task:'L4G', cat:[1,3], url:'https://arxiv.org/abs/2508.03692' },
+];
+
+/* ===== 渲染 ===== */
+(function render(){
+  const tbody = document.querySelector('#lidargen-table tbody');
+  const html = rows.map(r=>{
+    const inputHTML  = renderIO(r.input);
+    const outputHTML = renderIO(r.output);
+    const condsHTML  = renderConds(r.conds);
+    const catHTML    = renderCat(r.cat);
+    const urlHTML    = r.url ? `<a class="ext" href="${r.url}" target="_blank" rel="noopener">Link</a>` : '';
+    return `<tr>
+      <td class="sticky-col">${r.n}</td>
+      <td class="sticky-col-2"><b>${r.model}</b></td>
+      <td>${r.venue}</td>
+      <td>${r.dataset}</td>
+      <td>${inputHTML}</td>
+      <td>${outputHTML}</td>
+      <td>${condsHTML}</td>
+      <td>${r.len}</td>
+      <td>${r.arch}</td>
+      <td>${r.task}</td>
+      <td>${catHTML}</td>
+      <td>${urlHTML}</td>
+    </tr>`;
+  }).join('');
+  tbody.innerHTML = html;
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>OccGen Models Summary</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      /* ====== 外层滚动容器（开启横向滑动 + 单行不换行） ====== */
+      .table-scroll.nowrap {
+        overflow-x: auto;
+        overflow-y: hidden;
+        -webkit-overflow-scrolling: touch;
+        border-radius: 10px;
+        box-shadow: 0 1px 6px rgba(0,0,0,0.06);
+        background: #fff;
+      }
+    
+      /* ====== 表格基础样式 ====== */
+      .models-table {
+        border-collapse: separate;
+        border-spacing: 0;
+        width: 100%;
+        min-width: 1400px;           /* 让表格自然超出，触发横向滚动 */
+        white-space: nowrap;         /* 关键：整表不换行 */
+        font-size: 14px;
+      }
+      .models-table thead th {
+        text-align: left;
+        background: #f7f8fb;
+        font-weight: 700;
+        padding: 10px 12px;
+        border-bottom: 1px solid #e8ebf3;
+        position: sticky; top: 0; z-index: 3; /* 粘性表头 */
+      }
+      .models-table tbody td {
+        padding: 10px 12px;
+        border-bottom: 1px solid #f0f2f7;
+        vertical-align: middle;
+      }
+      .models-table tbody tr:nth-child(odd) td {
+        background: #ffffff;
+      }
+      .models-table tbody tr:nth-child(even) td {
+        background: #f3f8ff;  /* 近似 w_blue!7 */
+      }
+      .models-table tbody tr:hover td {
+        background: #f8fbff;
+      }
+    
+      /* ====== 粘性首列（可按需注释掉） ====== */
+      .models-table .sticky-col {
+        position: sticky;
+        left: 0; z-index: 2;
+        background: inherit; /* 保持与行底色一致 */
+      }
+    
+      /* ====== 小徽标 / 图标 ====== */
+      .icon { height: 18px; width: auto; vertical-align: middle; transform: translateY(1px); }
+      .icon-latent { height: 20px; }
+      .icon-num  { height: 20px; transform: translateY(2px); }
+    
+      /* ====== 条件 Chips ====== */
+      .chips { display: inline-flex; gap: 6px; align-items: center; }
+      .chip {
+        display: inline-flex; align-items: center; gap: 4px;
+        padding: 2px 6px; border-radius: 6px;
+        background: #f4f6fb; border: 1px solid #e8ebf3;
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+        font-size: 12px; font-weight: 600;
+      }
+    
+      /* ====== 说明块（caption + legend） ====== */
+      .legend {
+        margin: 8px 0 12px;
+        line-height: 1.45;
+        color: #374151;
+        font-size: 14px;
+      }
+      .legend b { font-weight: 700; }
+      .legend .row { margin: 4px 0; }
+      .legend .icons { display: inline-flex; gap: 10px; margin-left: 6px; }
+      .legend .icons span { display: inline-flex; align-items: center; gap: 6px; }
+    
+      a.ext { text-decoration: none; border-bottom: 1px dotted #94a3b8; }
+    </style>
+    </head>
+<body>
+
+<section>
+  <h3 style="margin:0 0 6px;">Summary of occupancy-based generation (<b>OccGen</b>) models</h3>
+
+  <!-- 说明（Datasets / IO / Arch / Task / Category） -->
+  <div class="legend">
+    <div class="row"><b>• Datasets:</b> SemanticKITTI, CarlaSC, Occ3D-nuScenes, Waymo, Lyft Level5, Argoverse 2, KITTI-360, NYUv2, OpenCOOD.</div>
+    <div class="row">
+      <b>• Input &amp; Output:</b>
+      <span class="icons">
+        <span><img class="icon icon-latent" src="/figures/icons/latent.png" alt="latent"> Noise Latent</span>
+        <span><img class="icon" src="/figures/icons/latent_codebook.png" alt="codebook"> Latent Codebook</span>
+        <span><img class="icon" src="/figures/icons/video.png" alt="images"> Images</span>
+        <span><img class="icon" src="/figures/icons/occ3d.png" alt="occ3d"> 3D Occ</span>
+        <span><img class="icon" src="/figures/icons/occ4d.png" alt="occ4d"> 4D Occ</span>
+        <span><img class="icon" src="/figures/icons/action.png" alt="action"> Ego-Action</span>
+      </span>
+    </div>
+    <div class="row"><b>• Arch.:</b> Enc-Dec, LDM, MSSM, AR, DiT, LLM.</div>
+    <div class="row"><b>• Tasks:</b> O3G (3D Occ Gen), O4G (4D Occ Gen), OF (Occ Forecast), PT (Pre-Training), SSC (Semantic Scene Completion), E2E.</div>
+    <div class="row">
+      <b>• Categories:</b>
+      <span class="icons">
+        <span><img class="icon icon-num" src="/figures/icons/number-1.png" alt="1"> Scene Representor</span>
+        <span><img class="icon icon-num" src="/figures/icons/number-2.png" alt="2"> Occ Forecaster</span>
+        <span><img class="icon icon-num" src="/figures/icons/number-3.png" alt="3"> Autoregressive Simulator</span>
+      </span>
+    </div>
+  </div>
+
+  <!-- 表格（不换行 + 横向滑动） -->
+  <div class="table-scroll nowrap">
+    <table class="models-table" id="occgen-table">
+      <thead>
+        <tr>
+          <th class="sticky-col">#</th>
+          <th class="sticky-col-2">Model</th>
+          <th>Venue</th>
+          <th>Dataset</th>
+          <th>Input</th>
+          <th>Output</th>
+          <th>Condition</th>
+          <th>Len.</th>
+          <th>Arch.</th>
+          <th>Task</th>
+          <th>Cat.</th>
+          <th>URL</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+</section>
+
+<script>
+/* ===== 图标映射 ===== */
+const ICONS = {
+  latent: '/figures/icons/latent.png',
+  codebook: '/figures/icons/latent_codebook.png',
+  images: '/figures/icons/video.png',     // 用同一张 video 图标表示 Images
+  occ3d: '/figures/icons/occ3d.png',
+  occ4d: '/figures/icons/occ4d.png',
+  action: '/figures/icons/action.png',
+  num1: '/figures/icons/number-1.png',
+  num2: '/figures/icons/number-2.png',
+  num3: '/figures/icons/number-3.png',
+};
+
+function iconImg(src, cls='icon', alt='') {
+  return `<img class="${cls}" src="${src}" alt="${alt}">`;
+}
+function renderIO(keys) {
+  return keys.map(k => {
+    const map = { latent:'latent', 'latent_codebook':'codebook', codebook:'codebook', video:'images', images:'images', occ3d:'occ3d', occ4d:'occ4d', action:'action' };
+    const kk = map[k] ?? k;
+    const cls = (kk === 'latent') ? 'icon icon-latent' : 'icon';
+    const altMap = {latent:'latent', codebook:'codebook', images:'images', occ3d:'occ3d', occ4d:'occ4d', action:'action'};
+    return iconImg(ICONS[kk], cls, altMap[kk] || kk);
+  }).join(' ');
+}
+const chip = (t) => `<span class="chip">${t}</span>`;
+const renderConds = (arr) => arr && arr.length ? `<span class="chips">${arr.map(chip).join('')}</span>` : 'N/A';
+const renderCat = (nums) => nums.map(n => iconImg(ICONS['num'+n], 'icon icon-num', 'Cat '+n)).join(' ');
+
+const rows = [
+  { n:1,  model:'Emergent-Occ', venue:"ECCV'22", dataset:'Occ3D-nuScenes', input:['occ4d'], output:['occ4d','action'], conds:[], len:'7', arch:'Enc-Dec', task:'OF, E2E', cat:[2], url:'https://arxiv.org/abs/2210.01917' },
+  { n:2,  model:'FF4D', venue:"CVPR'23", dataset:'SemanticKITTI, Occ3D-nuScenes, Argoverse 2', input:['occ4d'], output:['occ4d'], conds:[], len:'5', arch:'Enc-Dec', task:'OF', cat:[2], url:'https://arxiv.org/abs/2302.13130' },
+  { n:3,  model:'SSD', venue:"arXiv'23", dataset:'CarlaSC', input:['codebook'], output:['occ3d'], conds:[], len:'1', arch:'LDM', task:'O3G', cat:[1], url:'https://arxiv.org/abs/2301.00527' },
+  { n:4,  model:'UniWorld', venue:"arXiv'23", dataset:'Occ3D-nuScenes', input:['images'], output:['occ3d'], conds:[], len:'-', arch:'Enc-Dec', task:'PT', cat:[2], url:'https://arxiv.org/abs/2308.07234' },
+  { n:5,  model:'UniScene', venue:"RA-L\'24", dataset:'Occ3D-nuScenes', input:['images'], output:['occ3d'], conds:[], len:'-', arch:'Enc-Dec', task:'PT', cat:[2], url:'https://arxiv.org/abs/2305.18829' },
+  { n:6,  model:'Cam4DOcc', venue:"CVPR'24", dataset:'Occ3D-nuScenes, Lyft Level5', input:['images'], output:['occ4d'], conds:['EgoTrajectory'], len:'4', arch:'Enc-Dec', task:'OF', cat:[2], url:'https://arxiv.org/abs/2311.17663' },
+  { n:7,  model:'XCube', venue:"CVPR'24", dataset:'Waymo', input:['latent'], output:['occ3d'], conds:[], len:'1', arch:'LDM', task:'O3G', cat:[3], url:'https://arxiv.org/abs/2312.03806' },
+  { n:8,  model:'SemCity', venue:"CVPR'24", dataset:'SemanticKITTI, CarlaSC', input:['latent'], output:['occ3d'], conds:[], len:'1', arch:'LDM', task:'O3G, SSC', cat:[1,3], url:'https://arxiv.org/abs/2403.07773' },
+  { n:9,  model:'DriveWorld', venue:"CVPR'24", dataset:'Occ3D-nuScenes', input:['images'], output:['occ4d'], conds:['EgoVelocity','EgoSteering'], len:'4', arch:'MSSM', task:'OF, PT', cat:[2], url:'https://arxiv.org/abs/2405.04390' },
+  { n:10, model:'UnO', venue:"CVPR'24", dataset:'SemanticKITTI, Occ3D-nuScenes, Argoverse 2', input:['occ4d'], output:['occ4d'], conds:[], len:'6', arch:'Enc-Dec', task:'OF', cat:[2], url:'https://arxiv.org/abs/2406.08691' },
+  { n:11, model:'PDD', venue:"ECCV\'24", dataset:'SemanticKITTI, CarlaSC', input:['codebook'], output:['occ3d'], conds:[], len:'1', arch:'LDM', task:'O3G', cat:[3], url:'https://arxiv.org/abs/2311.12085' },
+  { n:12, model:'OccWorld', venue:"ECCV\'24", dataset:'Occ3D-nuScenes', input:['occ4d','images'], output:['occ4d','action'], conds:['EgoTrajectory'], len:'6', arch:'AR', task:'OF, E2E', cat:[2], url:'https://arxiv.org/abs/2311.16038' },
+  { n:13, model:'WoVoGen', venue:"ECCV\'24", dataset:'Occ3D-nuScenes', input:['occ4d'], output:['occ4d'], conds:['BEVMap'], len:'3', arch:'LDM', task:'O4G', cat:[1,2], url:'https://arxiv.org/abs/2312.02934' },
+  { n:14, model:'UrbanDiff', venue:"arXiv\'24", dataset:'Occ3D-nuScenes', input:['codebook'], output:['occ3d'], conds:['BEVMap'], len:'1', arch:'LDM', task:'O3G', cat:[1], url:'https://arxiv.org/abs/2403.11697' },
+  { n:15, model:'OccSora', venue:"arXiv\'24", dataset:'CarlaSC, Occ3D-nuScenes, Waymo', input:['codebook'], output:['occ4d'], conds:['EgoTrajectory'], len:'32', arch:'DiT', task:'O4G', cat:[2,3], url:'https://arxiv.org/abs/2405.20337' },
+  { n:16, model:'LOPR', venue:"arXiv\'24", dataset:'Occ3D-nuScenes, Waymo', input:['occ4d','images'], output:['occ4d'], conds:['EgoTrajectory'], len:'15', arch:'Enc-Dec', task:'OF', cat:[2], url:'https://arxiv.org/abs/2407.21126' },
+  { n:17, model:'OccLLaMA', venue:"arXiv\'24", dataset:'Occ3D-nuScenes', input:['codebook'], output:['occ4d'], conds:['EgoTrajectory'], len:'6', arch:'LLM', task:'O4G', cat:[2], url:'https://arxiv.org/abs/2409.03272' },
+  { n:18, model:'FSF-Net', venue:"arXiv\'24", dataset:'Occ3D-nuScenes', input:['occ4d'], output:['occ4d','action'], conds:[], len:'4', arch:'Enc-Dec', task:'OF, E2E', cat:[2], url:'https://arxiv.org/abs/2409.15841' },
+  { n:19, model:'DOME', venue:"arXiv\'24", dataset:'Occ3D-nuScenes', input:['latent'], output:['occ4d'], conds:['EgoTrajectory'], len:'11', arch:'DiT', task:'OF', cat:[2], url:'https://arxiv.org/abs/2410.10429' },
+  { n:20, model:'GaussianAD', venue:"arXiv\'24", dataset:'Occ3D-nuScenes', input:['occ4d'], output:['occ4d','action'], conds:[], len:'6', arch:'Enc-Dec', task:'OF, E2E', cat:[2], url:'https://arxiv.org/abs/2412.10371' },
+  { n:21, model:'OccScene', venue:"arXiv\'24", dataset:'Occ3D-nuScenes, SemanticKITTI, NYUv2', input:['images'], output:['occ3d'], conds:[], len:'1', arch:'SD', task:'O3G', cat:[1], url:'https://arxiv.org/abs/2412.11183' },
+  { n:22, model:'DFIT-OccWorld', venue:"arXiv\'24", dataset:'Occ3D-nuScenes', input:['occ4d','images'], output:['occ4d','action'], conds:['EgoTrajectory'], len:'6', arch:'Enc-Dec', task:'OF, E2E', cat:[2], url:'https://arxiv.org/abs/2412.13772' },
+  { n:23, model:'Drive-OccWorld', venue:"AAAI\'25", dataset:'Occ3D-nuScenes, Lyft Level5', input:['images'], output:['occ4d','action'], conds:['EgoCommand','EgoTrajectory','EgoVelocity','EgoSteering'], len:'4', arch:'AR', task:'OF, E2E', cat:[2], url:'https://arxiv.org/abs/2408.14197' },
+  { n:24, model:'DynamicCity', venue:"ICLR\'25", dataset:'CarlaSC, Occ3D-nuScenes, Waymo', input:['latent'], output:['occ4d'], conds:['BBox','EgoCommand','EgoTrajectory'], len:'16', arch:'DiT', task:'O4G', cat:[3], url:'https://arxiv.org/abs/2410.18084' },
+  { n:25, model:'PreWorld', venue:"ICLR\'25", dataset:'Occ3D-nuScenes', input:['images'], output:['occ4d','action'], conds:['EgoTrajectory'], len:'6', arch:'Enc-Dec', task:'OF, E2E', cat:[2], url:'https://arxiv.org/abs/2502.07309' },
+  { n:26, model:'OccProphet', venue:"ICLR\'25", dataset:'Occ3D-nuScenes, Lyft Level5', input:['images'], output:['occ4d'], conds:['EgoTrajectory'], len:'4', arch:'Enc-Dec', task:'OF', cat:[2], url:'https://arxiv.org/abs/2502.15180' },
+  { n:27, model:'RenderWorld', venue:"ICRA\'25", dataset:'Occ3D-nuScenes', input:['occ4d','images'], output:['occ4d','action'], conds:['EgoTrajectory'], len:'6', arch:'AR', task:'OF, E2E', cat:[2], url:'https://arxiv.org/abs/2409.11356' },
+  { n:28, model:'Occ-LLM', venue:"ICRA\'25", dataset:'Occ3D-nuScenes', input:['occ4d','images'], output:['occ4d','action'], conds:['EgoTrajectory'], len:'6', arch:'LLM', task:'OF, E2E', cat:[2], url:'https://arxiv.org/abs/2502.06419' },
+  { n:29, model:'DrivingSphere', venue:"CVPR\'25", dataset:'Occ3D-nuScenes', input:['codebook'], output:['occ4d'], conds:['BEVMap'], len:'-', arch:'LDM', task:'O4G', cat:[1,3], url:'https://arxiv.org/abs/2411.11252' },
+  { n:30, model:'EfficientOCF', venue:"CVPR\'25", dataset:'Occ3D-nuScenes, Lyft Level5', input:['occ4d'], output:['occ4d'], conds:['EgoTrajectory'], len:'4', arch:'Enc-Dec', task:'OF', cat:[2], url:'https://arxiv.org/abs/2411.14169' },
+  { n:31, model:'UniScene', venue:"CVPR\'25", dataset:'Occ3D-nuScenes', input:['latent'], output:['occ4d'], conds:['BEVMap'], len:'6', arch:'DiT', task:'O4G, OF', cat:[1,3], url:'https://arxiv.org/abs/2412.05435' },
+  { n:32, model:'DIO', venue:"CVPR\'25", dataset:'Argoverse 2', input:['occ4d'], output:['occ4d'], conds:[], len:'5', arch:'Enc-Dec', task:'OF', cat:[2], url:'https://openaccess.thecvf.com/content/CVPR2025/papers/Diehl_DIO_Decomposable_Implicit_4D_Occupancy-Flow_World_Model_CVPR_2025_paper.pdf' },
+  { n:33, model:'InfiniCube', venue:"ICCV\'25", dataset:'Waymo', input:['latent'], output:['occ3d'], conds:['BBox','HDMap'], len:'1', arch:'LDM', task:'O3G', cat:[1,2], url:'https://arxiv.org/abs/2412.03934' },
+  { n:34, model:'Control-3D-Scene', venue:"ICCV\'25", dataset:'CarlaSC', input:['latent'], output:['occ3d'], conds:['SceneGraph'], len:'1', arch:'LDM', task:'O3G', cat:[1], url:'https://arxiv.org/abs/2503.07152' },
+  { n:35, model:'UniOcc', venue:"ICCV\'25", dataset:'Occ3D-nuScenes, CarlaSC, Waymo, OpenCOOD', input:['occ4d','images'], output:['occ4d'], conds:[], len:'6', arch:'N/A', task:'OF', cat:[2], url:'https://arxiv.org/abs/2503.24381' },
+  { n:36, model:'I^2World', venue:"ICCV\'25", dataset:'Occ3D-nuScenes, Waymo', input:['occ4d'], output:['occ4d'], conds:['EgoCommand','EgoTrajectory','EgoVelocity','EgoSteering'], len:'6', arch:'AR', task:'OF', cat:[2], url:'https://arxiv.org/abs/2507.09144' },
+  { n:37, model:'T^3Former', venue:"arXiv\'25", dataset:'Occ3D-nuScenes', input:['occ4d'], output:['occ4d','action'], conds:['EgoTrajectory'], len:'6', arch:'AR', task:'OF, E2E', cat:[2], url:'https://arxiv.org/abs/2503.07338' },
+  { n:38, model:'COME', venue:"arXiv\'25", dataset:'Occ3D-nuScenes', input:['occ4d'], output:['occ4d'], conds:['EgoTrajectory'], len:'6', arch:'DiT', task:'OF', cat:[2], url:'https://arxiv.org/abs/2506.13260' },
+  { n:39, model:'𝒳-Scene', venue:"arXiv\'25", dataset:'Occ3D-nuScenes', input:['latent'], output:['occ3d'], conds:['BBox','BEVMap','HDMap'], len:'1', arch:'LDM', task:'O3G', cat:[1,3], url:'https://arxiv.org/abs/2506.13558' },
+  { n:40, model:'PrITTI', venue:"arXiv\'25", dataset:'KITTI-360', input:['latent'], output:['occ3d'], conds:['BBox','BEVMap'], len:'1', arch:'DiT', task:'O3G', cat:[3], url:'https://arxiv.org/abs/2506.19117' },
+];
+
+/* ===== 渲染 ===== */
+(function render() {
+  const tbody = document.querySelector('#occgen-table tbody');
+  const html = rows.map(r => {
+    const inputHTML  = renderIO(r.input);
+    const outputHTML = renderIO(r.output);
+    const condsHTML  = renderConds(r.conds);
+    const catHTML    = renderCat(r.cat);
+    const urlHTML    = r.url ? `<a class="ext" href="${r.url}" target="_blank" rel="noopener">Link</a>` : '';
+
+    return `<tr>
+      <td class="sticky-col">${r.n}</td>
+      <td class="sticky-col-2"><b>${r.model}</b></td>
+      <td>${r.venue}</td>
+      <td>${r.dataset}</td>
+      <td>${inputHTML}</td>
+      <td>${outputHTML}</td>
+      <td>${condsHTML}</td>
+      <td>${r.len}</td>
+      <td>${r.arch}</td>
+      <td>${r.task}</td>
+      <td>${catHTML}</td>
+      <td>${urlHTML}</td>
+    </tr>`;
+  }).join('');
+  tbody.innerHTML = html;
+})();
+</script>
+</body>
+</html>
