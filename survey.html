@@ -138,53 +138,83 @@
             <section id="eamples">
                 <h2>Examples</h2>
 
-                <section class="videogen">
+                <section class="videogen" tabindex="0" aria-label="VideoGen Set A">
                     <h3>VideoGen</h3>
-                  
-                    <!-- 主播放器 -->
                     <div class="video-hero">
-                      <video id="heroVideo" autoplay loop muted playsinline>
-                        <source id="heroSource" src="videos/gt_0.mp4" type="video/mp4" />
+                      <video autoplay loop muted playsinline data-hero>
+                        <source src="videos/gt_0.mp4" type="video/mp4" />
                       </video>
-                      <div class="video-badge" id="heroLabel">Reference</div>
+                      <div class="video-badge" data-hero-label>Reference</div>
                     </div>
                   
-                    <!-- 缩略图/方法切换栏 -->
-                    <div class="thumb-bar" role="tablist" aria-label="Video methods">
-                      <!-- 每个按钮都带 data-*，点击即可切换 -->
+                    <div class="thumb-bar" role="tablist" aria-label="Video methods A">
                       <button class="thumb is-active" role="tab" aria-selected="true"
                               data-src="videos/gt_0.mp4" data-label="Reference">
                         <img src="videos/images/gt_0.png" alt="Reference thumbnail" />
                         <span>Reference</span>
                       </button>
-                  
                       <button class="thumb" role="tab" aria-selected="false"
                               data-src="videos/magicdrive_0.mp4" data-label="MagicDrive">
                         <img src="videos/images/magicdrive_0.png" alt="MagicDrive thumbnail" />
                         <span>MagicDrive</span>
                       </button>
-                  
                       <button class="thumb" role="tab" aria-selected="false"
                               data-src="videos/drivedreamer2.mp4" data-label="Drivedreamer2">
-                        <img src="videos/images/drivedreamer_0.png" alt="Drivedreamer2 thumbnail" />
+                        <img src="videos/images/drivedreamer_0.png" alt="MagicDrive thumbnail" />
                         <span>Drivedreamer2</span>
                       </button>
-                  
                       <button class="thumb" role="tab" aria-selected="false"
                               data-src="videos/dreamforge.mp4" data-label="Dreamforge">
-                        <img src="videos/images/dreamforge_0.png" alt="Dreamforge thumbnail" />
+                        <img src="videos/images/dreamforge_0.png" alt="MagicDrive thumbnail" />
                         <span>Dreamforge</span>
                       </button>
-                  
                       <button class="thumb" role="tab" aria-selected="false"
                               data-src="videos/opendwm.mp4" data-label="OpenDWM">
-                        <img src="videos/images/opendwm_0.png" alt="OpenDWM thumbnail" />
+                        <img src="videos/images/opendwm_0.png" alt="MagicDrive thumbnail" />
                         <span>OpenDWM</span>
                       </button>
                     </div>
                   </section>
+
+                  <p> </p>
+
+                  <section class="videogen" tabindex="0" aria-label="VideoGen Set A">
+                    <div class="video-hero">
+                      <video autoplay loop muted playsinline data-hero>
+                        <source src="videos/gt_1.mp4" type="video/mp4" />
+                      </video>
+                      <div class="video-badge" data-hero-label>Reference</div>
+                    </div>
                   
-                  
+                    <div class="thumb-bar" role="tablist" aria-label="Video methods A">
+                      <button class="thumb is-active" role="tab" aria-selected="true"
+                              data-src="videos/gt_1.mp4" data-label="Reference">
+                        <img src="videos/images/gt_1.png" alt="Reference thumbnail" />
+                        <span>Reference</span>
+                      </button>
+                      <button class="thumb" role="tab" aria-selected="false"
+                              data-src="videos/magicdrive_1.mp4" data-label="MagicDrive">
+                        <img src="videos/images/magicdrive_1.png" alt="MagicDrive thumbnail" />
+                        <span>MagicDrive</span>
+                      </button>
+                      <button class="thumb" role="tab" aria-selected="false"
+                              data-src="videos/drivedreamer2_1.mp4" data-label="Drivedreamer2">
+                        <img src="videos/images/drivedreamer2_1.png" alt="MagicDrive thumbnail" />
+                        <span>Drivedreamer2</span>
+                      </button>
+                      <button class="thumb" role="tab" aria-selected="false"
+                              data-src="videos/dreamforge_1.mp4" data-label="Dreamforge">
+                        <img src="videos/images/dreamforge_1.png" alt="MagicDrive thumbnail" />
+                        <span>Dreamforge</span>
+                      </button>
+                      <button class="thumb" role="tab" aria-selected="false"
+                              data-src="videos/opendwm_1.mp4" data-label="OpenDWM">
+                        <img src="videos/images/opendwm_1.png" alt="MagicDrive thumbnail" />
+                        <span>OpenDWM</span>
+                      </button>
+                    </div>
+                  </section>
+
                 <h3>OccGen</h3>
                 <p>...</p>
 
@@ -871,49 +901,51 @@
         </script>
 
         <script>
-            (function () {
-            const heroVideo  = document.getElementById('heroVideo');
-            const heroSource = document.getElementById('heroSource');
-            const heroLabel  = document.getElementById('heroLabel');
-            const thumbs     = Array.from(document.querySelectorAll('.thumb-bar .thumb'));
+            // 对页面上每个 .videogen 独立初始化
+            document.querySelectorAll('.videogen').forEach((root) => {
+            const heroVideo  = root.querySelector('[data-hero]');
+            const heroSource = heroVideo.querySelector('source');
+            const heroLabel  = root.querySelector('[data-hero-label]');
+            const thumbs     = Array.from(root.querySelectorAll('.thumb'));
         
             function setActive(btn) {
                 thumbs.forEach(b => {
-                b.classList.toggle('is-active', b === btn);
-                b.setAttribute('aria-selected', b === btn ? 'true' : 'false');
+                const on = b === btn;
+                b.classList.toggle('is-active', on);
+                b.setAttribute('aria-selected', on ? 'true' : 'false');
                 });
             }
         
             function switchTo(btn) {
-                const src   = btn.getAttribute('data-src');
-                const label = btn.getAttribute('data-label') || 'Video';
+                const src = btn.getAttribute('data-src');
                 if (!src) return;
-        
-                // 切换源：重载后保持自动播放/循环/静音
+                const label = btn.getAttribute('data-label') || 'Video';
                 heroSource.src = src;
                 heroVideo.load();
-                heroVideo.play().catch(()=>{}); // 某些浏览器需要 catch
-                heroLabel.textContent = label;
+                heroVideo.play().catch(()=>{});
+                if (heroLabel) heroLabel.textContent = label;
                 setActive(btn);
             }
         
-            // 点击切换
-            thumbs.forEach(btn => {
-                btn.addEventListener('click', () => switchTo(btn));
-            });
+            // 点击切换（仅作用于本组）
+            thumbs.forEach(btn => btn.addEventListener('click', () => switchTo(btn)));
         
-            // 键盘左右切换（聚焦整个组件时也生效）
-            document.addEventListener('keydown', (e) => {
+            // 键盘左右切换（仅当该组获得焦点时生效）
+            root.addEventListener('keydown', (e) => {
                 if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
                 const idx = thumbs.findIndex(b => b.classList.contains('is-active'));
                 if (idx === -1) return;
-                const nextIdx = e.key === 'ArrowRight'
+                const next = e.key === 'ArrowRight'
                 ? (idx + 1) % thumbs.length
                 : (idx - 1 + thumbs.length) % thumbs.length;
-                switchTo(thumbs[nextIdx]);
-                thumbs[nextIdx].scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+                switchTo(thumbs[next]);
+                thumbs[next].scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
             });
-            })();
+        
+            // 若标记了 is-active，则用它作为初始；否则沿用 <source> 默认
+            const initial = root.querySelector('.thumb.is-active');
+            if (initial) switchTo(initial);
+            });
         </script>
   
 
