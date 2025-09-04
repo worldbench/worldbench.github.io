@@ -322,7 +322,7 @@
   
                 </div>
                   <div class="search" title="输入关键词过滤（标题、作者、出处）">
-                    🔎 <input class="paper-search" type="search" placeholder="搜索：标题 / 作者 / 出处（回车清空）" />
+                    🔎 <input class="paper-search" type="search" placeholder="Search: Title / Author / Source" />
                   </div>
                   <span class="count">0 items</span>
                 </div>
@@ -335,7 +335,6 @@
                 <section id="video-panel-c" class="panel" role="tabpanel" aria-labelledby="video-tab-c" aria-hidden="true">
                   <div class="list"></div>
                 </section>
-
                 <section id="video-panel-d" class="panel" role="tabpanel" aria-labelledby="video-tab-d" aria-hidden="true">
                   <div class="list"></div>
                 </section>
@@ -343,15 +342,15 @@
 
             <section id="occupancy-papers" class="papers-section" data-section-key="occupancy">
                 <h2>Occupancy Generation</h2>
-                <p class="subhead">切换子方向：Data Engines / Action Interpreters / Neural Simulators</p>
                 <div class="bar" aria-live="polite">
                   <div class="tabs" role="tablist" aria-label="Occupancy Generation Categories">
-                    <button class="tab-btn tab-1" role="tab" aria-selected="true" aria-controls="occupancy-panel-a" id="occupancy-tab-a">Data Engines</button>
-                    <button class="tab-btn tab-2" role="tab" aria-selected="false" aria-controls="occupancy-panel-b" id="occupancy-tab-b">Action Interpreters</button>
-                    <button class="tab-btn tab-3" role="tab" aria-selected="false" aria-controls="occupancy-panel-c" id="occupancy-tab-c">Neural Simulators</button>
-                  </div>
+                    <button class="tab-btn tab-1" role="tab" aria-selected="true" aria-controls="occupancy-panel-a" id="occupancy-tab-a">Scene Representors</button>
+                    <button class="tab-btn tab-2" role="tab" aria-selected="false" aria-controls="occupancy-panel-b" id="occupancy-tab-b">Occupancy Forecasters</button>
+                    <button class="tab-btn tab-3" role="tab" aria-selected="false" aria-controls="occupancy-panel-c" id="occupancy-tab-c">Autoregressive Simulators</button>
+                    <!-- <button class="tab-btn tab-4" role="tab" aria-selected="false" aria-controls="video-panel-d" id="video-tab-d">Scene Reconstructors</button>   -->
+                </div>
                   <div class="search" title="输入关键词过滤（标题、作者、出处）">
-                    🔎 <input class="paper-search" type="search" placeholder="搜索：标题 / 作者 / 出处（回车清空）" />
+                    🔎 <input class="paper-search" type="search" placeholder="Search: Title / Author / Source" />
                   </div>
                   <span class="count">0 items</span>
                 </div>
@@ -364,19 +363,21 @@
                 <section id="occupancy-panel-c" class="panel" role="tabpanel" aria-labelledby="occupancy-tab-c" aria-hidden="true">
                   <div class="list"></div>
                 </section>
+                <section id="video-panel-d" class="panel" role="tabpanel" aria-labelledby="video-tab-d" aria-hidden="true">
+                    <div class="list"></div>
+                  </section>
               </section>
 
               <section id="lidar-papers" class="papers-section" data-section-key="lidar">
                 <h2>LiDAR Generation</h2>
-                <p class="subhead">切换子方向：Data Engines / Action Interpreters / Neural Simulators</p>
                 <div class="bar" aria-live="polite">
                   <div class="tabs" role="tablist" aria-label="LiDAR Generation Categories">
                     <button class="tab-btn tab-1" role="tab" aria-selected="true" aria-controls="lidar-panel-a" id="lidar-tab-a">Data Engines</button>
                     <button class="tab-btn tab-2" role="tab" aria-selected="false" aria-controls="lidar-panel-b" id="lidar-tab-b">Action Interpreters</button>
-                    <button class="tab-btn tab-3" role="tab" aria-selected="false" aria-controls="lidar-panel-c" id="lidar-tab-c">Neural Simulators</button>
+                    <button class="tab-btn tab-3" role="tab" aria-selected="false" aria-controls="lidar-panel-c" id="lidar-tab-c">Autoregressive Simulators</button>
                   </div>
                   <div class="search" title="输入关键词过滤（标题、作者、出处）">
-                    🔎 <input class="paper-search" type="search" placeholder="搜索：标题 / 作者 / 出处（回车清空）" />
+                    🔎 <input class="paper-search" type="search" placeholder="Search: Title / Author / Source" />
                   </div>
                   <span class="count">0 items</span>
                 </div>
@@ -527,16 +528,56 @@
             },
             occupancy: {
               A: [
-                { title:"OccGen: Data Engines for Occupancy", authors:"Chen et al.", venue:"ECCV", year:2024,
-                  paper:"#", code:"#", project:"#"}
+              { title:"Diffusion Probabilistic Models for Scene-Scale 3D Categorical Data (SSD)", authors:"", venue:"arXiv", year:2023, paper:"https://arxiv.org/abs/2301.00527", code:"https://github.com/zoomin-lee/scene-scale-diffusion", project:"#"},
+                { title:"SemCity: Semantic Scene Generation with Triplane Diffusion", authors:"", venue:"CVPR", year:2024, paper:"https://arxiv.org/abs/2403.07773", code:"https://github.com/zoomin-lee/SemCity", project:"https://sglab.kaist.ac.kr/SemCity/"},
+                { title:"WoVoGen: World Volume-Aware Diffusion for Controllable Multi-Camera Driving Scene Generation", authors:"", venue:"ECCV", year:2024, paper:"https://arxiv.org/abs/2312.02934", code:"https://github.com/fudan-zvg/WoVoGen", project:"#"},
+                { title:"Urban Scene Diffusion through Semantic Occupancy Map (UrbanDiff)", authors:"", venue:"arXiv", year:2024, paper:"https://arxiv.org/abs/2403.11697", code:"#", project:"https://metadriverse.github.io/urbandiff/"},
+                { title:"DrivingSphere: Building A High-Fidelity 4D World for Closed-Loop Simulation", authors:"", venue:"CVPR", year:2025, paper:"https://arxiv.org/abs/2411.11252", code:"https://github.com/yanty123/DrivingSphere", project:"https://yanty123.github.io/DrivingSphere/"},
+                { title:"UniScene: Unified Occupancy-Centric Driving Scene Generation", authors:"", venue:"CVPR", year:2025, paper:"https://arxiv.org/abs/2412.05435", code:"https://github.com/Arlo0o/UniScene-Unified-Occupancy-centric-Driving-Scene-Generation", project:"https://arlo0o.github.io/uniscene/"},
+                { title:"OccScene: Semantic Occupancy-Based Cross-Task Mutual Learning for 3D Scene Generation", authors:"", venue:"arXiv", year:2024, paper:"https://arxiv.org/abs/2412.11183", code:"#", project:"#"},
+                { title:"InfiniCube: Unbounded and Controllable Dynamic 3D Driving Scene Generation with World-Guided Video Models", authors:"", venue:"ICCV", year:2025, paper:"https://arxiv.org/abs/2412.03934", code:"https://github.com/nv-tlabs/InfiniCube", project:"https://research.nvidia.com/labs/toronto-ai/infinicube/"},
+                { title:"Controllable 3D Outdoor Scene Generation via Scene Graphs (Control-3D-Scene)", authors:"", venue:"ICCV", year:2025, paper:"https://arxiv.org/abs/2503.07152", code:"https://github.com/yuhengliu02/control-3d-scene", project:"https://yuheng.ink/project-page/control-3d-scene/"},
+                { title:"X-Scene: Large-Scale Driving Scene Generation with High Fidelity and Flexible Controllability", authors:"", venue:"arXiv", year:2025, paper:"https://arxiv.org/abs/2506.13558", code:"https://github.com/yuyang-cloud/X-Scene", project:"https://x-scene.github.io/"},
               ],
               B: [
-                { title:"Policy-Aware Occupancy Generation", authors:"Kumar et al.", venue:"ICML", year:2025,
-                  paper:"#", code:"#", project:"#"}
+              { title:"Emergent-Occ: Differentiable Raycasting for Self-supervised Occupancy Forecasting", authors:"", venue:"ECCV", year:2022, paper:"https://arxiv.org/abs/2210.01917", code:"https://github.com/tarashakhurana/emergent-occ-forecasting", project:"#"},
+                { title:"FF4D: Point Cloud Forecasting as a Proxy for 4D Occupancy Forecasting", authors:"", venue:"CVPR", year:2023, paper:"https://arxiv.org/abs/2302.13130", code:"https://github.com/tarashakhurana/4d-occ-forecasting", project:"https://www.cs.cmu.edu/~tkhurana/ff4d/index.html"},
+                { title:"UniWorld: Autonomous Driving Pre-Training via World Models", authors:"", venue:"arXiv", year:2023, paper:"https://arxiv.org/abs/2308.07234", code:"#", project:"#"},
+                { title:"UniScene: Multi-Camera Unified Pre-Training via 3D Scene Reconstruction for Autonomous Driving", authors:"", venue:"arXiv", year:2023, paper:"https://arxiv.org/abs/2305.18829", code:"https://github.com/chaytonmin/UniScene", project:"#"},
+                { title:"OccWorld: Learning A 3D Occupancy World Model for Autonomous Driving", authors:"", venue:"ECCV", year:2024, paper:"https://arxiv.org/abs/2311.16038", code:"https://github.com/wzzheng/OccWorld", project:"https://wzzheng.net/OccWorld/"},
+                { title:"Cam4DOcc: Benchmark for Camera-Only 4D Occupancy Forecasting", authors:"", venue:"CVPR", year:2024, paper:"https://arxiv.org/abs/2311.17663", code:"https://github.com/haomo-ai/Cam4DOcc", project:"#"},
+                { title:"DriveWorld: 4D Pre-Trained Scene Understanding via World Models", authors:"", venue:"CVPR", year:2024, paper:"https://arxiv.org/abs/2405.04390", code:"#", project:"#"},
+                { title:"OccSora: 4D Occupancy Generation Models as World Simulators", authors:"", venue:"arXiv", year:2024, paper:"https://arxiv.org/abs/2405.20337", code:"https://github.com/wzzheng/OccSora", project:"https://wzzheng.net/OccSora/"},
+                { title:"UnO: Unsupervised Occupancy Fields for Perception and Forecasting", authors:"", venue:"CVPR", year:2024, paper:"https://arxiv.org/abs/2406.08691", code:"#", project:"https://waabi.ai/uno/"},
+                { title:"LOPR: Self-Supervised Multi-Future Occupancy Forecasting", authors:"", venue:"arXiv", year:2024, paper:"https://arxiv.org/abs/2407.21126", code:"#", project:"#"},
+                { title:"FSF-Net: Enhance 4D Occupancy Forecasting with Coarse BEV Scene Flow", authors:"", venue:"arXiv", year:2024, paper:"https://arxiv.org/abs/2409.15841", code:"#", project:"#"},
+                { title:"OccLLaMA: An Occupancy-Language-Action Generative World Model", authors:"", venue:"arXiv", year:2024, paper:"https://arxiv.org/abs/2409.03272", code:"#", project:"#"},
+                { title:"DOME: Taming Diffusion Model into High-Fidelity Controllable Occupancy World Model", authors:"", venue:"arXiv", year:2024, paper:"https://arxiv.org/abs/2410.10429", code:"https://github.com/gusongen/DOME", project:"https://gusongen.github.io/DOME"},
+                { title:"GaussianAD: Gaussian-Centric End-to-End Autonomous Driving", authors:"", venue:"arXiv", year:2024, paper:"https://arxiv.org/abs/2412.10371", code:"https://github.com/wzzheng/GaussianAD", project:"https://wzzheng.net/GaussianAD"},
+                { title:"DFIT-OccWorld: Efficient Occupancy World Model via Decoupled Dynamic Flow", authors:"", venue:"arXiv", year:2024, paper:"https://arxiv.org/abs/2412.13772", code:"#", project:"#"},
+                { title:"Drive-OccWorld: Vision-Centric 4D Occupancy Forecasting and Planning", authors:"", venue:"AAAI", year:2025, paper:"https://arxiv.org/abs/2408.14197", code:"https://github.com/yuyang-cloud/Drive-OccWorld", project:"https://drive-occworld.github.io/"},
+                { title:"PreWorld: Semi-Supervised Vision-Centric 3D Occupancy World Model", authors:"", venue:"ICLR", year:2025, paper:"https://arxiv.org/abs/2502.07309", code:"https://github.com/getterupper/PreWorld", project:"#"},
+                { title:"OccProphet: Camera-Only 4D Occupancy Forecasting with Observer-Forecaster-Refiner", authors:"", venue:"ICLR", year:2025, paper:"https://arxiv.org/abs/2502.15180", code:"https://github.com/JLChen-C/OccProphet", project:"#"},
+                { title:"RenderWorld: World Model with Self-Supervised 3D Label", authors:"", venue:"ICRA", year:2025, paper:"https://arxiv.org/abs/2409.11356", code:"#", project:"#"},
+                { title:"Occ-LLM: Enhancing Driving with Occupancy-Based Large Language Models", authors:"", venue:"ICRA", year:2025, paper:"https://arxiv.org/abs/2502.06419", code:"#", project:"#"},
+                { title:"EfficientOCF: Spatiotemporal Decoupling for Efficient Occupancy Forecasting", authors:"", venue:"CVPR", year:2025, paper:"https://arxiv.org/abs/2411.14169", code:"#", project:"#"},
+                { title:"DIO: Decomposable Implicit 4D Occupancy-Flow World Model", authors:"", venue:"CVPR", year:2025, paper:"https://openaccess.thecvf.com/content/CVPR2025/papers/Diehl_DIO_Decomposable_Implicit_4D_Occupancy-Flow_World_Model_CVPR_2025_paper.pdf", code:"#", project:"#"},
+                { title:"T³Former: Temporal Triplane Transformers as Occupancy World Models", authors:"", venue:"arXiv", year:2025, paper:"https://arxiv.org/abs/2503.07338", code:"#", project:"#"},
+                { title:"UniOcc: A Unified Benchmark for Occupancy Forecasting and Prediction", authors:"", venue:"ICCV", year:2025, paper:"https://arxiv.org/abs/2503.24381", code:"https://github.com/tasl-lab/UniOcc", project:"https://huggingface.co/datasets/tasl-lab/uniocc"},
+                { title:"I²-World: Intra-Inter Tokenization for Efficient Dynamic 4D Scene Forecasting", authors:"", venue:"ICCV", year:2025, paper:"https://arxiv.org/abs/2507.09144", code:"https://github.com/lzzzzzm/II-World", project:"#"},
+                { title:"COME: Adding Scene-Centric Forecasting Control to Occupancy World Model", authors:"", venue:"arXiv", year:2025, paper:"https://arxiv.org/abs/2506.13260", code:"https://github.com/synsin0/COME", project:"#"}
               ],
               C: [
-                { title:"Neural Simulators for 3D Occupancy", authors:"Park et al.", venue:"TPAMI", year:2026,
-                  paper:"#", code:"#", project:"#"}
+              { title:"SemCity: Semantic Scene Generation with Triplane Diffusion", authors:"", venue:"CVPR", year:2024, paper:"https://arxiv.org/abs/2403.07773", code:"https://github.com/zoomin-lee/SemCity", project:"https://sglab.kaist.ac.kr/SemCity/"},
+                { title:"XCube: Large-Scale 3D Generative Modeling using Sparse Voxel Hierarchies", authors:"", venue:"CVPR", year:2024, paper:"https://arxiv.org/abs/2312.03806", code:"https://github.com/nv-tlabs/XCube", project:"https://research.nvidia.com/labs/toronto-ai/xcube/"},
+                { title:"PDD: Pyramid Diffusion for Fine 3D Large Scene Generation", authors:"", venue:"ECCV", year:2024, paper:"https://arxiv.org/abs/2311.12085", code:"https://github.com/yuhengliu02/pyramid-discrete-diffusion", project:"https://yuheng.ink/project-page/pyramid-discrete-diffusion"},
+                { title:"OccSora: 4D Occupancy Generation Models as World Simulators for Autonomous Driving", authors:"", venue:"arXiv", year:2024, paper:"https://arxiv.org/abs/2405.20337", code:"https://github.com/wzzheng/OccSora", project:"https://wzzheng.net/OccSora/"},
+                { title:"DynamicCity: Large-Scale 4D Occupancy Generation from Dynamic Scenes", authors:"", venue:"ICLR", year:2025, paper:"https://arxiv.org/abs/2410.18084", code:"https://github.com/3DTopia/DynamicCity", project:"https://dynamic-city.github.io/"},
+                { title:"DrivingSphere: Building A High-Fidelity 4D World for Closed-Loop Simulation", authors:"", venue:"CVPR", year:2025, paper:"https://arxiv.org/abs/2411.11252", code:"https://github.com/yanty123/DrivingSphere", project:"https://yanty123.github.io/DrivingSphere/"},
+                { title:"InfiniCube: Unbounded and Controllable Dynamic 3D Driving Scene Generation with World-Guided Video Models", authors:"", venue:"ICCV", year:2025, paper:"https://arxiv.org/abs/2412.03934", code:"https://github.com/nv-tlabs/InfiniCube", project:"https://research.nvidia.com/labs/toronto-ai/infinicube/"},
+                { title:"X-Scene: Large-Scale Driving Scene Generation with High Fidelity and Flexible Controllability", authors:"", venue:"arXiv", year:2025, paper:"https://arxiv.org/abs/2506.13558", code:"https://github.com/yuyang-cloud/X-Scene", project:"https://x-scene.github.io/"},
+                { title:"PrITTI: Primitive-Based Generation of Controllable and Editable 3D Semantic Scenes", authors:"", venue:"arXiv", year:2025, paper:"https://arxiv.org/abs/2506.19117", code:"https://github.com/avg-dev/PrITTI", project:"https://raniatze.github.io/pritti/"}
+
               ]
             },
             lidar: {
@@ -545,12 +586,17 @@
                   paper:"#", code:"#", project:"#"}
               ],
               B: [
-                { title:"Action Interpreters for LiDAR Scenes", authors:"Wang et al.", venue:"ICCV", year:2025,
-                  paper:"#", code:"#", project:"#"}
+              { title:"Copilot4D: Learning Unsupervised World Models for Autonomous Driving via Discrete Diffusion", authors:"", venue:"ICLR", year:2024, paper:"https://arxiv.org/abs/2311.01017", code:"#", project:"https://waabi.ai/research/copilot-4d"},
+                { title:"Visual Point Cloud Forecasting enables Scalable Autonomous Driving (ViDAR)", authors:"", venue:"CVPR", year:2024, paper:"https://arxiv.org/abs/2312.17655", code:"https://github.com/OpenDriveLab/ViDAR", project:"#"},
+                { title:"BEVWorld: A Multimodal World Simulator for Autonomous Driving via Scene-Level BEV Latents", authors:"", venue:"arXiv", year:2024, paper:"https://arxiv.org/abs/2407.05679", code:"https://github.com/zympsyche/BevWorld", project:"#"},
+                { title:"HERMES: A Unified Self-Driving World Model for Simultaneous 3D Scene Understanding and Generation", authors:"", venue:"ICCV", year:2025, paper:"https://arxiv.org/abs/2501.14729", code:"https://github.com/LMD0311/HERMES", project:"https://lmd0311.github.io/HERMES/"},
+                { title:"DriveX: Omni Scene Modeling for Learning Generalizable World Knowledge in Autonomous Driving", authors:"", venue:"arXiv", year:2025, paper:"https://arxiv.org/abs/2505.19239", code:"#", project:"#"}
               ],
               C: [
-                { title:"Neural Simulators for Point Clouds", authors:"Zhao et al.", venue:"NeurIPS", year:2024,
-                  paper:"#", code:"#", project:"#"}
+              { title:"HoloDrive: Holistic 2D-3D Multi-Modal Street Scene Generation for Autonomous Driving", authors:"", venue:"arXiv", year:2024, paper:"https://arxiv.org/abs/2412.01407", code:"#", project:"#"},
+                { title:"LidarDM: Generative LiDAR Simulation in a Generated World", authors:"", venue:"ICRA", year:2025, paper:"https://arxiv.org/abs/2404.02903", code:"https://github.com/vzyrianov/lidardm", project:"https://zyrianov.org/lidardm/"},
+                { title:"OpenDWM: Open Driving World Models", authors:"", venue:"arXiv", year:2025, paper:"https://github.com/SenseTime-FVG/OpenDWM", code:"https://github.com/SenseTime-FVG/OpenDWM", project:"#"},
+                { title:"LiDARCrafter: Dynamic 4D World Modeling from LiDAR Sequences", authors:"", venue:"arXiv", year:2025, paper:"https://arxiv.org/abs/2508.03692", code:"https://github.com/lidarcrafter/toolkit", project:"https://lidarcrafter.github.io/" }
               ]
             }
           };
