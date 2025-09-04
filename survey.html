@@ -110,109 +110,6 @@
 
             <!-- ---------- Introduction (new) ---------- -->
               <section id="introduction">
-                <style>
-
-                  /* Scoped styles (won't leak much due to wb- prefix) */
-                  .wb-section {
-                    margin: 2rem 0 3rem;
-                  }
-                  .wb-lead {
-                    font-size: 1.15rem;
-                    line-height: 1.7;
-                    color: #1f2937;
-                    max-width: 900px;
-                  }
-                  .wb-kicker {
-                    display: inline-block;
-                    font-size: .8rem;
-                    letter-spacing: .06em;
-                    text-transform: uppercase;
-                    font-weight: 700;
-                    color: #6b7280;
-                    margin-bottom: .25rem;
-                  }
-                  .wb-hr {
-                    height: 3px;
-                    width: 72px;
-                    background: linear-gradient(90deg, #111827, #6366f1 60%, #60a5fa);
-                    border-radius: 999px;
-                    margin: .75rem 0 1.25rem;
-                  }
-                  .wb-list {
-                    display: grid;
-                    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-                    gap: .75rem 1rem;
-                    padding: 0;
-                    margin: 1rem 0 0;
-                    list-style: none;
-                  }
-                  .wb-list li {
-                    background: #f9fafb;
-                    border: 1px solid #e5e7eb;
-                    border-radius: 12px;
-                    padding: .75rem .9rem;
-                    line-height: 1.5;
-                  }
-
-                  /* Definition cards */
-                  #definition .wb-grid {
-                    display: grid;
-                    /* grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); */
-                    grid-template-columns: repeat(3, minmax(0, 1fr));
-                    gap: 1.25rem;
-                    margin-top: 1rem;
-                  }
-                  .wb-card {
-                    background: white;
-                    border: 1px solid #e5e7eb;
-                    border-radius: 14px;
-                    padding: 1.1rem 1.1rem 1rem;
-                    box-shadow: 0 1px 2px rgba(0,0,0,.04);
-                    transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
-                  }
-                  .wb-card:hover {
-                    transform: translateY(-2px);
-                    box-shadow: 0 8px 20px rgba(0,0,0,.06);
-                    border-color: #d1d5db;
-                  }
-                  .wb-card h3 {
-                    display: flex;
-                    align-items: center;
-                    gap: .5rem;
-                    font-size: 1.05rem;
-                    margin: 0 0 .4rem;
-                  }
-                  .wb-card p {
-                    margin: .45rem 0;
-                    color: #374151;
-                    line-height: 1.6;
-                  }
-                  .wb-meta {
-                    display: flex;
-                    flex-wrap: wrap;
-                    gap: .35rem .4rem;
-                    margin-top: .5rem;
-                  }
-                  .wb-chip {
-                    font-size: .75rem;
-                    border: 1px solid #e5e7eb;
-                    border-radius: 999px;
-                    padding: .2rem .55rem;
-                    background: #f3f4f6;
-                    color: #374151;
-                    white-space: nowrap;
-                  }
-                  .wb-cap {
-                    font-size: .82rem;
-                    color: #4b5563;
-                    margin-top: .35rem;
-                  }
-                  .wb-anchor {
-                    text-decoration: none;
-                    color: inherit;
-                  }
-                </style>
-
                 <div class="wb-section">
                   <div class="wb-kicker">Introduction</div>
                   <div class="wb-hr"></div>
@@ -554,34 +451,34 @@
                       <video autoplay loop muted playsinline data-hero>
                         <source src="occ_videos/dynamic_video/0_occ.mp4" type="video/mp4" />
                       </video>
-                      <div class="video-badge" data-hero-label>Sample1</div>
+                      <div class="video-badge" data-hero-label>Sample 1</div>
                     </div>
                   
                     <div class="thumb-bar" role="tablist" aria-label="Video methods A">
                       <button class="thumb is-active" role="tab" aria-selected="true"
-                              data-src="occ_videos/dynamic_video/0_occ.mp4" data-label="Reference">
+                              data-src="occ_videos/dynamic_video/1_occ.mp4" data-label="Sample1">
                         <img src="occ_videos/dynamic_video/0_bev_layout.png" alt="Reference thumbnail" />
-                        <span>Sample1</span>
+                        <span>Sample 1</span>
                       </button>
                       <button class="thumb" role="tab" aria-selected="false"
-                              data-src="occ_videos/dynamic_video/1_occ.mp4" data-label="MagicDrive">
-                        <img src="videos/images/magicdrive_1.png" alt="MagicDrive thumbnail" />
-                        <span>MagicDrive</span>
+                              data-src="occ_videos/dynamic_video/1_occ.mp4" data-label="Sample2">
+                        <img src="occ_videos/dynamic_video/1_bev_layout.png" alt="MagicDrive thumbnail" />
+                        <span>Sample 2</span>
                       </button>
                       <button class="thumb" role="tab" aria-selected="false"
-                              data-src="occ_videos/dynamic_video/2_occ.mp4" data-label="Drivedreamer2">
-                        <img src="videos/images/drivedreamer2_1.png" alt="MagicDrive thumbnail" />
-                        <span>Drivedreamer2</span>
+                              data-src="occ_videos/dynamic_video/2_occ.mp4" data-label="Sample3">
+                        <img src="occ_videos/dynamic_video/2_bev_layout.png" alt="MagicDrive thumbnail" />
+                        <span>Sample 3</span>
                       </button>
                       <button class="thumb" role="tab" aria-selected="false"
-                              data-src="occ_videos/dynamic_video/3_occ.mp4" data-label="Dreamforge">
-                        <img src="videos/images/dreamforge_1.png" alt="MagicDrive thumbnail" />
-                        <span>Dreamforge</span>
+                              data-src="occ_videos/dynamic_video/3_occ.mp4" data-label="Sample4">
+                        <img src="occ_videos/dynamic_video/3_bev_layout.png" alt="MagicDrive thumbnail" />
+                        <span>Sample 4</span>
                       </button>
                       <button class="thumb" role="tab" aria-selected="false"
-                              data-src="occ_videos/dynamic_video/4_occ.mp4" data-label="OpenDWM">
-                        <img src="videos/images/opendwm_1.png" alt="MagicDrive thumbnail" />
-                        <span>OpenDWM</span>
+                              data-src="occ_videos/dynamic_video/4_occ.mp4" data-label="Sample5">
+                        <img src="occ_videos/dynamic_video/4_bev_layout.png" alt="MagicDrive thumbnail" />
+                        <span>Sample 5</span>
                       </button>
                     </div>
                   </section>
