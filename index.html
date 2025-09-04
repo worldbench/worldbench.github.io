@@ -1,144 +1,694 @@
 <!doctype html>
 <html lang="en">
     <head>
+        <title>DynamicVerse</title>
+        <link rel="icon" type="image/x-icon" href="/static/img/ButtleFly.ico">
+
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <script src="template.v2.js"></script>
+
+        <!-- Open Graph -->
+        <meta property="og:url" content="https://dynamic-verse.github.io/" />
+        <meta property="og:image" content="https://dynamic-verse.github.io/static/img/ButtleFly_3.png" />
+        <meta property="og:title" content="DynamicVerse: Physically-Aware Multimodal Modeling for Dynamic 4D Worlds" />
+        <meta property="og:description" content="is a physical-scale, multi-modal 4D modeling framework for real-world video, which contains a novel automated data curation pipeline and corresponding large-scale 4D dataset." />
+
+        <!-- Twitter -->
+        <meta name="twitter:url" content="https://dynamic-verse.github.io/" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:image" content="https://dynamic-verse.github.io/static/img/ButtleFly_3.png" />
+        <meta name="twitter:title" content="DynamicVerse: Physically-Aware Multimodal Modeling for Dynamic 4D Worlds." />
+        <meta name="twitter:description" content="We introduce DynamicVerse, a physical-scale, multi-modal 4D modeling framework for real-world video, which contains a novel automated data curation pipeline and corresponding large-scale 4D dataset." />
+
+        <script src="./static/js/distill_template.v2.js"></script>
+        <!-- <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script> -->
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
         <script src="https://d3js.org/d3.v5.min.js"></script>
         <script src="https://d3js.org/d3-collection.v1.min.js"></script>
         <script src="https://rawgit.com/nstrayer/slid3r/master/dist/slid3r.js"></script>
-        <script src="cross_fade.js"></script>
-        <script type="module" src="https://gradio.s3-us-west-2.amazonaws.com/3.35.2/gradio.js"></script>
-        <link rel="stylesheet" href="style.css">
-        <link rel="icon" type="favicon/png" href="favicon.png">
-        
+
+        <script defer="" src="./static/js/hider.js"></script>
+        <script src="./static/js/image_interact.js"></script>
+        <script src="./static/js/switch_videos.js"></script>
+
+        <link rel="stylesheet" href="./static/css/style.css">
+        <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css" integrity="sha384-yFRtMMDnQtDRO8rLpMIKrtPCD5jdktao2TV19YiZYWMDkUR5GQZR/NOVTdquEx1j" crossorigin="anonymous">
         <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.js" integrity="sha384-9Nhn55MVVN0/4OFx7EE5kpFBPsEMZxKTCnA+4fqDmg12eCTqGi6+BB2LjY8brQxJ" crossorigin="anonymous"></script>
         <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
             onload="renderMathInElement(document.body);"></script>
+        <script defer src="./static/js/fontawesome.all.min.js"></script>
+
+
+        <!-- medium zoom https://github.com/francoischalifour/medium-zoom -->
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>  <!-- jquery -->
+        <script defer src="./static/js/medium-zoom.min.js"></script>
+        <script defer src="./static/js/zoom.js"></script>
+
+        <!-- Scoped styles for the Papers section -->
     </head>
     <body>
-        <div class="header-container">
-            <div class="header-content">
-              <h1>WorldBench:<br>Benchmarking 3D and 4D World Models in the Real World</h1>
-              <div class="button-container">
-                <a href="" class="button">Paper</a>
-                <a href="" class="button">GitHub</a>
-                <a href="" class="button">Leaderboard</a>
-              </div>
-            </div>
-            <div class="header-image">
-                <img src="images/teaser_eye.png" alt="Teaser Image" class="teaser-image">
+        <div class="header-wrapper">
+
+            <div class="header-container", id="header-container">
+                <div class="header-content">
+                <h1>WorldBench:<br>Benchmarking 3D and 4D World Models in the Real World</h1>
+                <div class="button-container">
+                    <!-- replace arxiv -->
+                    <a href="https://dynamic-verse.github.io/" class="button paper-link" target="_blank">
+                        <span class="icon is-small">
+                            <i class="ai ai-arxiv "  style="height: 1.5em;"></i>
+                        </span>
+                        ArXiv
+                    </a>
+                    <!-- replace pdf -->
+                    <a href="https://dynamic-verse.github.io/" class="button paper-link" target="_blank">
+                        <span class="icon is-small"  style="height: 1.5em;">
+                            <i class="fas fa-file-pdf"></i>
+                        </span>
+                        <span>PDF</span>
+                    </a>
+                    <!-- replace image -->
+                    <a href="https://github.com/kairunwen/DynamicVerse" class="button" target="_blank">
+                        <span class="icon is-small"  style="height: 1.5em;">
+                            <i class="fab fa-github"></i>
+                        </span>
+                        <span>Code</span>
+                    </a>
+
+                    <a href="https://huggingface.co/datasets/kairunwen/DynamicVerse" class="button" target="_blank">
+                        <span class="icon is-small">
+                            <img src="https://huggingface.co/front/assets/huggingface_logo-noborder.svg" alt="Hugging Face logo" style="height: 1.5em;">
+                        </span>
+                        <span>Dataset</span>
+                    </a>
+                </div>
+                </div>
+                <div class="header-image">
+                    <img src="images/teaser_eye.png" alt="Teaser Image" class="teaser-image">
+                </div>
             </div>
         </div>
-    <d-article>
-        <d-contents>
-            <nav>
-                <h4>Contents</h4>
-                <div><a href="#definition">Definition</a></div>
-                <div><a href="#taxonomy">Taxonomy</a></div>
-                <div><a href="#datasets">Datasets</a></div>
-                <div><a href="#evaluatons">Evaluations</a></div>
-                <div><a href="#applications">Applications</a></div>
-            </nav>
-        </d-contents>
-        
-        <p>
-            Nihao
-        </p>
-        <section id="definition">
-            <h2>Definition</h2>
-            <p>
-                To be updated.
-            </p>
-            <!-- LiDARGen -->
-            <iframe 
-            class="iframe"
-            src="https://worldbench.github.io/viser-client/?playbackPath=https://worldbench.github.io/lidar_visers/recording.viser&initialCameraPosition=10.885,9.746,4.995&initialCameraLookAt=2.343,1.204,-3.547&initialCameraUp=-0.000,-0.000,1.000"
-            ></iframe>
-            <iframe 
-            class="iframe"
-            src="https://worldbench.github.io/viser-client/?playbackPath=https://worldbench.github.io/lidar_visers/recording.viser&initialCameraPosition=10.885,9.746,4.995&initialCameraLookAt=2.343,1.204,-3.547&initialCameraUp=-0.000,-0.000,1.000"
-            ></iframe>
-            <iframe 
-            class="iframe"
-            src="https://worldbench.github.io/viser-client/?playbackPath=https://worldbench.github.io/lidar_visers/recording.viser&initialCameraPosition=10.885,9.746,4.995&initialCameraLookAt=2.343,1.204,-3.547&initialCameraUp=-0.000,-0.000,1.000"
-            ></iframe>
-            <iframe 
-            class="iframe"
-            src="https://worldbench.github.io/viser-client/?playbackPath=https://worldbench.github.io/lidar_visers/recording.viser&initialCameraPosition=10.885,9.746,4.995&initialCameraLookAt=2.343,1.204,-3.547&initialCameraUp=-0.000,-0.000,1.000"
-            ></iframe>
-            <iframe 
-            class="iframe"
-            src="https://worldbench.github.io/viser-client/?playbackPath=https://worldbench.github.io/lidar_visers/recording.viser&initialCameraPosition=10.885,9.746,4.995&initialCameraLookAt=2.343,1.204,-3.547&initialCameraUp=-0.000,-0.000,1.000"
-            ></iframe>
-            <iframe 
-            class="iframe"
-            src="https://worldbench.github.io/viser-client/?playbackPath=https://worldbench.github.io/lidar_visers/recording.viser&initialCameraPosition=10.885,9.746,4.995&initialCameraLookAt=2.343,1.204,-3.547&initialCameraUp=-0.000,-0.000,1.000"
-            ></iframe>
-            <p>
-                <d-figure>
-                    <figure class="l-body">
-                        <div id='figure1_div'></div>
-                        <script src="figure1.js"></script>
-                        <figcaption>
-                            Examples 
-                        </figcaption>
-                    </figure>
-                </d-figure>
-            </p>
-        </section>
+
+        <d-article>
+            <d-contents>
+                <nav>
+                    <h4>Contents</h4>
+                    <div><a href="#definition">Definition</a></div>
+                    <div><a href="#taxonomy">Taxonomy</a></div>
+                    <div><a href="#datasets">Datasets</a></div>
+                    <div><a href="#evaluatons">Evaluations</a></div>
+                    <div><a href="#applications">Applications</a></div>
+                    <!-- Added: Papers section -->
+                    <div><a href="#papers">Papers</a></div>
+                </nav>
+            </d-contents>
 
 
+            <section id="definition">
+                <h2>Definition</h2>
+                <p>To be updated.</p>
+            </section>
 
+            <section id="eamples">
+                <h2>Examples</h2>
+                <p>To be updated.</p>
 
-        <section id="taxonomy">
-            <h2>Taxonomy</h2>
-            <p>
-                To be updated.
-            </p>
+                <h3>VideoGen</h3>
+                <p>...</p>
 
+                <h3>OccGen</h3>
+                <p>...</p>
 
-            <h3>Data Engines</h3>
-            <p>
-                ...
-            </p>
+                <h3>LiDARGen</h3>
+                <!-- LiDARGen -->
+                <details class="lazy-load" id="lidargen">
+                <summary>LiDARGen</summary>
 
+                <div class="grid-2x2">
+                    <iframe
+                      class="viseriframe"
+                      src="https://worldbench.github.io/viser-client/?playbackPath=https://worldbench.github.io/lidar_visers/lidargen/0.viser&initialCameraPosition=10.885,9.746,4.995&initialCameraLookAt=2.343,1.204,-3.547&initialCameraUp=-0.000,-0.000,1.000"
+                      loading="lazy" allowfullscreen>
+                    </iframe>
+                
+                    <iframe
+                      class="viseriframe"
+                      src="https://worldbench.github.io/viser-client/?playbackPath=https://worldbench.github.io/lidar_visers/lidargen/1.viser&initialCameraPosition=10.885,9.746,4.995&initialCameraLookAt=2.343,1.204,-3.547&initialCameraUp=-0.000,-0.000,1.000"
+                      loading="lazy" allowfullscreen>
+                    </iframe>
+                
+                    <iframe
+                      class="viseriframe"
+                      src="https://worldbench.github.io/viser-client/?playbackPath=https://worldbench.github.io/lidar_visers/lidargen/2.viser&initialCameraPosition=10.885,9.746,4.995&initialCameraLookAt=2.343,1.204,-3.547&initialCameraUp=-0.000,-0.000,1.000"
+                      loading="lazy" allowfullscreen>
+                    </iframe>
+                
+                    <iframe
+                      class="viseriframe"
+                      src="https://worldbench.github.io/viser-client/?playbackPath=https://worldbench.github.io/lidar_visers/lidargen/3.viser&initialCameraPosition=10.885,9.746,4.995&initialCameraLookAt=2.343,1.204,-3.547&initialCameraUp=-0.000,-0.000,1.000"
+                      loading="lazy" allowfullscreen>
+                    </iframe>
+                  </div>
+                </details>
 
-            <h3>Action Interpreters</h3>
-            <p>
-                ...
-            </p>
+                <!-- LiDM -->
+                <details class="lazy-load" id="lidargen">
+                <summary>LiDM</summary>
+                <div class="grid-2x2">
+                    <iframe
+                      class="viseriframe"
+                      src="https://worldbench.github.io/viser-client/?playbackPath=https://worldbench.github.io/lidar_visers/lidm/0.viser&initialCameraPosition=10.885,9.746,4.995&initialCameraLookAt=2.343,1.204,-3.547&initialCameraUp=-0.000,-0.000,1.000"
+                      loading="lazy" allowfullscreen>
+                    </iframe>
+                
+                    <iframe
+                      class="viseriframe"
+                      src="https://worldbench.github.io/viser-client/?playbackPath=https://worldbench.github.io/lidar_visers/lidm/1.viser&initialCameraPosition=10.885,9.746,4.995&initialCameraLookAt=2.343,1.204,-3.547&initialCameraUp=-0.000,-0.000,1.000"
+                      loading="lazy" allowfullscreen>
+                    </iframe>
+                
+                    <iframe
+                      class="viseriframe"
+                      src="https://worldbench.github.io/viser-client/?playbackPath=https://worldbench.github.io/lidar_visers/lidm/2.viser&initialCameraPosition=10.885,9.746,4.995&initialCameraLookAt=2.343,1.204,-3.547&initialCameraUp=-0.000,-0.000,1.000"
+                      loading="lazy" allowfullscreen>
+                    </iframe>
+                
+                    <iframe
+                      class="viseriframe"
+                      src="https://worldbench.github.io/viser-client/?playbackPath=https://worldbench.github.io/lidar_visers/lidm/3.viser&initialCameraPosition=10.885,9.746,4.995&initialCameraLookAt=2.343,1.204,-3.547&initialCameraUp=-0.000,-0.000,1.000"
+                      loading="lazy" allowfullscreen>
+                    </iframe>
+                  </div>
+                </details>
 
+                <!-- R2DM -->
+                <details class="lazy-load" id="lidargen">
+                <summary>R2DM</summary>
+                <div class="grid-2x2">
+                    <iframe
+                      class="viseriframe"
+                      src="https://worldbench.github.io/viser-client/?playbackPath=https://worldbench.github.io/lidar_visers/r2dm/0.viser&initialCameraPosition=10.885,9.746,4.995&initialCameraLookAt=2.343,1.204,-3.547&initialCameraUp=-0.000,-0.000,1.000"
+                      loading="lazy" allowfullscreen>
+                    </iframe>
+                
+                    <iframe
+                      class="viseriframe"
+                      src="https://worldbench.github.io/viser-client/?playbackPath=https://worldbench.github.io/lidar_visers/r2dm/1.viser&initialCameraPosition=10.885,9.746,4.995&initialCameraLookAt=2.343,1.204,-3.547&initialCameraUp=-0.000,-0.000,1.000"
+                      loading="lazy" allowfullscreen>
+                    </iframe>
+                
+                    <iframe
+                      class="viseriframe"
+                      src="https://worldbench.github.io/viser-client/?playbackPath=https://worldbench.github.io/lidar_visers/r2dm/2.viser&initialCameraPosition=10.885,9.746,4.995&initialCameraLookAt=2.343,1.204,-3.547&initialCameraUp=-0.000,-0.000,1.000"
+                      loading="lazy" allowfullscreen>
+                    </iframe>
+                
+                    <iframe
+                      class="viseriframe"
+                      src="https://worldbench.github.io/viser-client/?playbackPath=https://worldbench.github.io/lidar_visers/r2dm/3.viser&initialCameraPosition=10.885,9.746,4.995&initialCameraLookAt=2.343,1.204,-3.547&initialCameraUp=-0.000,-0.000,1.000"
+                      loading="lazy" allowfullscreen>
+                    </iframe>
+                  </div>
+                </details>
 
-        </section>
+                <!-- UniScene -->
+                <details class="lazy-load" id="lidargen">
+                <summary>UniScene</summary>
+                <div class="grid-2x2">
+                    <iframe
+                      class="viseriframe"
+                      src="https://worldbench.github.io/viser-client/?playbackPath=https://worldbench.github.io/lidar_visers/uniscene/0.viser&initialCameraPosition=10.885,9.746,4.995&initialCameraLookAt=2.343,1.204,-3.547&initialCameraUp=-0.000,-0.000,1.000"
+                      loading="lazy" allowfullscreen>
+                    </iframe>
+                
+                    <iframe
+                      class="viseriframe"
+                      src="https://worldbench.github.io/viser-client/?playbackPath=https://worldbench.github.io/lidar_visers/uniscene/1.viser&initialCameraPosition=10.885,9.746,4.995&initialCameraLookAt=2.343,1.204,-3.547&initialCameraUp=-0.000,-0.000,1.000"
+                      loading="lazy" allowfullscreen>
+                    </iframe>
+                
+                    <iframe
+                      class="viseriframe"
+                      src="https://worldbench.github.io/viser-client/?playbackPath=https://worldbench.github.io/lidar_visers/uniscene/2.viser&initialCameraPosition=10.885,9.746,4.995&initialCameraLookAt=2.343,1.204,-3.547&initialCameraUp=-0.000,-0.000,1.000"
+                      loading="lazy" allowfullscreen>
+                    </iframe>
+                
+                    <iframe
+                      class="viseriframe"
+                      src="https://worldbench.github.io/viser-client/?playbackPath=https://worldbench.github.io/lidar_visers/uniscene/3.viser&initialCameraPosition=10.885,9.746,4.995&initialCameraLookAt=2.343,1.204,-3.547&initialCameraUp=-0.000,-0.000,1.000"
+                      loading="lazy" allowfullscreen>
+                    </iframe>
+                  </div>
+                </details>
 
+                <!-- OpenDWM -->
+                <details class="lazy-load" id="lidargen">
+                    <summary>OpenPWM</summary>
+                    <div class="grid-2x2">
+                        <iframe
+                          class="viseriframe"
+                          src="https://worldbench.github.io/viser-client/?playbackPath=https://worldbench.github.io/lidar_visers/opendwm/0.viser&initialCameraPosition=10.885,9.746,4.995&initialCameraLookAt=2.343,1.204,-3.547&initialCameraUp=-0.000,-0.000,1.000"
+                          loading="lazy" allowfullscreen>
+                        </iframe>
+                    
+                        <iframe
+                          class="viseriframe"
+                          src="https://worldbench.github.io/viser-client/?playbackPath=https://worldbench.github.io/lidar_visers/opendwm/1.viser&initialCameraPosition=10.885,9.746,4.995&initialCameraLookAt=2.343,1.204,-3.547&initialCameraUp=-0.000,-0.000,1.000"
+                          loading="lazy" allowfullscreen>
+                        </iframe>
+                    
+                        <iframe
+                          class="viseriframe"
+                          src="https://worldbench.github.io/viser-client/?playbackPath=https://worldbench.github.io/lidar_visers/opendwm/2.viser&initialCameraPosition=10.885,9.746,4.995&initialCameraLookAt=2.343,1.204,-3.547&initialCameraUp=-0.000,-0.000,1.000"
+                          loading="lazy" allowfullscreen>
+                        </iframe>
+                    
+                        <iframe
+                          class="viseriframe"
+                          src="https://worldbench.github.io/viser-client/?playbackPath=https://worldbench.github.io/lidar_visers/opendwm/3.viser&initialCameraPosition=10.885,9.746,4.995&initialCameraLookAt=2.343,1.204,-3.547&initialCameraUp=-0.000,-0.000,1.000"
+                          loading="lazy" allowfullscreen>
+                        </iframe>
+                      </div>
+                    </details>
 
-        <br><br>
-        
+                <!-- LiDARCrafter -->
+                <details class="lazy-load" id="lidargen">
+                    <summary>LiDARCrafter</summary>
+                    <div class="grid-2x2">
+                        <iframe
+                          class="viseriframe"
+                          src="https://worldbench.github.io/viser-client/?playbackPath=https://worldbench.github.io/lidar_visers/lidarcrafter/0.viser&initialCameraPosition=10.885,9.746,4.995&initialCameraLookAt=2.343,1.204,-3.547&initialCameraUp=-0.000,-0.000,1.000"
+                          loading="lazy" allowfullscreen>
+                        </iframe>
+                    
+                        <iframe
+                          class="viseriframe"
+                          src="https://worldbench.github.io/viser-client/?playbackPath=https://worldbench.github.io/lidar_visers/lidarcrafter/1.viser&initialCameraPosition=10.885,9.746,4.995&initialCameraLookAt=2.343,1.204,-3.547&initialCameraUp=-0.000,-0.000,1.000"
+                          loading="lazy" allowfullscreen>
+                        </iframe>
+                    
+                        <iframe
+                          class="viseriframe"
+                          src="https://worldbench.github.io/viser-client/?playbackPath=https://worldbench.github.io/lidar_visers/lidarcrafter/2.viser&initialCameraPosition=10.885,9.746,4.995&initialCameraLookAt=2.343,1.204,-3.547&initialCameraUp=-0.000,-0.000,1.000"
+                          loading="lazy" allowfullscreen>
+                        </iframe>
+                    
+                        <iframe
+                          class="viseriframe"
+                          src="https://worldbench.github.io/viser-client/?playbackPath=https://worldbench.github.io/lidar_visers/lidarcrafter/3.viser&initialCameraPosition=10.885,9.746,4.995&initialCameraLookAt=2.343,1.204,-3.547&initialCameraUp=-0.000,-0.000,1.000"
+                          loading="lazy" allowfullscreen>
+                        </iframe>
+                      </div>
+                    </details>
+                <!-- <p>...</p> -->
 
-        
-        
-        <d-appendix>
-            <h3>BibTeX</h3>
-            <p class="bibtex">
-                @article{kong2025worldbench,<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;title={WorldBench: Benchmarking 3D and 4D World Models in the Real World},<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;author={WorldBench Team},<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;journal={arXiv preprint arXiv:2508.xxxxx},<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;year={2025},<br>
-                }
-            </p>
+            </section>
 
-            <d-footnote-list></d-footnote-list>
-            <d-citation-list></d-citation-list>
-        </d-appendix>
-          
-            <d-footnote-list></d-footnote-list>
-            <d-citation-list></d-citation-list>
-        </d-appendix>
+            <section id="definition">
+                <h2>Projects</h2>
+            </section>
+            <section id="video-papers" class="papers-section" data-section-key="video">
+                <h2>Video Generation</h2>
+                <div class="bar" aria-live="polite">
+                  <div class="tabs" role="tablist" aria-label="Video Generation Categories">
+                    <button class="tab-btn tab-1" role="tab" aria-selected="true" aria-controls="video-panel-a" id="video-tab-a">Data Engines</button>
+                    <button class="tab-btn tab-2" role="tab" aria-selected="false" aria-controls="video-panel-b" id="video-tab-b">Action Interpreters</button>
+                    <button class="tab-btn tab-3" role="tab" aria-selected="false" aria-controls="video-panel-c" id="video-tab-c">Neural Simulators</button>
+                    <button class="tab-btn tab-4" role="tab" aria-selected="false" aria-controls="video-panel-d" id="video-tab-d">Scene Reconstructors</button>
+  
+                </div>
+                  <div class="search" title="输入关键词过滤（标题、作者、出处）">
+                    🔎 <input class="paper-search" type="search" placeholder="搜索：标题 / 作者 / 出处（回车清空）" />
+                  </div>
+                  <span class="count">0 items</span>
+                </div>
+                <section id="video-panel-a" class="panel" role="tabpanel" aria-labelledby="video-tab-a" aria-hidden="false">
+                  <div class="list"></div>
+                </section>
+                <section id="video-panel-b" class="panel" role="tabpanel" aria-labelledby="video-tab-b" aria-hidden="true">
+                  <div class="list"></div>
+                </section>
+                <section id="video-panel-c" class="panel" role="tabpanel" aria-labelledby="video-tab-c" aria-hidden="true">
+                  <div class="list"></div>
+                </section>
+
+                <section id="video-panel-d" class="panel" role="tabpanel" aria-labelledby="video-tab-d" aria-hidden="true">
+                  <div class="list"></div>
+                </section>
+              </section>
+
+            <section id="occupancy-papers" class="papers-section" data-section-key="occupancy">
+                <h2>Occupancy Generation</h2>
+                <p class="subhead">切换子方向：Data Engines / Action Interpreters / Neural Simulators</p>
+                <div class="bar" aria-live="polite">
+                  <div class="tabs" role="tablist" aria-label="Occupancy Generation Categories">
+                    <button class="tab-btn tab-1" role="tab" aria-selected="true" aria-controls="occupancy-panel-a" id="occupancy-tab-a">Data Engines</button>
+                    <button class="tab-btn tab-2" role="tab" aria-selected="false" aria-controls="occupancy-panel-b" id="occupancy-tab-b">Action Interpreters</button>
+                    <button class="tab-btn tab-3" role="tab" aria-selected="false" aria-controls="occupancy-panel-c" id="occupancy-tab-c">Neural Simulators</button>
+                  </div>
+                  <div class="search" title="输入关键词过滤（标题、作者、出处）">
+                    🔎 <input class="paper-search" type="search" placeholder="搜索：标题 / 作者 / 出处（回车清空）" />
+                  </div>
+                  <span class="count">0 items</span>
+                </div>
+                <section id="occupancy-panel-a" class="panel" role="tabpanel" aria-labelledby="occupancy-tab-a" aria-hidden="false">
+                  <div class="list"></div>
+                </section>
+                <section id="occupancy-panel-b" class="panel" role="tabpanel" aria-labelledby="occupancy-tab-b" aria-hidden="true">
+                  <div class="list"></div>
+                </section>
+                <section id="occupancy-panel-c" class="panel" role="tabpanel" aria-labelledby="occupancy-tab-c" aria-hidden="true">
+                  <div class="list"></div>
+                </section>
+              </section>
+
+              <section id="lidar-papers" class="papers-section" data-section-key="lidar">
+                <h2>LiDAR Generation</h2>
+                <p class="subhead">切换子方向：Data Engines / Action Interpreters / Neural Simulators</p>
+                <div class="bar" aria-live="polite">
+                  <div class="tabs" role="tablist" aria-label="LiDAR Generation Categories">
+                    <button class="tab-btn tab-1" role="tab" aria-selected="true" aria-controls="lidar-panel-a" id="lidar-tab-a">Data Engines</button>
+                    <button class="tab-btn tab-2" role="tab" aria-selected="false" aria-controls="lidar-panel-b" id="lidar-tab-b">Action Interpreters</button>
+                    <button class="tab-btn tab-3" role="tab" aria-selected="false" aria-controls="lidar-panel-c" id="lidar-tab-c">Neural Simulators</button>
+                  </div>
+                  <div class="search" title="输入关键词过滤（标题、作者、出处）">
+                    🔎 <input class="paper-search" type="search" placeholder="搜索：标题 / 作者 / 出处（回车清空）" />
+                  </div>
+                  <span class="count">0 items</span>
+                </div>
+                <section id="lidar-panel-a" class="panel" role="tabpanel" aria-labelledby="lidar-tab-a" aria-hidden="false">
+                  <div class="list"></div>
+                </section>
+                <section id="lidar-panel-b" class="panel" role="tabpanel" aria-labelledby="lidar-tab-b" aria-hidden="true">
+                  <div class="list"></div>
+                </section>
+                <section id="lidar-panel-c" class="panel" role="tabpanel" aria-labelledby="lidar-tab-c" aria-hidden="true">
+                  <div class="list"></div>
+                </section>
+              </section>
+
+            <br><br>
+            
+            <d-appendix>
+                <h3>BibTeX</h3>
+                <p class="bibtex">
+                    @article{kong2025worldbench,<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;title={WorldBench: Benchmarking 3D and 4D World Models in the Real World},<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;author={WorldBench Team},<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;journal={arXiv preprint arXiv:2508.xxxxx},<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;year={2025},<br>
+                    }
+                </p>
+
+                <d-footnote-list></d-footnote-list>
+                <d-citation-list></d-citation-list>
+            </d-appendix>
+              
+                <d-footnote-list></d-footnote-list>
+                <d-citation-list></d-citation-list>
+            </d-appendix>
+
+        </d-article>
 
         <script src="contents_bar.js"></script>
-        
+
+        <!-- 统一的数据与初始化脚本 -->
+        <script>
+          // ======= 1) 在这里维护所有章节-子方向的数据 =======
+          // 结构：paperStore[sectionKey][subKey] = array of items
+          // sectionKey ∈ { video, occupancy, lidar }
+          // subKey ∈ { A(=Data Engines), B(=Action Interpreters), C(=Neural Simulators) }
+          // item: { title, authors, venue, year, paper, code, project }
+          const paperStore = {
+            video: {
+              A: [
+              { title:"BEVControl: Accurately Controlling Street-View Elements with Multi-Perspective Consistency via BEV Sketch Layout", authors:"", venue:"arXiv", year:2023, paper:"https://arxiv.org/abs/2308.01661", code:"#", project:"#"},
+                { title:"Street-View Image Generation from a Bird's-Eye View Layout", authors:"", venue:"RA-L", year:2024, paper:"https://arxiv.org/abs/2301.04634", code:"https://github.com/alexanderswerdlow/BEVGen", project:"https://metadriverse.github.io/bevgen/"},
+                { title:"MagicDrive: Street View Generation with Diverse 3D Geometry Control", authors:"", venue:"ICLR", year:2024, paper:"https://arxiv.org/abs/2310.02601", code:"https://github.com/cure-lab/MagicDrive", project:"https://gaoruiyuan.com/magicdrive/"},
+                { title:"Panacea: Panoramic and Controllable Video Generation for Autonomous Driving", authors:"", venue:"CVPR", year:2024, paper:"https://arxiv.org/abs/2311.16813", code:"https://github.com/wenyuqing/panacea", project:"https://panacea-ad.github.io/"},
+                { title:"DrivingDiffusion: Layout-Guided Multi-View Driving Scene Video Generation with Latent Diffusion Model", authors:"", venue:"ECCV", year:2024, paper:"https://arxiv.org/abs/2310.07771", code:"https://github.com/shalfun/DrivingDiffusion", project:"https://drivingdiffusion.github.io/"},
+                { title:"WoVoGen: World Volume-Aware Diffusion for Controllable Multi-Camera Driving Scene Generation", authors:"", venue:"ECCV", year:2024, paper:"https://arxiv.org/abs/2312.02934", code:"https://github.com/fudan-zvg/WoVoGen", project:"#"},
+                { title:"Unleashing Generalization of End-to-End Autonomous Driving with Controllable Long Video Generation (Delphi)", authors:"", venue:"arXiv", year:2024, paper:"https://arxiv.org/abs/2406.01349", code:"https://github.com/westlake-autolab/Delphi", project:"https://westlake-autolab.github.io/delphi.github.io/"},
+                { title:"SimGen: Simulator-conditioned Driving Scene Generation", authors:"", venue:"NeurIPS", year:2024, paper:"https://arxiv.org/abs/2406.09386", code:"https://github.com/metadriverse/SimGen", project:"https://metadriverse.github.io/simgen/"},
+                { title:"BEVWorld: A Multimodal World Simulator for Autonomous Driving via Scene-Level BEV Latents", authors:"", venue:"arXiv", year:2024, paper:"https://arxiv.org/abs/2407.05679", code:"#", project:"#"},
+                { title:"Panacea+: Panoramic and Controllable Video Generation for Autonomous Driving", authors:"", venue:"arXiv", year:2024, paper:"https://arxiv.org/abs/2408.07605", code:"#", project:"https://panacea-ad.github.io/"},
+                { title:"DiVE: DiT-Based Video Generation with Enhanced Control", authors:"", venue:"arXiv", year:2024, paper:"https://arxiv.org/abs/2409.01595", code:"https://github.com/LiAutoAD/DIVE", project:"https://liautoad.github.io/DIVE/"},
+                { title:"SyntheOcc: Synthesize Geometric-Controlled Street View Images through 3D Semantic MPIs", authors:"", venue:"arXiv", year:2024, paper:"https://arxiv.org/abs/2410.00337", code:"https://github.com/EnVision-Research/SyntheOcc", project:"https://len-li.github.io/syntheocc-web/"},
+                { title:"HoloDrive: Holistic 2D-3D Multi-Modal Street Scene Generation for Autonomous Driving", authors:"", venue:"arXiv", year:2024, paper:"https://arxiv.org/abs/2412.01407", code:"#", project:"#"},
+                { title:"Seeing Beyond Views: Multi-View Driving Scene Video Generation with Holistic Attention (CogDriving)", authors:"", venue:"arXiv", year:2024, paper:"https://arxiv.org/abs/2412.03520", code:"#", project:"https://luhannan.github.io/CogDrivingPage/"},
+                { title:"UniMLVG: Unified Framework for Multi-View Long Video Generation with Comprehensive Control Capabilities for Autonomous Driving", authors:"", venue:"arXiv", year:2024, paper:"https://arxiv.org/abs/2412.04842", code:"https://github.com/SenseTime-FVG/OpenDWM", project:"#"},
+                { title:"Physical Informed Driving World Model (DrivePhysica)", authors:"", venue:"arXiv", year:2024, paper:"https://arxiv.org/abs/2412.08410", code:"#", project:"https://metadrivescape.github.io/papers_project/DrivePhysica/page.html"},
+                { title:"DriveDreamer-2: LLM-Enhanced World Models for Diverse Driving Video Generation", authors:"", venue:"AAAI", year:2025, paper:"https://arxiv.org/abs/2403.06845", code:"https://github.com/f1yfisher/DriveDreamer2", project:"https://drivedreamer2.github.io/"},
+                { title:"SubjectDrive: Scaling Generative Data in Autonomous Driving via Subject Control", authors:"", venue:"AAAI", year:2025, paper:"https://arxiv.org/abs/2403.19438", code:"#", project:"https://subjectdrive.github.io/"},
+                { title:"Glad: A Streaming Scene Generator for Autonomous Driving", authors:"", venue:"ICLR", year:2025, paper:"https://arxiv.org/abs/2503.00045", code:"https://github.com/xb534/Glad", project:"#"},
+                { title:"DualDiff: Dual-Branch Diffusion Model for Autonomous Driving with Semantic Fusion", authors:"", venue:"ICRA", year:2025, paper:"https://arxiv.org/abs/2505.01857", code:"https://github.com/yangzhaojason/DualDiff", project:"#"},
+                { title:"UniScene: Unified Occupancy-Centric Driving Scene Generation", authors:"", venue:"CVPR", year:2025, paper:"https://arxiv.org/abs/2412.05435", code:"https://github.com/Arlo0o/UniScene-Unified-Occupancy-centric-Driving-Scene-Generation", project:"https://arlo0o.github.io/uniscene/"},
+                { title:"DriveScape: Towards High-Resolution Controllable Multi-View Driving Video Generation", authors:"", venue:"CVPR", year:2025, paper:"https://arxiv.org/abs/2409.05463", code:"#", project:"https://metadrivescape.github.io/papers_project/drivescapev1/index.html"},
+                { title:"PerLDiff: Controllable Street View Synthesis Using Perspective-Layout Diffusion Models", authors:"", venue:"ICCV", year:2025, paper:"https://arxiv.org/abs/2407.06109", code:"https://github.com/LabShuHangGU/PerlDiff", project:"https://perldiff.github.io/"},
+                { title:"MagicDrive-V2: High-Resolution Long Video Generation for Autonomous Driving with Adaptive Control", authors:"", venue:"ICCV", year:2025, paper:"https://arxiv.org/abs/2411.13807", code:"#", project:"https://gaoruiyuan.com/magicdrive-v2/"},
+                { title:"Cosmos-Transfer1: Conditional World Generation with Adaptive Multimodal Control", authors:"", venue:"arXiv", year:2025, paper:"https://arxiv.org/abs/2503.14492", code:"https://github.com/nvidia-cosmos/cosmos-transfer1", project:"https://research.nvidia.com/labs/dir/cosmos-transfer1/"},
+                { title:"DualDiff+: Dual-Branch Diffusion for High-Fidelity Video Generation with Reward Guidance", authors:"", venue:"arXiv", year:2025, paper:"https://arxiv.org/abs/2503.03689", code:"https://github.com/yangzhaojason/DualDiff", project:"#"},
+                { title:"CoGen: 3D Consistent Video Generation via Adaptive Conditioning for Autonomous Driving", authors:"", venue:"arXiv", year:2025, paper:"https://arxiv.org/abs/2503.22231", code:"#", project:"https://xiaomi-research.github.io/cogen/"},
+                { title:"NoiseController: Towards Consistent Multi-View Video Generation via Noise Decomposition and Collaboration", authors:"", venue:"arXiv", year:2025, paper:"https://arxiv.org/abs/2504.18448", code:"#", project:"#"},
+                { title:"STAGE: A Stream-Centric Generative World Model for Long-Horizon Driving-Scene Simulation", authors:"", venue:"arXiv", year:2025, paper:"https://arxiv.org/abs/2506.13138", code:"#", project:"#"}
+              ],
+              B: [
+              { title:"GAIA-1: A Generative World Model for Autonomous Driving", authors:"", venue:"arXiv", year:2023, paper:"https://arxiv.org/abs/2309.17080", code:"#", project:"https://wayve.ai/thinking/scaling-gaia-1/" },
+                { title:"ADriver-I: A General World Model for Autonomous Driving", authors:"", venue:"arXiv", year:2023, paper:"https://arxiv.org/abs/2311.13549", code:"#", project:"#"},
+                { title:"Driving into the Future: Multiview Visual Forecasting and Planning with World Model for Autonomous Driving (Drive-WM)", authors:"", venue:"CVPR", year:2024, paper:"https://arxiv.org/abs/2311.17918", code:"https://github.com/BraveGroup/Drive-WM", project:"https://drive-wm.github.io/" },
+                { title:"DriveDreamer: Towards Real-World-Driven World Models for Autonomous Driving", authors:"", venue:"ECCV", year:2024, paper:"https://arxiv.org/abs/2309.09777", code:"https://github.com/JeffWang987/DriveDreamer", project:"https://drivedreamer.github.io/" },
+                { title:"GenAD: Generalized Predictive Model for Autonomous Driving", authors:"", venue:"ECCV", year:2024, paper:"https://arxiv.org/abs/2403.09630", code:"https://github.com/OpenDriveLab/DriveAGI", project:"#"},
+                { title:"Vista: A Generalizable Driving World Model with High Fidelity and Versatile Controllability", authors:"", venue:"NeurIPS", year:2024, paper:"https://arxiv.org/abs/2405.17398", code:"https://github.com/OpenDriveLab/Vista", project:"https://vista-demo.github.io/" },
+                { title:"InfinityDrive: Breaking Time Limits in Driving World Models", authors:"", venue:"arXiv", year:2024, paper:"https://arxiv.org/abs/2412.01522", code:"#", project:"https://metadrivescape.github.io/papers_project/InfinityDrive/page.html" },
+                { title:"DrivingGPT: Unifying Driving World Modeling and Planning with Multi-Modal Autoregressive Transformers", authors:"", venue:"arXiv", year:2024, paper:"https://arxiv.org/abs/2412.18607", code:"#", project:"https://rogerchern.github.io/DrivingGPT/" },
+                { title:"DrivingWorld: Constructing World Model for Autonomous Driving via Video GPT", authors:"", venue:"arXiv", year:2024, paper:"https://arxiv.org/abs/2412.19505", code:"https://github.com/YvanYin/DrivingWorld", project:"https://huxiaotaostasy.github.io/DrivingWorld/index.html" },
+                { title:"GEM: A Generalizable Ego-Vision Multimodal World Model for Fine-Grained Ego-Motion, Object Dynamics, and Scene Composition Control", authors:"", venue:"CVPR", year:2025, paper:"https://arxiv.org/abs/2412.11198", code:"https://github.com/vita-epfl/GEM", project:"https://vita-epfl.github.io/GEM.github.io/" },
+                { title:"MaskGWM: A Generalizable Driving World Model with Video Mask Reconstruction", authors:"", venue:"CVPR", year:2025, paper:"https://arxiv.org/abs/2502.11663", code:"https://github.com/SenseTime-FVG/OpenDWM", project:"#"},
+                { title:"Epona: Autoregressive Diffusion World Model for Autonomous Driving", authors:"", venue:"ICCV", year:2025, paper:"https://arxiv.org/abs/2506.24113", code:"https://github.com/Kevin-thu/Epona", project:"https://kevin-thu.github.io/Epona/" },
+                { title:"VaViM and VaVAM: Autonomous Driving through Video Generative Modeling", authors:"", venue:"arXiv", year:2025, paper:"https://arxiv.org/abs/2502.15672", code:"https://github.com/valeoai/VideoActionModel", project:"https://valeoai.github.io/vavim-vavam/" },
+                { title:"MiLA: Multi-View Intensive-Fidelity Long-Term Video Generation World Model for Autonomous Driving", authors:"", venue:"arXiv", year:2025, paper:"https://arxiv.org/abs/2503.15875", code:"https://github.com/xiaomi-mlab/mila.github.io", project:"#"},
+                { title:"GAIA-2: A Controllable Multi-View Generative World Model for Autonomous Driving", authors:"", venue:"arXiv", year:2025, paper:"https://arxiv.org/abs/2503.20523", code:"#", project:"https://wayve.ai/thinking/gaia-2" },
+                { title:"DriVerse: Navigation World Model for Driving Simulation via Multimodal Trajectory Prompting and Motion Alignment", authors:"", venue:"arXiv", year:2025, paper:"https://arxiv.org/abs/2504.18576", code:"#", project:"#"},
+                { title:"PosePilot: Steering Camera Pose for Generative World Models with Self-Supervised Depth", authors:"", venue:"arXiv", year:2025, paper:"https://arxiv.org/abs/2505.01729", code:"#", project:"#"},
+                { title:"ProphetDWM: A Driving World Model for Rolling Out Future Actions and Videos", authors:"", venue:"arXiv", year:2025, paper:"https://arxiv.org/abs/2505.18650", code:"#", project:"#"},
+                { title:"LongDWM: Cross-Granularity Distillation for Building A Long-Term Driving World Model", authors:"", venue:"arXiv", year:2025, paper:"https://arxiv.org/abs/2506.01546", code:"https://github.com/Wang-Xiaodong1899/Long-DWM", project:"https://wang-xiaodong1899.github.io/longdwm/" }
+              ],
+              C: [
+              { title:"MagicDrive3D: Controllable 3D Generation for Any-View Rendering in Street Scenes", authors:"", venue:"arXiv", year:2024, paper:"https://arxiv.org/abs/2405.14475", code:"https://github.com/flymin/MagicDrive3D", project:"https://gaoruiyuan.com/magicdrive3d/" },
+                { title:"DreamForge: Motion-Aware Autoregressive Video Generation for Multi-View Driving Scenes", authors:"", venue:"arXiv", year:2024, paper:"https://arxiv.org/abs/2409.04003", code:"https://github.com/PJLab-ADG/DriveArena", project:"https://pjlab-adg.github.io/DriveArena/dreamforge/" },
+                { title:"Doe-1: Closed-Loop Autonomous Driving with Large World Model", authors:"", venue:"arXiv", year:2024, paper:"https://arxiv.org/abs/2412.09627", code:"https://github.com/wzzheng/Doe", project:"https://wzzheng.net/Doe/" },
+                { title:"DrivingSphere: Building A High-Fidelity 4D World for Closed-Loop Simulation", authors:"", venue:"CVPR", year:2025, paper:"https://arxiv.org/abs/2411.11252", code:"https://github.com/yanty123/DrivingSphere", project:"https://yanty123.github.io/DrivingSphere/" },
+                { title:"UMGen: Generating Multimodal Driving Scenes via Next-Scene Prediction", authors:"", venue:"CVPR", year:2025, paper:"https://arxiv.org/abs/2503.14945", code:"https://github.com/YanhaoWu/UMGen", project:"https://yanhaowu.github.io/UMGen/" },
+                { title:"DriveArena: A Closed-Loop Generative Simulation Platform for Autonomous Driving", authors:"", venue:"ICCV", year:2025, paper:"https://arxiv.org/abs/2408.00415", code:"https://github.com/PJLab-ADG/DriveArena", project:"https://pjlab-adg.github.io/DriveArena/" },
+                { title:"InfiniCube: Unbounded and Controllable Dynamic 3D Driving Scene Generation with World-Guided Video Models", authors:"", venue:"ICCV", year:2025, paper:"https://arxiv.org/abs/2412.03934", code:"https://github.com/nv-tlabs/InfiniCube", project:"https://research.nvidia.com/labs/toronto-ai/infinicube/" },
+                { title:"DiST-4D: Disentangled Spatiotemporal Diffusion with Metric Depth for 4D Driving Scene Generation", authors:"", venue:"ICCV", year:2025, paper:"https://arxiv.org/abs/2503.15208", code:"https://github.com/royalmelon0505/dist4d", project:"https://royalmelon0505.github.io/DiST-4D/" },
+                { title:"UniFuture: A Unified Driving World Model for Future Generation and Perception", authors:"", venue:"arXiv", year:2025, paper:"https://arxiv.org/abs/2503.13587", code:"https://github.com/dk-liang/UniFuture", project:"https://dk-liang.github.io/UniFuture/" },
+                { title:"Nexus: Decoupled Diffusion Sparks Adaptive Scene Generation", authors:"", venue:"arXiv", year:2025, paper:"https://arxiv.org/abs/2504.10485", code:"https://github.com/OpenDriveLab/Nexus", project:"https://opendrivelab.com/Nexus/" },
+                { title:"Challenger: Affordable Adversarial Driving Video Generation", authors:"", venue:"arXiv", year:2025, paper:"https://arxiv.org/abs/2505.15880", code:"https://github.com/Pixtella/Challenger", project:"https://pixtella.github.io/Challenger/" },
+                { title:"Cosmos-Drive-Dreams: Scalable Synthetic Driving Data Generation with World Foundation Models", authors:"", venue:"arXiv", year:2025, paper:"https://arxiv.org/abs/2506.09042", code:"https://github.com/nv-tlabs/Cosmos-Drive-Dreams", project:"https://research.nvidia.com/labs/toronto-ai/cosmos_drive_dreams/" }
+              ],
+              D: [
+              { title:"3D Gaussian Splatting for Real-Time Radiance Field Rendering", authors:"", venue:"TOG", year:2023, paper:"https://arxiv.org/abs/2401.01339", code:"https://github.com/graphdeco-inria/gaussian-splatting", project:"https://repo-sam.inria.fr/fungraph/3d-gaussian-splatting/" },
+                { title:"Street Gaussians: Modeling Dynamic Urban Scenes with Gaussian Splatting", authors:"", venue:"ECCV", year:2024, paper:"https://arxiv.org/abs/2401.01339", code:"https://github.com/zju3dv/street_gaussians", project:"https://zju3dv.github.io/street_gaussians" },
+                { title:"Dynamic 3D Gaussian Fields for Urban Areas (4DGF)", authors:"", venue:"NeurIPS", year:2024, paper:"https://arxiv.org/abs/2406.03175", code:"https://github.com/tobiasfshr/map4d", project:"https://tobiasfshr.github.io/pub/4dgf/" },
+                { title:"SCube: Instant Large-Scale Scene Reconstruction using VoxSplats", authors:"", venue:"NeurIPS", year:2024, paper:"https://arxiv.org/abs/2410.20030", code:"https://github.com/nv-tlabs/SCube", project:"https://research.nvidia.com/labs/toronto-ai/scube/" },
+                { title:"HUGS: Holistic Urban 3D Scene Understanding via Gaussian Splatting", authors:"", venue:"CVPR", year:2024, paper:"https://arxiv.org/abs/2403.12722", code:"https://github.com/hyzhou404/HUGS", project:"https://xdimlab.github.io/hugs_website/" },
+                { title:"MagicDrive3D: Controllable 3D Generation for Any-View Rendering in Street Scenes", authors:"", venue:"arXiv", year:2024, paper:"https://arxiv.org/abs/2405.14475", code:"https://github.com/flymin/MagicDrive3D", project:"https://gaoruiyuan.com/magicdrive3d/" },
+                { title:"S3Gaussian: Self-Supervised Street Gaussians for Autonomous Driving", authors:"", venue:"arXiv", year:2024, paper:"https://arxiv.org/abs/2405.20323", code:"https://github.com/nnanhuang/S3Gaussian/", project:"https://wzzheng.net/S3Gaussian/" },
+                { title:"VDG: Vision-Only Dynamic Gaussian for Driving Simulation", authors:"", venue:"arXiv", year:2024, paper:"https://arxiv.org/abs/2406.18198", code:"https://github.com/lifuguan/VDG_official", project:"https://3d-aigc.github.io/VDG/" },
+                { title:"UniGaussian: Driving Scene Reconstruction from Multiple Camera Models via Unified Gaussian Representations", authors:"", venue:"arXiv", year:2024, paper:"https://arxiv.org/abs/2411.15355", code:"#", project:"#"},
+                { title:"Stag-1: Towards Realistic 4D Driving Simulation with Video Generation Model", authors:"", venue:"arXiv", year:2024, paper:"https://arxiv.org/abs/2412.05280", code:"https://github.com/wzzheng/Stag", project:"https://wzzheng.net/Stag/" },
+                { title:"DrivingRecon: Large 4D Gaussian Reconstruction Model For Autonomous Driving", authors:"", venue:"arXiv", year:2024, paper:"https://arxiv.org/abs/2412.09043", code:"https://github.com/EnVision-Research/DriveRecon", project:"#"},
+                { title:"OccScene: Semantic Occupancy-Based Cross-Task Mutual Learning for 3D Scene Generation", authors:"", venue:"arXiv", year:2024, paper:"https://arxiv.org/abs/2412.11183", code:"#", project:"#"},
+                { title:"SGD: Street View Synthesis with Gaussian Splatting and Diffusion Prior", authors:"", venue:"WACV", year:2025, paper:"https://arxiv.org/abs/2403.20079", code:"#", project:"#"},
+                { title:"OmniRe: Omni Urban Scene Reconstruction", authors:"", venue:"ICLR", year:2025, paper:"https://arxiv.org/abs/2408.16760", code:"https://github.com/ziyc/drivestudio", project:"https://ziyc.github.io/omnire/" },
+                { title:"DriveDreamer4D: World Models Are Effective Data Machines for 4D Driving Scene Representation", authors:"", venue:"CVPR", year:2025, paper:"https://arxiv.org/abs/2410.13571", code:"https://github.com/GigaAI-research/DriveDreamer4D", project:"https://drivedreamer4d.github.io/" },
+                { title:"DeSiRe-GS: 4D Street Gaussians for Static-Dynamic Decomposition and Surface Reconstruction for Urban Driving Scenes", authors:"", venue:"CVPR", year:2025, paper:"https://arxiv.org/abs/2411.11921", code:"https://github.com/chengweialan/DeSiRe-GS", project:"#"},
+                { title:"SplatAD: Real-Time Lidar and Camera Rendering with 3D Gaussian Splatting for Autonomous Driving", authors:"", venue:"CVPR", year:2025, paper:"https://arxiv.org/abs/2411.16816", code:"https://github.com/carlinds/splatad", project:"https://research.zenseact.com/publications/splatad/" },
+                { title:"ReconDreamer: Crafting World Models for Driving Scene Reconstruction via Online Restoration", authors:"", venue:"CVPR", year:2025, paper:"https://arxiv.org/abs/2411.19548", code:"https://github.com/GigaAI-research/ReconDreamer/", project:"https://recondreamer.github.io/" },
+                { title:"FreeSim: Toward Free-Viewpoint Camera Simulation in Driving Scenes", authors:"", venue:"CVPR", year:2025, paper:"https://arxiv.org/abs/2412.03566", code:"#", project:"https://drive-sim.github.io/freesim/" },
+                { title:"StreetCrafter: Street View Synthesis with Controllable Video Diffusion Models", authors:"", venue:"CVPR", year:2025, paper:"https://arxiv.org/abs/2412.13188", code:"https://github.com/zju3dv/street_crafter", project:"https://zju3dv.github.io/street_crafter/" },
+                { title:"FlexDrive: Toward Trajectory Flexibility in Driving Scene Reconstruction and Rendering", authors:"", venue:"CVPR", year:2025, paper:"https://arxiv.org/abs/2502.21093", code:"#", project:"#"},
+                { title:"S-NeRF++: Autonomous Driving Simulation via Neural Reconstruction and Generation", authors:"", venue:"TPAMI", year:2025, paper:"https://arxiv.org/abs/2402.02112", code:"#", project:"#"},
+                { title:"DreamDrive: Generative 4D Scene Modeling from Street View Images", authors:"", venue:"arXiv", year:2025, paper:"https://arxiv.org/abs/2501.00601", code:"#", project:"https://pointscoder.github.io/DreamDrive/" },
+                { title:"Uni-Gaussians: Unifying Camera and Lidar Simulation with Gaussians for Dynamic Driving Scenarios", authors:"", venue:"arXiv", year:2025, paper:"https://arxiv.org/abs/2503.08317", code:"#", project:"https://zikangyuan.github.io/UniGaussians/" },
+                { title:"MuDG: Taming Multi-Modal Diffusion with Gaussian Splatting for Urban Scene Reconstruction", authors:"", venue:"arXiv", year:2025, paper:"https://arxiv.org/abs/2503.10604", code:"https://github.com/heiheishuang/MuDG", project:"https://heiheishuang.xyz/mudg/" },
+                { title:"SceneCrafter: Unraveling the Effects of Synthetic Data on End-to-End Autonomous Driving Humanoid Robots", authors:"", venue:"arXiv", year:2025, paper:"https://arxiv.org/abs/2503.18108", code:"https://github.com/cancaries/SceneCrafter", project:"#"},
+                { title:"ReconDreamer++: Harmonizing Generative and Reconstructive Models for Driving Scene Representation", authors:"", venue:"arXiv", year:2025, paper:"https://arxiv.org/abs/2503.18438", code:"https://github.com/GigaAI-research/ReconDreamer-Plus", project:"https://recondreamer-plus.github.io/" },
+                { title:"RealEngine: Simulating Autonomous Driving in Realistic Context", authors:"", venue:"arXiv", year:2025, paper:"https://arxiv.org/abs/2505.16902", code:"https://github.com/fudan-zvg/RealEngine", project:"#"},
+                { title:"GeoDrive: 3D Geometry-Informed Driving World Model with Precise Action Control", authors:"", venue:"arXiv", year:2025, paper:"https://arxiv.org/abs/2505.22421", code:"https://github.com/antonioo-c/GeoDrive", project:"#"},
+                { title:"Pseudo-Simulation for Autonomous Driving", authors:"", venue:"arXiv", year:2025, paper:"https://arxiv.org/abs/2506.04218", code:"https://github.com/autonomousvision/navsim", project:"#"},
+                { title:"Dreamland: Controllable World Creation with Simulator and Generative Models", authors:"", venue:"arXiv", year:2025, paper:"https://arxiv.org/abs/2506.08006", code:"#", project:"https://metadriverse.github.io/dreamland/" }
+              ]
+            },
+            occupancy: {
+              A: [
+                { title:"OccGen: Data Engines for Occupancy", authors:"Chen et al.", venue:"ECCV", year:2024,
+                  paper:"#", code:"#", project:"#"}
+              ],
+              B: [
+                { title:"Policy-Aware Occupancy Generation", authors:"Kumar et al.", venue:"ICML", year:2025,
+                  paper:"#", code:"#", project:"#"}
+              ],
+              C: [
+                { title:"Neural Simulators for 3D Occupancy", authors:"Park et al.", venue:"TPAMI", year:2026,
+                  paper:"#", code:"#", project:"#"}
+              ]
+            },
+            lidar: {
+              A: [
+                { title:"LiDARCrafter: Dynamic 4D World Modeling", authors:"Liang et al.", venue:"CVPR", year:2025,
+                  paper:"#", code:"#", project:"#"}
+              ],
+              B: [
+                { title:"Action Interpreters for LiDAR Scenes", authors:"Wang et al.", venue:"ICCV", year:2025,
+                  paper:"#", code:"#", project:"#"}
+              ],
+              C: [
+                { title:"Neural Simulators for Point Clouds", authors:"Zhao et al.", venue:"NeurIPS", year:2024,
+                  paper:"#", code:"#", project:"#"}
+              ]
+            }
+          };
+    
+          // ======= 2) 通用渲染逻辑：对每个 .papers-section 初始化 =======
+          (function initAllPapersSections(){
+            document.querySelectorAll('.papers-section').forEach(section => initPapersSection(section));
+          })();
+    
+          function initPapersSection(root){
+            const sectionKey = root.getAttribute('data-section-key'); // video / occupancy / lidar
+            const tabs = Array.from(root.querySelectorAll('.tab-btn'));
+            const panels = {
+              A: root.querySelector(`[id$="panel-a"]`),
+              B: root.querySelector(`[id$="panel-b"]`),
+              C: root.querySelector(`[id$="panel-c"]`),
+              D: root.querySelector(`[id$="panel-d"]`),
+            };
+            const lists = {
+              A: panels.A.querySelector('.list'),
+              B: panels.B.querySelector('.list'),
+              C: panels.C.querySelector('.list'),
+              D: panels.D.querySelector('.list')
+            };
+            const countEl = root.querySelector('.count');
+            const searchInput = root.querySelector('.paper-search');
+    
+            let activeKey = 'A';
+            let keyword = '';
+    
+            function makeLink(label, href){
+              const a = document.createElement('a');
+              a.className = 'link';
+              a.textContent = label;
+              a.href = href || '#';
+              a.target = '_blank';
+              a.rel = 'noopener noreferrer';
+              return a;
+            }
+            function makeCard(item, badgeIdx=1){
+              const wrap = document.createElement('article');
+              wrap.className = 'card';
+    
+              const dot = document.createElement('span');
+              dot.className = 'badge' + (badgeIdx===2?' badge-2': (badgeIdx===3?' badge-3':(badgeIdx===4?' badge-4':'')));
+              wrap.appendChild(dot);
+    
+              const box = document.createElement('div');
+              const h3 = document.createElement('h3');
+              h3.textContent = item.title || 'Untitled';
+              const meta = document.createElement('div');
+              meta.className = 'meta';
+              meta.textContent = [
+                item.authors || '',
+                item.venue ? `${item.venue}${item.year?` · ${item.year}`:''}` : (item.year||'')
+              ].filter(Boolean).join(' ｜ ');
+    
+              const links = document.createElement('div');
+              links.className = 'links';
+              links.appendChild(makeLink('Paper', item.paper));
+              links.appendChild(makeLink('Code', item.code));
+              links.appendChild(makeLink('Project', item.project));
+    
+              box.appendChild(h3);
+              box.appendChild(meta);
+              box.appendChild(links);
+              wrap.appendChild(box);
+              return wrap;
+            }
+    
+            const normalize = s => (s||'').toLowerCase();
+            function match(item, kw){
+              if(!kw) return true;
+              const bag = [item.title, item.authors, item.venue, item.year]
+                .map(x=>String(x??'')).join(' ').toLowerCase();
+              return bag.includes(kw);
+            }
+    
+            function renderList(subKey){
+              const data = (paperStore[sectionKey] && paperStore[sectionKey][subKey]) || [];
+              const items = data.filter(it=>match(it, keyword));
+              const target = lists[subKey];
+              target.innerHTML = '';
+              if(items.length===0){
+                const empty = document.createElement('div');
+                empty.className = 'empty';
+                empty.textContent = 'No data or no match.';
+                target.appendChild(empty);
+              }else{
+                items.forEach(it => target.appendChild(makeCard(
+                  it, subKey==='A'?1: subKey==='B'?2: subKey==='C'?3:4
+                )));
+              }
+              countEl.textContent = `${items.length} items`;
+            }
+    
+            function switchTo(subKey){
+              activeKey = subKey;
+              tabs.forEach(btn=>{
+                const isSelected = btn.id.endsWith(subKey.toLowerCase());
+                btn.setAttribute('aria-selected', String(isSelected));
+              });
+              Object.entries(panels).forEach(([k,el])=>{
+                el.setAttribute('aria-hidden', String(k!==subKey));
+              });
+              renderList(subKey);
+            }
+    
+            // events
+            tabs.forEach(btn=>{
+              btn.addEventListener('click', ()=>{
+                const subKey = btn.id.split('-').pop().toUpperCase(); // a/b/c
+                switchTo(subKey);
+              });
+            });
+            root.addEventListener('keydown', (e)=>{
+              if(e.key==='ArrowRight' || e.key==='ArrowLeft'){
+                e.preventDefault();
+                const order = ['A','B','C','D'];
+                const idx = order.indexOf(activeKey);
+                const next = e.key==='ArrowRight' ? (idx+1)%3 : (idx+2)%3;
+                switchTo(order[next]);
+                root.querySelector(`[id$="tab-${order[next].toLowerCase()}"]`)?.focus();
+              }
+            });
+            searchInput.addEventListener('input', ()=>{
+              keyword = normalize(searchInput.value);
+              renderList(activeKey);
+            });
+            searchInput.addEventListener('search', ()=>{
+              keyword = normalize(searchInput.value);
+              renderList(activeKey);
+            });
+    
+            // init
+            switchTo('A');
+          }
+        </script>
+
     </body>
 </html>

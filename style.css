@@ -233,3 +233,15 @@ d-article d-contents nav > ul > li > a:hover {
 d-article section{
   margin: 0 !important;
 }
+
+.lidargen .grid-2x2{
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px; /* 卡片间距 */
+}
+.lidargen .iframe{
+  width: 100%;
+  aspect-ratio: 16 / 9;   /* 保持比例；不想固定比例可改为 height */
+  border: 0;
+  border-radius: 8px;
+}
