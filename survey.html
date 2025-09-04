@@ -111,7 +111,7 @@
                   <div class="wb-kicker">Introduction</div>
                   <div class="wb-hr"></div>
                   <p class="wb-lead">
-                    <strong>WorldBench</strong> benchmarks <em>3D/4D world models</em>—models that learn, predict, and simulate the
+                    This survey benchmarks <em>3D/4D world models</em>—models that learn, predict, and simulate the
                     geometry and dynamics of real environments from multi-modal signals. We unify terminology, scope, and evaluation,
                     and organize the space into three complementary paradigms by representation: <strong>VideoGen</strong> (image/video-centric),
                     <strong>OccGen</strong> (occupancy-centric), and <strong>LiDARGen</strong> (point-cloud-centric).
@@ -123,6 +123,17 @@
               <section id="definition">
                 <h2>Definition</h2>
                 <div class="wb-hr" style="margin-bottom:1.25rem;"></div>
+
+                <!-- override previous 3-col grid -->
+                <style>
+                  /* 一列排布，并把卡片限制成正文宽度感（可按需改 900px） */
+                  #definition .wb-grid{
+                    grid-template-columns: 1fr !important;
+                    max-width: 900px;
+                    margin: 0 auto;            /* 居中 */
+                    gap: 1rem 1.25rem;
+                  }
+                </style>
 
                 <div class="wb-grid">
                   <!-- VideoGen -->
@@ -220,13 +231,13 @@
             </style>
 
             <!-- 过渡衔接：放在三张 paradigms 卡片 .wb-grid 后 -->
+            <!-- <p></p>
             <p class="wb-bridge">
               Beyond the three paradigms above, we further distill <strong>four recurring model types</strong> that appear across
               VideoGen, OccGen, and LiDARGen.
-            </p>
+            </p> -->
 
-            <div class="wb-grid-4">
-              <!-- 1) Data Engines -->
+            <!-- <div class="wb-grid-4">
               <article class="wb-card" id="model-data-engines">
                 <h4>
                   <i class="fas fa-database" aria-hidden="true"></i>
@@ -243,7 +254,6 @@
                 </div>
               </article>
 
-              <!-- 2) Scene Representors -->
               <article class="wb-card" id="model-scene-representors">
                 <h4>
                   <i class="fas fa-cube" aria-hidden="true"></i>
@@ -260,7 +270,6 @@
                 </div>
               </article>
 
-              <!-- 3) Forecasters & Planners -->
               <article class="wb-card" id="model-forecasters-planners">
                 <h4>
                   <i class="fas fa-route" aria-hidden="true"></i>
@@ -277,7 +286,6 @@
                 </div>
               </article>
 
-              <!-- 4) Autoregressive Simulators -->
               <article class="wb-card" id="model-autoregressive-simulators">
                 <h4>
                   <i class="fas fa-play-circle" aria-hidden="true"></i>
@@ -293,10 +301,12 @@
                   <span class="wb-chip">Multi-modal</span>
                 </div>
               </article>
-            </div>
+            </div> -->
 
             <section id="taxonomy">
                 <h2>Taxonomy</h2>
+                <div class="wb-hr" style="margin-bottom:1.25rem;"></div>
+                
                     <!-- Simple rounded image card -->
                       <!-- Simple rounded image card, constrained to body text width -->
                     <style>
@@ -350,6 +360,7 @@
 
             <section id="examples">
                 <h2>Examples</h2>
+                <div class="wb-hr" style="margin-bottom:1.25rem;"></div>
 
                 <section class="videogen" tabindex="0" aria-label="VideoGen Set A">
                     <h3>VideoGen</h3>
@@ -655,6 +666,7 @@
 
             <section id="projects">
                 <h2>Projects</h2>
+                <div class="wb-hr" style="margin-bottom:1.25rem;"></div>
             </section>
             <section id="video-papers" class="papers-section" data-section-key="video" data-initial="3">
                 <h2>Video Generation</h2>
@@ -743,7 +755,7 @@
             <br><br>
             
             <d-appendix>
-                <h3>BibTeX</h3>
+                <!-- <h3>BibTeX</h3> -->
                 <p class="bibtex">
                     @article{kong2025worldbench,<br>
                     &nbsp;&nbsp;&nbsp;&nbsp;title={WorldBench: Benchmarking 3D and 4D World Models in the Real World},<br>

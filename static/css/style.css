@@ -1688,7 +1688,7 @@ video {
 }
 
 .wb-section {
-  margin: 2rem 0 3rem;
+  margin: 2rem 0 -2rem;
 }
 .wb-lead {
   font-size: 1.15rem;
