@@ -5,35 +5,85 @@
     <title>VideoGen Models Summary</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <style>
-      /* 横向滑动 + 单行不换行 */
-      .table-scroll.nowrap { overflow-x:auto; overflow-y:hidden; -webkit-overflow-scrolling:touch; border-radius:10px; box-shadow:0 1px 6px rgba(0,0,0,.06); background:#fff; }
-      /* 表格基础 */
-      .models-table{ border-collapse:separate; border-spacing:0; width:100%; min-width:1400px; white-space:nowrap; font-size:14px; }
-      .models-table thead th{ text-align:left; background:#f7f8fb; font-weight:700; padding:10px 12px; border-bottom:1px solid #e8ebf3; position:sticky; top:0; z-index:3; }
-      .models-table tbody td{ padding:10px 12px; border-bottom:1px solid #f0f2f7; vertical-align:middle; }
-      .models-table tbody tr:nth-child(odd) td{ background:#fff; }
-      .models-table tbody tr:nth-child(even) td{ background:#f3f8ff; }
-      .models-table tbody tr:hover td{ background:#f8fbff; }
-      /* 粘性首两列 */
-      .models-table .sticky-col{ position:sticky; left:0; z-index:2; background:inherit; }
-      .models-table .sticky-col-2{ position:sticky; left:60px; z-index:2; background:inherit; }
-      .models-table td:first-child, .models-table th:first-child{ width:60px; }
-      /* 图标尺寸 */
-      .icon{ height:18px; width:auto; vertical-align:middle; transform:translateY(1px); }
-      .icon-latent{ height:20px; }
-      .icon-num{ height:20px; transform:translateY(2px); }
-      /* 条件 chips */
-      .chips{ display:inline-flex; gap:6px; align-items:center; }
-      .chip{ display:inline-flex; align-items:center; gap:4px; padding:2px 6px; border-radius:6px; background:#f4f6fb; border:1px solid #e8ebf3; font-family:ui-monospace,Menlo,Consolas,monospace; font-size:12px; font-weight:600; }
-      /* 说明 */
-      .legend{ margin:8px 0 12px; line-height:1.45; color:#374151; font-size:14px; }
-      .legend b{ font-weight:700; }
-      .legend .row{ margin:4px 0; }
-      .legend .icons{ display:inline-flex; gap:10px; margin-left:6px; }
-      .legend .icons span{ display:inline-flex; align-items:center; gap:6px; }
-      a.ext{ text-decoration:none; border-bottom:1px dotted #94a3b8; }
+      /* ====== 外层滚动容器（开启横向滑动 + 单行不换行） ====== */
+      .table-scroll.nowrap {
+        overflow-x: auto;
+        overflow-y: hidden;
+        -webkit-overflow-scrolling: touch;
+        border-radius: 10px;
+        box-shadow: 0 1px 6px rgba(0,0,0,0.06);
+        background: #fff;
+      }
+    
+      /* ====== 表格基础样式 ====== */
+      .models-table {
+        border-collapse: separate;
+        border-spacing: 0;
+        width: 100%;
+        min-width: 1400px;           /* 让表格自然超出，触发横向滚动 */
+        white-space: nowrap;         /* 关键：整表不换行 */
+        font-size: 14px;
+      }
+      .models-table thead th {
+        text-align: left;
+        background: #f7f8fb;
+        font-weight: 700;
+        padding: 10px 12px;
+        border-bottom: 1px solid #e8ebf3;
+        position: sticky; top: 0; z-index: 3; /* 粘性表头 */
+      }
+      .models-table tbody td {
+        padding: 10px 12px;
+        border-bottom: 1px solid #f0f2f7;
+        vertical-align: middle;
+      }
+      .models-table tbody tr:nth-child(odd) td {
+        background: #ffffff;
+      }
+      .models-table tbody tr:nth-child(even) td {
+        background: #f3f8ff;  /* 近似 w_blue!7 */
+      }
+      .models-table tbody tr:hover td {
+        background: #f8fbff;
+      }
+    
+      /* ====== 粘性首列（可按需注释掉） ====== */
+      .models-table .sticky-col {
+        position: sticky;
+        left: 0; z-index: 2;
+        background: inherit; /* 保持与行底色一致 */
+      }
+    
+      /* ====== 小徽标 / 图标 ====== */
+      .icon { height: 18px; width: auto; vertical-align: middle; transform: translateY(1px); }
+      .icon-latent { height: 20px; }
+      .icon-num  { height: 20px; transform: translateY(2px); }
+    
+      /* ====== 条件 Chips ====== */
+      .chips { display: inline-flex; gap: 6px; align-items: center; }
+      .chip {
+        display: inline-flex; align-items: center; gap: 4px;
+        padding: 2px 6px; border-radius: 6px;
+        background: #f4f6fb; border: 1px solid #e8ebf3;
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+        font-size: 12px; font-weight: 600;
+      }
+    
+      /* ====== 说明块（caption + legend） ====== */
+      .legend {
+        margin: 8px 0 12px;
+        line-height: 1.45;
+        color: #374151;
+        font-size: 14px;
+      }
+      .legend b { font-weight: 700; }
+      .legend .row { margin: 4px 0; }
+      .legend .icons { display: inline-flex; gap: 10px; margin-left: 6px; }
+      .legend .icons span { display: inline-flex; align-items: center; gap: 6px; }
+    
+      a.ext { text-decoration: none; border-bottom: 1px dotted #94a3b8; }
     </style>
-  </head>
+    </head>
 <body>
 
 <section>
