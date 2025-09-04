@@ -6,10 +6,10 @@ body {
     position: relative;
     
     /* background: linear-gradient(217deg,#130cb7 0%,#9708cc 30%,  #000000 100%);  */
-    background: linear-gradient(220deg,#52e5e7 0%,#130cb7  30%, #000000 100%);
+    /* background: linear-gradient(220deg,#52e5e7 0%,#130cb7  30%, #000000 100%); */
 
     /* background: linear-gradient(217deg,#43cbff 0%,#9708cc 40%,  #000000 100%); */
-    /* background: linear-gradient(220deg, #eddfb4 0%, #01335ec0 40%,  #000000 100%); */
+    background: linear-gradient(220deg, #eddfb4 0%, #01335ec0 40%,  #000000 100%);
     overflow: hidden;
 
     backdrop-filter: blur(4px);
