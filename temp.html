@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="template.v2.js"></script>
+        <script src="https://d3js.org/d3.v5.min.js"></script>
+        <script src="https://d3js.org/d3-collection.v1.min.js"></script>
+        <script src="https://rawgit.com/nstrayer/slid3r/master/dist/slid3r.js"></script>
+        <script src="cross_fade.js"></script>
+        <script type="module" src="https://gradio.s3-us-west-2.amazonaws.com/3.35.2/gradio.js"></script>
+        <link rel="stylesheet" href="style.css">
+        <link rel="icon" type="favicon/png" href="favicon.png">
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css" integrity="sha384-yFRtMMDnQtDRO8rLpMIKrtPCD5jdktao2TV19YiZYWMDkUR5GQZR/NOVTdquEx1j" crossorigin="anonymous">
+        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.js" integrity="sha384-9Nhn55MVVN0/4OFx7EE5kpFBPsEMZxKTCnA+4fqDmg12eCTqGi6+BB2LjY8brQxJ" crossorigin="anonymous"></script>
+        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
+            onload="renderMathInElement(document.body);"></script>
+
+        <!-- Scoped styles for the Papers section -->
+        <style>
+          /* ===== Papers section (scoped by #papers) ===== */
+          #papers{
+            --bg:#0b0e14; --card:#111621; --muted:#8ea0b5; --text:#e6edf3; --accent:#4f8cff; --accent-2:#8b5cf6; --accent-3:#22c55e;
+            --border:#232b3a;
+            margin-top:24px;
+          }
+          #papers .subhead{color:var(--muted); margin-top:4px}
+          #papers .bar{display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin:14px 0}
+          #papers .tabs{display:flex; gap:10px; flex-wrap:wrap}
+          #papers .tab-btn{
+            appearance:none; border:1px solid var(--border); background:#0f1524; color:var(--text);
+            padding:8px 14px; border-radius:12px; cursor:pointer; font-weight:600; letter-spacing:.2px;
+            transition:.2s transform,.2s background,.2s border-color
+          }
+          #papers .tab-btn[aria-selected="true"]{background:linear-gradient(145deg,#17223a,#111827); border-color:#2d3a55; box-shadow:0 0 0 2px #1a2235 inset}
+          #papers .tab-1[aria-selected="true"]{box-shadow:0 0 0 2px rgba(79,140,255,.35) inset}
+          #papers .tab-2[aria-selected="true"]{box-shadow:0 0 0 2px rgba(139,92,246,.35) inset}
+          #papers .tab-3[aria-selected="true"]{box-shadow:0 0 0 2px rgba(34,197,94,.35) inset}
+          #papers .tab-btn:hover{transform:translateY(-1px)}
+          #papers .search{
+            flex:1 1 320px; display:flex; gap:8px; align-items:center; background:#0f1524;
+            border:1px solid var(--border); border-radius:12px; padding:8px 12px; color:var(--text)
+          }
+          #papers .search input{flex:1; background:transparent; border:0; outline:0; color:var(--text)}
+          #papers .count{color:var(--muted); font-size:13px}
+          #papers .panel{display:none}
+          #papers .panel[aria-hidden="false"]{display:block; animation:fade .25s ease}
+          @keyframes fade{from{opacity:.6; transform:translateY(4px)} to{opacity:1; transform:none}}
+          #papers .list{display:grid; grid-template-columns:repeat(12,1fr); gap:14px}
+          @media (max-width:900px){#papers .list{grid-template-columns:1fr}}
+          #papers .card{
+            grid-column:span 12; background:linear-gradient(180deg,#101728,#0d1321);
+            border:1px solid var(--border); border-radius:16px; padding:16px; display:flex; gap:12px; align-items:flex-start;
+          }
+          #papers .badge{
+            margin-top:3px; flex:0 0 auto; width:12px; height:12px; border-radius:50%;
+            background:var(--accent);
+          }
+          #papers .badge.badge-2{background:var(--accent-2)}
+          #papers .badge.badge-3{background:var(--accent-3)}
+          #papers .card h3{margin:0 0 6px; font-size:18px}
+          #papers .meta{color:var(--muted); font-size:13px}
+          #papers .links{margin-top:10px; display:flex; flex-wrap:wrap; gap:8px}
+          #papers .link{
+            padding:6px 10px; border:1px solid var(--border); border-radius:10px; text-decoration:none; color:var(--text);
+            font-size:14px; transition:.2s background,.2s border-color,.2s transform;
+          }
+          #papers .link:hover{transform:translateY(-1px); border-color:#2b364f}
+          #papers .empty{border:1px dashed var(--border); border-radius:14px; padding:20px; color:var(--muted); text-align:center}
+        </style>
+    </head>
+    <body>
+        <div class="header-container">
+            <div class="header-content">
+              <h1>WorldBench:<br>Benchmarking 3D and 4D World Models in the Real World</h1>
+              <div class="button-container">
+                <a href="" class="button">Paper</a>
+                <a href="" class="button">GitHub</a>
+                <a href="" class="button">Leaderboard</a>
+              </div>
+            </div>
+            <div class="header-image">
+                <img src="images/teaser_eye.png" alt="Teaser Image" class="teaser-image">
+            </div>
+        </div>
+
+        <d-article>
+            <d-contents>
+                <nav>
+                    <h4>Contents</h4>
+                    <div><a href="#definition">Definition</a></div>
+                    <div><a href="#taxonomy">Taxonomy</a></div>
+                    <div><a href="#datasets">Datasets</a></div>
+                    <div><a href="#evaluatons">Evaluations</a></div>
+                    <div><a href="#applications">Applications</a></div>
+                    <!-- Added: Papers section -->
+                    <div><a href="#papers">Papers</a></div>
+                </nav>
+            </d-contents>
+            
+            <p>
+                Nihao
+            </p>
+
+            <section id="definition">
+                <h2>Definition</h2>
+                <p>To be updated.</p>
+            </section>
+
+            <section id="taxonomy">
+                <h2>Taxonomy</h2>
+                <p>To be updated.</p>
+
+                <h3>Data Engines</h3>
+                <p>...</p>
+
+                <h3>Action Interpreters</h3>
+                <p>...</p>
+            </section>
+
+            <!-- =================== New: Papers Section =================== -->
+            <section id="papers">
+              <h2>Papers</h2>
+              <p class="subhead">点击三类标签进行切换；每条包含出处、论文链接、代码与项目地址。</p>
+
+              <div class="bar" aria-live="polite">
+                <div class="tabs" role="tablist" aria-label="Paper Categories">
+                  <button class="tab-btn tab-1" role="tab" aria-selected="true" aria-controls="panel-a" id="tab-a">Category A</button>
+                  <button class="tab-btn tab-2" role="tab" aria-selected="false" aria-controls="panel-b" id="tab-b">Category B</button>
+                  <button class="tab-btn tab-3" role="tab" aria-selected="false" aria-controls="panel-c" id="tab-c">Category C</button>
+                </div>
+                <div class="search" title="输入关键词过滤（标题、作者、出处）">
+                  🔎 <input id="paper-search" type="search" placeholder="搜索：标题 / 作者 / 出处（回车清空）" />
+                </div>
+                <span class="count" id="paper-count">0 items</span>
+              </div>
+
+              <section id="panel-a" class="panel" role="tabpanel" aria-labelledby="tab-a" aria-hidden="false">
+                <div class="list" id="list-a"></div>
+              </section>
+              <section id="panel-b" class="panel" role="tabpanel" aria-labelledby="tab-b" aria-hidden="true">
+                <div class="list" id="list-b"></div>
+              </section>
+              <section id="panel-c" class="panel" role="tabpanel" aria-labelledby="tab-c" aria-hidden="true">
+                <div class="list" id="list-c"></div>
+              </section>
+            </section>
+            <!-- ================= End Papers Section ===================== -->
+
+            <br><br>
+            
+            <d-appendix>
+                <h3>BibTeX</h3>
+                <p class="bibtex">
+                    @article{kong2025worldbench,<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;title={WorldBench: Benchmarking 3D and 4D World Models in the Real World},<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;author={WorldBench Team},<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;journal={arXiv preprint arXiv:2508.xxxxx},<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;year={2025},<br>
+                    }
+                </p>
+
+                <d-footnote-list></d-footnote-list>
+                <d-citation-list></d-citation-list>
+            </d-appendix>
+              
+                <d-footnote-list></d-footnote-list>
+                <d-citation-list></d-citation-list>
+            </d-appendix>
+
+        </d-article>
+
+        <!-- Keep your contents bar script -->
+        <script src="contents_bar.js"></script>
+
+        <!-- ========= Papers data + rendering logic (scoped to #papers) ========= -->
+        <script>
+          // --------- 1) 维护你的数据：三类 Category A/B/C ----------
+          // 每条: { title, authors, venue, year, paper, code, project }
+          const paperData = {
+            A: [
+              {
+                title: "LiDARCrafter: Dynamic 4D World Modeling from LiDAR Sequences",
+                authors: "Liang et al.",
+                venue: "CVPR", year: 2025,
+                paper: "https://example.com/paper1.pdf",
+                code:  "https://github.com/example/repo1",
+                project:"https://example.com/project1"
+              },
+              {
+                title: "SPIRAL: Segmentation-labeled LiDAR Generation",
+                authors: "Zhu et al.",
+                venue: "ICCV", year: 2025,
+                paper: "#", code: "#", project: "#"
+              }
+            ],
+            B: [
+              {
+                title: "OpenDWM: Driving World Models",
+                authors: "Wang et al.",
+                venue: "NeurIPS", year: 2024,
+                paper: "#", code: "#", project: "#"
+              }
+            ],
+            C: [
+              {
+                title: "La La LiDAR: Layout-Guided Generative Framework",
+                authors: "Doe et al.",
+                venue: "TPAMI", year: 2026,
+                paper: "#", code: "#", project: "#"
+              }
+            ]
+          };
+
+          // --------- 2) 渲染逻辑（全部限制在 #papers 内） ----------
+          (function(){
+            const root = document.getElementById('papers');
+            if(!root) return;
+
+            const tabs = Array.from(root.querySelectorAll('.tab-btn'));
+            const panels = {
+              A: root.querySelector('#panel-a'),
+              B: root.querySelector('#panel-b'),
+              C: root.querySelector('#panel-c')
+            };
+            const lists = {
+              A: root.querySelector('#list-a'),
+              B: root.querySelector('#list-b'),
+              C: root.querySelector('#list-c')
+            };
+            const countEl = root.querySelector('#paper-count');
+            const searchInput = root.querySelector('#paper-search');
+
+            let activeKey = 'A';
+            let keyword = '';
+
+            function makeLink(label, href){
+              const a = document.createElement('a');
+              a.className = 'link';
+              a.textContent = label;
+              a.href = href || '#';
+              a.target = '_blank';
+              a.rel = 'noopener noreferrer';
+              return a;
+            }
+            function makeCard(item, badgeIdx=1){
+              const wrap = document.createElement('article');
+              wrap.className = 'card';
+
+              const dot = document.createElement('span');
+              dot.className = 'badge' + (badgeIdx===2?' badge-2': (badgeIdx===3?' badge-3':''));
+              wrap.appendChild(dot);
+
+              const box = document.createElement('div');
+              const h3 = document.createElement('h3');
+              h3.textContent = item.title || 'Untitled';
+              const meta = document.createElement('div');
+              meta.className = 'meta';
+              meta.textContent = [
+                item.authors || 'Unknown authors',
+                item.venue ? `${item.venue}${item.year?` · ${item.year}`:''}` : (item.year||'')
+              ].filter(Boolean).join(' ｜ ');
+
+              const links = document.createElement('div');
+              links.className = 'links';
+              links.appendChild(makeLink('Paper', item.paper));
+              links.appendChild(makeLink('Code', item.code));
+              links.appendChild(makeLink('Project', item.project));
+
+              box.appendChild(h3);
+              box.appendChild(meta);
+              box.appendChild(links);
+              wrap.appendChild(box);
+              return wrap;
+            }
+            function normalize(s){return (s||'').toLowerCase();}
+            function matched(item, kw){
+              if(!kw) return true;
+              const bag = [item.title, item.authors, item.venue, item.year].map(x=>String(x??'')).join(' ').toLowerCase();
+              return bag.includes(kw);
+            }
+            function renderList(key){
+              const target = lists[key];
+              target.innerHTML = '';
+              const items = (paperData[key]||[]).filter(it=>matched(it, keyword));
+              if(items.length===0){
+                const empty = document.createElement('div');
+                empty.className = 'empty';
+                empty.textContent = 'No data or no match.';
+                target.appendChild(empty);
+              }else{
+                items.forEach(()=>{}); // keep layout stable first
+                items.forEach((it)=> target.appendChild(makeCard(it, {A:1,B:2,C:3}[key])));
+              }
+              countEl.textContent = `${items.length} items`;
+            }
+            function switchTo(key){
+              activeKey = key;
+              tabs.forEach(btn=>{
+                const selected = btn.id.endsWith(key.toLowerCase());
+                btn.setAttribute('aria-selected', String(selected));
+              });
+              Object.entries(panels).forEach(([k, el])=>{
+                el.setAttribute('aria-hidden', String(k!==key));
+              });
+              renderList(key);
+            }
+
+            // 事件注册
+            tabs.forEach(btn=>{
+              btn.addEventListener('click', ()=>{
+                const key = btn.id.split('-').pop().toUpperCase();
+                switchTo(key);
+              });
+            });
+            document.addEventListener('keydown', (e)=>{
+              if(!root.contains(document.activeElement)) return; // 只在焦点在本节时响应
+              if(e.key==='ArrowRight' || e.key==='ArrowLeft'){
+                e.preventDefault();
+                const order = ['A','B','C'];
+                const idx = order.indexOf(activeKey);
+                const next = e.key==='ArrowRight' ? (idx+1)%3 : (idx+2)%3;
+                switchTo(order[next]);
+                root.querySelector(`#tab-${order[next].toLowerCase()}`)?.focus();
+              }
+            });
+            searchInput.addEventListener('input', ()=>{
+              keyword = normalize(searchInput.value);
+              renderList(activeKey);
+            });
+            searchInput.addEventListener('search', ()=>{
+              keyword = normalize(searchInput.value);
+              renderList(activeKey);
+            });
+
+            // 初始渲染
+            switchTo('A');
+          })();
+        </script>
+    </body>
+</html>
