@@ -108,20 +108,351 @@
             </d-contents>
 
 
-            <section id="definition">
+            <!-- ---------- Introduction (new) ---------- -->
+              <section id="introduction">
+                <style>
+
+                  /* Scoped styles (won't leak much due to wb- prefix) */
+                  .wb-section {
+                    margin: 2rem 0 3rem;
+                  }
+                  .wb-lead {
+                    font-size: 1.15rem;
+                    line-height: 1.7;
+                    color: #1f2937;
+                    max-width: 900px;
+                  }
+                  .wb-kicker {
+                    display: inline-block;
+                    font-size: .8rem;
+                    letter-spacing: .06em;
+                    text-transform: uppercase;
+                    font-weight: 700;
+                    color: #6b7280;
+                    margin-bottom: .25rem;
+                  }
+                  .wb-hr {
+                    height: 3px;
+                    width: 72px;
+                    background: linear-gradient(90deg, #111827, #6366f1 60%, #60a5fa);
+                    border-radius: 999px;
+                    margin: .75rem 0 1.25rem;
+                  }
+                  .wb-list {
+                    display: grid;
+                    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+                    gap: .75rem 1rem;
+                    padding: 0;
+                    margin: 1rem 0 0;
+                    list-style: none;
+                  }
+                  .wb-list li {
+                    background: #f9fafb;
+                    border: 1px solid #e5e7eb;
+                    border-radius: 12px;
+                    padding: .75rem .9rem;
+                    line-height: 1.5;
+                  }
+
+                  /* Definition cards */
+                  #definition .wb-grid {
+                    display: grid;
+                    /* grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); */
+                    grid-template-columns: repeat(3, minmax(0, 1fr));
+                    gap: 1.25rem;
+                    margin-top: 1rem;
+                  }
+                  .wb-card {
+                    background: white;
+                    border: 1px solid #e5e7eb;
+                    border-radius: 14px;
+                    padding: 1.1rem 1.1rem 1rem;
+                    box-shadow: 0 1px 2px rgba(0,0,0,.04);
+                    transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+                  }
+                  .wb-card:hover {
+                    transform: translateY(-2px);
+                    box-shadow: 0 8px 20px rgba(0,0,0,.06);
+                    border-color: #d1d5db;
+                  }
+                  .wb-card h3 {
+                    display: flex;
+                    align-items: center;
+                    gap: .5rem;
+                    font-size: 1.05rem;
+                    margin: 0 0 .4rem;
+                  }
+                  .wb-card p {
+                    margin: .45rem 0;
+                    color: #374151;
+                    line-height: 1.6;
+                  }
+                  .wb-meta {
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: .35rem .4rem;
+                    margin-top: .5rem;
+                  }
+                  .wb-chip {
+                    font-size: .75rem;
+                    border: 1px solid #e5e7eb;
+                    border-radius: 999px;
+                    padding: .2rem .55rem;
+                    background: #f3f4f6;
+                    color: #374151;
+                    white-space: nowrap;
+                  }
+                  .wb-cap {
+                    font-size: .82rem;
+                    color: #4b5563;
+                    margin-top: .35rem;
+                  }
+                  .wb-anchor {
+                    text-decoration: none;
+                    color: inherit;
+                  }
+                </style>
+
+                <div class="wb-section">
+                  <div class="wb-kicker">Introduction</div>
+                  <div class="wb-hr"></div>
+                  <p class="wb-lead">
+                    <strong>WorldBench</strong> benchmarks <em>3D/4D world models</em>—models that learn, predict, and simulate the
+                    geometry and dynamics of real environments from multi-modal signals. We unify terminology, scope, and evaluation,
+                    and organize the space into three complementary paradigms by representation: <strong>VideoGen</strong> (image/video-centric),
+                    <strong>OccGen</strong> (occupancy-centric), and <strong>LiDARGen</strong> (point-cloud-centric).
+                  </p>
+                </div>
+              </section>
+
+              <!-- ---------- Definition (drop-in replacement for your current block) ---------- -->
+              <section id="definition">
                 <h2>Definition</h2>
+                <div class="wb-hr" style="margin-bottom:1.25rem;"></div>
+
+                <div class="wb-grid">
+                  <!-- VideoGen -->
+                  <article class="wb-card" id="videogen">
+                    <h3>
+                      <i class="fas fa-film" aria-hidden="true"></i>
+                      <a class="wb-anchor" href="#videogen">VideoGen</a>
+                    </h3>
+                    <p>
+                      <strong>What it is.</strong> An <em>image/video–centric</em> world model that generates or predicts
+                      photorealistic, temporally consistent frames (single- or multi-view) conditioned on past context and optional controls.
+                    </p>
+                    <p class="wb-cap"><strong>Typical inputs</strong>: past frames, poses/camera intrinsics-extrinsics, text/route/action hints.</p>
+                    <div class="wb-meta" aria-label="VideoGen tags">
+                      <span class="wb-chip">Video synthesis</span>
+                      <span class="wb-chip">Future prediction</span>
+                      <span class="wb-chip">What-if simulation</span>
+                      <span class="wb-chip">Multi-view</span>
+                    </div>
+                  </article>
+
+                  <!-- OccGen -->
+                  <article class="wb-card" id="occgen">
+                    <h3>
+                      <i class="fas fa-cubes" aria-hidden="true"></i>
+                      <a class="wb-anchor" href="#occgen">OccGen</a>
+                    </h3>
+                    <p>
+                      <strong>What it is.</strong> An <em>occupancy-centric</em> world model that represents scenes as 3D/4D occupancy
+                      fields (e.g., voxel grids with semantics), enabling geometry-aware perception, forecasting, and simulation.
+                    </p>
+                    <p class="wb-cap"><strong>Typical inputs</strong>: multi-sensor cues (RGB, depth, events, LiDAR), ego motion, maps.</p>
+                    <div class="wb-meta" aria-label="OccGen tags">
+                      <span class="wb-chip">3D reconstruction</span>
+                      <span class="wb-chip">Occupancy forecasting</span>
+                      <span class="wb-chip">Autoregressive simulation</span>
+                      <span class="wb-chip">Semantic voxels</span>
+                    </div>
+                  </article>
+
+                  <!-- LiDARGen -->
+                  <article class="wb-card" id="lidargen">
+                    <h3>
+                      <i class="fas fa-braille" aria-hidden="true"></i>
+                      <a class="wb-anchor" href="#lidargen">LiDARGen</a>
+                    </h3>
+                    <p>
+                      <strong>What it is.</strong> A <em>point-cloud–centric</em> world model that learns high-fidelity geometry and
+                      dynamics directly from LiDAR sweeps, suitable for robust 3D understanding, data generation, and sensor-faithful simulation.
+                    </p>
+                    <p class="wb-cap"><strong>Typical inputs</strong>: past LiDAR sweeps, ego trajectory, calibration; optional scene priors.</p>
+                    <div class="wb-meta" aria-label="LiDARGen tags">
+                      <span class="wb-chip">Point-cloud synthesis</span>
+                      <span class="wb-chip">Future sweeps</span>
+                      <span class="wb-chip">Trajectory-conditioned</span>
+                      <span class="wb-chip">Physics-aware</span>
+                    </div>
+                  </article>
+                </div>
+              </section>
+
+
+              <style>
+              /* 过渡段落略小一号 */
+              #definition .wb-bridge {
+                font-size: 1rem;
+                line-height: 1.7;
+                color: #374151;
+                margin: 1rem 0 .75rem;
+              }
+              /* 4列卡片栅格（桌面四列 / 平板两到三列 / 手机一列） */
+              #definition .wb-grid-4 {
+                display: grid;
+                grid-template-columns: repeat(4, minmax(0, 1fr));
+                gap: 1.25rem;
+                margin-top: .5rem;
+              }
+              @media (max-width: 1200px) {
+                #definition .wb-grid-4 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+              }
+              @media (max-width: 1024px) {
+                #definition .wb-grid-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+              }
+              @media (max-width: 640px) {
+                #definition .wb-grid-4 { grid-template-columns: 1fr; }
+              }
+              /* 辅助：更紧凑的卡片标题与说明 */
+              #definition .wb-card h4 {
+                display: flex; align-items: center; gap: .5rem;
+                font-size: 1rem; margin: 0 0 .35rem;
+              }
+              #definition .wb-card p.small {
+                margin: .35rem 0; color: #4b5563; line-height: 1.6;
+              }
+            </style>
+
+            <!-- 过渡衔接：放在三张 paradigms 卡片 .wb-grid 后 -->
+            <p class="wb-bridge">
+              Beyond the three paradigms above, we further distill <strong>four recurring model types</strong> that appear across
+              VideoGen, OccGen, and LiDARGen.
+            </p>
+
+            <div class="wb-grid-4">
+              <!-- 1) Data Engines -->
+              <article class="wb-card" id="model-data-engines">
+                <h4>
+                  <i class="fas fa-database" aria-hidden="true"></i>
+                  <a class="wb-anchor" href="#def-data-engines">Data Engines</a>
+                </h4>
+                <p class="small">
+                  Systems that curate, augment, and generate multi-modal training data
+                  (e.g., domain adaptation, controllable synthesis) to reduce distribution gaps and supervision cost.
+                </p>
+                <div class="wb-meta" aria-label="tags">
+                  <span class="wb-chip">Curation</span>
+                  <span class="wb-chip">Augmentation</span>
+                  <span class="wb-chip">Synthetic data</span>
+                </div>
+              </article>
+
+              <!-- 2) Scene Representors -->
+              <article class="wb-card" id="model-scene-representors">
+                <h4>
+                  <i class="fas fa-cube" aria-hidden="true"></i>
+                  <a class="wb-anchor" href="#def-scene-representors">Scene Representors</a>
+                </h4>
+                <p class="small">
+                  Models that build consistent 3D/4D scene states (e.g., occupancy, meshes, radiance/feature fields) with semantics
+                  and dynamics, serving as geometry-aware cores for perception and simulation.
+                </p>
+                <div class="wb-meta" aria-label="tags">
+                  <span class="wb-chip">Reconstruction</span>
+                  <span class="wb-chip">Semantic 3D</span>
+                  <span class="wb-chip">Temporal state</span>
+                </div>
+              </article>
+
+              <!-- 3) Forecasters & Planners -->
+              <article class="wb-card" id="model-forecasters-planners">
+                <h4>
+                  <i class="fas fa-route" aria-hidden="true"></i>
+                  <a class="wb-anchor" href="#def-forecasters-planners">Forecasters &amp; Planners</a>
+                </h4>
+                <p class="small">
+                  Models that predict future world evolution under agent dynamics and constraints, supporting trajectory-aware
+                  forecasting and planning-oriented evaluation.
+                </p>
+                <div class="wb-meta" aria-label="tags">
+                  <span class="wb-chip">Future prediction</span>
+                  <span class="wb-chip">Agent dynamics</span>
+                  <span class="wb-chip">Open-loop metrics</span>
+                </div>
+              </article>
+
+              <!-- 4) Autoregressive Simulators -->
+              <article class="wb-card" id="model-autoregressive-simulators">
+                <h4>
+                  <i class="fas fa-play-circle" aria-hidden="true"></i>
+                  <a class="wb-anchor" href="#def-autoregressive-simulators">Autoregressive Simulators</a>
+                </h4>
+                <p class="small">
+                  Step-wise simulators that roll out world states conditioned on actions, maps, or priors, enabling counterfactual
+                  and what-if analysis across modalities (video / occupancy / LiDAR).
+                </p>
+                <div class="wb-meta" aria-label="tags">
+                  <span class="wb-chip">AR rollout</span>
+                  <span class="wb-chip">What-if</span>
+                  <span class="wb-chip">Multi-modal</span>
+                </div>
+              </article>
+            </div>
+
+            <section id="taxonomy">
+                <h2>Taxonomy</h2>
+                    <!-- Simple rounded image card -->
+                      <!-- Simple rounded image card, constrained to body text width -->
+                    <style>
+                      #taxonomy .wb-simple-card{
+                        width: min(100%, 72ch);           /* 改这里：72ch≈正文一行字符宽度 */
+                        margin: 1rem auto 1.25rem;        /* 居中并与上下内容留白 */
+                        border-radius: 16px;
+                        overflow: hidden;
+                        box-shadow: 0 8px 24px rgba(0,0,0,.08);
+                        /* border: 1px solid #e5e7eb; */
+                        background: #fff;
+                      }
+                      #taxonomy .wb-simple-card img{
+                        display: block;
+                        width: 100%;
+                        height: auto;
+                      }
+                      @media (prefers-color-scheme: dark){
+                        #taxonomy .wb-simple-card{
+                          background: #0b1220;
+                          border-color: #334155;
+                          box-shadow: 0 8px 24px rgba(0,0,0,.35);
+                        }
+                      }
+                    </style>
+
+                    <figure class="wb-simple-card" aria-label="Taxonomy overview figure">
+                      <img src="figures/tree.png" alt="WorldBench taxonomy tree">
+                    </figure>
+
+
+                    <!-- Then keep your existing iframes -->
                     <iframe
+                      src="src/videogen.html"
+                      style="width:100%; border:0; min-height:680px;"
+                      loading="lazy"
+                    ></iframe>
+
+                    <!-- <iframe
                         src="src/conditions.html"
                         style="width:100%; border:0; min-height:680px;"
                         loading="lazy"
                     ></iframe>
-                    <p> </p>
-                    <iframe
+                    <p> </p> -->
+                    <!-- <iframe
                         src="src/videogen.html"
                         style="width:100%; border:0; min-height:680px;"
                         loading="lazy"
                     ></iframe>
-                    <p> </p>
+                    <p> </p> -->
                     <iframe
                         src="src/occgen.html"
                         style="width:100%; border:0; min-height:680px;"
@@ -178,7 +509,7 @@
 
                   <p> </p>
 
-                  <section class="videogen" tabindex="0" aria-label="VideoGen Set A">
+                  <section class="videogen" tabindex="0" aria-label="VideoGen Set B">
                     <div class="video-hero">
                       <video autoplay loop muted playsinline data-hero>
                         <source src="videos/gt_1.mp4" type="video/mp4" />
@@ -216,7 +547,44 @@
                   </section>
 
                 <h3>OccGen</h3>
-                <p>...</p>
+
+
+                  <section class="videogen" tabindex="0" aria-label="VideoGen Set C">
+                    <div class="video-hero">
+                      <video autoplay loop muted playsinline data-hero>
+                        <source src="occ_videos/dynamic_video/0_occ.mp4" type="video/mp4" />
+                      </video>
+                      <div class="video-badge" data-hero-label>Sample1</div>
+                    </div>
+                  
+                    <div class="thumb-bar" role="tablist" aria-label="Video methods A">
+                      <button class="thumb is-active" role="tab" aria-selected="true"
+                              data-src="occ_videos/dynamic_video/0_occ.mp4" data-label="Reference">
+                        <img src="occ_videos/dynamic_video/0_bev_layout.png" alt="Reference thumbnail" />
+                        <span>Sample1</span>
+                      </button>
+                      <button class="thumb" role="tab" aria-selected="false"
+                              data-src="occ_videos/dynamic_video/1_occ.mp4" data-label="MagicDrive">
+                        <img src="videos/images/magicdrive_1.png" alt="MagicDrive thumbnail" />
+                        <span>MagicDrive</span>
+                      </button>
+                      <button class="thumb" role="tab" aria-selected="false"
+                              data-src="occ_videos/dynamic_video/2_occ.mp4" data-label="Drivedreamer2">
+                        <img src="videos/images/drivedreamer2_1.png" alt="MagicDrive thumbnail" />
+                        <span>Drivedreamer2</span>
+                      </button>
+                      <button class="thumb" role="tab" aria-selected="false"
+                              data-src="occ_videos/dynamic_video/3_occ.mp4" data-label="Dreamforge">
+                        <img src="videos/images/dreamforge_1.png" alt="MagicDrive thumbnail" />
+                        <span>Dreamforge</span>
+                      </button>
+                      <button class="thumb" role="tab" aria-selected="false"
+                              data-src="occ_videos/dynamic_video/4_occ.mp4" data-label="OpenDWM">
+                        <img src="videos/images/opendwm_1.png" alt="MagicDrive thumbnail" />
+                        <span>OpenDWM</span>
+                      </button>
+                    </div>
+                  </section>
 
                 <h3>LiDARGen</h3>
                 <!-- LiDARGen -->
