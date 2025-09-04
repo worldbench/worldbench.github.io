@@ -1,0 +1,525 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>VideoGen Models Summary</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<style>
+  /* ====== 外层滚动容器（开启横向滑动 + 单行不换行） ====== */
+  .table-scroll.nowrap {
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    border-radius: 10px;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.06);
+    background: #fff;
+  }
+
+  /* ====== 表格基础样式 ====== */
+  .models-table {
+    border-collapse: separate;
+    border-spacing: 0;
+    width: 100%;
+    min-width: 1400px;           /* 让表格自然超出，触发横向滚动 */
+    white-space: nowrap;         /* 关键：整表不换行 */
+    font-size: 14px;
+  }
+  .models-table thead th {
+    text-align: left;
+    background: #f7f8fb;
+    font-weight: 700;
+    padding: 10px 12px;
+    border-bottom: 1px solid #e8ebf3;
+    position: sticky; top: 0; z-index: 3; /* 粘性表头 */
+  }
+  .models-table tbody td {
+    padding: 10px 12px;
+    border-bottom: 1px solid #f0f2f7;
+    vertical-align: middle;
+  }
+  .models-table tbody tr:nth-child(odd) td {
+    background: #ffffff;
+  }
+  .models-table tbody tr:nth-child(even) td {
+    background: #f3f8ff;  /* 近似 w_blue!7 */
+  }
+  .models-table tbody tr:hover td {
+    background: #f8fbff;
+  }
+
+  /* ====== 粘性首列（可按需注释掉） ====== */
+  .models-table .sticky-col {
+    position: sticky;
+    left: 0; z-index: 2;
+    background: inherit; /* 保持与行底色一致 */
+  }
+
+  /* ====== 小徽标 / 图标 ====== */
+  .icon { height: 18px; width: auto; vertical-align: middle; transform: translateY(1px); }
+  .icon-latent { height: 20px; }
+  .icon-num  { height: 20px; transform: translateY(2px); }
+
+  /* ====== 条件 Chips ====== */
+  .chips { display: inline-flex; gap: 6px; align-items: center; }
+  .chip {
+    display: inline-flex; align-items: center; gap: 4px;
+    padding: 2px 6px; border-radius: 6px;
+    background: #f4f6fb; border: 1px solid #e8ebf3;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+    font-size: 12px; font-weight: 600;
+  }
+
+  /* ====== 说明块（caption + legend） ====== */
+  .legend {
+    margin: 8px 0 12px;
+    line-height: 1.45;
+    color: #374151;
+    font-size: 14px;
+  }
+  .legend b { font-weight: 700; }
+  .legend .row { margin: 4px 0; }
+  .legend .icons { display: inline-flex; gap: 10px; margin-left: 6px; }
+  .legend .icons span { display: inline-flex; align-items: center; gap: 6px; }
+
+  a.ext { text-decoration: none; border-bottom: 1px dotted #94a3b8; }
+</style>
+</head>
+<body>
+
+<section>
+  <h3 style="margin:0 0 6px;">Summary of video-based generation (<b>VideoGen</b>) models</h3>
+
+  <div class="legend">
+    <div class="row"><b>• Datasets:</b> nuScenes, KITTI, Waymo, OpenDV-YouTube, Argoverse 2, nuPlan, NAVSIM, CARLA, Private.</div>
+    <div class="row">
+      <b>• Input &amp; Output:</b>
+      <span class="icons">
+        <span><img class="icon icon-latent" src="/figures/icons/latent.png" alt="latent"> Noise Latent</span>
+        <span><img class="icon" src="/figures/icons/video.png" alt="video"> Video</span>
+        <span><img class="icon" src="/figures/icons/action.png" alt="action"> Ego-Action</span>
+      </span>
+    </div>
+    <div class="row"><b>• Arch.:</b> <u>AR</u> (Autoregressive), <u>MLLM</u>, <u>SD</u> (Stable Diffusion), <u>DiT</u> (Diffusion Transformer), <u>GPT</u>.</div>
+    <div class="row"><b>• Tasks:</b> <u>VG</u> (Video Gen), <u>E2E</u> (End-to-End Planning), <u>3SR</u> (3D Scene Recon).</div>
+    <div class="row">
+      <b>• Categories:</b>
+      <span class="icons">
+        <span><img class="icon icon-num" src="/figures/icons/number-1.png" alt="1"> Data Engine</span>
+        <span><img class="icon icon-num" src="/figures/icons/number-2.png" alt="2"> Action Interpreter</span>
+        <span><img class="icon icon-num" src="/figures/icons/number-3.png" alt="3"> Neural Simulator</span>
+      </span>
+    </div>
+  </div>
+
+  <!-- 表格：不换行 + 横向滑动 -->
+  <div class="table-scroll nowrap">
+    <table class="models-table" id="videogen-table">
+      <thead>
+        <tr>
+          <th class="sticky-col">#</th>
+          <th class="sticky-col">Model</th>
+          <th>Venue</th>
+          <th>Dataset</th>
+          <th>Input</th>
+          <th>Output</th>
+          <th>Condition</th>
+          <th>Len.</th>
+          <th>Freq.</th>
+          <th>Arch.</th>
+          <th>Task</th>
+          <th>Cat.</th>
+          <th>URL</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+</section>
+
+<script>
+/** ========= 小工具：渲染图标 / 条件chips / 分类数字 ========= **/
+const ICONS = {
+  latent: '/figures/icons/latent.png',
+  video:  '/figures/icons/video.png',
+  action: '/figures/icons/action.png',
+  num1:   '/figures/icons/number-1.png',
+  num2:   '/figures/icons/number-2.png',
+  num3:   '/figures/icons/number-3.png',
+};
+
+function iconImg(src, cls='icon', alt='') {
+  return `<img class="${cls}" src="${src}" alt="${alt}">`;
+}
+function renderIO(arr) {
+  return arr.map(k => {
+    const alt = k[0].toUpperCase() + k.slice(1);
+    const cls = (k === 'latent') ? 'icon icon-latent' : 'icon';
+    return iconImg(ICONS[k], cls, alt);
+  }).join(' ');
+}
+function chip(label) {
+  return `<span class="chip">${label}</span>`;
+}
+function renderConds(list) {
+  return `<span class="chips">${list.map(chip).join('')}</span>`;
+}
+function renderCat(nums) {
+  return nums.map(n => iconImg(ICONS['num'+n], 'icon icon-num', 'Cat '+n)).join(' ');
+}
+
+/** ========= 数据：先示范填若干行（#1–#20） =========
+ *  每条数据字段：
+ *  n, model (含引用年), venue, dataset, input:[latent|video], output:[video|action? -> 放在Output列里与video并列图标],
+ *  conds:[...], len: 'S'|'L'|'-', freq, arch, task, cat:[1|2|3...], url
+ *  —— 其余 #21–#63，按同样格式补充到数组即可。
+ */
+const rows = [
+  { n:1,  model:'GAIA-1', venue:"arXiv'23", dataset:'Private',
+    input:['video'], output:['video'],
+    conds:['EgoTrajectory','EgoCommand','TextPrompt'], len:'L', freq:'25Hz', arch:'AR', task:'VG', cat:[2],
+    url:'https://arxiv.org/abs/2309.17080'
+  },
+  { n:2,  model:'ADriver-I', venue:"arXiv'23", dataset:'nuScenes, Private',
+    input:['video'], output:['video','action'],
+    conds:['EgoTrajectory'], len:'S', freq:'2Hz', arch:'MLLM', task:'VG', cat:[2],
+    url:'https://arxiv.org/abs/2311.13549'
+  },
+  { n:3,  model:'BEVControl', venue:"arXiv'23", dataset:'nuScenes',
+    input:['latent'], output:['video'],
+    conds:['BBox','HDMap'], len:'S', freq:'-', arch:'SD', task:'VG', cat:[1],
+    url:'https://arxiv.org/abs/2308.01661'
+  },
+  { n:4,  model:'BEVGen', venue:"RA-L'24", dataset:'nuScenes, Argoverse',
+    input:['video'], output:['video'],
+    conds:['BEVMap'], len:'S', freq:'-', arch:'AR', task:'VG', cat:[1],
+    url:'https://arxiv.org/abs/2301.04634'
+  },
+  { n:5,  model:'MagicDrive', venue:"ICLR'24", dataset:'nuScenes',
+    input:['latent'], output:['video'],
+    conds:['BBox','BEVMap','CameraPose','TextPrompt'], len:'S', freq:'12Hz', arch:'SD', task:'VG', cat:[1],
+    url:'https://arxiv.org/abs/2310.02601'
+  },
+  { n:6,  model:'Panacea', venue:"CVPR'24", dataset:'nuScenes',
+    input:['video'], output:['video'],
+    conds:['BBox','HDMap','CameraPose','TextPrompt'], len:'S', freq:'2Hz', arch:'SD', task:'VG', cat:[1],
+    url:'https://arxiv.org/abs/2311.16813'
+  },
+  { n:7,  model:'Drive-WM', venue:"CVPR'24", dataset:'nuScenes',
+    input:['video'], output:['video'],
+    conds:['BBox','HDMap','EgoTrajectory','TextPrompt'], len:'S', freq:'2Hz', arch:'SD', task:'VG, E2E', cat:[2],
+    url:'https://arxiv.org/abs/2311.17918'
+  },
+  { n:8,  model:'GenAD', venue:"CVPR'24", dataset:'OpenDV-YouTube',
+    input:['video'], output:['video','action'],
+    conds:['EgoTrajectory','TextPrompt'], len:'S', freq:'2Hz', arch:'SD', task:'VG, E2E', cat:[2],
+    url:'https://arxiv.org/abs/2403.09630'
+  },
+  { n:9,  model:'DriveDreamer', venue:"ECCV'24", dataset:'nuScenes',
+    input:['video'], output:['video','action'],
+    conds:['BBox','HDMap','EgoTrajectory','TextPrompt'], len:'S', freq:'2Hz', arch:'SD', task:'VG, E2E', cat:[2],
+    url:'https://arxiv.org/abs/2309.09777'
+  },
+  { n:10, model:'DrivingDiffusion', venue:"ECCV'24", dataset:'nuScenes',
+    input:['video'], output:['video'],
+    conds:['BBox','TextPrompt'], len:'S', freq:'2Hz', arch:'SD', task:'VG', cat:[1],
+    url:'https://arxiv.org/abs/2310.07771'
+  },
+  { n:11, model:'WoVoGen', venue:"ECCV'24", dataset:'nuScenes',
+    input:['latent'], output:['video'],
+    conds:['BEVMap','EgoTrajectory','CameraPose','TextPrompt','PastOccupancy'], len:'S', freq:'2Hz', arch:'SD', task:'VG', cat:[1],
+    url:'https://arxiv.org/abs/2312.02934'
+  },
+  { n:12, model:'Vista', venue:"NeurIPS'24", dataset:'OpenDV, nuScenes',
+    input:['video'], output:['video','action'],
+    conds:['EgoTrajectory'], len:'L', freq:'10Hz', arch:'SD', task:'VG, E2E', cat:[2],
+    url:'https://arxiv.org/abs/2405.17398'
+  },
+  { n:13, model:'SimGen', venue:"NeurIPS'24", dataset:'nuScenes',
+    input:['latent'], output:['video'],
+    conds:['BBox','BEVMap'], len:'S', freq:'2Hz', arch:'SD', task:'VG', cat:[1],
+    url:'https://arxiv.org/abs/2406.09386'
+  },
+  { n:14, model:'MagicDrive3D', venue:"arXiv'24", dataset:'nuScenes',
+    input:['latent'], output:['video'],
+    conds:['BBox','BEVMap','CameraPose','TextPrompt'], len:'S', freq:'12Hz', arch:'SD', task:'VG, 3SR', cat:[1,3],
+    url:'https://arxiv.org/abs/2405.14475'
+  },
+  { n:15, model:'Delphi', venue:"arXiv'24", dataset:'nuScenes',
+    input:['video'], output:['video'],
+    conds:['BBox','HDMap','TextPrompt'], len:'L', freq:'2Hz', arch:'SD', task:'VG', cat:[1],
+    url:'https://arxiv.org/abs/2406.01349'
+  },
+  { n:16, model:'BEVWorld', venue:"arXiv'24", dataset:'nuScenes, CARLA',
+    input:['latent'], output:['video'],
+    conds:['EgoTrajectory'], len:'S', freq:'12Hz', arch:'AR', task:'VG', cat:[1],
+    url:'https://arxiv.org/abs/2407.05679'
+  },
+  { n:17, model:'Panacea+', venue:"arXiv'24", dataset:'nuScenes, Argoverse',
+    input:['video'], output:['video'],
+    conds:['BBox','HDMap','CameraPose','TextPrompt'], len:'S', freq:'2Hz', arch:'SD', task:'VG', cat:[1],
+    url:'https://arxiv.org/abs/2408.07605'
+  },
+  { n:18, model:'DiVE', venue:"arXiv'24", dataset:'nuScenes',
+    input:['video'], output:['video'],
+    conds:['BBox','HDMap','TextPrompt'], len:'L', freq:'12Hz', arch:'DiT', task:'VG', cat:[1],
+    url:'https://arxiv.org/abs/2409.01595'
+  },
+  { n:19, model:'DreamForge', venue:"arXiv'24", dataset:'nuScenes',
+    input:['video'], output:['video'],
+    conds:['BBox','HDMap','CameraPose','TextPrompt'], len:'L', freq:'12Hz', arch:'SD, DiT', task:'VG', cat:[3],
+    url:'https://arxiv.org/abs/2409.04003'
+  },
+  { n:20, model:'SyntheOcc', venue:"arXiv'24", dataset:'nuScenes',
+    input:['latent'], output:['video'],
+    conds:['PastOccupancy'], len:'S', freq:'2Hz', arch:'SD', task:'VG', cat:[1],
+    url:'https://arxiv.org/abs/2410.00337'
+  },
+  { n:21, model:'HoloDrive', venue:"arXiv'24", dataset:'nuScenes',
+    input:['video'], output:['video'],
+    conds:['BBox'], len:'S', freq:'-', arch:'SD', task:'VG', cat:[1],
+    url:'https://arxiv.org/abs/2412.01407'
+  },
+  { n:22, model:'InfinityDrive', venue:"arXiv'24", dataset:'OpenDV, nuScenes',
+    input:['video'], output:['video'],
+    conds:['EgoTrajectory','TextPrompt'], len:'L', freq:'10Hz', arch:'AR', task:'VG', cat:[2],
+    url:'https://arxiv.org/abs/2412.01522'
+  },
+  { n:23, model:'CogDriving', venue:"arXiv'24", dataset:'nuScenes',
+    input:['video'], output:['video'],
+    conds:['BBox','BEVMap'], len:'S', freq:'2Hz', arch:'DiT', task:'VG', cat:[1],
+    url:'https://arxiv.org/abs/2412.03520'
+  },
+  { n:24, model:'UniMLVG', venue:"arXiv'24", dataset:'OpenDV, nuScenes, Waymo, Argoverse',
+    input:['video'], output:['video'],
+    conds:['BBox','BEVMap','CameraPose','TextPrompt'], len:'L', freq:'12Hz', arch:'DiT', task:'VG', cat:[1],
+    url:'https://arxiv.org/abs/2412.04842'
+  },
+  { n:25, model:'DrivePhysica', venue:"arXiv'24", dataset:'nuScenes',
+    input:['latent'], output:['video'],
+    conds:['BBox','HDMap','CameraPose'], len:'L', freq:'12Hz', arch:'DiT', task:'VG', cat:[1],
+    url:'https://arxiv.org/abs/2412.08410'
+  },
+  { n:26, model:'Doe-1', venue:"arXiv'24", dataset:'nuScenes',
+    input:['latent'], output:['video','action'],
+    conds:['PastOccupancy'], len:'S', freq:'2Hz', arch:'MLLM', task:'VG, E2E', cat:[2,3],
+    url:'https://arxiv.org/abs/2412.09627'
+  },
+  { n:27, model:'OccScene', venue:"arXiv'24", dataset:'nuScenes, KITTI',
+    input:['video'], output:['video'],
+    conds:['EgoTrajectory','TextPrompt'], len:'-', freq:'2Hz', arch:'SD', task:'VG', cat:[1],
+    url:'https://arxiv.org/abs/2412.11183'
+  },
+  { n:28, model:'DrivingGPT', venue:"arXiv'24", dataset:'nuPlan, NAVSIM',
+    input:['video'], output:['video','action'],
+    conds:['EgoTrajectory'], len:'L', freq:'10Hz', arch:'GPT', task:'VG, E2E', cat:[2],
+    url:'https://arxiv.org/abs/2412.18607'
+  },
+  { n:29, model:'DrivingWorld', venue:"arXiv'24", dataset:'Private, nuPlan',
+    input:['video'], output:['video','action'],
+    conds:['EgoTrajectory'], len:'L', freq:'10Hz', arch:'GPT', task:'VG, E2E', cat:[2],
+    url:'https://arxiv.org/abs/2412.19505'
+  },
+  { n:30, model:'DriveDreamer-2', venue:"AAAI'25", dataset:'nuScenes',
+    input:['latent'], output:['video'],
+    conds:['BBox','HDMap','TextPrompt'], len:'S', freq:'12Hz', arch:'SD', task:'VG', cat:[1],
+    url:'https://arxiv.org/abs/2403.06845'
+  },
+  { n:31, model:'SubjectDrive', venue:"AAAI'25", dataset:'nuScenes',
+    input:['video'], output:['video'],
+    conds:['BBox','HDMap','TextPrompt'], len:'S', freq:'2Hz', arch:'SD', task:'VG', cat:[1],
+    url:'https://arxiv.org/abs/2403.19438'
+  },
+  { n:32, model:'Glad', venue:"ICLR'25", dataset:'nuScenes',
+    input:['video'], output:['video'],
+    conds:['BBox','HDMap','TextPrompt'], len:'S', freq:'2Hz', arch:'SD', task:'VG', cat:[1],
+    url:'https://arxiv.org/abs/2503.00045'
+  },
+  { n:33, model:'DualDiff', venue:"ICRA'25", dataset:'nuScenes',
+    input:['latent'], output:['video'],
+    conds:['BBox','HDMap','CameraPose','TextPrompt','PastOccupancy'], len:'S', freq:'-', arch:'SD', task:'VG', cat:[1],
+    url:'https://arxiv.org/abs/2505.01857'
+  },
+  { n:34, model:'DriveScape', venue:"CVPR'25", dataset:'nuScenes',
+    input:['latent'], output:['video'],
+    conds:['BBox','HDMap','EgoTrajectory','CameraPose','TextPrompt'], len:'S', freq:'10Hz', arch:'SD', task:'VG', cat:[1],
+    url:'https://arxiv.org/abs/2409.05463'
+  },
+  { n:35, model:'DriveDreamer4D', venue:"CVPR'25", dataset:'Waymo',
+    input:['video'], output:['video'],
+    conds:['BBox','HDMap'], len:'S', freq:'-', arch:'SD', task:'VG, 3SR', cat:[1,2],
+    url:'https://arxiv.org/abs/2410.13571'
+  },
+  { n:36, model:'DrivingSphere', venue:"CVPR'25", dataset:'nuScenes',
+    input:['latent'], output:['video'],
+    conds:['PastOccupancy'], len:'L', freq:'12Hz', arch:'DiT', task:'VG', cat:[3],
+    url:'https://arxiv.org/abs/2411.11252'
+  },
+  { n:37, model:'UniScene', venue:"CVPR'25", dataset:'nuScenes',
+    input:['latent'], output:['video'],
+    conds:['TextPrompt','PastOccupancy'], len:'L', freq:'12Hz', arch:'SD', task:'VG', cat:[1],
+    url:'https://arxiv.org/abs/2412.05435'
+  },
+  { n:38, model:'GEM', venue:"CVPR'25", dataset:'OpenDV, nuScenes',
+    input:['video'], output:['video'],
+    conds:['EgoTrajectory'], len:'L', freq:'10Hz', arch:'SD', task:'VG', cat:[2],
+    url:'https://arxiv.org/abs/2412.11198'
+  },
+  { n:39, model:'MaskGWM', venue:"CVPR'25", dataset:'OpenDV, nuScenes, Waymo',
+    input:['video'], output:['video'],
+    conds:['EgoTrajectory','TextPrompt'], len:'L', freq:'10Hz', arch:'DiT', task:'VG', cat:[2],
+    url:'https://arxiv.org/abs/2502.11663'
+  },
+  { n:40, model:'UMGen', venue:"CVPR'25", dataset:'Waymo, nuPlan',
+    input:['video'], output:['video'],
+    conds:['BEVMap','EgoTrajectory'], len:'L', freq:'2Hz', arch:'AR', task:'VG, E2E', cat:[3],
+    url:'https://arxiv.org/abs/2503.14945'
+  },
+  { n:41, model:'PerLDiff', venue:"ICCV'25", dataset:'nuScenes, KITTI',
+    input:['latent'], output:['video'],
+    conds:['BBox','HDMap'], len:'S', freq:'-', arch:'SD', task:'VG', cat:[1],
+    url:'https://arxiv.org/abs/2407.06109'
+  },
+  { n:42, model:'DriveArena', venue:"ICCV'25", dataset:'nuScenes',
+    input:['video'], output:['video'],
+    conds:['BBox','HDMap','CameraPose','TextPrompt'], len:'L', freq:'12Hz', arch:'SD, DiT', task:'VG', cat:[1,3],
+    url:'https://arxiv.org/abs/2408.00415'
+  },
+  { n:43, model:'MagicDrive-V2', venue:"ICCV'25", dataset:'nuScenes, Waymo',
+    input:['latent'], output:['video'],
+    conds:['BBox','BEVMap','EgoTrajectory','CameraPose','TextPrompt'], len:'L', freq:'12Hz', arch:'DiT', task:'VG', cat:[1],
+    url:'https://arxiv.org/abs/2411.13807'
+  },
+  { n:44, model:'InfiniCube', venue:"ICCV'25", dataset:'Waymo',
+    input:['video'], output:['video'],
+    conds:['HDMap','PastOccupancy'], len:'L', freq:'10Hz', arch:'SD', task:'VG, 3SR', cat:[3],
+    url:'https://arxiv.org/abs/2412.03934'
+  },
+  { n:45, model:'DiST-4D', venue:"ICCV'25", dataset:'nuScenes',
+    input:['video'], output:['video'],
+    conds:['BBox','BEVMap','EgoTrajectory','CameraPose'], len:'L', freq:'12Hz', arch:'DiT', task:'VG, 3SR', cat:[3],
+    url:'https://arxiv.org/abs/2503.15208'
+  },
+  { n:46, model:'Epona', venue:"ICCV'25", dataset:'nuScenes, nuPlan',
+    input:['video'], output:['video','action'],
+    conds:['EgoTrajectory'], len:'L', freq:'5Hz', arch:'DiT', task:'VG, E2E', cat:[2],
+    url:'https://arxiv.org/abs/2506.24113'
+  },
+  { n:47, model:'VaViM', venue:"arXiv'25", dataset:'OpenDV',
+    input:['video'], output:['video'],
+    conds:['N/A'], len:'L', freq:'2Hz', arch:'MLLM', task:'VG', cat:[2],
+    url:'https://arxiv.org/abs/2502.15672'
+  },
+  { n:48, model:'VaVAM', venue:"arXiv'25", dataset:'OpenDV, nuScenes, nuPlan',
+    input:['video'], output:['video','action'],
+    conds:['EgoTrajectory'], len:'L', freq:'2Hz', arch:'MLLM', task:'VG, E2E', cat:[2],
+    url:'https://arxiv.org/abs/2502.15672'
+  },
+  { n:49, model:'DualDiff+', venue:"arXiv'25", dataset:'nuScenes',
+    input:['latent'], output:['video'],
+    conds:['BBox','HDMap','CameraPose','TextPrompt','PastOccupancy'], len:'S', freq:'12Hz', arch:'SD', task:'VG', cat:[1],
+    url:'https://arxiv.org/abs/2503.03689'
+  },
+  { n:50, model:'UniFuture', venue:"arXiv'25", dataset:'nuScenes',
+    input:['video'], output:['video'],
+    conds:['N/A'], len:'S', freq:'12Hz', arch:'SD', task:'VG, 3SR', cat:[3],
+    url:'https://arxiv.org/abs/2503.13587'
+  },
+  { n:51, model:'MiLA', venue:"arXiv'25", dataset:'nuScenes',
+    input:['video'], output:['video'],
+    conds:['EgoTrajectory','CameraPose','TextPrompt'], len:'L', freq:'12Hz', arch:'DiT', task:'VG', cat:[2],
+    url:'https://arxiv.org/abs/2503.15875'
+  },
+  { n:52, model:'GAIA-2', venue:"arXiv'25", dataset:'Private',
+    input:['video'], output:['video'],
+    conds:['EgoTrajectory','CameraPose','TextPrompt'], len:'L', freq:'30Hz', arch:'DiT', task:'VG', cat:[2],
+    url:'https://arxiv.org/abs/2503.20523'
+  },
+  { n:53, model:'CoGen', venue:"arXiv'25", dataset:'nuScenes',
+    input:['video'], output:['video'],
+    conds:['PastOccupancy'], len:'L', freq:'12Hz', arch:'DiT', task:'VG', cat:[1],
+    url:'https://arxiv.org/abs/2503.22231'
+  },
+  { n:54, model:'Nexus', venue:"arXiv'25", dataset:'nuPlan, Waymo, Private',
+    input:['video'], output:['video'],
+    conds:['BEVMap'], len:'S', freq:'2Hz', arch:'DiT', task:'VG', cat:[1,3],
+    url:'https://arxiv.org/abs/2504.10485'
+  },
+  { n:55, model:'NoiseController', venue:"arXiv'25", dataset:'nuScenes',
+    input:['latent'], output:['video'],
+    conds:['BBox','BEVMap','CameraPose','TextPrompt'], len:'S', freq:'12Hz', arch:'SD', task:'VG', cat:[1],
+    url:'https://arxiv.org/abs/2504.18448'
+  },
+  { n:56, model:'DriVerse', venue:"arXiv'25", dataset:'nuScenes, Waymo',
+    input:['video'], output:['video'],
+    conds:['EgoTrajectory'], len:'L', freq:'12Hz', arch:'DiT', task:'VG', cat:[2],
+    url:'https://arxiv.org/abs/2504.18576'
+  },
+  { n:57, model:'PosePilot', venue:"arXiv'25", dataset:'nuScenes',
+    input:['video'], output:['video'],
+    conds:['CameraPose'], len:'L', freq:'2Hz', arch:'SD, DiT, AR', task:'VG', cat:[2],
+    url:'https://arxiv.org/abs/2505.01729'
+  },
+  { n:58, model:'GeoDrive', venue:"arXiv'25", dataset:'nuScenes',
+    input:['video'], output:['video'],
+    conds:['CameraPose'], len:'L', freq:'12Hz', arch:'DiT', task:'VG, 3SR', cat:[1,3],
+    url:'https://arxiv.org/abs/2505.22421'
+  },
+  { n:59, model:'Challenger', venue:"arXiv'25", dataset:'nuScenes',
+    input:['latent'], output:['video'],
+    conds:['BBox','BEVMap','EgoTrajectory'], len:'L', freq:'12Hz', arch:'DiT', task:'VG', cat:[1],
+    url:'https://arxiv.org/abs/2505.15880'
+  },
+  { n:60, model:'ProphetDWM', venue:"arXiv'25", dataset:'nuScenes',
+    input:['video'], output:['video','action'],
+    conds:['EgoTrajectory'], len:'L', freq:'2Hz', arch:'SD', task:'VG, E2E', cat:[2],
+    url:'https://arxiv.org/abs/2505.18650'
+  },
+  { n:61, model:'LongDWM', venue:"arXiv'25", dataset:'nuScenes',
+    input:['video'], output:['video'],
+    conds:['EgoTrajectory'], len:'L', freq:'10Hz', arch:'DiT', task:'VG', cat:[2],
+    url:'https://arxiv.org/abs/2506.01546'
+  },
+  { n:62, model:'Cosmos-Drive', venue:"arXiv'25", dataset:'Private',
+    input:['video'], output:['video'],
+    conds:['BBox','HDMap','TextPrompt'], len:'L', freq:'-', arch:'DiT', task:'VG', cat:[1],
+    url:'https://arxiv.org/abs/2506.09042'
+  },
+  { n:63, model:'STAGE', venue:"arXiv'25", dataset:'nuScenes',
+    input:['video'], output:['video'],
+    conds:['BBox','HDMap','TextPrompt'], len:'L', freq:'12Hz', arch:'SD', task:'VG', cat:[1],
+    url:'https://arxiv.org/abs/2506.13138'
+  },
+
+  /* —— 按相同格式把 #21 ~ #63 继续补在这里 —— */
+];
+
+(function render() {
+  const tbody = document.querySelector('#videogen-table tbody');
+  const html = rows.map(r => {
+    const inputHTML  = renderIO(r.input);
+    const outputHTML = renderIO(r.output);
+    const condsHTML  = renderConds(r.conds);
+    const catHTML    = renderCat(r.cat);
+    const urlHTML    = r.url ? `<a class="ext" href="${r.url}" target="_blank" rel="noopener">Link</a>` : '';
+
+    return `<tr>
+      <td class="sticky-col">${r.n}</td>
+      <td class="sticky-col"><b>${r.model}</b></td>
+      <td>${r.venue}</td>
+      <td>${r.dataset}</td>
+      <td>${inputHTML}</td>
+      <td>${outputHTML}</td>
+      <td>${condsHTML}</td>
+      <td>${r.len}</td>
+      <td>${r.freq}</td>
+      <td>${r.arch}</td>
+      <td>${r.task}</td>
+      <td>${catHTML}</td>
+      <td>${urlHTML}</td>
+    </tr>`;
+  }).join('');
+  tbody.innerHTML = html;
+})();
+</script>
+</body>
+</html>
