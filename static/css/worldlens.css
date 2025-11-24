@@ -1,0 +1,108 @@
+/* ===== 切半对比容器 ===== */
+
+.video-compare-split {
+    position: relative;
+    width: 100%;
+    height: 100%;           /* 高度由 .video-hero 的 aspect-ratio 决定 */
+    border-radius: inherit;
+    overflow: hidden;
+    --split: 50%;           /* 切割位置，0% 左端，100% 右端 */
+  }
+  
+  /* 两层视频都铺满容器 */
+  .video-compare-split .video-wrapper {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;   /* 不挡住拖拽事件 */
+  }
+  
+  .video-compare-split .video-el {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  /* GT：显示左半边 [0, split] */
+  .video-compare-split .gt-layer {
+    clip-path: polygon(0 0, var(--split) 0, var(--split) 100%, 0 100%);
+  }
+  
+  /* 生成方法：显示右半边 [split, 100] */
+  .video-compare-split .gen-layer {
+    clip-path: polygon(var(--split) 0, 100% 0, 100% 100%, var(--split) 100%);
+  }
+  
+  /* 左右标签 */
+  .video-compare-split .video-label {
+    position: absolute;
+    bottom: 10px;
+    padding: 4px 10px;
+    font-size: 12px;
+    border-radius: 999px;
+    background: rgba(0,0,0,.55);
+    color: #fff;
+    backdrop-filter: blur(4px);
+    letter-spacing: .3px;
+  }
+  
+  .video-compare-split .label-left {
+    left: 10px;
+  }
+  
+  .video-compare-split .label-right {
+    right: 10px;
+  }
+  
+  /* 拖拽手柄 */
+  .video-compare-split .split-handle {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 28px;                         /* 点击区域宽一点好操作 */
+    left: var(--split);
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: ew-resize;
+    z-index: 5;
+  }
+  
+  /* 中间竖线 */
+  .video-compare-split .handle-line {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: rgba(255,255,255,.9);
+    box-shadow: 0 0 8px rgba(0,0,0,.35);
+  }
+  
+  /* 箭头胶囊 */
+  .video-compare-split .handle-arrows {
+    position: relative;
+    z-index: 1;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 6px;
+    border-radius: 999px;
+    background: rgba(0,0,0,.6);
+    color: #fff;
+    box-shadow: 0 4px 12px rgba(0,0,0,.35);
+  }
+  
+  .videogen-compare.dragging .split-handle {
+    cursor: ew-resize;
+  }
+  
+  /* 深色模式微调 */
+  @media (prefers-color-scheme: dark) {
+    .video-compare-split .handle-line {
+      background: rgba(255,255,255,.85);
+    }
+    .video-compare-split .handle-arrows {
+      background: rgba(0,0,0,.75);
+    }
+  }
+  
