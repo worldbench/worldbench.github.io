@@ -286,7 +286,9 @@
                 <!-- 场景1 + MagicDrive -->
                 <button class="thumb is-active"
                         role="tab" aria-selected="true"
-                        data-label="Scene 1 – MagicDrive">
+                        data-gen-src="videos/worldlens/reconstruction/photometric_discrepancy/0/bad/train.mp4"
+                        data-gt-src="videos/worldlens/reconstruction/photometric_discrepancy/0/good/train.mp4"
+                        data-label="Failure Case">
                   <img src="videos/worldlens/reconstruction/photometric_discrepancy/0/good/images/0000.jpg" alt="Scene1 MagicDrive thumbnail" />
                   <span>Scene1</span>
                 </button>
@@ -294,27 +296,253 @@
                 <!-- 场景2 + MagicDrive -->
                 <button class="thumb"
                         role="tab" aria-selected="false"
-                        data-gt-src="videos/scene2/gt_0.mp4"
-                        data-gen-src="videos/scene2/magicdrive_0.mp4"
-                        data-label="Scene 2 – MagicDrive">
-                  <img src="videos/images/scene2_magicdrive_0.png" alt="Scene2 MagicDrive thumbnail" />
-                  <span>Scene 2 – MagicDrive</span>
+                        data-gt-src="videos/worldlens/reconstruction/photometric_discrepancy/4/good/train.mp4"
+                        data-gen-src="videos/worldlens/reconstruction/photometric_discrepancy/4/bad/train.mp4"
+                        data-label="Failure Case">
+                  <img src="videos/worldlens/reconstruction/photometric_discrepancy/4/good/images/0000.jpg" alt="Scene2 MagicDrive thumbnail" />
+                  <span>Scene2</span>
                 </button>
             
                 <!-- 场景3 + Dreamforge（举例） -->
                 <button class="thumb"
                         role="tab" aria-selected="false"
-                        data-gt-src="videos/scene3/gt_0.mp4"
-                        data-gen-src="videos/scene3/dreamforge_0.mp4"
-                        data-label="Scene 3 – Dreamforge">
-                  <img src="videos/images/scene3_dreamforge_0.png" alt="Scene3 Dreamforge thumbnail" />
-                  <span>Scene 3 – Dreamforge</span>
+                        data-gt-src="videos/worldlens/reconstruction/photometric_discrepancy/1/good/train.mp4"
+                        data-gen-src="videos/worldlens/reconstruction/photometric_discrepancy/1/bad/train.mp4"
+                        data-label="Failure Case">
+                  <img src="videos/worldlens/reconstruction/photometric_discrepancy/1/good/images/0000.jpg" alt="Scene2 MagicDrive thumbnail" />
+                  <span>Scene3</span>
                 </button>
             
               </div>
             </section>
 
+            <h4>Geometric Discrepancy</h4>
+            <section class="videogen videogen-compare" tabindex="0" aria-label="GT vs Generative Methods">
+            
+              <div class="video-hero">
+                <div class="video-compare-split" data-compare>
+                  <!-- 左：GT -->
+                  <div class="video-wrapper gt-layer">
+                    <video class="video-el" data-role="video-gt" autoplay loop muted playsinline>
+                      <!-- 默认 GT，可以是某个场景的 GT -->
+                      <source src="videos/worldlens/reconstruction/geometric_discrepancy/0/good/depth.mp4" type="video/mp4" />
+                    </video>
+                    <div class="video-label label-left">Good Case</div>
+                  </div>
+            
+                  <!-- 右：生成方法 -->
+                  <div class="video-wrapper gen-layer">
+                    <video class="video-el" data-role="video-gen" autoplay loop muted playsinline>
+                      <!-- 默认生成方法 -->
+                      <source src="videos/worldlens/reconstruction/geometric_discrepancy/0/bad/depth.mp4" type="video/mp4" />
+                    </video>
+                    <div class="video-label label-right" data-role="method-label">Failure Case</div>
+                  </div>
+            
+                  <!-- 中间拖拽手柄 -->
+                  <div class="split-handle" data-role="split-handle"
+                       role="separator" aria-label="Drag to compare" aria-orientation="vertical">
+                    <div class="handle-line"></div>
+                    <div class="handle-arrows">
+                      <svg viewBox="0 0 24 24" width="20" height="20" fill="none"
+                           stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="15 18 9 12 15 6"></polyline>
+                      </svg>
+                      <svg viewBox="0 0 24 24" width="20" height="20" fill="none"
+                           stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="9 18 15 12 9 6"></polyline>
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            
+              <!-- 每个缩略图：一对 (GT, Gen) -->
+              <div class="thumb-bar" role="tablist" aria-label="Pairs of GT & Generative methods">
+                <!-- 场景1 + MagicDrive -->
+                <button class="thumb is-active"
+                        role="tab" aria-selected="true"
+                        data-gen-src="videos/worldlens/reconstruction/geometric_discrepancy/0/bad/depth.mp4"
+                        data-gt-src="videos/worldlens/reconstruction/geometric_discrepancy/0/good/depth.mp4"
+                        data-label="Failure Case">
+                  <img src="videos/worldlens/reconstruction/geometric_discrepancy/0/good/images/0000.jpg" alt="Scene1 MagicDrive thumbnail" />
+                  <span>Scene1</span>
+                </button>
+            
+                <!-- 场景2 + MagicDrive -->
+                <button class="thumb"
+                        role="tab" aria-selected="false"
+                        data-gt-src="videos/worldlens/reconstruction/geometric_discrepancy/4/good/depth.mp4"
+                        data-gen-src="videos/worldlens/reconstruction/geometric_discrepancy/4/bad/depth.mp4"
+                        data-label="Failure Case">
+                  <img src="videos/worldlens/reconstruction/geometric_discrepancy/4/good/images/0000.jpg" alt="Scene2 MagicDrive thumbnail" />
+                  <span>Scene2</span>
+                </button>
+            
+                <!-- 场景3 + Dreamforge（举例） -->
+                <button class="thumb"
+                        role="tab" aria-selected="false"
+                        data-gt-src="videos/worldlens/reconstruction/geometric_discrepancy/2/good/depth.mp4"
+                        data-gen-src="videos/worldlens/reconstruction/geometric_discrepancy/2/bad/depth.mp4"
+                        data-label="Failure Case">
+                  <img src="videos/worldlens/reconstruction/geometric_discrepancy/2/good/images/0000.jpg" alt="Scene2 MagicDrive thumbnail" />
+                  <span>Scene3</span>
+                </button>
+            
+              </div>
+            </section>
 
+            <h4>Novel View Quality</h4>
+            <section class="videogen videogen-compare" tabindex="0" aria-label="GT vs Generative Methods">
+            
+              <div class="video-hero">
+                <div class="video-compare-split" data-compare>
+                  <!-- 左：GT -->
+                  <div class="video-wrapper gt-layer">
+                    <video class="video-el" data-role="video-gt" autoplay loop muted playsinline>
+                      <!-- 默认 GT，可以是某个场景的 GT -->
+                      <source src="videos/worldlens/reconstruction/novel_view_quality/0/good.mp4" type="video/mp4" />
+                    </video>
+                    <div class="video-label label-left">Good Case</div>
+                  </div>
+            
+                  <!-- 右：生成方法 -->
+                  <div class="video-wrapper gen-layer">
+                    <video class="video-el" data-role="video-gen" autoplay loop muted playsinline>
+                      <!-- 默认生成方法 -->
+                      <source src="videos/worldlens/reconstruction/novel_view_quality/0/bad.mp4" type="video/mp4" />
+                    </video>
+                    <div class="video-label label-right" data-role="method-label">Failure Case</div>
+                  </div>
+            
+                  <!-- 中间拖拽手柄 -->
+                  <div class="split-handle" data-role="split-handle"
+                       role="separator" aria-label="Drag to compare" aria-orientation="vertical">
+                    <div class="handle-line"></div>
+                    <div class="handle-arrows">
+                      <svg viewBox="0 0 24 24" width="20" height="20" fill="none"
+                           stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="15 18 9 12 15 6"></polyline>
+                      </svg>
+                      <svg viewBox="0 0 24 24" width="20" height="20" fill="none"
+                           stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="9 18 15 12 9 6"></polyline>
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            
+              <!-- 每个缩略图：一对 (GT, Gen) -->
+              <div class="thumb-bar" role="tablist" aria-label="Pairs of GT & Generative methods">
+                <!-- 场景1 + MagicDrive -->
+                <button class="thumb is-active"
+                        role="tab" aria-selected="true"
+                        data-gt-src="videos/worldlens/reconstruction/novel_view_quality/0/good.mp4"
+                        data-gen-src="videos/worldlens/reconstruction/novel_view_quality/0/good.mp4"
+                        data-label="Failure Case">
+                  <img src="videos/worldlens/reconstruction/novel_view_quality/0/good/00000.jpg" alt="Scene1 MagicDrive thumbnail" />
+                  <span>Scene1</span>
+                </button>
+            
+                <!-- 场景2 + MagicDrive -->
+                <button class="thumb"
+                        role="tab" aria-selected="false"
+                        data-gt-src="videos/worldlens/reconstruction/novel_view_quality/1/good.mp4"
+                        data-gen-src="videos/worldlens/reconstruction/novel_view_quality/1/bad.mp4"
+                        data-label="Failure Case">
+                  <img src="videos/worldlens/reconstruction/novel_view_quality/1/good/00000.jpg" alt="Scene2 MagicDrive thumbnail" />
+                  <span>Scene2</span>
+                </button>
+            
+                <!-- 场景3 + Dreamforge（举例） -->
+                <button class="thumb"
+                        role="tab" aria-selected="false"
+                        data-gt-src="videos/worldlens/reconstruction/novel_view_quality/2/good.mp4"
+                        data-gen-src="videos/worldlens/reconstruction/novel_view_quality/2/bad.mp4"
+                        data-label="Failure Case">
+                  <img src="videos/worldlens/reconstruction/novel_view_quality/2/good/00000.jpg" alt="Scene2 MagicDrive thumbnail" />
+                  <span>Scene2</span>
+                </button>
+            
+              </div>
+            </section>
+
+            <h4>Novel View Discrepancy</h4>
+            <section class="videogen videogen-compare" tabindex="0" aria-label="GT vs Generative Methods">
+            
+              <div class="video-hero">
+                <div class="video-compare-split" data-compare>
+                  <!-- 左：GT -->
+                  <div class="video-wrapper gt-layer">
+                    <video class="video-el" data-role="video-gt" autoplay loop muted playsinline>
+                      <!-- 默认 GT，可以是某个场景的 GT -->
+                      <source src="videos/worldlens/reconstruction/novel_view_discrepancy/0/good.mp4" type="video/mp4" />
+                    </video>
+                    <div class="video-label label-left">Good Case</div>
+                  </div>
+            
+                  <!-- 右：生成方法 -->
+                  <div class="video-wrapper gen-layer">
+                    <video class="video-el" data-role="video-gen" autoplay loop muted playsinline>
+                      <!-- 默认生成方法 -->
+                      <source src="videos/worldlens/reconstruction/novel_view_discrepancy/0/bad.mp4" type="video/mp4" />
+                    </video>
+                    <div class="video-label label-right" data-role="method-label">Failure Case</div>
+                  </div>
+            
+                  <!-- 中间拖拽手柄 -->
+                  <div class="split-handle" data-role="split-handle"
+                       role="separator" aria-label="Drag to compare" aria-orientation="vertical">
+                    <div class="handle-line"></div>
+                    <div class="handle-arrows">
+                      <svg viewBox="0 0 24 24" width="20" height="20" fill="none"
+                           stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="15 18 9 12 15 6"></polyline>
+                      </svg>
+                      <svg viewBox="0 0 24 24" width="20" height="20" fill="none"
+                           stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="9 18 15 12 9 6"></polyline>
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            
+              <!-- 每个缩略图：一对 (GT, Gen) -->
+              <div class="thumb-bar" role="tablist" aria-label="Pairs of GT & Generative methods">
+                <!-- 场景1 + MagicDrive -->
+                <button class="thumb is-active"
+                        role="tab" aria-selected="true"
+                        data-gt-src="videos/worldlens/reconstruction/novel_view_discrepancy/0/good.mp4"
+                        data-gen-src="videos/worldlens/reconstruction/novel_view_discrepancy/0/bad.mp4"
+                        data-label="Failure Case">
+                  <img src="videos/worldlens/reconstruction/novel_view_quality/0/good/00000.jpg" alt="Scene1 MagicDrive thumbnail" />
+                  <span>Scene1</span>
+                </button>
+            
+                <!-- 场景2 + MagicDrive -->
+                <button class="thumb is-active"
+                        role="tab" aria-selected="true"
+                        data-gt-src="videos/worldlens/reconstruction/novel_view_discrepancy/1/good.mp4"
+                        data-gen-src="videos/worldlens/reconstruction/novel_view_discrepancy/1/bad.mp4"
+                        data-label="Failure Case">
+                  <img src="videos/worldlens/reconstruction/novel_view_quality/1/good/00000.jpg" alt="Scene1 MagicDrive thumbnail" />
+                  <span>Scene2</span>
+                </button>
+            
+                <!-- 场景3 + Dreamforge（举例） -->
+                <button class="thumb is-active"
+                        role="tab" aria-selected="true"
+                        data-gt-src="videos/worldlens/reconstruction/novel_view_discrepancy/2/good.mp4"
+                        data-gen-src="videos/worldlens/reconstruction/novel_view_discrepancy/2/bad.mp4"
+                        data-label="Failure Case">
+                  <img src="videos/worldlens/reconstruction/novel_view_quality/2/good/00000.jpg" alt="Scene1 MagicDrive thumbnail" />
+                  <span>Scene1</span>
+                </button>
+            
+              </div>
+            </section>
 
             <br><br>
                 <d-footnote-list></d-footnote-list>
