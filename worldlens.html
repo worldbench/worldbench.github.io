@@ -237,87 +237,84 @@
               }
             </style>
 
-            <h2>GT vs Generative Models</h3>
+            <h2>GT vs Generative Models</h2>
 
+            <h3>Reconstruction</h3>
+            <h4>Photometric Discrepancy</h4>
             <section class="videogen videogen-compare" tabindex="0" aria-label="GT vs Generative Methods">
-              
-                <!-- 主播放器：使用切半对比 -->
-                <div class="video-hero">
-                  <div class="video-compare-split" data-compare>
-                    <!-- GT 层：左半部分 -->
-                    <div class="video-wrapper gt-layer">
-                      <video class="video-el" data-role="video-gt" autoplay loop muted playsinline>
-                        <source src="videos/gt_0.mp4" type="video/mp4" />
-                      </video>
-                      <div class="video-label label-left">Reference (GT)</div>
-                    </div>
-              
-                    <!-- 生成方法层：右半部分 -->
-                    <div class="video-wrapper gen-layer">
-                      <video class="video-el" data-role="video-gen" autoplay loop muted playsinline>
-                        <source src="videos/magicdrive_0.mp4" type="video/mp4" />
-                      </video>
-                      <div class="video-label label-right" data-role="method-label">MagicDrive</div>
-                    </div>
-              
-                    <!-- 中间拖拽手柄 -->
-                    <div class="split-handle" data-role="split-handle"
-                         role="separator" aria-label="Drag to compare" aria-orientation="vertical">
-                      <div class="handle-line"></div>
-                      <div class="handle-arrows">
-                        <!-- 左箭头 -->
-                        <svg viewBox="0 0 24 24" width="20" height="20" fill="none"
-                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                          <polyline points="15 18 9 12 15 6"></polyline>
-                        </svg>
-                        <!-- 右箭头 -->
-                        <svg viewBox="0 0 24 24" width="20" height="20" fill="none"
-                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                          <polyline points="9 18 15 12 9 6"></polyline>
-                        </svg>
-                      </div>
+            
+              <div class="video-hero">
+                <div class="video-compare-split" data-compare>
+                  <!-- 左：GT -->
+                  <div class="video-wrapper gt-layer">
+                    <video class="video-el" data-role="video-gt" autoplay loop muted playsinline>
+                      <!-- 默认 GT，可以是某个场景的 GT -->
+                      <source src="videos/worldlens/reconstruction/photometric_discrepancy/0/good/train.mp4" type="video/mp4" />
+                    </video>
+                    <div class="video-label label-left">Good Case</div>
+                  </div>
+            
+                  <!-- 右：生成方法 -->
+                  <div class="video-wrapper gen-layer">
+                    <video class="video-el" data-role="video-gen" autoplay loop muted playsinline>
+                      <!-- 默认生成方法 -->
+                      <source src="videos/worldlens/reconstruction/photometric_discrepancy/0/bad/train.mp4" type="video/mp4" />
+                    </video>
+                    <div class="video-label label-right" data-role="method-label">Failure Case</div>
+                  </div>
+            
+                  <!-- 中间拖拽手柄 -->
+                  <div class="split-handle" data-role="split-handle"
+                       role="separator" aria-label="Drag to compare" aria-orientation="vertical">
+                    <div class="handle-line"></div>
+                    <div class="handle-arrows">
+                      <svg viewBox="0 0 24 24" width="20" height="20" fill="none"
+                           stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="15 18 9 12 15 6"></polyline>
+                      </svg>
+                      <svg viewBox="0 0 24 24" width="20" height="20" fill="none"
+                           stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="9 18 15 12 9 6"></polyline>
+                      </svg>
                     </div>
                   </div>
                 </div>
-              
-                <!-- 只展示生成方法的缩略图 -->
-                <div class="thumb-bar" role="tablist" aria-label="Generative methods">
-                  <button class="thumb is-active"
-                          role="tab" aria-selected="true"
-                          data-gen-src="videos/magicdrive_0.mp4"
-                          data-label="MagicDrive">
-                    <img src="videos/images/magicdrive_0.png" alt="MagicDrive thumbnail" />
-                    <span>MagicDrive</span>
-                  </button>
-              
-                  <button class="thumb"
-                          role="tab" aria-selected="false"
-                          data-gen-src="videos/drivedreamer2.mp4"
-                          data-label="Drivedreamer2">
-                    <img src="videos/images/drivedreamer_0.png" alt="Drivedreamer2 thumbnail" />
-                    <span>Drivedreamer2</span>
-                  </button>
-              
-                  <button class="thumb"
-                          role="tab" aria-selected="false"
-                          data-gen-src="videos/dreamforge.mp4"
-                          data-label="Dreamforge">
-                    <img src="videos/images/dreamforge_0.png" alt="Dreamforge thumbnail" />
-                    <span>Dreamforge</span>
-                  </button>
-              
-                  <button class="thumb"
-                          role="tab" aria-selected="false"
-                          data-gen-src="videos/opendwm.mp4"
-                          data-label="OpenDWM">
-                    <img src="videos/images/opendwm_0.png" alt="OpenDWM thumbnail" />
-                    <span>OpenDWM</span>
-                  </button>
-              
-                  <!-- 其他方法继续加即可 -->
-                </div>
-              </section>
-              
+              </div>
+            
+              <!-- 每个缩略图：一对 (GT, Gen) -->
+              <div class="thumb-bar" role="tablist" aria-label="Pairs of GT & Generative methods">
+                <!-- 场景1 + MagicDrive -->
+                <button class="thumb is-active"
+                        role="tab" aria-selected="true"
+                        data-label="Scene 1 – MagicDrive">
+                  <img src="videos/worldlens/reconstruction/photometric_discrepancy/0/good/images/0000.jpg" alt="Scene1 MagicDrive thumbnail" />
+                  <span>Scene1</span>
+                </button>
+            
+                <!-- 场景2 + MagicDrive -->
+                <button class="thumb"
+                        role="tab" aria-selected="false"
+                        data-gt-src="videos/scene2/gt_0.mp4"
+                        data-gen-src="videos/scene2/magicdrive_0.mp4"
+                        data-label="Scene 2 – MagicDrive">
+                  <img src="videos/images/scene2_magicdrive_0.png" alt="Scene2 MagicDrive thumbnail" />
+                  <span>Scene 2 – MagicDrive</span>
+                </button>
+            
+                <!-- 场景3 + Dreamforge（举例） -->
+                <button class="thumb"
+                        role="tab" aria-selected="false"
+                        data-gt-src="videos/scene3/gt_0.mp4"
+                        data-gen-src="videos/scene3/dreamforge_0.mp4"
+                        data-label="Scene 3 – Dreamforge">
+                  <img src="videos/images/scene3_dreamforge_0.png" alt="Scene3 Dreamforge thumbnail" />
+                  <span>Scene 3 – Dreamforge</span>
+                </button>
+            
+              </div>
+            </section>
+
+
 
             <br><br>
                 <d-footnote-list></d-footnote-list>

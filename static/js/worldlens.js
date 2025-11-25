@@ -1,16 +1,15 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // 支持多个对比 section
   document.querySelectorAll('.videogen-compare').forEach(section => {
-    const compare     = section.querySelector('.video-compare-split[data-compare]');
+    const compare      = section.querySelector('.video-compare-split[data-compare]');
     if (!compare) return;
 
-    const handle      = compare.querySelector('[data-role="split-handle"]');
-    const videoGT     = compare.querySelector('[data-role="video-gt"]');
-    const videoGen    = compare.querySelector('[data-role="video-gen"]');
-    const methodLabel = compare.querySelector('[data-role="method-label"]');
-    const thumbs      = section.querySelectorAll('.thumb');
+    const handle       = compare.querySelector('[data-role="split-handle"]');
+    const videoGT      = compare.querySelector('[data-role="video-gt"]');
+    const videoGen     = compare.querySelector('[data-role="video-gen"]');
+    const methodLabel  = compare.querySelector('[data-role="method-label"]');
+    const thumbs       = section.querySelectorAll('.thumb');
 
-    // 初始切割在 50%
+    // 初始分割线
     compare.style.setProperty('--split', '50%');
 
     /* ===== 1. 拖拽切割线 ===== */
@@ -20,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function updateSplit(clientX) {
       const rect = compare.getBoundingClientRect();
       let ratio = (clientX - rect.left) / rect.width;
-      ratio = Math.max(0.05, Math.min(0.95, ratio));   // 5% ~ 95%
+      ratio = Math.max(0.05, Math.min(0.95, ratio));  // 保留 5%~95%
       const percent = (ratio * 100).toFixed(2) + '%';
       compare.style.setProperty('--split', percent);
     }
@@ -59,11 +58,96 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('touchend', onPointerUp);
     window.addEventListener('touchcancel', onPointerUp);
 
-    /* ===== 2. 缩略图切换生成方法 + 时间同步 ===== */
+    /* ===== 2. 封装一个函数：切换一对 (gtSrc, genSrc) 并同步播放 ===== */
+
+    function switchPair(gtSrc, genSrc) {
+      // 暂停当前播放
+      videoGT.pause();
+      videoGen.pause();
+
+      const currentGtSrc  = videoGT.querySelector('source')?.getAttribute('src') || '';
+      const currentGenSrc = videoGen.querySelector('source')?.getAttribute('src') || '';
+
+      // 是否需要替换源
+      const needChangeGT  = gtSrc && currentGtSrc !== gtSrc;
+      const needChangeGen = genSrc && currentGenSrc !== genSrc;
+
+      // helper：重建 <source>
+      const setSource = (videoEl, src) => {
+        while (videoEl.firstChild) {
+          videoEl.removeChild(videoEl.firstChild);
+        }
+        const s = document.createElement('source');
+        s.src = src;
+        s.type = 'video/mp4';
+        videoEl.appendChild(s);
+        videoEl.load();
+      };
+
+      if (needChangeGT) {
+        setSource(videoGT, gtSrc);
+      }
+      if (needChangeGen) {
+        setSource(videoGen, genSrc);
+      }
+
+      // 如果两边都不需要换 src，只是想从头开始同步
+      if (!needChangeGT && !needChangeGen) {
+        syncPlayBoth();
+        return;
+      }
+
+      // 等待两边 metadata，都准备好以后再同步播放
+      let gtReady = !needChangeGT;   // 如果没换 src，视为已经 ready
+      let genReady = !needChangeGen;
+
+      function trySync() {
+        if (gtReady && genReady) {
+          videoGT.removeEventListener('loadedmetadata', onGtMeta);
+          videoGen.removeEventListener('loadedmetadata', onGenMeta);
+          syncPlayBoth();
+        }
+      }
+
+      function onGtMeta() {
+        gtReady = true;
+        trySync();
+      }
+
+      function onGenMeta() {
+        genReady = true;
+        trySync();
+      }
+
+      if (needChangeGT) {
+        videoGT.addEventListener('loadedmetadata', onGtMeta);
+      }
+      if (needChangeGen) {
+        videoGen.addEventListener('loadedmetadata', onGenMeta);
+      }
+
+      // 兜底：如果浏览器很快 readyState 就绪，也尝试一下
+      setTimeout(() => {
+        if (!gtReady && videoGT.readyState >= 1) gtReady = true;
+        if (!genReady && videoGen.readyState >= 1) genReady = true;
+        trySync();
+      }, 50);
+    }
+
+    // 同步从 0s 播放两边
+    function syncPlayBoth() {
+      try { videoGT.currentTime = 0; } catch (e) {}
+      try { videoGen.currentTime = 0; } catch (e) {}
+
+      videoGT.play().catch(() => {});
+      videoGen.play().catch(() => {});
+    }
+
+    /* ===== 3. 缩略图点击：读取 data-gt-src & data-gen-src，切换一对 ===== */
 
     thumbs.forEach(btn => {
       btn.addEventListener('click', () => {
-        // 更新 active 状态
+        // 更新选中样式
         thumbs.forEach(b => {
           b.classList.remove('is-active');
           b.setAttribute('aria-selected', 'false');
@@ -71,59 +155,14 @@ document.addEventListener('DOMContentLoaded', () => {
         btn.classList.add('is-active');
         btn.setAttribute('aria-selected', 'true');
 
+        const gtSrc  = btn.getAttribute('data-gt-src');   // 可能为空：兼容“单一GT”模式
         const genSrc = btn.getAttribute('data-gen-src');
         const label  = btn.getAttribute('data-label') || btn.textContent.trim();
 
-        // 一个小工具函数：让两边从 0 开始同时播放
-        const syncPlayBoth = () => {
-          try {
-            videoGT.currentTime = 0;
-          } catch (e) {}
-          try {
-            videoGen.currentTime = 0;
-          } catch (e) {}
+        // 同时切换 GT + Gen（或只切 Gen）
+        switchPair(gtSrc, genSrc);
 
-          videoGT.play().catch(() => {});
-          videoGen.play().catch(() => {});
-        };
-
-        if (genSrc) {
-          // 如果是新 src：重建 <source> + load，再在 loadedmetadata 后同步播放
-          const currentSrc = videoGen.querySelector('source')?.getAttribute('src') || '';
-          const needReload = currentSrc !== genSrc;
-
-          if (needReload) {
-            while (videoGen.firstChild) {
-              videoGen.removeChild(videoGen.firstChild);
-            }
-            const source = document.createElement('source');
-            source.src = genSrc;
-            source.type = 'video/mp4';
-            videoGen.appendChild(source);
-
-            // 先暂停一下，避免中途画面乱跳
-            videoGen.pause();
-            videoGT.pause();
-
-            // 重新加载生成视频
-            videoGen.load();
-
-            // 等 metadata 出来之后，再 seek 到 0 并同步播放
-            const handler = () => {
-              videoGen.removeEventListener('loadedmetadata', handler);
-              syncPlayBoth();
-            };
-            videoGen.addEventListener('loadedmetadata', handler);
-          } else {
-            // 如果已经是同一个 src，只需要从头开始同步播放
-            syncPlayBoth();
-          }
-        } else {
-          // 没有 genSrc 的话就只同步当前两个视频
-          syncPlayBoth();
-        }
-
-        // 更新右下角方法标签
+        // 更新右下角文案
         methodLabel.textContent = label;
       });
     });
