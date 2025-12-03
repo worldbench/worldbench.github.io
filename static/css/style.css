@@ -1533,7 +1533,7 @@ iframe {
 .papers-section .tab-2[aria-selected="true"]{box-shadow:0 0 0 2px rgba(147,51,234,.25) inset}
 .papers-section .tab-3[aria-selected="true"]{box-shadow:0 0 0 2px rgba(22,163,74,.25) inset}
 .papers-section .tab-4[aria-selected="true"]{box-shadow:0 0 0 2px rgba(243, 19, 19, 0.25) inset}
-
+.papers-section .tab-5[aria-selected="true"]{box-shadow:0 0 0 2px rgba(234,179,8,.25) inset}
 .papers-section .tab-btn:hover{transform:translateY(-1px)}
 
 .papers-section .search{
@@ -1557,6 +1557,7 @@ iframe {
 .papers-section .badge.badge-2{background:var(--accent-2)}
 .papers-section .badge.badge-3{background:var(--accent-3)}
 .papers-section .badge.badge-4{background:var(--accent-4)}
+.papers-section .badge.badge-5{background:var(--accent-5)}
 
 .papers-section .card h3{margin:0 0 6px; font-size:18px; color:#0b1220}
 .papers-section .meta{color:var(--muted); font-size:13px}
