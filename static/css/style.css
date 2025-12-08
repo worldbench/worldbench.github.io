@@ -115,14 +115,9 @@ body {
 .header-content {
     color: #FFF7D4;
     text-align: left;
+    font-family: "Orbitron", sans-serif;
+    letter-spacing: 1px;
 }
-
-/* .header-content h1 {
-    font-size: 1.5em;
-    margin-bottom: 0.5em;
-    line-height: 1.2;
-    color: #E4794B;
-} */
 
 .header-content h1 {
   font-size: 1.5em;
