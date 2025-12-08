@@ -105,4 +105,15 @@
       background: rgba(0,0,0,.75);
     }
   }
-  
+
+d-article > .wb-simple-card {
+  grid-column: text;
+  margin: 2rem 0;
+}
+
+d-article > .wb-simple-card img {
+  display: block;
+  width: 100%; 
+  height: auto;
+}
+
