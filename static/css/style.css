@@ -1687,8 +1687,8 @@ video {
 }
 .wb-kicker {
   display: inline-block;
-  font-size: 1.25rem;
-  letter-spacing: .03em;
+  font-size: 1.4rem;
+  letter-spacing: .01em;
   /* text-transform: uppercase; */
   font-weight: 700;
   color: #6b7280;
