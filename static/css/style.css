@@ -1,14 +1,10 @@
 body {
-  font-family: Inter;
+  font-family: "Rubik", sans-serif;
 }
 
 .header-wrapper {
     position: relative;
     
-    /* background: linear-gradient(217deg,#130cb7 0%,#9708cc 30%,  #000000 100%);  */
-    /* background: linear-gradient(220deg,#52e5e7 0%,#130cb7  30%, #000000 100%); */
-
-    /* background: linear-gradient(217deg,#43cbff 0%,#9708cc 40%,  #000000 100%); */
     background: linear-gradient(220deg, #eddfb4 0%, #01335ec0 40%,  #000000 100%);
     overflow: hidden;
 
@@ -38,7 +34,7 @@ body {
   opacity: 1.0;
   z-index: 1000;
   position: relative;
-  max-width: 1600px;
+  max-width: 1400px;
   margin: 0 auto;
 }
 
@@ -115,7 +111,7 @@ body {
 .header-content {
     color: #FFF7D4;
     text-align: left;
-    font-family: "Orbitron", sans-serif;
+    font-family: "Rubik", sans-serif;
     letter-spacing: 1px;
 }
 
@@ -123,7 +119,7 @@ body {
   font-size: 1.5em;
   margin-bottom: 0.5em;
   line-height: 1.2;
-  font-weight: bold; /* 加粗 */
+  font-weight: bold;
   /* background: #fffce9;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent; */
@@ -1681,6 +1677,7 @@ video {
 
 .wb-section {
   margin: 2rem 0 -2rem;
+  font-family: "Rubik", sans-serif;
 }
 .wb-lead {
   font-size: 1.15rem;
@@ -1735,6 +1732,7 @@ video {
   padding: 1.1rem 1.1rem 1rem;
   box-shadow: 0 1px 2px rgba(0,0,0,.04);
   transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+  font-family: "Rubik", sans-serif;
 }
 .wb-card:hover {
   transform: translateY(-2px);

@@ -4,24 +4,14 @@
         <title>3D and 4D World Modeling: A Survey</title>
         <link rel="icon" type="image/x-icon" href="/static/img/ButtleFly.ico">
 
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet">
+
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <!-- Open Graph -->
-        <meta property="og:url" content="https://worldbench.github.io/" />
-        <meta property="og:image" content="https://worldbench.github.io/static/img/ButtleFly_3.png" />
-        <meta property="og:title" content="DynamicVerse: Physically-Aware Multimodal Modeling for Dynamic 4D Worlds" />
-        <meta property="og:description" content="is a physical-scale, multi-modal 4D modeling framework for real-world video, which contains a novel automated data curation pipeline and corresponding large-scale 4D dataset." />
-
-        <!-- Twitter -->
-        <meta name="twitter:url" content="https://worldbench.github.io/" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:image" content="https://worldbench.github.io/static/img/ButtleFly_3.png" />
-        <meta name="twitter:title" content="DynamicVerse: Physically-Aware Multimodal Modeling for Dynamic 4D Worlds." />
-        <meta name="twitter:description" content="We introduce DynamicVerse, a physical-scale, multi-modal 4D modeling framework for real-world video, which contains a novel automated data curation pipeline and corresponding large-scale 4D dataset." />
-
         <script src="./static/js/distill_template.v2.js"></script>
-        <!-- <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script> -->
         <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
         <script src="https://d3js.org/d3.v5.min.js"></script>
@@ -42,53 +32,46 @@
             onload="renderMathInElement(document.body);"></script>
         <script defer src="./static/js/fontawesome.all.min.js"></script>
 
-
-        <!-- medium zoom https://github.com/francoischalifour/medium-zoom -->
         <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>  <!-- jquery -->
         <script defer src="./static/js/medium-zoom.min.js"></script>
         <script defer src="./static/js/zoom.js"></script>
 
-        <!-- Scoped styles for the Papers section -->
     </head>
+
+
     <body>
         <div class="header-wrapper">
 
             <div class="header-container", id="header-container">
                 <div class="header-content">
-                <h1>3D and 4D World Modeling: A Survey</h1>
+                <h1>
+                  3D and 4D World Modeling: A Survey
+                </h1>
                 <div class="button-container">
-                    <!-- replace arxiv -->
-                    <a href="./survey.pdf" class="button paper-link" target="_blank">
+                    <a href="https://arxiv.org/abs/2509.07996" class="button paper-link" target="_blank">
                         <span class="icon is-small">
                             <i class="ai ai-arxiv "  style="height: 1.5em;"></i>
-                        </span>
-                        arXiv
+                        </span><span>arXiv</span>
                     </a>
-                    <!-- replace pdf -->
-                    <a href="./survey.pdf" class="button paper-link" target="_blank">
-                        <span class="icon is-small"  style="height: 1.5em;">
-                            <i class="fas fa-file-pdf"></i>
-                        </span>
-                        <span>PDF</span>
-                    </a>
-                    <!-- replace image -->
-                    <a href="https://github.com/worldbench/survey" class="button" target="_blank">
-                        <span class="icon is-small"  style="height: 1.5em;">
-                            <i class="fab fa-github"></i>
-                        </span>
-                        <span>GitHub</span>
-                    </a>
-
-                    <!-- <a href="https://huggingface.co/datasets/kairunwen/DynamicVerse" class="button" target="_blank">
+                    <a href="assets_common/papers/survey.pdf" class="button paper-link" target="_blank">
                         <span class="icon is-small">
-                            <img src="https://huggingface.co/front/assets/huggingface_logo-noborder.svg" alt="Hugging Face logo" style="height: 1.5em;">
-                        </span>
-                        <span>Dataset</span>
-                    </a> -->
+                            <img src="assets_common/icons/pdf.png" style="height: 1.4em;">
+                        </span><span>PDF</span>
+                    </a>
+                    <a href="https://github.com/worldbench/survey" class="button" target="_blank">
+                        <span class="icon is-small">
+                            <img src="assets_common/icons/github.png" style="height: 1.4em;">
+                        </span><span>GitHub</span>
+                    </a>
+                    <a href="https://huggingface.co/datasets/worldbench/videogen" class="button" target="_blank">
+                        <span class="icon is-small">
+                            <img src="assets_common/icons/hf.png" style="height: 1.5em;">
+                        </span><span>Dataset</span>
+                    </a>
                 </div>
                 </div>
                 <div class="header-image">
-                    <img src="figures/anni.webp" alt="Teaser Image" class="teaser-image">
+                    <img src="figures/anni.webp" alt="header" class="teaser-image">
                 </div>
             </div>
         </div>
@@ -108,144 +91,139 @@
             </d-contents>
 
 
-            <!-- ---------- Introduction (new) ---------- -->
-              <section id="introduction">
-                <div class="wb-section">
-                  <div class="wb-kicker">Introduction</div>
-                  <div class="wb-hr"></div>
+            <section id="introduction">
+              <div class="wb-section">
+                <div class="wb-kicker">Introduction</div>
+                <div class="wb-hr"></div>
 
-                  <p class="wb-lead">
-                    This survey reviews <strong>3D and 4D world models</strong> — models that learn, predict, and simulate the
-                    geometry and dynamics of real environments from multi-modal signals. We unify terminology, scope, and evaluation,
-                    and organize the space into three complementary paradigms by representation: <strong>VideoGen</strong> (image/video-centric),
-                    <strong>OccGen</strong> (occupancy-centric), and <strong>LiDARGen</strong> (point-cloud-centric).
-                  </p>
-                </div>
+                <p class="wb-lead">
+                  This survey reviews <strong>3D and 4D world models</strong> — models that learn, predict, and simulate the
+                  geometry and dynamics of real environments from multi-modal signals. We unify terminology, scope, and evaluation,
+                  and organize the space into three complementary paradigms by representation: <strong>VideoGen</strong> (image/video-centric),
+                  <strong>OccGen</strong> (occupancy-centric), and <strong>LiDARGen</strong> (point-cloud-centric).
+                </p>
+              </div>
 
-                <!-- <figure class="wb-simple-card" aria-label="Taxonomy overview figure">
-                  <img src="figures/teaser.png" alt="teaser">
-                </figure> -->
-              </section>
-
+              <!-- <figure class="wb-simple-card" aria-label="Taxonomy overview figure">
+                <img src="figures/teaser.png" alt="teaser">
+              </figure> -->
+            </section>
 
 
 
 
+            <section id="definition">
+              <h2>Definition</h2>
+              <div class="wb-hr" style="margin-bottom:1.25rem;"></div>
 
-
-
-
-
-              <!-- ---------- Definition (drop-in replacement for your current block) ---------- -->
-              <section id="definition">
-                <h2>Definition</h2>
-                <div class="wb-hr" style="margin-bottom:1.25rem;"></div>
-
-                <!-- override previous 3-col grid -->
-                <style>
-                  /* 一列排布，并把卡片限制成正文宽度感（可按需改 900px） */
-                  #definition .wb-grid{
-                    grid-template-columns: 1fr !important;
-                    max-width: 900px;
-                    margin: 0 auto;            /* 居中 */
-                    gap: 1rem 1.25rem;
-                  }
-                </style>
-
-                <div class="wb-grid">
-                  <!-- VideoGen -->
-                  <article class="wb-card" id="videogen">
-                    <h3>
-                      <i class="fas fa-film" aria-hidden="true"></i>
-                      <a class="wb-anchor" href="#videogen">VideoGen</a>
-                    </h3>
-                    <p>
-                      <strong>What it is.</strong> An <em>image/video–centric</em> world model that generates or predicts
-                      photorealistic, temporally consistent frames (single- or multi-view) conditioned on past context and optional controls.
-                    </p>
-                    <p class="wb-cap"><strong>Typical inputs</strong>: past frames, poses/camera intrinsics-extrinsics, text/route/action hints.</p>
-                    <div class="wb-meta" aria-label="VideoGen tags">
-                      <span class="wb-chip">Video synthesis</span>
-                      <span class="wb-chip">Future prediction</span>
-                      <span class="wb-chip">What-if simulation</span>
-                      <span class="wb-chip">Multi-view</span>
-                    </div>
-                  </article>
-
-                  <!-- OccGen -->
-                  <article class="wb-card" id="occgen">
-                    <h3>
-                      <i class="fas fa-cubes" aria-hidden="true"></i>
-                      <a class="wb-anchor" href="#occgen">OccGen</a>
-                    </h3>
-                    <p>
-                      <strong>What it is.</strong> An <em>occupancy-centric</em> world model that represents scenes as 3D/4D occupancy
-                      fields (e.g., voxel grids with semantics), enabling geometry-aware perception, forecasting, and simulation.
-                    </p>
-                    <p class="wb-cap"><strong>Typical inputs</strong>: multi-sensor cues (RGB, depth, events, LiDAR), ego motion, maps.</p>
-                    <div class="wb-meta" aria-label="OccGen tags">
-                      <span class="wb-chip">3D reconstruction</span>
-                      <span class="wb-chip">Occupancy forecasting</span>
-                      <span class="wb-chip">Autoregressive simulation</span>
-                      <span class="wb-chip">Semantic voxels</span>
-                    </div>
-                  </article>
-
-                  <!-- LiDARGen -->
-                  <article class="wb-card" id="lidargen">
-                    <h3>
-                      <i class="fas fa-braille" aria-hidden="true"></i>
-                      <a class="wb-anchor" href="#lidargen">LiDARGen</a>
-                    </h3>
-                    <p>
-                      <strong>What it is.</strong> A <em>point-cloud–centric</em> world model that learns high-fidelity geometry and
-                      dynamics directly from LiDAR sweeps, suitable for robust 3D understanding, data generation, and sensor-faithful simulation.
-                    </p>
-                    <p class="wb-cap"><strong>Typical inputs</strong>: past LiDAR sweeps, ego trajectory, calibration; optional scene priors.</p>
-                    <div class="wb-meta" aria-label="LiDARGen tags">
-                      <span class="wb-chip">Point-cloud synthesis</span>
-                      <span class="wb-chip">Future sweeps</span>
-                      <span class="wb-chip">Trajectory-conditioned</span>
-                      <span class="wb-chip">Physics-aware</span>
-                    </div>
-                  </article>
-                </div>
-              </section>
-
-
+              <!-- override previous 3-col grid -->
               <style>
-              /* 过渡段落略小一号 */
-              #definition .wb-bridge {
-                font-size: 1rem;
-                line-height: 1.7;
-                color: #374151;
-                margin: 1rem 0 .75rem;
-              }
-              /* 4列卡片栅格（桌面四列 / 平板两到三列 / 手机一列） */
-              #definition .wb-grid-4 {
-                display: grid;
-                grid-template-columns: repeat(4, minmax(0, 1fr));
-                gap: 1.25rem;
-                margin-top: .5rem;
-              }
-              @media (max-width: 1200px) {
-                #definition .wb-grid-4 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-              }
-              @media (max-width: 1024px) {
-                #definition .wb-grid-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-              }
-              @media (max-width: 640px) {
-                #definition .wb-grid-4 { grid-template-columns: 1fr; }
-              }
-              /* 辅助：更紧凑的卡片标题与说明 */
-              #definition .wb-card h4 {
-                display: flex; align-items: center; gap: .5rem;
-                font-size: 1rem; margin: 0 0 .35rem;
-              }
-              #definition .wb-card p.small {
-                margin: .35rem 0; color: #4b5563; line-height: 1.6;
-              }
-            </style>
+                /* 一列排布，并把卡片限制成正文宽度感（可按需改 900px） */
+                #definition .wb-grid{
+                  grid-template-columns: 1fr !important;
+                  max-width: 900px;
+                  margin: 0 auto;            /* 居中 */
+                  gap: 1rem 1.25rem;
+                }
+              </style>
+
+              <div class="wb-grid">
+                <!-- VideoGen -->
+                <article class="wb-card" id="videogen">
+                  <h3>
+                    <i class="fas fa-film" aria-hidden="true"></i>
+                    <a class="wb-anchor" href="#videogen">VideoGen</a>
+                  </h3>
+                  <p>
+                    <strong>What it is.</strong> An <em>image/video-centric</em> world model that generates or predicts
+                    photorealistic, temporally consistent frames (single- or multi-view) conditioned on past context and optional controls.
+                  </p>
+                  <p class="wb-cap"><strong>Typical inputs</strong>: past frames, poses/camera intrinsics-extrinsics, text/route/action hints.</p>
+                  <div class="wb-meta" aria-label="VideoGen tags">
+                    <span class="wb-chip">Video synthesis</span>
+                    <span class="wb-chip">Future prediction</span>
+                    <span class="wb-chip">What-if simulation</span>
+                    <span class="wb-chip">Multi-view</span>
+                  </div>
+                </article>
+
+                <!-- OccGen -->
+                <article class="wb-card" id="occgen">
+                  <h3>
+                    <i class="fas fa-cubes" aria-hidden="true"></i>
+                    <a class="wb-anchor" href="#occgen">OccGen</a>
+                  </h3>
+                  <p>
+                    <strong>What it is.</strong> An <em>occupancy-centric</em> world model that represents scenes as 3D/4D occupancy
+                    fields (e.g., voxel grids with semantics), enabling geometry-aware perception, forecasting, and simulation.
+                  </p>
+                  <p class="wb-cap"><strong>Typical inputs</strong>: multi-sensor cues (RGB, depth, events, LiDAR), ego motion, maps.</p>
+                  <div class="wb-meta" aria-label="OccGen tags">
+                    <span class="wb-chip">3D reconstruction</span>
+                    <span class="wb-chip">Occupancy forecasting</span>
+                    <span class="wb-chip">Autoregressive simulation</span>
+                    <span class="wb-chip">Semantic voxels</span>
+                  </div>
+                </article>
+
+                <!-- LiDARGen -->
+                <article class="wb-card" id="lidargen">
+                  <h3>
+                    <i class="fas fa-braille" aria-hidden="true"></i>
+                    <a class="wb-anchor" href="#lidargen">LiDARGen</a>
+                  </h3>
+                  <p>
+                    <strong>What it is.</strong> A <em>point-cloud-centric</em> world model that learns high-fidelity geometry and
+                    dynamics directly from LiDAR sweeps, suitable for robust 3D understanding, data generation, and sensor-faithful simulation.
+                  </p>
+                  <p class="wb-cap"><strong>Typical inputs</strong>: past LiDAR sweeps, ego trajectory, calibration; optional scene priors.</p>
+                  <div class="wb-meta" aria-label="LiDARGen tags">
+                    <span class="wb-chip">Point-cloud synthesis</span>
+                    <span class="wb-chip">Future sweeps</span>
+                    <span class="wb-chip">Trajectory-conditioned</span>
+                    <span class="wb-chip">Physics-aware</span>
+                  </div>
+                </article>
+              </div>
+            </section>
+
+
+            <style>
+            /* 过渡段落略小一号 */
+            #definition .wb-bridge {
+              font-size: 1rem;
+              line-height: 1.7;
+              color: #374151;
+              margin: 1rem 0 .75rem;
+            }
+            /* 4列卡片栅格（桌面四列 / 平板两到三列 / 手机一列） */
+            #definition .wb-grid-4 {
+              display: grid;
+              grid-template-columns: repeat(4, minmax(0, 1fr));
+              gap: 1.25rem;
+              margin-top: .5rem;
+            }
+            @media (max-width: 1200px) {
+              #definition .wb-grid-4 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+            }
+            @media (max-width: 1024px) {
+              #definition .wb-grid-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            }
+            @media (max-width: 640px) {
+              #definition .wb-grid-4 { grid-template-columns: 1fr; }
+            }
+            /* 辅助：更紧凑的卡片标题与说明 */
+            #definition .wb-card h4 {
+              display: flex; align-items: center; gap: .5rem;
+              font-size: 1rem; margin: 0 0 .35rem;
+            }
+            #definition .wb-card p.small {
+              margin: .35rem 0; color: #4b5563; line-height: 1.6;
+            }
+          </style>
+
+
+
 
             <!-- 过渡衔接：放在三张 paradigms 卡片 .wb-grid 后 -->
             <!-- <p></p>
@@ -388,35 +366,35 @@
                     <h3>VideoGen</h3>
                     <div class="video-hero">
                       <video autoplay loop muted playsinline data-hero>
-                        <source src="videos/gt_0.mp4" type="video/mp4" />
+                        <source src="assets/survey/videos/gt_0.mp4" type="video/mp4" />
                       </video>
                       <div class="video-badge" data-hero-label>Reference</div>
                     </div>
                   
                     <div class="thumb-bar" role="tablist" aria-label="Video methods A">
                       <button class="thumb is-active" role="tab" aria-selected="true"
-                              data-src="videos/gt_0.mp4" data-label="Reference">
-                        <img src="videos/images/gt_0.png" alt="Reference thumbnail" />
+                              data-src="assets/survey/videos/gt_0.mp4" data-label="Reference">
+                        <img src="assets/survey/videos/images/gt_0.png" alt="Reference thumbnail" />
                         <span>Reference</span>
                       </button>
                       <button class="thumb" role="tab" aria-selected="false"
-                              data-src="videos/magicdrive_0.mp4" data-label="MagicDrive">
-                        <img src="videos/images/magicdrive_0.png" alt="MagicDrive thumbnail" />
+                              data-src="assets/survey/videos/magicdrive_0.mp4" data-label="MagicDrive">
+                        <img src="assets/survey/videos/images/magicdrive_0.png" alt="MagicDrive thumbnail" />
                         <span>MagicDrive</span>
                       </button>
                       <button class="thumb" role="tab" aria-selected="false"
-                              data-src="videos/drivedreamer2.mp4" data-label="Drivedreamer2">
-                        <img src="videos/images/drivedreamer_0.png" alt="MagicDrive thumbnail" />
+                              data-src="assets/survey/videos/drivedreamer2.mp4" data-label="Drivedreamer2">
+                        <img src="assets/survey/videos/images/drivedreamer_0.png" alt="MagicDrive thumbnail" />
                         <span>Drivedreamer2</span>
                       </button>
                       <button class="thumb" role="tab" aria-selected="false"
-                              data-src="videos/dreamforge.mp4" data-label="Dreamforge">
-                        <img src="videos/images/dreamforge_0.png" alt="MagicDrive thumbnail" />
+                              data-src="assets/survey/videos/dreamforge.mp4" data-label="Dreamforge">
+                        <img src="assets/survey/videos/images/dreamforge_0.png" alt="MagicDrive thumbnail" />
                         <span>Dreamforge</span>
                       </button>
                       <button class="thumb" role="tab" aria-selected="false"
-                              data-src="videos/opendwm.mp4" data-label="OpenDWM">
-                        <img src="videos/images/opendwm_0.png" alt="MagicDrive thumbnail" />
+                              data-src="assets/survey/videos/opendwm.mp4" data-label="OpenDWM">
+                        <img src="assets/survey/videos/images/opendwm_0.png" alt="MagicDrive thumbnail" />
                         <span>OpenDWM</span>
                       </button>
                     </div>
@@ -427,35 +405,35 @@
                   <section class="videogen" tabindex="0" aria-label="VideoGen Set B">
                     <div class="video-hero">
                       <video autoplay loop muted playsinline data-hero>
-                        <source src="videos/gt_1.mp4" type="video/mp4" />
+                        <source src="assets/survey/videos/gt_1.mp4" type="video/mp4" />
                       </video>
                       <div class="video-badge" data-hero-label>Reference</div>
                     </div>
                   
                     <div class="thumb-bar" role="tablist" aria-label="Video methods A">
                       <button class="thumb is-active" role="tab" aria-selected="true"
-                              data-src="videos/gt_1.mp4" data-label="Reference">
-                        <img src="videos/images/gt_1.png" alt="Reference thumbnail" />
+                              data-src="assets/survey/videos/gt_1.mp4" data-label="Reference">
+                        <img src="assets/survey/videos/images/gt_1.png" alt="Reference thumbnail" />
                         <span>Reference</span>
                       </button>
                       <button class="thumb" role="tab" aria-selected="false"
-                              data-src="videos/magicdrive_1.mp4" data-label="MagicDrive">
-                        <img src="videos/images/magicdrive_1.png" alt="MagicDrive thumbnail" />
+                              data-src="assets/survey/videos/magicdrive_1.mp4" data-label="MagicDrive">
+                        <img src="assets/survey/videos/images/magicdrive_1.png" alt="MagicDrive thumbnail" />
                         <span>MagicDrive</span>
                       </button>
                       <button class="thumb" role="tab" aria-selected="false"
-                              data-src="videos/drivedreamer2_1.mp4" data-label="Drivedreamer2">
-                        <img src="videos/images/drivedreamer2_1.png" alt="MagicDrive thumbnail" />
+                              data-src="assets/survey/videos/drivedreamer2_1.mp4" data-label="Drivedreamer2">
+                        <img src="assets/survey/videos/images/drivedreamer2_1.png" alt="MagicDrive thumbnail" />
                         <span>Drivedreamer2</span>
                       </button>
                       <button class="thumb" role="tab" aria-selected="false"
-                              data-src="videos/dreamforge_1.mp4" data-label="Dreamforge">
-                        <img src="videos/images/dreamforge_1.png" alt="MagicDrive thumbnail" />
+                              data-src="assets/survey/videos/dreamforge_1.mp4" data-label="Dreamforge">
+                        <img src="assets/survey/videos/images/dreamforge_1.png" alt="MagicDrive thumbnail" />
                         <span>Dreamforge</span>
                       </button>
                       <button class="thumb" role="tab" aria-selected="false"
-                              data-src="videos/opendwm_1.mp4" data-label="OpenDWM">
-                        <img src="videos/images/opendwm_1.png" alt="MagicDrive thumbnail" />
+                              data-src="assets/survey/videos/opendwm_1.mp4" data-label="OpenDWM">
+                        <img src="assets/survey/videos/images/opendwm_1.png" alt="MagicDrive thumbnail" />
                         <span>OpenDWM</span>
                       </button>
                     </div>
@@ -472,35 +450,35 @@
                   <section class="videogen" tabindex="0" aria-label="VideoGen Set C">
                     <div class="video-hero">
                       <video autoplay loop muted playsinline data-hero>
-                        <source src="occ_videos/dynamic_video/0_occ.mp4" type="video/mp4" />
+                        <source src="assets/survey/occ_videos/dynamic_video/0_occ.mp4" type="video/mp4" />
                       </video>
                       <div class="video-badge" data-hero-label>Sample 1</div>
                     </div>
                   
                     <div class="thumb-bar" role="tablist" aria-label="Video methods A">
                       <button class="thumb is-active" role="tab" aria-selected="true"
-                              data-src="occ_videos/dynamic_video/1_occ.mp4" data-label="Sample1">
-                        <img src="occ_videos/dynamic_video/0_bev_layout.png" alt="Reference thumbnail" />
+                              data-src="assets/survey/occ_videos/dynamic_video/1_occ.mp4" data-label="Sample1">
+                        <img src="assets/survey/occ_videos/dynamic_video/0_bev_layout.png" alt="Reference thumbnail" />
                         <span>Sample 1</span>
                       </button>
                       <button class="thumb" role="tab" aria-selected="false"
-                              data-src="occ_videos/dynamic_video/1_occ.mp4" data-label="Sample2">
-                        <img src="occ_videos/dynamic_video/1_bev_layout.png" alt="MagicDrive thumbnail" />
+                              data-src="assets/survey/occ_videos/dynamic_video/1_occ.mp4" data-label="Sample2">
+                        <img src="assets/survey/occ_videos/dynamic_video/1_bev_layout.png" alt="MagicDrive thumbnail" />
                         <span>Sample 2</span>
                       </button>
                       <button class="thumb" role="tab" aria-selected="false"
-                              data-src="occ_videos/dynamic_video/2_occ.mp4" data-label="Sample3">
-                        <img src="occ_videos/dynamic_video/2_bev_layout.png" alt="MagicDrive thumbnail" />
+                              data-src="assets/survey/occ_videos/dynamic_video/2_occ.mp4" data-label="Sample3">
+                        <img src="assets/survey/occ_videos/dynamic_video/2_bev_layout.png" alt="MagicDrive thumbnail" />
                         <span>Sample 3</span>
                       </button>
                       <button class="thumb" role="tab" aria-selected="false"
-                              data-src="occ_videos/dynamic_video/3_occ.mp4" data-label="Sample4">
-                        <img src="occ_videos/dynamic_video/3_bev_layout.png" alt="MagicDrive thumbnail" />
+                              data-src="assets/survey/occ_videos/dynamic_video/3_occ.mp4" data-label="Sample4">
+                        <img src="assets/survey/occ_videos/dynamic_video/3_bev_layout.png" alt="MagicDrive thumbnail" />
                         <span>Sample 4</span>
                       </button>
                       <button class="thumb" role="tab" aria-selected="false"
-                              data-src="occ_videos/dynamic_video/4_occ.mp4" data-label="Sample5">
-                        <img src="occ_videos/dynamic_video/4_bev_layout.png" alt="MagicDrive thumbnail" />
+                              data-src="assets/survey/occ_videos/dynamic_video/4_occ.mp4" data-label="Sample5">
+                        <img src="assets/survey/occ_videos/dynamic_video/4_bev_layout.png" alt="MagicDrive thumbnail" />
                         <span>Sample 5</span>
                       </button>
                     </div>
@@ -514,7 +492,7 @@
                   <details class="data-switcher lazy-load"
                     aria-label="LiDAR Data Showcase"
                     data-client="https://worldbench.github.io/viser-client/"
-                    data-base="https://worldbench.github.io/lidar_visers/"
+                    data-base="https://worldbench.github.io/assets/survey/lidar_visers/"
                     data-query="&initialCameraPosition=10.885,9.746,4.995&initialCameraLookAt=2.343,1.204,-3.547&initialCameraUp=-0.000,-0.000,1.000">
                     <summary>(click to expand)</summary>
 
