@@ -2,7 +2,8 @@
 <html lang="en">
     <head>
         <title>WorldLens: Full-Spectrum Evaluations of Driving World Models in Real World</title>
-        <link rel="icon" type="image/x-icon" href="/static/img/ButtleFly.ico">
+
+        <link rel="icon" href="assets_common/icons/worldbench-circle.png" type="image/x-icon">
         
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -248,7 +249,7 @@
                   </figure>
 
                   <div class="wb-kicker">
-                    <span class="worldlens"><span class="w">W</span><span class="o">o</span><span class="r">r</span><span class="l">l</span><span class="d">d</span><span class="l2">L</span><span class="e">e</span><span class="n">n</span><span class="s">s</span></span>: A Full-Spectrum Evaluation
+                    <span class="worldlens"><span class="w">W</span><span class="o">o</span><span class="r">r</span><span class="l">l</span><span class="d">d</span><span class="l2">L</span><span class="e">e</span><span class="n">n</span><span class="s">s</span></span>: Full-Spectrum Evaluations
                   </div>
                   <div class="wb-hr" style="margin-bottom:1.25rem;"></div>
 
@@ -1130,7 +1131,7 @@
                         data-gt-src="assets/worldlens/videos/reconstruction/novel_view_quality/2/good/video.mp4"
                         data-gen-src="assets/worldlens/videos/reconstruction/novel_view_quality/2/bad/video.mp4"
                         data-label="Failure Case">
-                  <img src="assets/worldlens/videos/reconstruction/novel_view_qualityy/2/good/00000.jpg"
+                  <img src="assets/worldlens/videos/reconstruction/novel_view_quality/2/good/00000.jpg"
                       loading="lazy" />
                   <span>Scene3</span>
                 </button>
@@ -1141,83 +1142,90 @@
 
 
 
-            <h4>4. Novel View Discrepancy</h4>
-            <section class="videogen videogen-compare" tabindex="0" aria-label="GT vs Generative Methods">
-            
+
+            <div class="wb-kicker">
+              <span class="icon is-small">
+                  <img src="assets/worldlens/icons/reconstruction.png" style="height: 1.6em;">
+                </span>&nbsp;Dimension: Novel View Discrepancy</div>
+            <div class="wb-hr"></div>
+
+            <section class="videogen videogen-compare" tabindex="0">
               <div class="video-hero">
                 <div class="video-compare-split" data-compare>
-                  <!-- 左：GT -->
+                  
+                  <!-- Left: GT -->
                   <div class="video-wrapper gt-layer">
                     <video class="video-el" data-role="video-gt" autoplay loop muted playsinline>
-                      <!-- 默认 GT，可以是某个场景的 GT -->
-                      <source src="videos/worldlens/reconstruction/novel_view_discrepancy/0/good.mp4" type="video/mp4" />
+                      <source src="assets/worldlens/videos/reconstruction/novel_view_discrepancy/0/good/video.mp4" type="video/mp4" />
                     </video>
                     <div class="video-label label-left">Good Case</div>
                   </div>
-            
-                  <!-- 右：生成方法 -->
+
+                  <!-- Right: Generated -->
                   <div class="video-wrapper gen-layer">
                     <video class="video-el" data-role="video-gen" autoplay loop muted playsinline>
-                      <!-- 默认生成方法 -->
-                      <source src="videos/worldlens/reconstruction/novel_view_discrepancy/0/bad.mp4" type="video/mp4" />
+                      <source src="assets/worldlens/videos/reconstruction/novel_view_discrepancy/0/bad/video.mp4" type="video/mp4" />
                     </video>
                     <div class="video-label label-right" data-role="method-label">Failure Case</div>
                   </div>
-            
-                  <!-- 中间拖拽手柄 -->
+
+                  <!-- Split handle -->
                   <div class="split-handle" data-role="split-handle"
-                       role="separator" aria-label="Drag to compare" aria-orientation="vertical">
+                      role="separator" aria-label="Drag to compare" aria-orientation="vertical">
                     <div class="handle-line"></div>
                     <div class="handle-arrows">
                       <svg viewBox="0 0 24 24" width="20" height="20" fill="none"
-                           stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <polyline points="15 18 9 12 15 6"></polyline>
                       </svg>
                       <svg viewBox="0 0 24 24" width="20" height="20" fill="none"
-                           stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <polyline points="9 18 15 12 9 6"></polyline>
                       </svg>
                     </div>
                   </div>
                 </div>
               </div>
-            
-              <!-- 每个缩略图：一对 (GT, Gen) -->
-              <div class="thumb-bar" role="tablist" aria-label="Pairs of GT & Generative methods">
-                <!-- 场景1 + MagicDrive -->
+
+              <!-- Thumbnails control which videos load -->
+              <div class="thumb-bar" role="tablist">
                 <button class="thumb is-active"
                         role="tab" aria-selected="true"
-                        data-gt-src="videos/worldlens/reconstruction/novel_view_discrepancy/0/good.mp4"
-                        data-gen-src="videos/worldlens/reconstruction/novel_view_discrepancy/0/bad.mp4"
+                        data-gt-src="assets/worldlens/videos/reconstruction/novel_view_discrepancy/0/good/video.mp4"
+                        data-gen-src="assets/worldlens/videos/reconstruction/novel_view_discrepancy/0/bad/video.mp4"
                         data-label="Failure Case">
-                  <img src="videos/worldlens/reconstruction/novel_view_quality/0/good/00000.jpg" alt="Scene1 MagicDrive thumbnail" />
+                  <img src="assets/worldlens/videos/reconstruction/novel_view_discrepancy/0/good/00000.jpg"
+                      loading="lazy" />
                   <span>Scene1</span>
                 </button>
-            
-                <!-- 场景2 + MagicDrive -->
-                <button class="thumb is-active"
-                        role="tab" aria-selected="true"
-                        data-gt-src="videos/worldlens/reconstruction/novel_view_discrepancy/1/good.mp4"
-                        data-gen-src="videos/worldlens/reconstruction/novel_view_discrepancy/1/bad.mp4"
+
+                <button class="thumb"
+                        role="tab" aria-selected="false"
+                        data-gt-src="assets/worldlens/videos/reconstruction/novel_view_discrepancy/1/good/video.mp4"
+                        data-gen-src="assets/worldlens/videos/reconstruction/novel_view_discrepancy/1/bad/video.mp4"
                         data-label="Failure Case">
-                  <img src="videos/worldlens/reconstruction/novel_view_quality/1/good/00000.jpg" alt="Scene1 MagicDrive thumbnail" />
+                  <img src="assets/worldlens/videos/reconstruction/novel_view_discrepancy/1/good/00000.jpg"
+                      loading="lazy" />
                   <span>Scene2</span>
                 </button>
-            
-                <!-- 场景3 + Dreamforge（举例） -->
-                <button class="thumb is-active"
-                        role="tab" aria-selected="true"
-                        data-gt-src="videos/worldlens/reconstruction/novel_view_discrepancy/2/good.mp4"
-                        data-gen-src="videos/worldlens/reconstruction/novel_view_discrepancy/2/bad.mp4"
+
+                <button class="thumb"
+                        role="tab" aria-selected="false"
+                        data-gt-src="assets/worldlens/videos/reconstruction/novel_view_discrepancy/2/good/video.mp4"
+                        data-gen-src="assets/worldlens/videos/reconstruction/novel_view_discrepancy/2/bad/video.mp4"
                         data-label="Failure Case">
-                  <img src="videos/worldlens/reconstruction/novel_view_quality/2/good/00000.jpg" alt="Scene1 MagicDrive thumbnail" />
-                  <span>Scene1</span>
+                  <img src="assets/worldlens/videos/reconstruction/novel_discrepancy/2/good/00000.jpg"
+                      loading="lazy" />
+                  <span>Scene3</span>
                 </button>
-            
               </div>
+              <br><br>
             </section>
 
-            <!-- ############################################# Downstream Task #############################################-->
+
+
+
+
 
             <h3>Downstream Task</h3>
             <h4>1. Map Segmentation</h4>
@@ -1528,6 +1536,467 @@
                 <d-footnote-list></d-footnote-list>
                 <d-citation-list></d-citation-list>
             </d-appendix>
+
+
+
+
+
+
+
+
+            <section id="contributors">
+              <div class="wb-section">
+                <br>
+                <hr>
+
+                <div class="wb-kicker">
+                <span class="icon is-small">
+                    <img src="assets_common/icons/worldbench.png" style="height: 1.5em;">
+                  </span>&nbsp;List of Contributors</div>
+                <div class="wb-hr"></div>
+
+                
+                <div class="contributors-list">
+                  <!-- Row -->
+                  <div class="contributor-row">
+                    <img class="contributor-photo"
+                        src="assets_common/photos/ao_liang.jpg"
+                        loading="lazy" width="56" height="56">
+
+                    <div class="contributor-text">
+                      <div class="contributor-name">Ao Liang</div>
+                      <div class="contributor-note">Core Contributor</div>
+                    </div>
+                    <div class="contributor-links">
+                      <a href="mailto:" aria-label="Email"><i class="fas fa-envelope"></i> </a>
+                      <a href="" target="_blank" aria-label="Homepage"><i class="fas fa-globe"></i> </a>
+                      <a href="" target="_blank" aria-label="Google Scholar"> <i class="ai ai-google-scholar"></i> </a>
+                    </div>
+                  </div>
+
+
+                  <!-- Row -->
+                  <div class="contributor-row">
+                    <img class="contributor-photo"
+                        src="assets_common/photos/lingdong_kong.jpg"
+                        loading="lazy" width="56" height="56">
+
+                    <div class="contributor-text">
+                      <div class="contributor-name">Lingdong Kong</div>
+                      <div class="contributor-note">Core Contributor, Project Lead</div>
+                    </div>
+                    <div class="contributor-links">
+                      <a href="mailto:lingdong.kong@u.nus.edu" aria-label="Email"><i class="fas fa-envelope"></i> </a>
+                      <a href="https://ldkong.com" target="_blank" aria-label="Homepage"><i class="fas fa-globe"></i> </a>
+                      <a href="https://www.linkedin.com/in/ldkong/" target="_blank" aria-label="LinkedIn"> <i class="fab fa-linkedin"></i> </a>
+                      <a href="https://scholar.google.com/citations?user=-j1j7TkAAAAJ" target="_blank" aria-label="Google Scholar"> <i class="ai ai-google-scholar"></i> </a>
+                      <a href="https://twitter.com/ldkong1205" target="_blank" aria-label="X (Twitter)"> <i class="fab fa-twitter"> </i> </a>
+                    </div>
+                  </div>
+
+
+                  <!-- Row -->
+                  <div class="contributor-row">
+                    <img class="contributor-photo"
+                        src="assets_common/photos/tianyi_yan.jpg"
+                        loading="lazy" width="56" height="56">
+
+                    <div class="contributor-text">
+                      <div class="contributor-name">Tianyi Yan</div>
+                      <div class="contributor-note">Core Contributor</div>
+                    </div>
+                    <div class="contributor-links">
+                      <a href="mailto:" aria-label="Email"><i class="fas fa-envelope"></i> </a>
+                      <a href="" target="_blank" aria-label="Homepage"><i class="fas fa-globe"></i> </a>
+                      <a href="" target="_blank" aria-label="Google Scholar"> <i class="ai ai-google-scholar"></i> </a>
+                    </div>
+                  </div>
+
+
+                  <!-- Row -->
+                  <div class="contributor-row">
+                    <img class="contributor-photo"
+                        src="assets_common/icons/worldbench-circle.png"
+                        loading="lazy" width="56" height="56">
+
+                    <div class="contributor-text">
+                      <div class="contributor-name">Hongsi Liu</div>
+                      <div class="contributor-note">Core Contributor</div>
+                    </div>
+                    <div class="contributor-links">
+                      <a href="mailto:" aria-label="Email"><i class="fas fa-envelope"></i> </a>
+                      <a href="" target="_blank" aria-label="Homepage"><i class="fas fa-globe"></i> </a>
+                      <a href="" target="_blank" aria-label="Google Scholar"> <i class="ai ai-google-scholar"></i> </a>
+                    </div>
+                  </div>
+
+
+                  <!-- Row -->
+                  <div class="contributor-row">
+                    <img class="contributor-photo"
+                        src="assets_common/icons/worldbench-circle.png"
+                        loading="lazy" width="56" height="56">
+
+                    <div class="contributor-text">
+                      <div class="contributor-name">Wesley Yang</div>
+                      <div class="contributor-note">Core Contributor</div>
+                    </div>
+                    <div class="contributor-links">
+                      <a href="mailto:" aria-label="Email"><i class="fas fa-envelope"></i> </a>
+                      <a href="" target="_blank" aria-label="Homepage"><i class="fas fa-globe"></i> </a>
+                      <a href="" target="_blank" aria-label="Google Scholar"> <i class="ai ai-google-scholar"></i> </a>
+                    </div>
+                  </div>
+                  
+
+                  <!-- Row -->
+                  <div class="contributor-row">
+                    <img class="contributor-photo"
+                        src="assets_common/photos/ziqi_huang.jpg"
+                        loading="lazy" width="56" height="56">
+
+                    <div class="contributor-text">
+                      <div class="contributor-name">Ziqi Huang</div>
+                      <div class="contributor-note">Contributor, Human Preference</div>
+                    </div>
+                    <div class="contributor-links">
+                      <a href="mailto:" aria-label="Email"><i class="fas fa-envelope"></i> </a>
+                      <a href="" target="_blank" aria-label="Homepage"><i class="fas fa-globe"></i> </a>
+                      <a href="" target="_blank" aria-label="Google Scholar"> <i class="ai ai-google-scholar"></i> </a>
+                      <a href="" target="_blank" aria-label="X (Twitter)"> <i class="fab fa-twitter"> </i> </a>
+                    </div>
+                  </div>
+
+
+                  <!-- Row -->
+                  <div class="contributor-row">
+                    <img class="contributor-photo"
+                        src="assets_common/photos/wei_yin.jpeg"
+                        loading="lazy" width="56" height="56">
+
+                    <div class="contributor-text">
+                      <div class="contributor-name">Wei Yin</div>
+                      <div class="contributor-note">Contributor, Closed-Loop Simulation</div>
+                    </div>
+                    <div class="contributor-links">
+                      <a href="mailto:" aria-label="Email"><i class="fas fa-envelope"></i> </a>
+                      <a href="" target="_blank" aria-label="Homepage"><i class="fas fa-globe"></i> </a>
+                      <a href="" target="_blank" aria-label="Google Scholar"> <i class="ai ai-google-scholar"></i> </a>
+                      <a href="" target="_blank" aria-label="X (Twitter)"> <i class="fab fa-twitter"> </i> </a>
+                    </div>
+                  </div>
+
+
+                  <!-- Row -->
+                  <div class="contributor-row">
+                    <img class="contributor-photo"
+                        src="assets_common/icons/worldbench-circle.png"
+                        loading="lazy" width="56" height="56">
+
+                    <div class="contributor-text">
+                      <div class="contributor-name">Jialong Zuo</div>
+                      <div class="contributor-note">Contributor, Object ReID</div>
+                    </div>
+                    <div class="contributor-links">
+                      <a href="mailto:" aria-label="Email"><i class="fas fa-envelope"></i> </a>
+                      <a href="" target="_blank" aria-label="Homepage"><i class="fas fa-globe"></i> </a>
+                      <a href="" target="_blank" aria-label="Google Scholar"> <i class="ai ai-google-scholar"></i> </a>
+                      <a href="" target="_blank" aria-label="X (Twitter)"> <i class="fab fa-twitter"> </i> </a>
+                    </div>
+                  </div>
+
+
+                  <!-- Row -->
+                  <div class="contributor-row">
+                    <img class="contributor-photo"
+                        src="assets_common/icons/worldbench-circle.png"
+                        loading="lazy" width="56" height="56">
+
+                    <div class="contributor-text">
+                      <div class="contributor-name">Yixuan Hu</div>
+                      <div class="contributor-note">Contributor, Depth</div>
+                    </div>
+                    <div class="contributor-links">
+                      <a href="mailto:" aria-label="Email"><i class="fas fa-envelope"></i> </a>
+                      <a href="" target="_blank" aria-label="Homepage"><i class="fas fa-globe"></i> </a>
+                      <a href="" target="_blank" aria-label="Google Scholar"> <i class="ai ai-google-scholar"></i> </a>
+                      <a href="" target="_blank" aria-label="X (Twitter)"> <i class="fab fa-twitter"> </i> </a>
+                    </div>
+                  </div>
+
+
+                  <!-- Row -->
+                  <div class="contributor-row">
+                    <img class="contributor-photo"
+                        src="assets_common/photos/dekai_zhu.jpg"
+                        loading="lazy" width="56" height="56">
+
+                    <div class="contributor-text">
+                      <div class="contributor-name">Dekai Zhu</div>
+                      <div class="contributor-note">Contributor, Depth</div>
+                    </div>
+                    <div class="contributor-links">
+                      <a href="mailto:" aria-label="Email"><i class="fas fa-envelope"></i> </a>
+                      <a href="" target="_blank" aria-label="Homepage"><i class="fas fa-globe"></i> </a>
+                      <a href="" target="_blank" aria-label="Google Scholar"> <i class="ai ai-google-scholar"></i> </a>
+                    </div>
+                  </div>
+
+
+                  <!-- Row -->
+                  <div class="contributor-row">
+                    <img class="contributor-photo"
+                        src="assets_common/photos/dongyue_lu.jpg"
+                        loading="lazy" width="56" height="56">
+
+                    <div class="contributor-text">
+                      <div class="contributor-name">Dongyue Lu</div>
+                      <div class="contributor-note">Contributor, Cross-View Matching</div>
+                    </div>
+                    <div class="contributor-links">
+                      <a href="mailto:" aria-label="Email"><i class="fas fa-envelope"></i> </a>
+                      <a href="" target="_blank" aria-label="Homepage"><i class="fas fa-globe"></i> </a>
+                      <a href="" target="_blank" aria-label="Google Scholar"> <i class="ai ai-google-scholar"></i> </a>
+                      <a href="" target="_blank" aria-label="X (Twitter)"> <i class="fab fa-twitter"> </i> </a>
+                    </div>
+                  </div>
+
+
+                  <!-- Row -->
+                  <div class="contributor-row">
+                    <img class="contributor-photo"
+                        src="assets_common/photos/youquan_liu.jpg"
+                        loading="lazy" width="56" height="56">
+
+                    <div class="contributor-text">
+                      <div class="contributor-name">Youquan Liu</div>
+                      <div class="contributor-note">Contributor, Human Preference</div>
+                    </div>
+                    <div class="contributor-links">
+                      <a href="mailto:" aria-label="Email"><i class="fas fa-envelope"></i> </a>
+                      <a href="" target="_blank" aria-label="Homepage"><i class="fas fa-globe"></i> </a>
+                      <a href="" target="_blank" aria-label="Google Scholar"> <i class="ai ai-google-scholar"></i> </a>
+                    </div>
+                  </div>
+
+
+                  <!-- Row -->
+                  <div class="contributor-row">
+                    <img class="contributor-photo"
+                        src="assets_common/icons/worldbench-circle.png"
+                        loading="lazy" width="56" height="56">
+
+                    <div class="contributor-text">
+                      <div class="contributor-name">Guangfeng Jiang</div>
+                      <div class="contributor-note">Contributor, Reconstruction</div>
+                    </div>
+                    <div class="contributor-links">
+                      <a href="mailto:" aria-label="Email"><i class="fas fa-envelope"></i> </a>
+                      <a href="" target="_blank" aria-label="Homepage"><i class="fas fa-globe"></i> </a>
+                      <a href="" target="_blank" aria-label="Google Scholar"> <i class="ai ai-google-scholar"></i> </a>
+                      <a href="" target="_blank" aria-label="X (Twitter)"> <i class="fab fa-twitter"> </i> </a>
+                    </div>
+                  </div>
+
+
+                  <!-- Row -->
+                  <div class="contributor-row">
+                    <img class="contributor-photo"
+                        src="assets_common/photos/linfeng_li.jpeg"
+                        loading="lazy" width="56" height="56">
+
+                    <div class="contributor-text">
+                      <div class="contributor-name">Linfeng Li</div>
+                      <div class="contributor-note">Contributor, Human Preference</div>
+                    </div>
+                    <div class="contributor-links">
+                      <a href="mailto:" aria-label="Email"><i class="fas fa-envelope"></i> </a>
+                      <a href="" target="_blank" aria-label="Homepage"><i class="fas fa-globe"></i> </a>
+                      <a href="" target="_blank" aria-label="Google Scholar"> <i class="ai ai-google-scholar"></i> </a>
+                      <a href="" target="_blank" aria-label="X (Twitter)"> <i class="fab fa-twitter"> </i> </a>
+                    </div>
+                  </div>
+
+
+                  <!-- Row -->
+                  <div class="contributor-row">
+                    <img class="contributor-photo"
+                        src="assets_common/icons/worldbench-circle.png"
+                        loading="lazy" width="56" height="56">
+
+                    <div class="contributor-text">
+                      <div class="contributor-name">Xiangtai Li</div>
+                      <div class="contributor-note">Contributor, Human Preference</div>
+                    </div>
+                    <div class="contributor-links">
+                      <a href="mailto:" aria-label="Email"><i class="fas fa-envelope"></i> </a>
+                      <a href="" target="_blank" aria-label="Homepage"><i class="fas fa-globe"></i> </a>
+                      <a href="" target="_blank" aria-label="Google Scholar"> <i class="ai ai-google-scholar"></i> </a>
+                      <a href="" target="_blank" aria-label="X (Twitter)"> <i class="fab fa-twitter"> </i> </a>
+                    </div>
+                  </div>
+
+
+                  <!-- Row -->
+                  <div class="contributor-row">
+                    <img class="contributor-photo"
+                        src="assets_common/icons/worldbench-circle.png"
+                        loading="lazy" width="56" height="56">
+
+                    <div class="contributor-text">
+                      <div class="contributor-name">Long Zhuo</div>
+                      <div class="contributor-note">Contributor, Human Preference</div>
+                    </div>
+                    <div class="contributor-links">
+                      <a href="mailto:" aria-label="Email"><i class="fas fa-envelope"></i> </a>
+                      <a href="" target="_blank" aria-label="Homepage"><i class="fas fa-globe"></i> </a>
+                      <a href="" target="_blank" aria-label="Google Scholar"> <i class="ai ai-google-scholar"></i> </a>
+                      <a href="" target="_blank" aria-label="X (Twitter)"> <i class="fab fa-twitter"> </i> </a>
+                    </div>
+                  </div>
+
+
+                  <!-- Row -->
+                  <div class="contributor-row">
+                    <img class="contributor-photo"
+                        src="assets_common/icons/worldbench-circle.png"
+                        loading="lazy" width="56" height="56">
+
+                    <div class="contributor-text">
+                      <div class="contributor-name">Lai Xing Ng</div>
+                      <div class="contributor-note">Advisor</div>
+                    </div>
+                    <div class="contributor-links">
+                      <a href="mailto:" aria-label="Email"><i class="fas fa-envelope"></i> </a>
+                      <a href="" target="_blank" aria-label="Homepage"><i class="fas fa-globe"></i> </a>
+                      <a href="" target="_blank" aria-label="Google Scholar"> <i class="ai ai-google-scholar"></i> </a>
+                      <a href="" target="_blank" aria-label="X (Twitter)"> <i class="fab fa-twitter"> </i> </a>
+                    </div>
+                  </div>
+
+
+                  <!-- Row -->
+                  <div class="contributor-row">
+                    <img class="contributor-photo"
+                        src="assets_common/icons/worldbench-circle.png"
+                        loading="lazy" width="56" height="56">
+
+                    <div class="contributor-text">
+                      <div class="contributor-name">Benoit R. Cottereau</div>
+                      <div class="contributor-note">Advisor</div>
+                    </div>
+                    <div class="contributor-links">
+                      <a href="mailto:" aria-label="Email"><i class="fas fa-envelope"></i> </a>
+                      <a href="" target="_blank" aria-label="Homepage"><i class="fas fa-globe"></i> </a>
+                      <a href="" target="_blank" aria-label="Google Scholar"> <i class="ai ai-google-scholar"></i> </a>
+                      <a href="" target="_blank" aria-label="X (Twitter)"> <i class="fab fa-twitter"> </i> </a>
+                    </div>
+                  </div>
+
+
+                  <!-- Row -->
+                  <div class="contributor-row">
+                    <img class="contributor-photo"
+                        src="assets_common/icons/worldbench-circle.png"
+                        loading="lazy" width="56" height="56">
+
+                    <div class="contributor-text">
+                      <div class="contributor-name">Changxin Gao</div>
+                      <div class="contributor-note">Advisor</div>
+                    </div>
+                    <div class="contributor-links">
+                      <a href="mailto:" aria-label="Email"><i class="fas fa-envelope"></i> </a>
+                      <a href="" target="_blank" aria-label="Homepage"><i class="fas fa-globe"></i> </a>
+                      <a href="" target="_blank" aria-label="Google Scholar"> <i class="ai ai-google-scholar"></i> </a>
+                      <a href="" target="_blank" aria-label="X (Twitter)"> <i class="fab fa-twitter"> </i> </a>
+                    </div>
+                  </div>
+
+
+                  <!-- Row -->
+                  <div class="contributor-row">
+                    <img class="contributor-photo"
+                        src="assets_common/photos/liang_pan.png"
+                        loading="lazy" width="56" height="56">
+
+                    <div class="contributor-text">
+                      <div class="contributor-name">Liang Pan</div>
+                      <div class="contributor-note">Advisor</div>
+                    </div>
+                    <div class="contributor-links">
+                      <a href="mailto:" aria-label="Email"><i class="fas fa-envelope"></i> </a>
+                      <a href="" target="_blank" aria-label="Homepage"><i class="fas fa-globe"></i> </a>
+                      <a href="" target="_blank" aria-label="Google Scholar"> <i class="ai ai-google-scholar"></i> </a>
+                      <a href="" target="_blank" aria-label="X (Twitter)"> <i class="fab fa-twitter"> </i> </a>
+                    </div>
+                  </div>
+
+
+                  <!-- Row -->
+                  <div class="contributor-row">
+                    <img class="contributor-photo"
+                        src="assets_common/photos/wei_tsang_ooi.png"
+                        loading="lazy" width="56" height="56">
+
+                    <div class="contributor-text">
+                      <div class="contributor-name">Wei Tsang Ooi</div>
+                      <div class="contributor-note">Advisor</div>
+                    </div>
+                    <div class="contributor-links">
+                      <a href="mailto:" aria-label="Email"><i class="fas fa-envelope"></i> </a>
+                      <a href="" target="_blank" aria-label="Homepage"><i class="fas fa-globe"></i> </a>
+                      <a href="" target="_blank" aria-label="Google Scholar"> <i class="ai ai-google-scholar"></i> </a>
+                      <a href="" target="_blank" aria-label="X (Twitter)"> <i class="fab fa-twitter"> </i> </a>
+                    </div>
+                  </div>
+
+
+                  <!-- Row -->
+                  <div class="contributor-row">
+                    <img class="contributor-photo"
+                        src="assets_common/photos/ziwei_liu.png"
+                        loading="lazy" width="56" height="56">
+
+                    <div class="contributor-text">
+                      <div class="contributor-name">Ziwei Liu</div>
+                      <div class="contributor-note">Advisor</div>
+                    </div>
+                    <div class="contributor-links">
+                      <a href="mailto:" aria-label="Email"><i class="fas fa-envelope"></i> </a>
+                      <a href="" target="_blank" aria-label="Homepage"><i class="fas fa-globe"></i> </a>
+                      <a href="" target="_blank" aria-label="Google Scholar"> <i class="ai ai-google-scholar"></i> </a>
+                      <a href="" target="_blank" aria-label="X (Twitter)"> <i class="fab fa-twitter"> </i> </a>
+                    </div>
+                  </div>
+
+                </div>
+                <br>
+              </div>
+              <br><br>
+            </section>
+
+
+            <br><br>
+
+
+            <footer class="wb-footer">
+              <br>
+              <div class="wb-footer-content">
+                <p>
+                  This website is licensed under a
+                  <a href="https://creativecommons.org/licenses/by-sa/4.0/"
+                    target="_blank"
+                    rel="noopener noreferrer">
+                    Creative Commons Attribution-ShareAlike 4.0 International License
+                  </a>
+                </p>
+                <p>
+                  © WorldBench 2025-2026. All Rights Reserved
+                </p>
+              </div>
+              <br>
+            </footer>
+
 
         </d-article>
 

@@ -1852,3 +1852,144 @@ d-article > .wb-simple-card img {
   width: 75%; 
   height: auto;
 }
+
+
+
+
+
+
+/* Contributors section */
+
+#contributors .wb-heading {
+  font-size: 1.4rem;
+  font-family: "Rubik", sans-serif;
+  margin: 1.6rem 0 0.9rem;
+}
+
+.contributors-list {
+  max-width: 840px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.contributor-row {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  padding: 0.6rem 0.8rem;
+  border-radius: 0.75rem;
+  background: #f9fafb;
+}
+
+.contributor-photo {
+  width: 56px;
+  height: 56px;
+  border-radius: 999px;
+  object-fit: cover;
+  flex-shrink: 0;
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.12);
+}
+
+.contributor-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.contributor-name {
+  font-weight: 600;
+  font-size: 0.98rem;
+  font-family: "Rubik", sans-serif;
+  color: #111827;
+}
+
+.contributor-note {
+  font-size: 0.86rem;
+  color: #7a7a7a;
+}
+
+/* Mobile tweak */
+@media (max-width: 640px) {
+  .contributor-row {
+    padding: 0.5rem 0.6rem;
+  }
+  .contributor-photo {
+    width: 48px;
+    height: 48px;
+  }
+}
+
+.contributor-row {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  padding: 0.6rem 0.8rem;
+  border-radius: 0.75rem;
+  background: #f9fafb;
+}
+
+.contributor-links {
+  margin-left: auto;            /* pushes icons to the right */
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.contributor-links a {
+  color: #374151;
+  font-size: 1rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.contributor-links a:hover {
+  background: #e5e7eb;
+  color: #111827;
+}
+
+.contributor-links a[href*="x.com"] {
+  opacity: 0.85;
+}
+
+
+
+
+
+/* Footer */
+
+.wb-footer {
+  margin-top: 4rem;
+  padding: 1.6rem 1rem;
+  border-top: 1px solid #e5e7eb;
+  background: #fafafa;
+}
+
+.wb-footer-content {
+  max-width: 960px;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #6b7280;
+  line-height: 1.6;
+}
+
+.wb-footer-content p {
+  margin: 0.25rem 0;
+}
+
+.wb-footer-content a {
+  color: #374151;
+  text-decoration: none;
+  border-bottom: 1px dotted #9ca3af;
+}
+
+.wb-footer-content a:hover {
+  color: #111827;
+  border-bottom-color: #374151;
+}

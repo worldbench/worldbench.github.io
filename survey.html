@@ -2,7 +2,8 @@
 <html lang="en">
     <head>
         <title>3D and 4D World Modeling: A Survey</title>
-        <link rel="icon" type="image/x-icon" href="/static/img/ButtleFly.ico">
+
+        <link rel="icon" href="assets_common/icons/worldbench-circle.png" type="image/x-icon">
 
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -105,14 +106,19 @@
                 <div class="wb-hr"></div>
 
                 <p class="wb-lead">
-                  World modeling has become a cornerstone in AI research, enabling agents to understand, represent, and predict the dynamic environments they inhabit. While prior work largely emphasizes generative methods for 2D image and video data, they overlook the rapidly growing body of work that leverages native 3D and 4D representations such as RGB-D imagery, occupancy grids, and LiDAR point clouds for large-scale scene modeling.
+                  World modeling has become a cornerstone in AI research, enabling agents to understand, represent, and predict the dynamic environments they inhabit.
                 </p>
+                <p class="wb-lead">
+                  While prior work largely emphasizes generative methods for 2D image and video data, they overlook the rapidly growing body of work that leverages native 3D and 4D representations such as RGB-D imagery, occupancy grids, and LiDAR point clouds for large-scale scene modeling.
+                </p>
+
+                <figure style="width: 100%; max-width: 1000px; display: block; margin: 32px auto;">
+                  <img src="assets/survey/figures/teaser.png">
+                </figure>
+
                 <p class="wb-lead">
                   This survey reviews <strong>3D and 4D world models</strong> — models that learn, predict, and simulate the geometry and dynamics of real environments from multi-modal signals. 
                 </p>
-                <figure style="width: 100%; max-width: 1000px; display: block; margin: 24px auto;">
-                  <img src="assets/survey/figures/teaser.png">
-                </figure>
                 <p class="wb-lead">
                   We unify terminology, scope, and evaluation, and organize the space into three complementary paradigms by representation: <strong>VideoGen</strong> (image/video-centric),
                   <strong>OccGen</strong> (occupancy-centric), and <strong>LiDARGen</strong> (point-cloud-centric).
@@ -225,14 +231,12 @@
 
 
             <style>
-            /* 过渡段落略小一号 */
             #definition .wb-bridge {
               font-size: 1rem;
               line-height: 1.7;
               color: #374151;
               margin: 1rem 0 .75rem;
             }
-            /* 4列卡片栅格（桌面四列 / 平板两到三列 / 手机一列） */
             #definition .wb-grid-4 {
               display: grid;
               grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -429,6 +433,7 @@
                 <h2>Collections</h2>
                 <div class="wb-hr" style="margin-bottom:1.25rem;"></div>
             </section>
+
             <section id="video-papers" class="papers-section" data-section-key="video" data-initial="3">
                 <h2>Video Generation</h2>
                 <div class="bar" aria-live="polite">
@@ -526,7 +531,9 @@
 
 
 
-            <br><br>
+            <br>
+
+            
             
             <!-- <d-appendix>
                 <h3>BibTeX</h3>
@@ -547,6 +554,467 @@
                 <d-citation-list></d-citation-list>
             </d-appendix>
 
+
+
+
+
+            <section id="contributors">
+              <div class="wb-section">
+                <br>
+                <hr>
+
+                <div class="wb-kicker">
+                <span class="icon is-small">
+                    <img src="assets_common/icons/worldbench.png" style="height: 1.5em;">
+                  </span>&nbsp;List of Contributors</div>
+                <div class="wb-hr"></div>
+
+                
+                <div class="contributors-list">
+                  <!-- Row -->
+                  <div class="contributor-row">
+                    <img class="contributor-photo"
+                        src="assets_common/photos/lingdong_kong.jpg" 
+                        loading="lazy" width="56" height="56">
+
+                    <div class="contributor-text">
+                      <div class="contributor-name">Lingdong Kong</div>
+                      <div class="contributor-note">Core Contributor, Project Lead</div>
+                    </div>
+                    <div class="contributor-links">
+                      <a href="mailto:lingdong.kong@u.nus.edu" aria-label="Email"><i class="fas fa-envelope"></i> </a>
+                      <a href="https://ldkong.com" target="_blank" aria-label="Homepage"><i class="fas fa-globe"></i> </a>
+                      <a href="https://www.linkedin.com/in/ldkong/" target="_blank" aria-label="LinkedIn"> <i class="fab fa-linkedin"></i> </a>
+                      <a href="https://scholar.google.com/citations?user=-j1j7TkAAAAJ" target="_blank" aria-label="Google Scholar"> <i class="ai ai-google-scholar"></i> </a>
+                      <a href="https://twitter.com/ldkong1205" target="_blank" aria-label="X (Twitter)"> <i class="fab fa-twitter"> </i> </a>
+                    </div>
+                  </div>
+
+
+                  <!-- Row -->
+                  <div class="contributor-row">
+                    <img class="contributor-photo"
+                        src="assets_common/icons/worldbench-circle.png"
+                        loading="lazy" width="56" height="56">
+
+                    <div class="contributor-text">
+                      <div class="contributor-name">Wesley Yang</div>
+                      <div class="contributor-note">Core Contributor</div>
+                    </div>
+                    <div class="contributor-links">
+                      <a href="mailto:" aria-label="Email"><i class="fas fa-envelope"></i> </a>
+                      <a href="" target="_blank" aria-label="Homepage"><i class="fas fa-globe"></i> </a>
+                      <a href="" target="_blank" aria-label="Google Scholar"> <i class="ai ai-google-scholar"></i> </a>
+                    </div>
+                  </div>
+
+
+                  <!-- Row -->
+                  <div class="contributor-row">
+                    <img class="contributor-photo"
+                        src="assets_common/photos/jianbiao_mei.jpg"
+                        loading="lazy" width="56" height="56">
+
+                    <div class="contributor-text">
+                      <div class="contributor-name">Jianbiao Mei</div>
+                      <div class="contributor-note">Core Contributor</div>
+                    </div>
+                    <div class="contributor-links">
+                      <a href="mailto:" aria-label="Email"><i class="fas fa-envelope"></i> </a>
+                      <a href="" target="_blank" aria-label="Homepage"><i class="fas fa-globe"></i> </a>
+                      <a href="" target="_blank" aria-label="Google Scholar"> <i class="ai ai-google-scholar"></i> </a>
+                    </div>
+                  </div>
+                  
+
+                  <!-- Row -->
+                  <div class="contributor-row">
+                    <img class="contributor-photo"
+                        src="assets_common/photos/youquan_liu.jpg"
+                        loading="lazy" width="56" height="56">
+
+                    <div class="contributor-text">
+                      <div class="contributor-name">Youquan Liu</div>
+                      <div class="contributor-note">Core Contributor</div>
+                    </div>
+                    <div class="contributor-links">
+                      <a href="mailto:" aria-label="Email"><i class="fas fa-envelope"></i> </a>
+                      <a href="" target="_blank" aria-label="Homepage"><i class="fas fa-globe"></i> </a>
+                      <a href="" target="_blank" aria-label="Google Scholar"> <i class="ai ai-google-scholar"></i> </a>
+                    </div>
+                  </div>
+
+
+                  <!-- Row -->
+                  <div class="contributor-row">
+                    <img class="contributor-photo"
+                        src="assets_common/photos/ao_liang.jpg"
+                        loading="lazy" width="56" height="56">
+
+                    <div class="contributor-text">
+                      <div class="contributor-name">Ao Liang</div>
+                      <div class="contributor-note">Core Contributor</div>
+                    </div>
+                    <div class="contributor-links">
+                      <a href="mailto:" aria-label="Email"><i class="fas fa-envelope"></i> </a>
+                      <a href="" target="_blank" aria-label="Homepage"><i class="fas fa-globe"></i> </a>
+                      <a href="" target="_blank" aria-label="Google Scholar"> <i class="ai ai-google-scholar"></i> </a>
+                    </div>
+                  </div>
+
+
+                  <!-- Row -->
+                  <div class="contributor-row">
+                    <img class="contributor-photo"
+                        src="assets_common/photos/dekai_zhu.jpg"
+                        loading="lazy" width="56" height="56">
+
+                    <div class="contributor-text">
+                      <div class="contributor-name">Dekai Zhu</div>
+                      <div class="contributor-note">Core Contributor</div>
+                    </div>
+                    <div class="contributor-links">
+                      <a href="mailto:" aria-label="Email"><i class="fas fa-envelope"></i> </a>
+                      <a href="" target="_blank" aria-label="Homepage"><i class="fas fa-globe"></i> </a>
+                      <a href="" target="_blank" aria-label="Google Scholar"> <i class="ai ai-google-scholar"></i> </a>
+                    </div>
+                  </div>
+
+
+                  <!-- Row -->
+                  <div class="contributor-row">
+                    <img class="contributor-photo"
+                        src="assets_common/photos/dongyue_lu.jpg"
+                        loading="lazy" width="56" height="56">
+
+                    <div class="contributor-text">
+                      <div class="contributor-name">Dongyue Lu</div>
+                      <div class="contributor-note">Core Contributor</div>
+                    </div>
+                    <div class="contributor-links">
+                      <a href="mailto:" aria-label="Email"><i class="fas fa-envelope"></i> </a>
+                      <a href="" target="_blank" aria-label="Homepage"><i class="fas fa-globe"></i> </a>
+                      <a href="" target="_blank" aria-label="Google Scholar"> <i class="ai ai-google-scholar"></i> </a>
+                    </div>
+                  </div>
+
+
+                  <!-- Row -->
+                  <div class="contributor-row">
+                    <img class="contributor-photo"
+                        src="assets_common/photos/wei_yin.jpeg"
+                        loading="lazy" width="56" height="56">
+
+                    <div class="contributor-text">
+                      <div class="contributor-name">Wei Yin</div>
+                      <div class="contributor-note">Core Contributor</div>
+                    </div>
+                    <div class="contributor-links">
+                      <a href="mailto:" aria-label="Email"><i class="fas fa-envelope"></i> </a>
+                      <a href="" target="_blank" aria-label="Homepage"><i class="fas fa-globe"></i> </a>
+                      <a href="" target="_blank" aria-label="Google Scholar"> <i class="ai ai-google-scholar"></i> </a>
+                    </div>
+                  </div>
+
+
+                  <!-- Row -->
+                  <div class="contributor-row">
+                    <img class="contributor-photo"
+                        src="assets_common/photos/xiaotao_hu.jpg"
+                        loading="lazy" width="56" height="56">
+
+                    <div class="contributor-text">
+                      <div class="contributor-name">Xiaotao Hu</div>
+                      <div class="contributor-note">Contributor, VideoGen</div>
+                    </div>
+                    <div class="contributor-links">
+                      <a href="mailto:" aria-label="Email"><i class="fas fa-envelope"></i> </a>
+                      <a href="" target="_blank" aria-label="Homepage"><i class="fas fa-globe"></i> </a>
+                      <a href="" target="_blank" aria-label="Google Scholar"> <i class="ai ai-google-scholar"></i> </a>
+                    </div>
+                  </div>
+
+
+                  <!-- Row -->
+                  <div class="contributor-row">
+                    <img class="contributor-photo"
+                        src="assets_common/photos/mingkai_jia.jpg"
+                        loading="lazy" width="56" height="56">
+
+                    <div class="contributor-text">
+                      <div class="contributor-name">Mingkai Jia</div>
+                      <div class="contributor-note">Contributor, VideoGen</div>
+                    </div>
+                    <div class="contributor-links">
+                      <a href="mailto:" aria-label="Email"><i class="fas fa-envelope"></i> </a>
+                      <a href="" target="_blank" aria-label="Homepage"><i class="fas fa-globe"></i> </a>
+                      <a href="" target="_blank" aria-label="Google Scholar"> <i class="ai ai-google-scholar"></i> </a>
+                    </div>
+                  </div>
+
+
+                  <!-- Row -->
+                  <div class="contributor-row">
+                    <img class="contributor-photo"
+                        src="assets_common/photos/junyuan_deng.jpg"
+                        loading="lazy" width="56" height="56">
+
+                    <div class="contributor-text">
+                      <div class="contributor-name">Junyuan Deng</div>
+                      <div class="contributor-note">Contributor, VideoGen</div>
+                    </div>
+                    <div class="contributor-links">
+                      <a href="mailto:" aria-label="Email"><i class="fas fa-envelope"></i> </a>
+                      <a href="" target="_blank" aria-label="Homepage"><i class="fas fa-globe"></i> </a>
+                      <a href="" target="_blank" aria-label="Google Scholar"> <i class="ai ai-google-scholar"></i> </a>
+                    </div>
+                  </div>
+
+
+                  <!-- Row -->
+                  <div class="contributor-row">
+                    <img class="contributor-photo"
+                        src="assets_common/photos/kaiwen_zhang.jpg"
+                        loading="lazy" width="56" height="56">
+
+                    <div class="contributor-text">
+                      <div class="contributor-name">Kaiwen Zhang</div>
+                      <div class="contributor-note">Contributor, VideoGen</div>
+                    </div>
+                    <div class="contributor-links">
+                      <a href="mailto:" aria-label="Email"><i class="fas fa-envelope"></i> </a>
+                      <a href="" target="_blank" aria-label="Homepage"><i class="fas fa-globe"></i> </a>
+                      <a href="" target="_blank" aria-label="Google Scholar"> <i class="ai ai-google-scholar"></i> </a>
+                    </div>
+                  </div>
+
+
+                  <!-- Row -->
+                  <div class="contributor-row">
+                    <img class="contributor-photo"
+                        src="assets_common/photos/yang_wu.jpg"
+                        loading="lazy" width="56" height="56">
+
+                    <div class="contributor-text">
+                      <div class="contributor-name">Yang Wu</div>
+                      <div class="contributor-note">Contributor, LiDARGen</div>
+                    </div>
+                    <div class="contributor-links">
+                      <a href="mailto:" aria-label="Email"><i class="fas fa-envelope"></i> </a>
+                      <a href="" target="_blank" aria-label="Homepage"><i class="fas fa-globe"></i> </a>
+                      <a href="" target="_blank" aria-label="Google Scholar"> <i class="ai ai-google-scholar"></i> </a>
+                    </div>
+                  </div>
+
+
+                  <!-- Row -->
+                  <div class="contributor-row">
+                    <img class="contributor-photo"
+                        src="assets_common/photos/tianyi_yan.jpg"
+                        loading="lazy" width="56" height="56">
+
+                    <div class="contributor-text">
+                      <div class="contributor-name">Tianyi Yan</div>
+                      <div class="contributor-note">Contributor, LiDARGen</div>
+                    </div>
+                    <div class="contributor-links">
+                      <a href="mailto:" aria-label="Email"><i class="fas fa-envelope"></i> </a>
+                      <a href="" target="_blank" aria-label="Homepage"><i class="fas fa-globe"></i> </a>
+                      <a href="" target="_blank" aria-label="Google Scholar"> <i class="ai ai-google-scholar"></i> </a>
+                    </div>
+                  </div>
+
+
+                  <!-- Row -->
+                  <div class="contributor-row">
+                    <img class="contributor-photo"
+                        src="assets_common/photos/shenyuan_gao.jpg"
+                        loading="lazy" width="56" height="56">
+
+                    <div class="contributor-text">
+                      <div class="contributor-name">Shenyuan Gao</div>
+                      <div class="contributor-note">Contributor, VideoGen</div>
+                    </div>
+                    <div class="contributor-links">
+                      <a href="mailto:" aria-label="Email"><i class="fas fa-envelope"></i> </a>
+                      <a href="" target="_blank" aria-label="Homepage"><i class="fas fa-globe"></i> </a>
+                      <a href="" target="_blank" aria-label="Google Scholar"> <i class="ai ai-google-scholar"></i> </a>
+                    </div>
+                  </div>
+
+
+                  <!-- Row -->
+                  <div class="contributor-row">
+                    <img class="contributor-photo"
+                        src="assets_common/photos/song_wang.jpeg"
+                        loading="lazy" width="56" height="56">
+
+                    <div class="contributor-text">
+                      <div class="contributor-name">Song Wang</div>
+                      <div class="contributor-note">Contributor, OccGen</div>
+                    </div>
+                    <div class="contributor-links">
+                      <a href="mailto:" aria-label="Email"><i class="fas fa-envelope"></i> </a>
+                      <a href="" target="_blank" aria-label="Homepage"><i class="fas fa-globe"></i> </a>
+                      <a href="" target="_blank" aria-label="Google Scholar"> <i class="ai ai-google-scholar"></i> </a>
+                    </div>
+                  </div>
+
+
+                  <!-- Row -->
+                  <div class="contributor-row">
+                    <img class="contributor-photo"
+                        src="assets_common/photos/linfeng_li.jpeg"
+                        loading="lazy" width="56" height="56">
+
+                    <div class="contributor-text">
+                      <div class="contributor-name">Linfeng Li</div>
+                      <div class="contributor-note">Contributor, OccGen</div>
+                    </div>
+                    <div class="contributor-links">
+                      <a href="mailto:" aria-label="Email"><i class="fas fa-envelope"></i> </a>
+                      <a href="" target="_blank" aria-label="Homepage"><i class="fas fa-globe"></i> </a>
+                      <a href="" target="_blank" aria-label="Google Scholar"> <i class="ai ai-google-scholar"></i> </a>
+                    </div>
+                  </div>
+
+
+                  <!-- Row -->
+                  <div class="contributor-row">
+                    <img class="contributor-photo"
+                        src="assets_common/photos/liang_pan.png"
+                        loading="lazy" width="56" height="56">
+
+                    <div class="contributor-text">
+                      <div class="contributor-name">Liang Pan</div>
+                      <div class="contributor-note">Advisor</div>
+                    </div>
+                    <div class="contributor-links">
+                      <a href="mailto:" aria-label="Email"><i class="fas fa-envelope"></i> </a>
+                      <a href="" target="_blank" aria-label="Homepage"><i class="fas fa-globe"></i> </a>
+                      <a href="" target="_blank" aria-label="Google Scholar"> <i class="ai ai-google-scholar"></i> </a>
+                    </div>
+                  </div>
+
+
+                  <!-- Row -->
+                  <div class="contributor-row">
+                    <img class="contributor-photo"
+                        src="assets_common/photos/yong_liu.png"
+                        loading="lazy" width="56" height="56">
+
+                    <div class="contributor-text">
+                      <div class="contributor-name">Yong Liu</div>
+                      <div class="contributor-note">Advisor</div>
+                    </div>
+                    <div class="contributor-links">
+                      <a href="mailto:" aria-label="Email"><i class="fas fa-envelope"></i> </a>
+                      <a href="" target="_blank" aria-label="Homepage"><i class="fas fa-globe"></i> </a>
+                      <a href="" target="_blank" aria-label="Google Scholar"> <i class="ai ai-google-scholar"></i> </a>
+                    </div>
+                  </div>
+
+
+                  <!-- Row -->
+                  <div class="contributor-row">
+                    <img class="contributor-photo"
+                        src="assets_common/photos/jianke_zhu.png"
+                        loading="lazy" width="56" height="56">
+
+                    <div class="contributor-text">
+                      <div class="contributor-name">Jianke Zhu</div>
+                      <div class="contributor-note">Advisor</div>
+                    </div>
+                    <div class="contributor-links">
+                      <a href="mailto:" aria-label="Email"><i class="fas fa-envelope"></i> </a>
+                      <a href="" target="_blank" aria-label="Homepage"><i class="fas fa-globe"></i> </a>
+                      <a href="" target="_blank" aria-label="Google Scholar"> <i class="ai ai-google-scholar"></i> </a>
+                    </div>
+                  </div>
+
+
+                  <!-- Row -->
+                  <div class="contributor-row">
+                    <img class="contributor-photo"
+                        src="assets_common/photos/wei_tsang_ooi.png"
+                        loading="lazy" width="56" height="56">
+
+                    <div class="contributor-text">
+                      <div class="contributor-name">Wei Tsang Ooi</div>
+                      <div class="contributor-note">Advisor</div>
+                    </div>
+                    <div class="contributor-links">
+                      <a href="mailto:" aria-label="Email"><i class="fas fa-envelope"></i> </a>
+                      <a href="" target="_blank" aria-label="Homepage"><i class="fas fa-globe"></i> </a>
+                      <a href="" target="_blank" aria-label="Google Scholar"> <i class="ai ai-google-scholar"></i> </a>
+                    </div>
+                  </div>
+
+
+                  <!-- Row -->
+                  <div class="contributor-row">
+                    <img class="contributor-photo"
+                        src="assets_common/photos/steven_c_h_hoi.jpg"
+                        loading="lazy" width="56" height="56">
+
+                    <div class="contributor-text">
+                      <div class="contributor-name">Steven C. H. Hoi</div>
+                      <div class="contributor-note">Advisor</div>
+                    </div>
+                    <div class="contributor-links">
+                      <a href="mailto:" aria-label="Email"><i class="fas fa-envelope"></i> </a>
+                      <a href="" target="_blank" aria-label="Homepage"><i class="fas fa-globe"></i> </a>
+                      <a href="" target="_blank" aria-label="Google Scholar"> <i class="ai ai-google-scholar"></i> </a>
+                    </div>
+                  </div>
+
+
+                  <!-- Row -->
+                  <div class="contributor-row">
+                    <img class="contributor-photo"
+                        src="assets_common/photos/ziwei_liu.png"
+                        loading="lazy" width="56" height="56">
+
+                    <div class="contributor-text">
+                      <div class="contributor-name">Ziwei Liu</div>
+                      <div class="contributor-note">Advisor</div>
+                    </div>
+                    <div class="contributor-links">
+                      <a href="mailto:" aria-label="Email"><i class="fas fa-envelope"></i> </a>
+                      <a href="" target="_blank" aria-label="Homepage"><i class="fas fa-globe"></i> </a>
+                      <a href="" target="_blank" aria-label="Google Scholar"> <i class="ai ai-google-scholar"></i> </a>
+                    </div>
+                  </div>
+
+                </div>
+                <br>
+              </div>
+              <br><br>
+            </section>
+
+
+            <br><br>
+
+
+            <footer class="wb-footer">
+              <br>
+              <div class="wb-footer-content">
+                <p>
+                  This website is licensed under a
+                  <a href="https://creativecommons.org/licenses/by-sa/4.0/"
+                    target="_blank"
+                    rel="noopener noreferrer">
+                    Creative Commons Attribution-ShareAlike 4.0 International License
+                  </a>
+                </p>
+                <p>
+                  © WorldBench 2025-2026. All Rights Reserved
+                </p>
+              </div>
+              <br>
+            </footer>
+
+
         </d-article>
 
 
@@ -562,7 +1030,6 @@
         
         <script src="contents_bar.js"></script>
 
-        <!-- 统一的数据与初始化脚本 -->
         <script>
 
           const paperStore = {
@@ -925,7 +1392,7 @@
             root.addEventListener('keydown', (e)=>{
             if(e.key==='ArrowRight' || e.key==='ArrowLeft'){
                 e.preventDefault();
-                const order = ['A','B','C','D'].filter(k => panels[k]); // 只保留存在的面板
+                const order = ['A','B','C','D'].filter(k => panels[k]);
                 const idx = order.indexOf(activeKey);
                 const len = order.length;
                 const next = e.key==='ArrowRight' ? (idx+1)%len : (idx-1+len)%len;
