@@ -97,8 +97,14 @@
                 <div class="wb-hr"></div>
 
                 <p class="wb-lead">
+                  World modeling has become a cornerstone in AI research, enabling agents to understand, represent, and predict the dynamic environments they inhabit. While prior work largely emphasizes generative methods for 2D image and video data, they overlook the rapidly growing body of work that leverages native 3D and 4D representations such as RGB-D imagery, occupancy grids, and LiDAR point clouds for large-scale scene modeling.
+                </p>
+                <p class="wb-lead">
                   This survey reviews <strong>3D and 4D world models</strong> — models that learn, predict, and simulate the geometry and dynamics of real environments from multi-modal signals. 
                 </p>
+                <figure style="width: 100%; max-width: 1000px; display: block; margin: 24px auto;">
+                  <img src="assets/survey/figures/teaser.png">
+                </figure>
                 <p class="wb-lead">
                   We unify terminology, scope, and evaluation, and organize the space into three complementary paradigms by representation: <strong>VideoGen</strong> (image/video-centric),
                   <strong>OccGen</strong> (occupancy-centric), and <strong>LiDARGen</strong> (point-cloud-centric).
@@ -108,37 +114,30 @@
             </section>
 
 
-            <figure class="wb-simple-card" aria-label="Taxonomy overview figure">
-                  <img src="assets/survey/figures/teaser.png" alt="teaser">
-            </figure>
-
-
 
 
             <section id="definition">
               <h2>Definition</h2>
               <div class="wb-hr" style="margin-bottom:1.25rem;"></div>
 
-              <!-- override previous 3-col grid -->
               <style>
-                /* 一列排布，并把卡片限制成正文宽度感（可按需改 900px） */
                 #definition .wb-grid{
                   grid-template-columns: 1fr !important;
                   max-width: 900px;
-                  margin: 0 auto;            /* 居中 */
+                  margin: 0 auto;
                   gap: 1rem 1.25rem;
                 }
               </style>
 
               <div class="wb-grid">
                 <!-- VideoGen -->
-                <article class="wb-card" id="videogen">
+                <article class="wb-card">
                   <h3>
                     <i class="fas fa-film" aria-hidden="true"></i>
-                    <a class="wb-anchor" href="#videogen">VideoGen</a>
+                    <a class="wb-anchor">VideoGen</a>
                   </h3>
                   <p>
-                    <strong>What it is.</strong> An <em>image/video-centric</em> world model that generates or predicts
+                    <strong>What it is.</strong> An image/video-centric world model that generates or predicts
                     photorealistic, temporally consistent frames (single- or multi-view) conditioned on past context and optional controls.
                   </p>
                   <p class="wb-cap"><strong>Typical inputs</strong>: past frames, poses/camera intrinsics-extrinsics, text/route/action hints.</p>
@@ -151,13 +150,13 @@
                 </article>
 
                 <!-- OccGen -->
-                <article class="wb-card" id="occgen">
+                <article class="wb-card">
                   <h3>
                     <i class="fas fa-cubes" aria-hidden="true"></i>
-                    <a class="wb-anchor" href="#occgen">OccGen</a>
+                    <a class="wb-anchor">OccGen</a>
                   </h3>
                   <p>
-                    <strong>What it is.</strong> An <em>occupancy-centric</em> world model that represents scenes as 3D/4D occupancy
+                    <strong>What it is.</strong> An occupancy-centric world model that represents scenes as 3D/4D occupancy
                     fields (e.g., voxel grids with semantics), enabling geometry-aware perception, forecasting, and simulation.
                   </p>
                   <p class="wb-cap"><strong>Typical inputs</strong>: multi-sensor cues (RGB, depth, events, LiDAR), ego motion, maps.</p>
@@ -170,13 +169,13 @@
                 </article>
 
                 <!-- LiDARGen -->
-                <article class="wb-card" id="lidargen">
+                <article class="wb-card">
                   <h3>
                     <i class="fas fa-braille" aria-hidden="true"></i>
-                    <a class="wb-anchor" href="#lidargen">LiDARGen</a>
+                    <a class="wb-anchor">LiDARGen</a>
                   </h3>
                   <p>
-                    <strong>What it is.</strong> A <em>point-cloud-centric</em> world model that learns high-fidelity geometry and
+                    <strong>What it is.</strong> A point-cloud-centric world model that learns high-fidelity geometry and
                     dynamics directly from LiDAR sweeps, suitable for robust 3D understanding, data generation, and sensor-faithful simulation.
                   </p>
                   <p class="wb-cap"><strong>Typical inputs</strong>: past LiDAR sweeps, ego trajectory, calibration; optional scene priors.</p>
@@ -188,7 +187,33 @@
                   </div>
                 </article>
               </div>
+              <br>
             </section>
+
+
+
+
+
+
+            <section id="taxonomy">
+              <h2>
+                <span class="icon is-small">
+                  <img src="assets_common/icons/worldbench.png" style="height: 1.3em;">
+                </span>&nbsp;A Hierarchical Taxonomy</h2>
+              <div class="wb-section">
+                <p class="wb-lead">
+                  We establish precise definitions, introduce a structured taxonomy spanning VideoGen, OccGen, and LiDARGen approaches, and systematically summarize datasets and evaluation metrics tailored to 3D/4D settings.
+                </p>
+                <figure style="width: 100%; max-width: 1000px; display: block; margin: 24px auto;">
+                  <img src="assets/survey/figures/tree.png">
+                </figure>
+                <p class="wb-lead">
+                  Together, these models provide the foundation for simulation, planning, and embodied intelligence in complex environments.
+                </p>
+              </div>
+              <br><br>
+            </section>
+
 
 
             <style>
@@ -227,142 +252,8 @@
 
 
 
-
-            <!-- 过渡衔接：放在三张 paradigms 卡片 .wb-grid 后 -->
-            <!-- <p></p>
-            <p class="wb-bridge">
-              Beyond the three paradigms above, we further distill <strong>four recurring model types</strong> that appear across
-              VideoGen, OccGen, and LiDARGen.
-            </p> -->
-
-            <!-- <div class="wb-grid-4">
-              <article class="wb-card" id="model-data-engines">
-                <h4>
-                  <i class="fas fa-database" aria-hidden="true"></i>
-                  <a class="wb-anchor" href="#def-data-engines">Data Engines</a>
-                </h4>
-                <p class="small">
-                  Systems that curate, augment, and generate multi-modal training data
-                  (e.g., domain adaptation, controllable synthesis) to reduce distribution gaps and supervision cost.
-                </p>
-                <div class="wb-meta" aria-label="tags">
-                  <span class="wb-chip">Curation</span>
-                  <span class="wb-chip">Augmentation</span>
-                  <span class="wb-chip">Synthetic data</span>
-                </div>
-              </article>
-
-              <article class="wb-card" id="model-scene-representors">
-                <h4>
-                  <i class="fas fa-cube" aria-hidden="true"></i>
-                  <a class="wb-anchor" href="#def-scene-representors">Scene Representors</a>
-                </h4>
-                <p class="small">
-                  Models that build consistent 3D/4D scene states (e.g., occupancy, meshes, radiance/feature fields) with semantics
-                  and dynamics, serving as geometry-aware cores for perception and simulation.
-                </p>
-                <div class="wb-meta" aria-label="tags">
-                  <span class="wb-chip">Reconstruction</span>
-                  <span class="wb-chip">Semantic 3D</span>
-                  <span class="wb-chip">Temporal state</span>
-                </div>
-              </article>
-
-              <article class="wb-card" id="model-forecasters-planners">
-                <h4>
-                  <i class="fas fa-route" aria-hidden="true"></i>
-                  <a class="wb-anchor" href="#def-forecasters-planners">Forecasters &amp; Planners</a>
-                </h4>
-                <p class="small">
-                  Models that predict future world evolution under agent dynamics and constraints, supporting trajectory-aware
-                  forecasting and planning-oriented evaluation.
-                </p>
-                <div class="wb-meta" aria-label="tags">
-                  <span class="wb-chip">Future prediction</span>
-                  <span class="wb-chip">Agent dynamics</span>
-                  <span class="wb-chip">Open-loop metrics</span>
-                </div>
-              </article>
-
-              <article class="wb-card" id="model-autoregressive-simulators">
-                <h4>
-                  <i class="fas fa-play-circle" aria-hidden="true"></i>
-                  <a class="wb-anchor" href="#def-autoregressive-simulators">Autoregressive Simulators</a>
-                </h4>
-                <p class="small">
-                  Step-wise simulators that roll out world states conditioned on actions, maps, or priors, enabling counterfactual
-                  and what-if analysis across modalities (video / occupancy / LiDAR).
-                </p>
-                <div class="wb-meta" aria-label="tags">
-                  <span class="wb-chip">AR rollout</span>
-                  <span class="wb-chip">What-if</span>
-                  <span class="wb-chip">Multi-modal</span>
-                </div>
-              </article>
-            </div> -->
-
-
-
-            
-            <!-- <section id="taxonomy">
-                <h2>Taxonomy</h2>
-                <div class="wb-hr" style="margin-bottom:1.25rem;"></div>
-                
-                    <style>
-                      #taxonomy .wb-simple-card{
-                        width: min(100%, 72ch);           /* 改这里：72ch≈正文一行字符宽度 */
-                        margin: 1rem auto 1.25rem;        /* 居中并与上下内容留白 */
-                        border-radius: 16px;
-                        overflow: hidden;
-                        box-shadow: 0 8px 24px rgba(0,0,0,.08);
-                        background: #fff;
-                      }
-                      #taxonomy .wb-simple-card img{
-                        display: block;
-                        width: 100%;
-                        height: auto;
-                      }
-                      @media (prefers-color-scheme: dark){
-                        #taxonomy .wb-simple-card{
-                          background: #0b1220;
-                          border-color: #334155;
-                          box-shadow: 0 8px 24px rgba(0,0,0,.35);
-                        }
-                      }
-                    </style>
-
-                    <figure class="wb-simple-card" aria-label="Taxonomy overview figure">
-                      <img src="figures/tree.png" alt="WorldBench taxonomy tree">
-                    </figure>
-
-                    <iframe
-                      src="src/videogen.html"
-                      style="width:100%; border:0; min-height:680px;"
-                      loading="lazy"
-                    ></iframe>
-
-                    <iframe
-                        src="src/occgen.html"
-                        style="width:100%; border:0; min-height:680px;"
-                        loading="lazy"
-                    ></iframe>
-                    <p> </p>
-                    <iframe
-                        src="src/lidargen.html"
-                        style="width:100%; border:0; min-height:680px;"
-                        loading="lazy"
-                    ></iframe>
-            </section> -->
-
-
-
-
-
-
-
-
             <section id="examples">
-                <h2>Examples</h2>
+                <h2>Generated 3D & 4D Contents</h2>
                 <div class="wb-hr" style="margin-bottom:1.25rem;"></div>
 
                 <section class="videogen" tabindex="0" aria-label="VideoGen Set A">

@@ -98,7 +98,7 @@
             <d-contents>
                 <nav>
                     <h4>Contents</h4>
-                    <div><a href="#definition">Definition</a></div>
+                    <div><a href="#definition">Dimensions</a></div>
                     <div><a href="#taxonomy">Taxonomy</a></div>
                     <div><a href="#examples">Examples</a></div>
                     <div><a href="#projects">Projects</a></div>
@@ -126,13 +126,12 @@
                   <p class="wb-lead">
                     We introduce <span class="worldlens"><span class="w">W</span><span class="o">o</span><span class="r">r</span><span class="l">l</span><span class="d">d</span><span class="l2">l</span><span class="e">e</span><span class="n">n</span><span class="s">s</span></span>, a full-spectrum benchmark evaluating how well a model builds, understands, and behaves within its generated world. 
                   </p>
+                  <figure style="width: 100%; max-width: 1000px; display: block; margin: 24px auto;">
+                    <img src="assets/worldlens/figures/teaser.png">
+                  </figure>
+                  <br>
                 </div>
               </section>
-
-
-              <figure class="wb-simple-card" aria-label="Taxonomy overview figure">
-                  <img src="assets/worldlens/figures/teaser.png" alt="teaser">
-              </figure>
 
 
 
@@ -153,7 +152,7 @@
 
                 <div class="wb-grid">
 
-                  <article class="wb-card" id="videogen">
+                  <article class="wb-card">
                     <h3>
                       <span class="icon is-small">
                         <img src="assets/worldlens/icons/generation.png" style="height: 2em;">
@@ -161,76 +160,75 @@
                       <a class="wb-anchor">Generation</a>
                     </h3>
                     <p>
-                      measuring whether a model can synthesize visually realistic, temporally stable, and semantically consistent scenes. 
+                      measuring whether a model can synthesize <b>visually realistic</b>, <b>temporally stable</b>, and <b>semantically consistent</b> scenes. 
                       Even state-of-the-art models that achieve low perceptual error (e.g., LPIPS, FVD) often suffer from view flickering or motion instability, revealing the limits of current diffusion-based architectures.
                     </p>
                   </article>
 
-                  <article class="wb-card" id="videogen">
+                  <article class="wb-card">
                     <h3>
                       <span class="icon is-small">
-                        <img src="assets/worldlens/icons/generation.png" style="height: 2em;">
+                        <img src="assets/worldlens/icons/reconstruction.png" style="height: 2em;">
                       </span>
-                      <a class="wb-anchor">Generation</a>
+                      <a class="wb-anchor">Reconstruction</a>
                     </h3>
                     <p>
-                      measuring whether a model can synthesize visually realistic, temporally stable, and semantically consistent scenes. 
-                      Even state-of-the-art models that achieve low perceptual error (e.g., LPIPS, FVD) often suffer from view flickering or motion instability, revealing the limits of current diffusion-based architectures.
+                      probing whether generated videos can be reprojected into a <b>coherent 4D scene</b> using differentiable rendering. 
+                      Models that appear sharp in 2D frequently collapse when reconstructed, producing geometric "floaters": a gap that exposes how temporal coherence remains weakly coupled in most pipelines.
                     </p>
                   </article>
 
-                  <article class="wb-card" id="videogen">
+                  <article class="wb-card">
                     <h3>
                       <span class="icon is-small">
-                        <img src="assets/worldlens/icons/generation.png" style="height: 2em;">
+                        <img src="assets/worldlens/icons/action-following.png" style="height: 2em;">
                       </span>
-                      <a class="wb-anchor">Generation</a>
+                      <a class="wb-anchor">Action-Following</a>
                     </h3>
                     <p>
-                      measuring whether a model can synthesize visually realistic, temporally stable, and semantically consistent scenes. 
-                      Even state-of-the-art models that achieve low perceptual error (e.g., LPIPS, FVD) often suffer from view flickering or motion instability, revealing the limits of current diffusion-based architectures.
+                      testing if a pre-trained action planner can <b>operate safely</b> inside the generated world. 
+                      High <b>open-loop realism</b> does not guarantee safe <b>closed-loop control</b>; almost all existing world models trigger collisions or off-road drifts, underscoring that photometric realism alone cannot yield functional fidelity.
                     </p>
                   </article>
 
-                  <article class="wb-card" id="videogen">
+                  <article class="wb-card">
                     <h3>
                       <span class="icon is-small">
-                        <img src="assets/worldlens/icons/generation.png" style="height: 2em;">
+                        <img src="assets/worldlens/icons/downstream.png" style="height: 2em;">
                       </span>
-                      <a class="wb-anchor">Generation</a>
+                      <a class="wb-anchor">Downstream Task</a>
                     </h3>
                     <p>
-                      measuring whether a model can synthesize visually realistic, temporally stable, and semantically consistent scenes. 
-                      Even state-of-the-art models that achieve low perceptual error (e.g., LPIPS, FVD) often suffer from view flickering or motion instability, revealing the limits of current diffusion-based architectures.
+                      evaluating whether the synthetic data support <b>downstream perception models</b> trained on <b>real-world datasets</b>. 
+                      Even visually appealing worlds may degrade detection or segmentation accuracy by 30-50%, highlighting that alignment to task distributions, not just image quality, is vital for practical usability.
                     </p>
                   </article>
 
-                  <article class="wb-card" id="videogen">
+                  <article class="wb-card">
                     <h3>
                       <span class="icon is-small">
-                        <img src="assets/worldlens/icons/generation.png" style="height: 2em;">
+                        <img src="assets/worldlens/icons/human-preference.png" style="height: 2em;">
                       </span>
-                      <a class="wb-anchor">Generation</a>
+                      <a class="wb-anchor">Human Preference</a>
                     </h3>
                     <p>
-                      measuring whether a model can synthesize visually realistic, temporally stable, and semantically consistent scenes. 
-                      Even state-of-the-art models that achieve low perceptual error (e.g., LPIPS, FVD) often suffer from view flickering or motion instability, revealing the limits of current diffusion-based architectures.
+                      capturing subjective scores such as <b>world realism</b>, <b>physical plausibility</b>, and <b>behavioral safety</b> through large-scale human annotations. 
+                      Our study reveals that models with strong geometric consistency are generally rated as more "real", confirming that perceptual fidelity is inseparable from structural coherence.
                     </p>
                   </article>
     
+                  <br>
                 </div>
               </section>
 
 
               <style>
-              /* 过渡段落略小一号 */
               #definition .wb-bridge {
                 font-size: 1rem;
                 line-height: 1.7;
                 color: #374151;
                 margin: 1rem 0 .75rem;
               }
-              /* 4列卡片栅格（桌面四列 / 平板两到三列 / 手机一列） */
               #definition .wb-grid-4 {
                 display: grid;
                 grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -246,7 +244,6 @@
               @media (max-width: 640px) {
                 #definition .wb-grid-4 { grid-template-columns: 1fr; }
               }
-              /* 辅助：更紧凑的卡片标题与说明 */
               #definition .wb-card h4 {
                 display: flex; align-items: center; gap: .5rem;
                 font-size: 1rem; margin: 0 0 .35rem;
@@ -256,13 +253,23 @@
               }
             </style>
 
-            <h2>GT vs Generative Models</h2>
-            <!-- ############################################# Generation #############################################-->
 
-            <h3>Generation</h3>
+
+
+
+
+
+
+
+            <h2>Generated Examples</h2>
+
+            <h3>Aspect 1: Generation</h3>
             <h4>1. Subject Fidelity</h4>
             <h4>2. Subject Coherence</h4>
             <h4>3. Subject Consistency</h4>
+
+
+
             <h4>4. Depth Discrepancy</h4>
             <section class="videogen videogen-compare" tabindex="0" aria-label="GT vs Generative Methods">
             
@@ -272,7 +279,7 @@
                   <div class="video-wrapper gt-layer">
                     <video class="video-el" data-role="video-gt" autoplay loop muted playsinline>
                       <!-- 默认 GT，可以是某个场景的 GT -->
-                      <source src="videos/worldlens/generation/depth_discrepancy/0/good/video.mp4" type="video/mp4" />
+                      <source src="assets/worldlens/videos/generation/depth_discrepancy/0/good/video.mp4" type="video/mp4" />
                     </video>
                     <div class="video-label label-left">Good Case</div>
                   </div>
@@ -281,7 +288,7 @@
                   <div class="video-wrapper gen-layer">
                     <video class="video-el" data-role="video-gen" autoplay loop muted playsinline>
                       <!-- 默认生成方法 -->
-                      <source src="videos/worldlens/generation/depth_discrepancy/0/bad/video.mp4" type="video/mp4" />
+                      <source src="assets/worldlens/videos/generation/depth_discrepancy/0/bad/video.mp4" type="video/mp4" />
                     </video>
                     <div class="video-label label-right" data-role="method-label">Failure Case</div>
                   </div>
@@ -309,30 +316,30 @@
                 <!-- 场景1 + MagicDrive -->
                 <button class="thumb is-active"
                         role="tab" aria-selected="true"
-                        data-gen-src="videos/worldlens/generation/depth_discrepancy/0/bad/video.mp4"
-                        data-gt-src="videos/worldlens/generation/depth_discrepancy/0/good/video.mp4"
+                        data-gen-src="assets/worldlens/videos/generation/depth_discrepancy/0/bad/video.mp4"
+                        data-gt-src="assets/worldlens/videos/generation/depth_discrepancy/0/good/video.mp4"
                         data-label="Failure Case">
-                  <img src="videos/worldlens/generation/depth_discrepancy/0/good/00000.jpg" alt="Scene1 MagicDrive thumbnail" />
+                  <img src="assets/worldlens/videos/generation/depth_discrepancy/0/good/00000.jpg" alt="Scene1 MagicDrive thumbnail" />
                   <span>Scene1</span>
                 </button>
             
                 <!-- 场景2 + MagicDrive -->
                 <button class="thumb"
                         role="tab" aria-selected="false"
-                        data-gt-src="videos/worldlens/generation/depth_discrepancy/1/good/video.mp4"
-                        data-gen-src="videos/worldlens/generation/depth_discrepancy/1/bad/video.mp4"
+                        data-gt-src="assets/worldlens/videos/generation/depth_discrepancy/1/good/video.mp4"
+                        data-gen-src="assets/worldlens/videos/generation/depth_discrepancy/1/bad/video.mp4"
                         data-label="Failure Case">
-                  <img src="videos/worldlens/generation/depth_discrepancy/1/good/00000.jpg" alt="Scene2 MagicDrive thumbnail" />
+                  <img src="assets/worldlens/videos/generation/depth_discrepancy/1/good/00000.jpg" alt="Scene2 MagicDrive thumbnail" />
                   <span>Scene2</span>
                 </button>
             
                 <!-- 场景3 + Dreamforge（举例） -->
                 <button class="thumb"
                         role="tab" aria-selected="false"
-                        data-gt-src="videos/worldlens/generation/depth_discrepancy/2/good/video.mp4"
-                        data-gen-src="videos/worldlens/generation/depth_discrepancy/2/bad/video.mp4"
+                        data-gt-src="assets/worldlens/videos/generation/depth_discrepancy/2/good/video.mp4"
+                        data-gen-src="assets/worldlens/videos/generation/depth_discrepancy/2/bad/video.mp4"
                         data-label="Failure Case">
-                  <img src="videos/worldlens/generation/depth_discrepancy/2/good/00000.jpg" alt="Scene2 MagicDrive thumbnail" />
+                  <img src="assets/worldlens/videos/generation/depth_discrepancy/2/good/00000.jpg" alt="Scene2 MagicDrive thumbnail" />
                   <span>Scene3</span>
                 </button>
             

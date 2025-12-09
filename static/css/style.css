@@ -1687,8 +1687,8 @@ video {
 }
 .wb-kicker {
   display: inline-block;
-  font-size: 1.2rem;
-  letter-spacing: .04em;
+  font-size: 1.25rem;
+  letter-spacing: .03em;
   /* text-transform: uppercase; */
   font-weight: 700;
   color: #6b7280;
@@ -1849,6 +1849,6 @@ d-article > .wb-simple-card {
 
 d-article > .wb-simple-card img {
   display: block;
-  width: 69%; 
+  width: 75%; 
   height: auto;
 }
