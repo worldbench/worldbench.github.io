@@ -1840,3 +1840,15 @@ video {
   .data-switcher{ border-color: #2a2a2a; }
   .method-btn{ background: #1a1a1a; border-color: #2a2a2a; color: #eaeaea; }
 }
+
+
+d-article > .wb-simple-card {
+  grid-column: text;
+  margin: 2rem 0;
+}
+
+d-article > .wb-simple-card img {
+  display: block;
+  width: 69%; 
+  height: auto;
+}
