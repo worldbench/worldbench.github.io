@@ -88,43 +88,42 @@
                 </nav>
             </d-contents>
 
-            <figure class="wb-simple-card" aria-label="Taxonomy overview figure">
-              <img src="figures/worldlens/teaser.png" alt="teaser">
-            </figure>
 
 
-            <!-- ---------- Introduction (new) ---------- -->
+
+
               <section id="introduction">
                 <div class="wb-section">
-                  <div class="wb-kicker">Introduction</div>
+                  <div class="wb-kicker">Is your driving world model an all-around player?</div>
                   <div class="wb-hr"></div>
 
                   <p class="wb-lead">
-                    This survey reviews <strong>3D and 4D world models</strong> — models that learn, predict, and simulate the
-                    geometry and dynamics of real environments from multi-modal signals. We unify terminology, scope, and evaluation,
-                    and organize the space into three complementary paradigms by representation: <strong>VideoGen</strong> (image/video-centric),
-                    <strong>OccGen</strong> (occupancy-centric), and <strong>LiDARGen</strong> (point-cloud-centric).
+                    Generative world models are reshaping embodied AI, enabling agents to synthesize realistic 4D driving environments that look convincing but often fail physically or behaviorally. 
+                    Despite rapid progress, the field still lacks a unified way to assess whether generated worlds preserve geometry, obey physics, or support reliable control. 
+                  </p>
+                  <p class="wb-lead">
+                    We introduce <strong>WorldLens</strong>, a full-spectrum benchmark evaluating how well a model builds, understands, and behaves within its generated world. 
                   </p>
                 </div>
-
-                <!-- <figure class="wb-simple-card" aria-label="Taxonomy overview figure">
-                  <img src="figures/teaser.png" alt="teaser">
-                </figure> -->
               </section>
 
 
-              <!-- ---------- Definition (drop-in replacement for your current block) ---------- -->
+              <figure class="wb-simple-card" aria-label="Taxonomy overview figure">
+                  <img src="assets/worldlens/figures/teaser.png" alt="teaser">
+              </figure>
+
+
+
               <section id="definition">
-                <h2>Definition</h2>
+                <h2>Dimensions</h2>
                 <div class="wb-hr" style="margin-bottom:1.25rem;"></div>
 
                 <!-- override previous 3-col grid -->
                 <style>
-                  /* 一列排布，并把卡片限制成正文宽度感（可按需改 900px） */
                   #definition .wb-grid{
                     grid-template-columns: 1fr !important;
                     max-width: 900px;
-                    margin: 0 auto;            /* 居中 */
+                    margin: 0 auto;
                     gap: 1rem 1.25rem;
                   }
                 </style>
@@ -134,19 +133,12 @@
                   <article class="wb-card" id="videogen">
                     <h3>
                       <i class="fas fa-film" aria-hidden="true"></i>
-                      <a class="wb-anchor" href="#videogen">VideoGen</a>
+                      <a class="wb-anchor">Generation</a>
                     </h3>
                     <p>
-                      <strong>What it is.</strong> An <em>image/video–centric</em> world model that generates or predicts
-                      photorealistic, temporally consistent frames (single- or multi-view) conditioned on past context and optional controls.
+                      measuring whether a model can synthesize visually realistic, temporally stable, and semantically consistent scenes. 
+                      Even state-of-the-art models that achieve low perceptual error (e.g., LPIPS, FVD) often suffer from view flickering or motion instability, revealing the limits of current diffusion-based architectures.
                     </p>
-                    <p class="wb-cap"><strong>Typical inputs</strong>: past frames, poses/camera intrinsics-extrinsics, text/route/action hints.</p>
-                    <div class="wb-meta" aria-label="VideoGen tags">
-                      <span class="wb-chip">Video synthesis</span>
-                      <span class="wb-chip">Future prediction</span>
-                      <span class="wb-chip">What-if simulation</span>
-                      <span class="wb-chip">Multi-view</span>
-                    </div>
                   </article>
 
                   <!-- OccGen -->

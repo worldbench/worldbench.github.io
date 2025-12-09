@@ -1680,16 +1680,16 @@ video {
   font-family: "Rubik", sans-serif;
 }
 .wb-lead {
-  font-size: 1.15rem;
-  line-height: 1.7;
-  color: #1f2937;
+  font-size: 1.1rem;
+  line-height: 1.5;
+  color: #6b7280;
   max-width: 900px;
 }
 .wb-kicker {
   display: inline-block;
-  font-size: .8rem;
-  letter-spacing: .06em;
-  text-transform: uppercase;
+  font-size: 1.2rem;
+  letter-spacing: .04em;
+  /* text-transform: uppercase; */
   font-weight: 700;
   color: #6b7280;
   margin-bottom: .25rem;
