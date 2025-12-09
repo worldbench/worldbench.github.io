@@ -37,6 +37,22 @@
         <script defer src="./static/js/medium-zoom.min.js"></script>
         <script defer src="./static/js/zoom.js"></script>
 
+
+        <style>
+          .worldlens {
+            font-weight: bold;
+          }
+          .worldlens .w  { color: #34cccc; }
+          .worldlens .o  { color: #46cbbb; }
+          .worldlens .r  { color: #5fcaa1; }
+          .worldlens .l  { color: #77c888; }
+          .worldlens .d  { color:	#9bc765; }
+          .worldlens .l2 { color: #b9c546; }
+          .worldlens .e  { color: #e3c21c; }
+          .worldlens .n  { color:	#f3c10c; }
+          .worldlens .s  { color: #ffc000; }
+        </style>
+
     </head>
 
 
@@ -46,7 +62,8 @@
             <div class="header-container", id="header-container">
                 <div class="header-content">
                 <h1>
-                  WorldLens: Full-Spectrum Evaluations of Driving World Models in Real World
+                  <span class="worldlens"><span class="w">W</span><span class="o">o</span><span class="r">r</span><span class="l">l</span><span class="d">d</span><span class="l2">L</span><span class="e">e</span><span class="n">n</span><span class="s">s</span></span>:
+                  Full-Spectrum Evaluations of Driving World Models in Real World
                 </h1>
                 <div class="button-container">
                     <a href="" class="button paper-link" target="_blank">
@@ -94,7 +111,10 @@
 
               <section id="introduction">
                 <div class="wb-section">
-                  <div class="wb-kicker">Is your driving world model an all-around player?</div>
+                  <div class="wb-kicker">
+                    <span class="icon is-small">
+                        <img src="assets/worldlens/icons/car1.png" style="height: 1.6em;">
+                      </span>&nbsp;Is your driving world model an all-around player?</div>
                   <div class="wb-hr"></div>
 
                   <p class="wb-lead">
@@ -104,7 +124,7 @@
                     Despite rapid progress, the field still lacks a unified way to assess whether generated worlds preserve geometry, obey physics, or support reliable control. 
                   </p>
                   <p class="wb-lead">
-                    We introduce <strong>WorldLens</strong>, a full-spectrum benchmark evaluating how well a model builds, understands, and behaves within its generated world. 
+                    We introduce <span class="worldlens"><span class="w">W</span><span class="o">o</span><span class="r">r</span><span class="l">l</span><span class="d">d</span><span class="l2">l</span><span class="e">e</span><span class="n">n</span><span class="s">s</span></span>, a full-spectrum benchmark evaluating how well a model builds, understands, and behaves within its generated world. 
                   </p>
                 </div>
               </section>
@@ -130,11 +150,14 @@
                   }
                 </style>
 
+
                 <div class="wb-grid">
-                  <!-- VideoGen -->
+
                   <article class="wb-card" id="videogen">
                     <h3>
-                      <i class="fas fa-film" aria-hidden="true"></i>
+                      <span class="icon is-small">
+                        <img src="assets/worldlens/icons/generation.png" style="height: 2em;">
+                      </span>
                       <a class="wb-anchor">Generation</a>
                     </h3>
                     <p>
@@ -143,43 +166,58 @@
                     </p>
                   </article>
 
-                  <!-- OccGen -->
-                  <article class="wb-card" id="occgen">
+                  <article class="wb-card" id="videogen">
                     <h3>
-                      <i class="fas fa-cubes" aria-hidden="true"></i>
-                      <a class="wb-anchor" href="#occgen">OccGen</a>
+                      <span class="icon is-small">
+                        <img src="assets/worldlens/icons/generation.png" style="height: 2em;">
+                      </span>
+                      <a class="wb-anchor">Generation</a>
                     </h3>
                     <p>
-                      <strong>What it is.</strong> An <em>occupancy-centric</em> world model that represents scenes as 3D/4D occupancy
-                      fields (e.g., voxel grids with semantics), enabling geometry-aware perception, forecasting, and simulation.
+                      measuring whether a model can synthesize visually realistic, temporally stable, and semantically consistent scenes. 
+                      Even state-of-the-art models that achieve low perceptual error (e.g., LPIPS, FVD) often suffer from view flickering or motion instability, revealing the limits of current diffusion-based architectures.
                     </p>
-                    <p class="wb-cap"><strong>Typical inputs</strong>: multi-sensor cues (RGB, depth, events, LiDAR), ego motion, maps.</p>
-                    <div class="wb-meta" aria-label="OccGen tags">
-                      <span class="wb-chip">3D reconstruction</span>
-                      <span class="wb-chip">Occupancy forecasting</span>
-                      <span class="wb-chip">Autoregressive simulation</span>
-                      <span class="wb-chip">Semantic voxels</span>
-                    </div>
                   </article>
 
-                  <!-- LiDARGen -->
-                  <article class="wb-card" id="lidargen">
+                  <article class="wb-card" id="videogen">
                     <h3>
-                      <i class="fas fa-braille" aria-hidden="true"></i>
-                      <a class="wb-anchor" href="#lidargen">LiDARGen</a>
+                      <span class="icon is-small">
+                        <img src="assets/worldlens/icons/generation.png" style="height: 2em;">
+                      </span>
+                      <a class="wb-anchor">Generation</a>
                     </h3>
                     <p>
-                      <strong>What it is.</strong> A <em>point-cloud–centric</em> world model that learns high-fidelity geometry and
-                      dynamics directly from LiDAR sweeps, suitable for robust 3D understanding, data generation, and sensor-faithful simulation.
+                      measuring whether a model can synthesize visually realistic, temporally stable, and semantically consistent scenes. 
+                      Even state-of-the-art models that achieve low perceptual error (e.g., LPIPS, FVD) often suffer from view flickering or motion instability, revealing the limits of current diffusion-based architectures.
                     </p>
-                    <p class="wb-cap"><strong>Typical inputs</strong>: past LiDAR sweeps, ego trajectory, calibration; optional scene priors.</p>
-                    <div class="wb-meta" aria-label="LiDARGen tags">
-                      <span class="wb-chip">Point-cloud synthesis</span>
-                      <span class="wb-chip">Future sweeps</span>
-                      <span class="wb-chip">Trajectory-conditioned</span>
-                      <span class="wb-chip">Physics-aware</span>
-                    </div>
                   </article>
+
+                  <article class="wb-card" id="videogen">
+                    <h3>
+                      <span class="icon is-small">
+                        <img src="assets/worldlens/icons/generation.png" style="height: 2em;">
+                      </span>
+                      <a class="wb-anchor">Generation</a>
+                    </h3>
+                    <p>
+                      measuring whether a model can synthesize visually realistic, temporally stable, and semantically consistent scenes. 
+                      Even state-of-the-art models that achieve low perceptual error (e.g., LPIPS, FVD) often suffer from view flickering or motion instability, revealing the limits of current diffusion-based architectures.
+                    </p>
+                  </article>
+
+                  <article class="wb-card" id="videogen">
+                    <h3>
+                      <span class="icon is-small">
+                        <img src="assets/worldlens/icons/generation.png" style="height: 2em;">
+                      </span>
+                      <a class="wb-anchor">Generation</a>
+                    </h3>
+                    <p>
+                      measuring whether a model can synthesize visually realistic, temporally stable, and semantically consistent scenes. 
+                      Even state-of-the-art models that achieve low perceptual error (e.g., LPIPS, FVD) often suffer from view flickering or motion instability, revealing the limits of current diffusion-based architectures.
+                    </p>
+                  </article>
+    
                 </div>
               </section>
 
