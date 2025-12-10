@@ -230,6 +230,157 @@
             </section>
 
 
+            <div class="wb-kicker">World Model Categorization</div>
+            <div class="wb-hr" style="margin-bottom:1.25rem;"></div>
+
+            <section id="model-types" style="margin:3.5rem 0;">
+              <div>
+
+                <p class="wb-lead">
+                  We categorize 3D/4D world models into four functional types. They differ in how historical observations are
+                  leveraged, which conditioning signals are provided,
+                  and whether models operate in open-loop or closed-loop settings.
+                </p>
+
+                <div style="
+                  display:grid;
+                  grid-template-columns:repeat(2, minmax(0, 1fr));
+                  gap:1.6rem 1.8rem;">
+
+                  <!-- ================= Type 1 ================= -->
+                  <article style="
+                    background:#f9fafb;
+                    border-radius:0.9rem;
+                    padding:1rem 1.15rem;
+                    box-shadow:0 1px 3px rgba(15,23,42,0.08);">
+
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.45rem;">
+                      <div style="
+                        font-size:0.72rem;
+                        font-weight:600;
+                        letter-spacing:0.08em;
+                        text-transform:uppercase;
+                        color:#2563eb;">
+                        Type 1
+                      </div>
+                      <div style="display:flex; align-items:center; gap:0.45rem; font-weight:600; color:#111827;">
+                        Data Engines
+                        <img src="assets/survey/figures/video-data-engine.png" style="height:1.6rem;">
+                      </div>
+                    </div>
+
+                    <p style="font-size:0.9rem; line-height:1.7; color:#4b5563; margin:0 0 0.55rem;">
+                      Generate diverse 3D/4D scenes from geometric and semantic cues, optionally with action conditions.
+                      Focus on <b>plausibility</b> and <b>diversity</b> for large-scale data augmentation and scenario creation.
+                    </p>
+
+                    <ul style="padding-left:1.1rem; margin:0; font-size:0.88rem; line-height:1.6; color:#4b5563;">
+                      <li><b>Inputs:</b> \(\mathcal{C}_{\mathrm{geo}}\), \(\mathcal{C}_{\mathrm{act}}\) (optional), \(\mathcal{C}_{\mathrm{sem}}\)</li>
+                      <li><b>Output:</b> \(\mathcal{S}_g\) (generated scene)</li>
+                    </ul>
+                  </article>
+
+                  <!-- ================= Type 2 ================= -->
+                  <article style="
+                    background:#f9fafb;
+                    border-radius:0.9rem;
+                    padding:1rem 1.15rem;
+                    box-shadow:0 1px 3px rgba(15,23,42,0.08);">
+
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.45rem;">
+                      <div style="font-size:0.72rem; font-weight:600; letter-spacing:0.08em; color:#2563eb;">
+                        Type 2
+                      </div>
+                      <div style="display:flex; align-items:center; gap:0.45rem; font-weight:600;">
+                        Action Interpreters
+                        <img src="assets/survey/figures/video-action-interpreter.png" style="height:1.6rem;">
+                      </div>
+                    </div>
+
+                    <p style="font-size:0.9rem; line-height:1.7; color:#4b5563; margin:0 0 0.55rem;">
+                      Forecast future 3D/4D world states from historical observations under given action conditions.
+                      Enable <b>action-aware forecasting</b> for planning, behavior prediction, and policy evaluation.
+                    </p>
+
+                    <ul style="padding-left:1.1rem; margin:0; font-size:0.88rem; line-height:1.6; color:#4b5563;">
+                      <li><b>Inputs:</b> \(\mathbf{x}_i^{-t:0}\), \(\mathcal{C}_{\mathrm{act}}\)</li>
+                      <li><b>Output:</b> \(\mathcal{S}_p^{1:k}\) (predicted sequence)</li>
+                    </ul>
+                  </article>
+
+                  <!-- ================= Type 3 ================= -->
+                  <article style="
+                    background:#f9fafb;
+                    border-radius:0.9rem;
+                    padding:1rem 1.15rem;
+                    box-shadow:0 1px 3px rgba(15,23,42,0.08);">
+
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.45rem;">
+                      <div style="font-size:0.72rem; font-weight:600; letter-spacing:0.08em; color:#2563eb;">
+                        Type 3
+                      </div>
+                      <div style="display:flex; align-items:center; gap:0.45rem; font-weight:600;">
+                        Neural Simulators
+                        <img src="assets/survey/figures/video-neural-simulator.png" style="height:1.4rem;">
+                      </div>
+                    </div>
+
+                    <p style="font-size:0.9rem; line-height:1.7; color:#4b5563; margin:0 0 0.55rem;">
+                      Iteratively simulate closed-loop agent–environment interactions by generating successive scene states.
+                      Support <b>interactive simulation</b> for autonomous driving, robotics, and immersive XR training.
+                    </p>
+
+                    <ul style="padding-left:1.1rem; margin:0; font-size:0.88rem; line-height:1.6; color:#4b5563;">
+                      <li><b>Inputs:</b> \(\mathcal{S}_g^{t}\), \(\pi_{\mathrm{agent}}\)</li>
+                      <li><b>Output:</b> \(\mathcal{S}_g^{t+1}\)</li>
+                    </ul>
+                  </article>
+
+                  <!-- ================= Type 4 ================= -->
+                  <article style="
+                    background:#f9fafb;
+                    border-radius:0.9rem;
+                    padding:1rem 1.15rem;
+                    box-shadow:0 1px 3px rgba(15,23,42,0.08);">
+
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.45rem;">
+                      <div style="font-size:0.72rem; font-weight:600; letter-spacing:0.08em; color:#2563eb;">
+                        Type 4
+                      </div>
+                      <div style="display:flex; align-items:center; gap:0.45rem; font-weight:600;">
+                        Scene Reconstructors
+                        <img src="assets/survey/figures/video-scene-reconstructor.png" style="height:1.65rem;">
+                      </div>
+                    </div>
+
+                    <p style="font-size:0.9rem; line-height:1.7; color:#4b5563; margin:0 0 0.55rem;">
+                      Recover complete and coherent 3D/4D scenes from partial, sparse, or corrupted observations.
+                      Facilitate <b>interactive tasks</b> such as high-fidelity mapping and digital twin restoration.
+                    </p>
+
+                    <ul style="padding-left:1.1rem; margin:0; font-size:0.88rem; line-height:1.6; color:#4b5563;">
+                      <li><b>Inputs:</b> \(\mathbf{x}^{p}_{i}\), optional \(\mathcal{C}_{\mathrm{geo}}\)</li>
+                      <li><b>Output:</b> \(\hat{\mathcal{S}}_{g}\) (completed scene)</li>
+                    </ul>
+                  </article>
+
+                </div>
+                <br>
+
+                <p class="wb-lead">
+                  Together, these four categories outline the functional landscape of 3D/4D world modeling.
+                  While all aim to produce physically and semantically coherent scenes, they differ in how they
+                  leverage past observations, conditioning signals, and interaction loops—supporting applications
+                  from large-scale data synthesis and policy evaluation to interactive simulation and scene restoration.
+                </p>
+
+              </div>
+              <br>
+            </section>
+
+
+
+
 
             <style>
             #definition .wb-bridge {
@@ -253,7 +404,6 @@
             @media (max-width: 640px) {
               #definition .wb-grid-4 { grid-template-columns: 1fr; }
             }
-            /* 辅助：更紧凑的卡片标题与说明 */
             #definition .wb-card h4 {
               display: flex; align-items: center; gap: .5rem;
               font-size: 1rem; margin: 0 0 .35rem;
@@ -262,6 +412,8 @@
               margin: .35rem 0; color: #4b5563; line-height: 1.6;
             }
           </style>
+
+
 
 
 
