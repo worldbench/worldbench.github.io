@@ -54,6 +54,37 @@
           .worldlens .s  { color: #ffc000; }
         </style>
 
+        <style>
+          #definition .wb-bridge {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: #374151;
+            margin: 1rem 0 .75rem;
+          }
+          #definition .wb-grid-4 {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 1.25rem;
+            margin-top: .5rem;
+          }
+          @media (max-width: 1200px) {
+            #definition .wb-grid-4 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+          }
+          @media (max-width: 1024px) {
+            #definition .wb-grid-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+          }
+          @media (max-width: 640px) {
+            #definition .wb-grid-4 { grid-template-columns: 1fr; }
+          }
+          #definition .wb-card h4 {
+            display: flex; align-items: center; gap: .5rem;
+            font-size: 1rem; margin: 0 0 .35rem;
+          }
+          #definition .wb-card p.small {
+            margin: .35rem 0; color: #4b5563; line-height: 1.6;
+          }
+        </style>
+
     </head>
 
 
@@ -302,39 +333,55 @@
 
 
 
-              <style>
-              #definition .wb-bridge {
-                font-size: 1rem;
-                line-height: 1.7;
-                color: #374151;
-                margin: 1rem 0 .75rem;
-              }
-              #definition .wb-grid-4 {
-                display: grid;
-                grid-template-columns: repeat(4, minmax(0, 1fr));
-                gap: 1.25rem;
-                margin-top: .5rem;
-              }
-              @media (max-width: 1200px) {
-                #definition .wb-grid-4 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-              }
-              @media (max-width: 1024px) {
-                #definition .wb-grid-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-              }
-              @media (max-width: 640px) {
-                #definition .wb-grid-4 { grid-template-columns: 1fr; }
-              }
-              #definition .wb-card h4 {
-                display: flex; align-items: center; gap: .5rem;
-                font-size: 1rem; margin: 0 0 .35rem;
-              }
-              #definition .wb-card p.small {
-                margin: .35rem 0; color: #4b5563; line-height: 1.6;
-              }
-            </style>
+            <section id="dataset">
+              <div class="wb-section">
+
+                <h2><span class="icon is-small">
+                  WorldLens-26K
+                </h2>
+                
+                <figure style="width: 100%; max-width: 1000px; display: block; margin: 24px auto;">
+                  <img src="assets/worldlens/figures/annotate.png">
+                </figure>
+
+                <div class="wb-kicker">
+                  <span class="worldlens"><span class="w">W</span><span class="o">o</span><span class="r">r</span><span class="l">l</span><span class="d">d</span><span class="l2">L</span><span class="e">e</span><span class="n">n</span><span class="s">s</span></span>-26K: New Type of Dataset
+                </div>
+                <div class="wb-hr" style="margin-bottom:1.25rem;"></div>
+
+                <p class="wb-lead">
+                  
+                </p>
+
+                <br><br>
+              </div>
+            </section>
 
 
 
+            <section id="agent">
+              <div class="wb-section">
+
+                <h2><span class="icon is-small">
+                  WorldLens-Agent
+                </h2>
+                
+                <figure style="width: 100%; max-width: 1000px; display: block; margin: 24px auto;">
+                  <img src="assets/worldlens/figures/agent.png">
+                </figure>
+
+                <div class="wb-kicker">
+                  <span class="worldlens"><span class="w">W</span><span class="o">o</span><span class="r">r</span><span class="l">l</span><span class="d">d</span><span class="l2">L</span><span class="e">e</span><span class="n">n</span><span class="s">s</span></span>-Agent: Towards Automatic Evaluations
+                </div>
+                <div class="wb-hr" style="margin-bottom:1.25rem;"></div>
+
+                <p class="wb-lead">
+                  
+                </p>
+
+                <br><br><br>
+              </div>
+            </section>
 
 
 
@@ -927,90 +974,7 @@
            
 
 
-
-            <div class="wb-kicker">
-              <span class="icon is-small">
-                  <img src="assets/worldlens/icons/generation.png" style="height: 1.6em;">
-                </span>&nbsp;Dimension: Perceptual Discrepancy</div>
-            <div class="wb-hr"></div>
-
-            <section class="videogen videogen-compare" tabindex="0">
-              <div class="video-hero">
-                <div class="video-compare-split" data-compare>
-                  
-                  <!-- Left: GT -->
-                  <div class="video-wrapper gt-layer">
-                    <video class="video-el" data-role="video-gt" autoplay loop muted playsinline>
-                      <source src="assets/worldlens/videos/generation/perceptual_discrepancy/0/good/video.mp4" type="video/mp4" />
-                    </video>
-                    <div class="video-label label-left">Good Case</div>
-                  </div>
-
-                  <!-- Right: Generated -->
-                  <div class="video-wrapper gen-layer">
-                    <video class="video-el" data-role="video-gen" autoplay loop muted playsinline>
-                      <source src="assets/worldlens/videos/generation/perceptual_discrepancy/0/bad/video.mp4" type="video/mp4" />
-                    </video>
-                    <div class="video-label label-right" data-role="method-label">Failure Case</div>
-                  </div>
-
-                  <!-- Split handle -->
-                  <div class="split-handle" data-role="split-handle"
-                      role="separator" aria-label="Drag to compare" aria-orientation="vertical">
-                    <div class="handle-line"></div>
-                    <div class="handle-arrows">
-                      <svg viewBox="0 0 24 24" width="20" height="20" fill="none"
-                          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <polyline points="15 18 9 12 15 6"></polyline>
-                      </svg>
-                      <svg viewBox="0 0 24 24" width="20" height="20" fill="none"
-                          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <polyline points="9 18 15 12 9 6"></polyline>
-                      </svg>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Thumbnails control which videos load -->
-              <div class="thumb-bar" role="tablist">
-                <button class="thumb is-active"
-                        role="tab" aria-selected="true"
-                        data-gt-src="assets/worldlens/videos/generation/perceptual_discrepancy/0/good/video.mp4"
-                        data-gen-src="assets/worldlens/videos/generation/perceptual_discrepancy/0/bad/video.mp4"
-                        data-label="Failure Case">
-                  <img src="assets/worldlens/videos/generation/perceptual_discrepancy/0/good/00000.jpg"
-                      loading="lazy" />
-                  <span>Scene1</span>
-                </button>
-
-                <button class="thumb"
-                        role="tab" aria-selected="false"
-                        data-gt-src="assets/worldlens/videos/generation/perceptual_discrepancy/1/good/video.mp4"
-                        data-gen-src="assets/worldlens/videos/generation/perceptual_discrepancy/1/bad/video.mp4"
-                        data-label="Failure Case">
-                  <img src="assets/worldlens/videos/generation/perceptual_discrepancy/1/good/00000.jpg"
-                      loading="lazy" />
-                  <span>Scene2</span>
-                </button>
-
-                <button class="thumb"
-                        role="tab" aria-selected="false"
-                        data-gt-src="assets/worldlens/videos/generation/perceptual_discrepancy/2/good/video.mp4"
-                        data-gen-src="assets/worldlens/videos/generation/perceptual_discrepancy/2/bad/video.mp4"
-                        data-label="Failure Case">
-                  <img src="assets/worldlens/videos/generation/perceptual_discrepancy/2/good/00000.jpg"
-                      loading="lazy" />
-                  <span>Scene3</span>
-                </button>
-              </div>
-              <br><br>
-            </section>
-
-
-
-
-
+            
             <div class="wb-kicker">
               <span class="icon is-small">
                   <img src="assets/worldlens/icons/reconstruction.png" style="height: 1.6em;">
