@@ -202,9 +202,9 @@ body {
   color: #000; /* Black text */
   border: 2px solid rgba(1, 8, 67, 0.5);
   /* border-radius: 25px; Rounded borders */
-  border-radius: 20px; /* Rounded borders */
-  padding: 10px 15px; /* Top and bottom padding, left and right padding */
-  margin: 5px 10px; /* Space between the buttons */
+  border-radius: 12px; /* Rounded borders */
+  padding: 8px 10px; /* Top and bottom padding, left and right padding */
+  margin: 5px 6px; /* Space between the buttons */
   text-decoration: none; /* Remove the underline from links */
   display: inline-block; /* Display links as inline blocks */
   font-weight: bold; /* Make the text bold */
