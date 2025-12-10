@@ -343,6 +343,10 @@
 
             <h2 id="examples">Generated Examples</h2>
 
+
+
+
+
             <div class="wb-kicker">
               <span class="icon is-small">
                   <img src="assets/worldlens/icons/human-preference.png" style="height: 1.6em;">
@@ -511,6 +515,89 @@
 
             <div class="wb-kicker">
               <span class="icon is-small">
+                  <img src="assets/worldlens/icons/human-preference.png" style="height: 1.6em;">
+                </span>&nbsp;Dimension: Pedestrian Realism</div>
+            <div class="wb-hr"></div>
+
+            <section class="videogen videogen-compare" tabindex="0">
+              <div class="video-hero">
+                <div class="video-compare-split" data-compare>
+                  
+                  <!-- Left: GT -->
+                  <div class="video-wrapper gt-layer">
+                    <video class="video-el" data-role="video-gt" autoplay loop muted playsinline>
+                      <source src="assets/worldlens/videos/human/pedestrian_realism/0/good/video.mp4" type="video/mp4" />
+                    </video>
+                    <div class="video-label label-left">Good Case</div>
+                  </div>
+
+                  <!-- Right: Generated -->
+                  <div class="video-wrapper gen-layer">
+                    <video class="video-el" data-role="video-gen" autoplay loop muted playsinline>
+                      <source src="assets/worldlens/videos/human/pedestrian_realism/0/bad/video.mp4" type="video/mp4" />
+                    </video>
+                    <div class="video-label label-right" data-role="method-label">Failure Case</div>
+                  </div>
+
+                  <!-- Split handle -->
+                  <div class="split-handle" data-role="split-handle"
+                      role="separator" aria-label="Drag to compare" aria-orientation="vertical">
+                    <div class="handle-line"></div>
+                    <div class="handle-arrows">
+                      <svg viewBox="0 0 24 24" width="20" height="20" fill="none"
+                          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="15 18 9 12 15 6"></polyline>
+                      </svg>
+                      <svg viewBox="0 0 24 24" width="20" height="20" fill="none"
+                          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="9 18 15 12 9 6"></polyline>
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Thumbnails control which videos load -->
+              <div class="thumb-bar" role="tablist">
+                <button class="thumb is-active"
+                        role="tab" aria-selected="true"
+                        data-gt-src="assets/worldlens/videos/human/pedestrian_realism/0/good/video.mp4"
+                        data-gen-src="assets/worldlens/videos/human/pedestrian_realism/0/bad/video.mp4"
+                        data-label="Failure Case">
+                  <img src="assets/worldlens/videos/human/pedestrian_realism/0/good/00000.jpg"
+                      loading="lazy" />
+                  <span>Scene1</span>
+                </button>
+
+                <button class="thumb"
+                        role="tab" aria-selected="false"
+                        data-gt-src="assets/worldlens/videos/human/pedestrian_realism/1/good/video.mp4"
+                        data-gen-src="assets/worldlens/videos/human/pedestrian_realism/1/bad/video.mp4"
+                        data-label="Failure Case">
+                  <img src="assets/worldlens/videos/human/pedestrian_realism/1/good/00000.jpg"
+                      loading="lazy" />
+                  <span>Scene2</span>
+                </button>
+
+                <button class="thumb"
+                        role="tab" aria-selected="false"
+                        data-gt-src="assets/worldlens/videos/human/pedestrian_realism/2/good/video.mp4"
+                        data-gen-src="assets/worldlens/videos/human/pedestrian_realism/2/bad/video.mp4"
+                        data-label="Failure Case">
+                  <img src="assets/worldlens/videos/human/pedestrian_realism/2/good/00000.jpg"
+                      loading="lazy" />
+                  <span>Scene3</span>
+                </button>
+              </div>
+              <br><br>
+            </section>
+
+
+
+
+
+            <div class="wb-kicker">
+              <span class="icon is-small">
                   <img src="assets/worldlens/icons/generation.png" style="height: 1.6em;">
                 </span>&nbsp;Dimension: Subject Fidelity</div>
             <div class="wb-hr"></div>
@@ -589,174 +676,7 @@
             </section>
 
 
-
-
-
-            <div class="wb-kicker">
-              <span class="icon is-small">
-                  <img src="assets/worldlens/icons/generation.png" style="height: 1.6em;">
-                </span>&nbsp;Dimension: Subject Coherence</div>
-            <div class="wb-hr"></div>
-
-            <section class="videogen videogen-compare" tabindex="0">
-              <div class="video-hero">
-                <div class="video-compare-split" data-compare>
-                  
-                  <!-- Left: GT -->
-                  <div class="video-wrapper gt-layer">
-                    <video class="video-el" data-role="video-gt" autoplay loop muted playsinline>
-                      <source src="assets/worldlens/videos/generation/subject_coherence/0/good/video.mp4" type="video/mp4" />
-                    </video>
-                    <div class="video-label label-left">Good Case</div>
-                  </div>
-
-                  <!-- Right: Generated -->
-                  <div class="video-wrapper gen-layer">
-                    <video class="video-el" data-role="video-gen" autoplay loop muted playsinline>
-                      <source src="assets/worldlens/videos/generation/subject_coherence/0/bad/video.mp4" type="video/mp4" />
-                    </video>
-                    <div class="video-label label-right" data-role="method-label">Failure Case</div>
-                  </div>
-
-                  <!-- Split handle -->
-                  <div class="split-handle" data-role="split-handle"
-                      role="separator" aria-label="Drag to compare" aria-orientation="vertical">
-                    <div class="handle-line"></div>
-                    <div class="handle-arrows">
-                      <svg viewBox="0 0 24 24" width="20" height="20" fill="none"
-                          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <polyline points="15 18 9 12 15 6"></polyline>
-                      </svg>
-                      <svg viewBox="0 0 24 24" width="20" height="20" fill="none"
-                          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <polyline points="9 18 15 12 9 6"></polyline>
-                      </svg>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Thumbnails control which videos load -->
-              <div class="thumb-bar" role="tablist">
-                <button class="thumb is-active"
-                        role="tab" aria-selected="true"
-                        data-gt-src="assets/worldlens/videos/generation/subject_coherence/0/good/video.mp4"
-                        data-gen-src="assets/worldlens/videos/generation/subject_coherence/0/bad/video.mp4"
-                        data-label="Failure Case">
-                  <img src="assets/worldlens/videos/generation/subject_coherence/0/good/00000.jpg"
-                      loading="lazy" />
-                  <span>Scene1</span>
-                </button>
-
-                <button class="thumb"
-                        role="tab" aria-selected="false"
-                        data-gt-src="assets/worldlens/videos/generation/subject_coherence/1/good/video.mp4"
-                        data-gen-src="assets/worldlens/videos/generation/subject_coherence/1/bad/video.mp4"
-                        data-label="Failure Case">
-                  <img src="assets/worldlens/videos/generation/subject_coherence/1/good/00000.jpg"
-                      loading="lazy" />
-                  <span>Scene2</span>
-                </button>
-
-                <button class="thumb"
-                        role="tab" aria-selected="false"
-                        data-gt-src="assets/worldlens/videos/generation/subject_coherence/2/good/video.mp4"
-                        data-gen-src="assets/worldlens/videos/generation/subject_coherence/2/bad/video.mp4"
-                        data-label="Failure Case">
-                  <img src="assets/worldlens/videos/generation/subject_coherence/2/good/00000.jpg"
-                      loading="lazy" />
-                  <span>Scene3</span>
-                </button>
-              </div>
-              <br><br>
-            </section>
-
             
-
-
-            
-            <div class="wb-kicker">
-              <span class="icon is-small">
-                  <img src="assets/worldlens/icons/generation.png" style="height: 1.6em;">
-                </span>&nbsp;Dimension: Subject Consistency</div>
-            <div class="wb-hr"></div>
-
-            <section class="videogen videogen-compare" tabindex="0">
-              <div class="video-hero">
-                <div class="video-compare-split" data-compare>
-                  
-                  <!-- Left: GT -->
-                  <div class="video-wrapper gt-layer">
-                    <video class="video-el" data-role="video-gt" autoplay loop muted playsinline>
-                      <source src="assets/worldlens/videos/generation/subject_consistency/0/good/video.mp4" type="video/mp4" />
-                    </video>
-                    <div class="video-label label-left">Good Case</div>
-                  </div>
-
-                  <!-- Right: Generated -->
-                  <div class="video-wrapper gen-layer">
-                    <video class="video-el" data-role="video-gen" autoplay loop muted playsinline>
-                      <source src="assets/worldlens/videos/generation/subject_coherence/0/bad/video.mp4" type="video/mp4" />
-                    </video>
-                    <div class="video-label label-right" data-role="method-label">Failure Case</div>
-                  </div>
-
-                  <!-- Split handle -->
-                  <div class="split-handle" data-role="split-handle"
-                      role="separator" aria-label="Drag to compare" aria-orientation="vertical">
-                    <div class="handle-line"></div>
-                    <div class="handle-arrows">
-                      <svg viewBox="0 0 24 24" width="20" height="20" fill="none"
-                          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <polyline points="15 18 9 12 15 6"></polyline>
-                      </svg>
-                      <svg viewBox="0 0 24 24" width="20" height="20" fill="none"
-                          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <polyline points="9 18 15 12 9 6"></polyline>
-                      </svg>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Thumbnails control which videos load -->
-              <div class="thumb-bar" role="tablist">
-                <button class="thumb is-active"
-                        role="tab" aria-selected="true"
-                        data-gt-src="assets/worldlens/videos/generation/subject_coherence/0/good/video.mp4"
-                        data-gen-src="assets/worldlens/videos/generation/subject_coherence/0/bad/video.mp4"
-                        data-label="Failure Case">
-                  <img src="assets/worldlens/videos/generation/subject_coherence/0/good/00000.jpg"
-                      loading="lazy" />
-                  <span>Scene1</span>
-                </button>
-
-                <button class="thumb"
-                        role="tab" aria-selected="false"
-                        data-gt-src="assets/worldlens/videos/generation/subject_coherence/1/good/video.mp4"
-                        data-gen-src="assets/worldlens/videos/generation/subject_coherence/1/bad/video.mp4"
-                        data-label="Failure Case">
-                  <img src="assets/worldlens/videos/generation/subject_coherence/1/good/00000.jpg"
-                      loading="lazy" />
-                  <span>Scene2</span>
-                </button>
-
-                <button class="thumb"
-                        role="tab" aria-selected="false"
-                        data-gt-src="assets/worldlens/videos/generation/subject_coherence/2/good/video.mp4"
-                        data-gen-src="assets/worldlens/videos/generation/subject_coherence/2/bad/video.mp4"
-                        data-label="Failure Case">
-                  <img src="assets/worldlens/videos/generation/subject_coherence/2/good/00000.jpg"
-                      loading="lazy" />
-                  <span>Scene3</span>
-                </button>
-              </div>
-              <br><br>
-            </section>
-
-
-
-
 
 
             <div class="wb-kicker">
