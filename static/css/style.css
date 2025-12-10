@@ -379,9 +379,17 @@ d-article d-contents nav > ul > li > a:hover {
   text-decoration: none;
 }
 
+
 .active-nav-item {
   color: #0d6efd; /* Change as per your preference */
 }
+
+
+
+
+
+
+
 
 .shaded-figure {
   background-color: hsl(0, 0%, 97%);
