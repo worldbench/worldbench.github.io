@@ -307,8 +307,8 @@
 
                   <h2><span class="icon is-small">
                     <span class="icon is-small">
-                  <img src="assets_common/icons/worldbench-mini.gif" style="height: 1.5em; vertical-align:text-bottom;">
-                </span>Official Leaderboard
+                    <img src="assets_common/icons/worldbench-mini.gif" style="height: 1.5em; vertical-align:text-bottom;">
+                    </span>Official Leaderboard
                   </h2>
                   <div style="
                     width:100%;
@@ -332,40 +332,57 @@
 
 
 
-
             <section id="dataset">
               <div class="wb-section">
 
-                <h2><span class="icon is-small">
-                  WorldLens-26K
-                </h2>
-                
-                <figure style="width: 100%; max-width: 1000px; display: block; margin: 24px auto;">
-                  <img src="assets/worldlens/figures/annotate.png">
-                </figure>
+                <h2>WorldLens-26K</h2>
 
-                <div class="wb-kicker">
-                  <span class="worldlens"><span class="w">W</span><span class="o">o</span><span class="r">r</span><span class="l">l</span><span class="d">d</span><span class="l2">L</span><span class="e">e</span><span class="n">n</span><span class="s">s</span></span>-26K: New Type of Dataset
+                <div style="overflow:auto;">
+
+                  <figure style="
+                    float:right;
+                    width:65%;
+                    max-width:520px;
+                    margin:0 0 1rem 1rem;
+                  ">
+                    <img src="assets/worldlens/figures/dataset.png"
+                        style="width:100%; height:auto;">
+                  </figure>
+
+
+                  <p class="wb-lead">
+                    To bridge the gap between human judgment and automated evaluation, we curate a large-scale
+                    human-annotated dataset comprising 26,808 scoring records of generated videos.
+                  </p>
+
+                  <p class="wb-lead">
+                    Each entry includes a discrete score and a concise textual rationale written by annotators,
+                    capturing both quantitative assessment and qualitative explanation.
+                  </p>
+
+                  <p class="wb-lead">
+                    The dataset covers complementary dimensions of perceptual quality.
+                    This balanced design ensures comprehensive coverage across spatial, temporal,
+                    and behavioral aspects of world-model realism.
+                  </p>
+
+                  <p class="wb-lead">
+                    We envision
+                    <span class="worldlens">
+                      <span class="w">W</span><span class="o">o</span><span class="r">r</span><span class="l">l</span><span class="d">d</span>
+                      <span class="l2">L</span><span class="e">e</span><span class="n">n</span><span class="s">s</span></span>-26K
+                    as a foundational resource for training auto-evaluation agents and constructing
+                    human-aligned reward or advantage functions for reinforcement fine-tuning of
+                    generative world models.
+                  </p>
+
                 </div>
-                <div class="wb-hr" style="margin-bottom:1.25rem;"></div>
 
-                <p class="wb-lead">
-                  To bridge the gap between human judgment and automated evaluation, we curate a large-scale human-annotated dataset comprising 26,808 scoring records of generated videos. 
-                  Each entry includes a discrete score and a concise textual rationale written by annotators, capturing both quantitative assessment and qualitative explanation.
-                </p>
-
-                <p class="wb-lead">
-                  The dataset covers complementary dimensions of perceptual quality. 
-                  This balanced design ensures comprehensive coverage across spatial, temporal, and behavioral aspects of world-model realism.
-                </p>
-
-                <p class="wb-lead">
-                  We envision <span class="worldlens"><span class="w">W</span><span class="o">o</span><span class="r">r</span><span class="l">l</span><span class="d">d</span><span class="l2">L</span><span class="e">e</span><span class="n">n</span><span class="s">s</span></span>-26K as a foundational resource for training auto-evaluation agents and constructing human-aligned reward or advantage functions for reinforcement fine-tuning of generative world models.
-                </p>
-
-                <br><br>
-              </div>
+              </div><br><br><br>
             </section>
+
+
+
 
 
 
@@ -394,6 +411,10 @@
                   Through LoRA-based supervised fine-tuning, we distill human perceptual and physical judgments into a Qwen3-VL, enabling it to internalize criteria such as realism, plausibility, and behavioral safety.
                 </p>
 
+                <p class="wb-lead">
+                  This provides consistent, human-aligned assessments, offering a scalable preference oracle for benchmarking future world models.
+                </p>
+
                 <br><br><br>
               </div>
             </section>
@@ -404,16 +425,6 @@
 
 
             <h2 id="examples">Generated Examples</h2>
-
-
-
-
-
-            
-
-
-
-
 
             <div class="wb-kicker">
               <span class="icon is-small">
