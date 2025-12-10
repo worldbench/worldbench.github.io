@@ -350,7 +350,17 @@
                 <div class="wb-hr" style="margin-bottom:1.25rem;"></div>
 
                 <p class="wb-lead">
-                  
+                  To bridge the gap between human judgment and automated evaluation, we curate a large-scale human-annotated dataset comprising 26,808 scoring records of generated videos. 
+                  Each entry includes a discrete score and a concise textual rationale written by annotators, capturing both quantitative assessment and qualitative explanation.
+                </p>
+
+                <p class="wb-lead">
+                  The dataset covers complementary dimensions of perceptual quality. 
+                  This balanced design ensures comprehensive coverage across spatial, temporal, and behavioral aspects of world-model realism.
+                </p>
+
+                <p class="wb-lead">
+                  We envision <span class="worldlens"><span class="w">W</span><span class="o">o</span><span class="r">r</span><span class="l">l</span><span class="d">d</span><span class="l2">L</span><span class="e">e</span><span class="n">n</span><span class="s">s</span></span>-26K as a foundational resource for training auto-evaluation agents and constructing human-aligned reward or advantage functions for reinforcement fine-tuning of generative world models.
                 </p>
 
                 <br><br>
@@ -371,12 +381,17 @@
                 </figure>
 
                 <div class="wb-kicker">
-                  <span class="worldlens"><span class="w">W</span><span class="o">o</span><span class="r">r</span><span class="l">l</span><span class="d">d</span><span class="l2">L</span><span class="e">e</span><span class="n">n</span><span class="s">s</span></span>-Agent: Towards Automatic Evaluations
+                  <span class="worldlens"><span class="w">W</span><span class="o">o</span><span class="r">r</span><span class="l">l</span><span class="d">d</span><span class="l2">L</span><span class="e">e</span><span class="n">n</span><span class="s">s</span></span>-Agent: SFT from Human Feedback
                 </div>
                 <div class="wb-hr" style="margin-bottom:1.25rem;"></div>
 
                 <p class="wb-lead">
-                  
+                  Evaluating generated worlds hinges on human-centered criteria (physical plausibility) and subjective preferences (perceived realism) that quantitative metrics inherently miss, highlighting the necessity of a human-aligned evaluator.
+                </p>
+
+                <p class="wb-lead">
+                  To this end, we introduce <span class="worldlens"><span class="w">W</span><span class="o">o</span><span class="r">r</span><span class="l">l</span><span class="d">d</span><span class="l2">L</span><span class="e">e</span><span class="n">n</span><span class="s">s</span></span>-Agent, a vision-language critic agent trained on WorldLens-26K. 
+                  Through LoRA-based supervised fine-tuning, we distill human perceptual and physical judgments into a Qwen3-VL, enabling it to internalize criteria such as realism, plausibility, and behavioral safety.
                 </p>
 
                 <br><br><br>
@@ -394,84 +409,7 @@
 
 
 
-            <div class="wb-kicker">
-              <span class="icon is-small">
-                  <img src="assets/worldlens/icons/human-preference.png" style="height: 1.6em;">
-                </span>&nbsp;Dimension: Overall Realism</div>
-            <div class="wb-hr"></div>
-
-            <section class="videogen videogen-compare" tabindex="0">
-              <div class="video-hero">
-                <div class="video-compare-split" data-compare>
-                  
-                  <!-- Left: GT -->
-                  <div class="video-wrapper gt-layer">
-                    <video class="video-el" data-role="video-gt" autoplay loop muted playsinline>
-                      <source src="assets/worldlens/videos/human-preference/overall_realism/0/good/video.mp4" type="video/mp4" />
-                    </video>
-                    <div class="video-label label-left">Good Case</div>
-                  </div>
-
-                  <!-- Right: Generated -->
-                  <div class="video-wrapper gen-layer">
-                    <video class="video-el" data-role="video-gen" autoplay loop muted playsinline>
-                      <source src="assets/worldlens/videos/human-preference/overall_realism/0/bad/video.mp4" type="video/mp4" />
-                    </video>
-                    <div class="video-label label-right" data-role="method-label">Failure Case</div>
-                  </div>
-
-                  <!-- Split handle -->
-                  <div class="split-handle" data-role="split-handle"
-                      role="separator" aria-label="Drag to compare" aria-orientation="vertical">
-                    <div class="handle-line"></div>
-                    <div class="handle-arrows">
-                      <svg viewBox="0 0 24 24" width="20" height="20" fill="none"
-                          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <polyline points="15 18 9 12 15 6"></polyline>
-                      </svg>
-                      <svg viewBox="0 0 24 24" width="20" height="20" fill="none"
-                          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <polyline points="9 18 15 12 9 6"></polyline>
-                      </svg>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Thumbnails control which videos load -->
-              <div class="thumb-bar" role="tablist">
-                <button class="thumb is-active"
-                        role="tab" aria-selected="true"
-                        data-gt-src="assets/worldlens/videos/human/overall_realism/0/good/video.mp4"
-                        data-gen-src="assets/worldlens/videos/human/overall_realism/0/bad/video.mp4"
-                        data-label="Failure Case">
-                  <img src="assets/worldlens/videos/human/overall_realism/0/good/00000.jpg"
-                      loading="lazy" />
-                  <span>Scene1</span>
-                </button>
-
-                <button class="thumb"
-                        role="tab" aria-selected="false"
-                        data-gt-src="assets/worldlens/videos/human/overall_realism/1/good/video.mp4"
-                        data-gen-src="assets/worldlens/videos/human/overall_realism/1/bad/video.mp4"
-                        data-label="Failure Case">
-                  <img src="assets/worldlens/videos/human/overall_realism/1/good/00000.jpg"
-                      loading="lazy" />
-                  <span>Scene2</span>
-                </button>
-
-                <button class="thumb"
-                        role="tab" aria-selected="false"
-                        data-gt-src="assets/worldlens/videos/human/overall_realism/2/good/video.mp4"
-                        data-gen-src="assets/worldlens/videos/human/overall_realism/2/bad/video.mp4"
-                        data-label="Failure Case">
-                  <img src="assets/worldlens/videos/human/overall_realism/2/good/00000.jpg"
-                      loading="lazy" />
-                  <span>Scene3</span>
-                </button>
-              </div>
-              <br><br>
-            </section>
+            
 
 
 
@@ -974,7 +912,7 @@
            
 
 
-            
+
             <div class="wb-kicker">
               <span class="icon is-small">
                   <img src="assets/worldlens/icons/reconstruction.png" style="height: 1.6em;">
