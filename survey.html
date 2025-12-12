@@ -1244,6 +1244,52 @@
                   <!-- Project -->
                   <article class="wb-card project-card">
                     <div class="project-thumb">
+                      <img src="assets_common/teasers/vbench.png"
+                         loading="lazy">
+                    </div>
+                    <h3 class="project-title">VBench: Benchmark Suite for Video Generative Models</h3>
+                    <div class="project-links">
+                      <a href="https://arxiv.org/abs/2311.17982" target="_blank" class="project-link">
+                        <i class="ai ai-arxiv"></i>
+                      </a>
+                      <a href="https://vchitect.github.io/VBench-project/" target="_blank" class="project-link">
+                        <i class="fas fa-globe"></i>
+                      </a>
+                      <a href="https://github.com/Vchitect/VBench" target="_blank" class="project-link">
+                        <img src="assets_common/icons/github.png" class="icon-img" loading="lazy">
+                      </a>
+                      <a href="https://huggingface.co/spaces/Vchitect/VBench_Leaderboard" target="_blank" class="project-link">
+                        <img src="assets_common/icons/hf.png" class="icon-img" loading="lazy">
+                      </a>
+                    </div>
+                  </article>
+
+                  <!-- Project -->
+                  <article class="wb-card project-card">
+                    <div class="project-thumb">
+                      <img src="assets_common/teasers/vbench2.png"
+                         loading="lazy">
+                    </div>
+                    <h3 class="project-title">VBench++: Versatile Video Generation Benchmark</h3>
+                    <div class="project-links">
+                      <a href="https://arxiv.org/abs/2411.13503" target="_blank" class="project-link">
+                        <i class="ai ai-arxiv"></i>
+                      </a>
+                      <a href="https://vchitect.github.io/VBench-project/" target="_blank" class="project-link">
+                        <i class="fas fa-globe"></i>
+                      </a>
+                      <a href="https://github.com/Vchitect/VBench" target="_blank" class="project-link">
+                        <img src="assets_common/icons/github.png" class="icon-img" loading="lazy">
+                      </a>
+                      <a href="https://huggingface.co/spaces/Vchitect/VBench_Leaderboard" target="_blank" class="project-link">
+                        <img src="assets_common/icons/hf.png" class="icon-img" loading="lazy">
+                      </a>
+                    </div>
+                  </article>
+
+                  <!-- Project -->
+                  <article class="wb-card project-card">
+                    <div class="project-thumb">
                       <img src="assets_common/teasers/lidarcrafter.png"
                          loading="lazy">
                     </div>
@@ -1813,7 +1859,6 @@
         </script>
 
         <script>
-            // 对页面上每个 .videogen 独立初始化
             document.querySelectorAll('.videogen').forEach((root) => {
             const heroVideo  = root.querySelector('[data-hero]');
             const heroSource = heroVideo.querySelector('source');
@@ -1839,10 +1884,8 @@
                 setActive(btn);
             }
         
-            // 点击切换（仅作用于本组）
             thumbs.forEach(btn => btn.addEventListener('click', () => switchTo(btn)));
         
-            // 键盘左右切换（仅当该组获得焦点时生效）
             root.addEventListener('keydown', (e) => {
                 if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
                 const idx = thumbs.findIndex(b => b.classList.contains('is-active'));
@@ -1854,7 +1897,6 @@
                 thumbs[next].scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
             });
         
-            // 若标记了 is-active，则用它作为初始；否则沿用 <source> 默认
             const initial = root.querySelector('.thumb.is-active');
             if (initial) switchTo(initial);
             });
@@ -1863,14 +1905,12 @@
         <script>
           (function(){
             function buildSrc(client, base, method, file, query){
-              // 组合 viser-client 的 URL
               // e.g. https://.../viser-client/?playbackPath=https://.../lidar_visers/lidargen/0.viser&initialCamera...
               const slash = base.endsWith('/') ? '' : '/';
               return `${client}?playbackPath=${base}${slash}${method}/${file}${query || ''}`;
             }
           
             document.querySelectorAll('.data-switcher').forEach((root)=>{
-              // 作用域：每个 data-switcher 独立
               const client = root.dataset.client;
               const base   = root.dataset.base;
               const query  = root.dataset.query || '';
@@ -1897,7 +1937,7 @@
                   if(!file) return;
                   const next = buildSrc(client, base, method, file, query);
                   if(ifr.src !== next){
-                    ifr.src = next; // 懒加载或切换时才填充
+                    ifr.src = next;
                   }
                 });
                 setActive(btn);
@@ -1910,16 +1950,13 @@
                 if(first) switchMethod(first);
               }
           
-              // 点击切换（仅影响当前容器）
               btns.forEach(btn=>btn.addEventListener('click', ()=>switchMethod(btn)));
           
-              // 展开 <details> 时再初始化，减少首屏请求量
               root.addEventListener('toggle', ()=>{
                 if(root.open) initOnce();
               });
-              if(root.open) initOnce();       // 如果默认是展开状态，立刻初始化
+              if(root.open) initOnce();
           
-              // 键盘左右键切换（容器聚焦）
               root.tabIndex = 0;
               root.addEventListener('keydown', (e)=>{
                 if(e.key!=='ArrowLeft' && e.key!=='ArrowRight') return;
