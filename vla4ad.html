@@ -55,22 +55,22 @@
 
 
                 <div class="button-container">
-                    <a href="https://arxiv.org/abs/2509.07996" class="button paper-link" target="_blank">
+                    <a href="" class="button paper-link" target="_blank">
                         <span class="icon is-small">
                             <i class="ai ai-arxiv "  style="height: 1.5em;"></i>
                         </span><span>arXiv</span>
                     </a>
-                    <a href="assets_common/papers/survey.pdf" class="button paper-link" target="_blank">
+                    <a href="assets_common/papers/vla4ad.pdf" class="button paper-link" target="_blank">
                         <span class="icon is-small">
                             <img src="assets_common/icons/pdf.png" style="height: 1.4em;">
                         </span><span>PDF</span>
                     </a>
-                    <a href="https://github.com/worldbench/survey" class="button" target="_blank">
+                    <a href="https://github.com/worldbench/awesome-vla-for-ad" class="button" target="_blank">
                         <span class="icon is-small">
                             <img src="assets_common/icons/github.png" style="height: 1.4em;">
                         </span><span>GitHub</span>
                     </a>
-                    <a href="https://huggingface.co/spaces/worldbench/WorldLens" class="button" target="_blank">
+                    <a href="https://huggingface.co/spaces/worldbench/vla4ad" class="button" target="_blank">
                         <span class="icon is-small">
                             <img src="assets_common/icons/hf.png" style="height: 1.5em;">
                         </span><span>Leaderboard</span>
@@ -91,32 +91,30 @@
                 <nav>
                     <h4>Contents</h4>
                     <div><a href="#definition">Definition</a></div>
-                    <!-- <div><a href="#taxonomy">Taxonomy</a></div> -->
-                    <!-- <div><a href="#examples">Examples</a></div> -->
-                    <div><a href="#projects">Projects</a></div>
+                    <div><a href="#taxonomy">Taxonomy</a></div>
+                    <div><a href="#projects">Collections</a></div>
+                    <div><a href="#contributors">Contributors</a></div>
                 </nav>
             </d-contents>
 
 
-            <!-- ---------- Introduction (new) ---------- -->
-              <section id="introduction">
-                <div class="wb-section">
-                    <div class="wb-kicker">Introduction</div>
-                    <div class="wb-hr"></div>
-                    <p class="wb-lead">
-                      This survey reviews <strong>Vision-Language-Action (VLA) models</strong> — an emerging paradigm that integrates 
-                      visual perception, natural language reasoning, and executable actions for autonomous driving. We trace the evolution 
-                      from traditional <strong>Vision-Action (VA) approaches</strong> to <strong>modern VLA frameworks</strong>.
-                    </p>
-                </div>
+            <section id="introduction">
+              <div class="wb-section">
+                  <div class="wb-kicker">Introduction</div>
+                  <div class="wb-hr"></div>
+                  <p class="wb-lead">
+                    This survey reviews <strong>Vision-Language-Action (VLA) models</strong> — an emerging paradigm that integrates 
+                    visual perception, natural language reasoning, and executable actions for autonomous driving. We trace the evolution 
+                    from traditional <strong>Vision-Action (VA) approaches</strong> to <strong>modern VLA frameworks</strong>.
+                  </p>
+              </div>
 
-                <!-- <figure class="wb-simple-card" aria-label="Taxonomy overview figure">
-                  <img src="figures/teaser.png" alt="teaser">
-                </figure> -->
-              </section>
+              <!-- <figure class="wb-simple-card" aria-label="Taxonomy overview figure">
+                <img src="figures/teaser.png" alt="teaser">
+              </figure> -->
 
-
-
+              <br><br>
+            </section>
 
 
 
@@ -124,223 +122,803 @@
 
 
 
-              <!-- ---------- Definition (drop-in replacement for your current block) ---------- -->
-              <section id="definition">
-                <h2>Definition</h2>
-                <div class="wb-hr" style="margin-bottom:1.25rem;"></div>
 
-                <!-- override previous 3-col grid -->
-                <style>
-                  /* 一列排布，并把卡片限制成正文宽度感（可按需改 900px） */
-                  #definition .wb-grid{
-                    grid-template-columns: 1fr !important;
-                    max-width: 900px;
-                    margin: 0 auto;            /* 居中 */
-                    gap: 1rem 1.25rem;
-                  }
-                </style>
 
-                <div class="wb-grid">
-                  <!-- Vision-Action (VA) Models -->
-                  <article class="wb-card" id="va-models">
-                    <h3>
-                        <i class="fas fa-film" aria-hidden="true"></i>
-                        <a class="wb-anchor" href="#va-models">Vision-Action (VA) Models</a>
-                      </h3>
-                      <p>
-                        <strong>What it is.</strong> A <em>vision-centric</em> driving paradigm that directly maps raw sensory 
-                        observations to driving actions, thereby avoiding explicit modular decomposition 
-                        into perception, prediction, and planning. VA models learn end-to-end policies through imitation learning 
-                        or reinforcement learning.
-                      </p>
-                      <p class="wb-cap">
-                        <strong>Typical inputs</strong>: Multi-view RGB images, LiDAR point clouds, ego vehicle state, maps.
-                      </p>
-                      <div class="wb-meta" aria-label="VA Models tags">
-                        <span class="wb-chip">End-to-End Models</span>
-                        <span class="wb-chip">World Models</span>
-                        <span class="wb-chip">Imitation Learning</span>
-                        <span class="wb-chip">Reinforcement Learning</span>
-                        <span class="wb-chip">Trajectory prediction</span>
-                      </div>
-                  </article>
 
-                  <!-- Vision-Language-Action (VLA) Models -->
-                  <article class="wb-card" id="lidargen">
-                    <h3>
-                        <i class="fas fa-braille" aria-hidden="true"></i>
-                        <a class="wb-anchor" href="#vla-models">Vision-Language-Action (VLA) Models</a>
-                      </h3>
-                      <p>
-                        <strong>What it is.</strong> A <em>multimodal reasoning</em> paradigm that couples visual perception with 
-                        large VLMs to produce executable driving actions. VLAs integrate visual understanding, 
-                        linguistic reasoning, and actionable outputs within a unified framework, enabling more interpretable, 
-                        generalizable, and human-aligned driving policies through natural language instructions and chain-of-thought reasoning.
-                      </p>
-                      <p class="wb-cap">
-                        <strong>Typical inputs</strong>: Multi-view RGB images, LiDAR point clouds, BEV features, natural language instructions, 
-                        scene descriptions, traffic rules, ego status, context demonstrations.
-                      </p>
-                      <div class="wb-meta" aria-label="VLA Models tags">
-                        <span class="wb-chip">End-to-End VLA</span>
-                        <span class="wb-chip">Dual-System VLA</span>
-                        <!-- <span class="wb-chip">Language grounding</span> -->
-                        <span class="wb-chip">Chain-of-thought</span>
-                        <span class="wb-chip">Instruction following</span>
-                        <span class="wb-chip">Interpretable reasoning</span>
-                      </div>
-                  </article>
-                </div>
-              </section>
-
+            <section id="definition">
+              <h2>Definition</h2>
+              <div class="wb-hr" style="margin-bottom:1.25rem;"></div>
 
               <style>
-              /* 过渡段落略小一号 */
-              #definition .wb-bridge {
-                font-size: 1rem;
-                line-height: 1.7;
-                color: #374151;
-                margin: 1rem 0 .75rem;
-              }
-              /* 4列卡片栅格（桌面四列 / 平板两到三列 / 手机一列） */
-              #definition .wb-grid-4 {
-                display: grid;
-                grid-template-columns: repeat(4, minmax(0, 1fr));
-                gap: 1.25rem;
-                margin-top: .5rem;
-              }
-              @media (max-width: 1200px) {
-                #definition .wb-grid-4 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-              }
-              @media (max-width: 1024px) {
-                #definition .wb-grid-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-              }
-              @media (max-width: 640px) {
-                #definition .wb-grid-4 { grid-template-columns: 1fr; }
-              }
-              /* 辅助：更紧凑的卡片标题与说明 */
-              #definition .wb-card h4 {
-                display: flex; align-items: center; gap: .5rem;
-                font-size: 1rem; margin: 0 0 .35rem;
-              }
-              #definition .wb-card p.small {
-                margin: .35rem 0; color: #4b5563; line-height: 1.6;
-              }
-            </style>
+                #definition .wb-grid{
+                  grid-template-columns: 1fr !important; max-width: 900px; margin: 0 auto; gap: 1rem 1.25rem;
+                }
+              </style>
+
+              <div class="wb-grid">
+                <!-- Vision-Action (VA) Models -->
+                <article class="wb-card" id="va-models">
+                  <h3>
+                      <i class="fas fa-film" aria-hidden="true"></i>
+                      <a class="wb-anchor" href="#va-models">Vision-Action (VA) Models</a>
+                    </h3>
+                    <p>
+                      A vision-centric driving system that directly maps raw sensory 
+                      observations to driving actions, thereby avoiding explicit modular decomposition 
+                      into perception, prediction, and planning. VA models learn end-to-end policies through imitation learning 
+                      or reinforcement learning.
+                    </p>
+                    <p class="wb-cap">
+                      <strong>Typical inputs</strong>: Multi-View RGB Images, LiDAR Point Clouds, Ego Vehicle State, Maps.
+                    </p>
+                    <div class="wb-meta" aria-label="VA Models tags">
+                      <span class="wb-chip">End-to-End Models</span>
+                      <span class="wb-chip">World Models</span>
+                      <span class="wb-chip">Imitation Learning</span>
+                      <span class="wb-chip">Reinforcement Learning</span>
+                      <span class="wb-chip">Trajectory Prediction</span>
+                    </div>
+                </article>
+
+                <!-- Vision-Language-Action (VLA) Models -->
+                <article class="wb-card" id="lidargen">
+                  <h3>
+                      <i class="fas fa-braille" aria-hidden="true"></i>
+                      <a class="wb-anchor" href="#vla-models">Vision-Language-Action (VLA) Models</a>
+                    </h3>
+                    <p>
+                      A multimodal reasoning system that couples visual perception with 
+                      large VLMs to produce executable driving actions. VLAs integrate visual understanding, 
+                      linguistic reasoning, and actionable outputs within a unified framework, enabling more interpretable, 
+                      generalizable, and human-aligned driving policies through natural language instructions and chain-of-thought reasoning.
+                    </p>
+                    <p class="wb-cap">
+                      <strong>Typical inputs</strong>: Multi-View RGB Images, LiDAR Point Clouds, BEV Features, Natural Language Instructions, 
+                      Scene Descriptions, Traffic Rules, Ego Status, Context Demonstrations.
+                    </p>
+                    <div class="wb-meta" aria-label="VLA Models tags">
+                      <span class="wb-chip">End-to-End VLA</span>
+                      <span class="wb-chip">Dual-System VLA</span>
+                      <span class="wb-chip">Chain-of-Thought</span>
+                      <span class="wb-chip">Instruction Following</span>
+                      <span class="wb-chip">Interpretable Reasoning</span>
+                    </div>
+                </article>
+              </div>
+              <br><br>
+            </section>
+
+
+            <style>
+            #definition .wb-bridge {
+              font-size: 1rem;
+              line-height: 1.7;
+              color: #374151;
+              margin: 1rem 0 .75rem;
+            }
+            #definition .wb-grid-4 {
+              display: grid;
+              grid-template-columns: repeat(4, minmax(0, 1fr));
+              gap: 1.25rem;
+              margin-top: .5rem;
+            }
+            @media (max-width: 1200px) {
+              #definition .wb-grid-4 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+            }
+            @media (max-width: 1024px) {
+              #definition .wb-grid-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            }
+            @media (max-width: 640px) {
+              #definition .wb-grid-4 { grid-template-columns: 1fr; }
+            }
+            #definition .wb-card h4 {
+              display: flex; align-items: center; gap: .5rem;
+              font-size: 1rem; margin: 0 0 .35rem;
+            }
+            #definition .wb-card p.small {
+              margin: .35rem 0; color: #4b5563; line-height: 1.6;
+            }
+          </style>
+
+
+
+
+
+          <section id="projects">
+              <h2>Collections</h2>
+              <div class="wb-hr" style="margin-bottom:1.25rem;"></div>
+          </section>
+          <section id="va-papers" class="papers-section" data-section-key="va" data-initial="3">
+              <h2>Vision-Action Models</h2>
+              <div class="bar" aria-live="polite">
+                <div class="tabs" role="tablist" aria-label="Vision-Action Model Categories">
+                  <button class="tab-btn tab-1" role="tab" aria-selected="true" aria-controls="va-panel-a" id="va-tab-a">Action-Only Models</button>
+                  <button class="tab-btn tab-2" role="tab" aria-selected="false" aria-controls="va-panel-b" id="va-tab-b">Perception-Action Models</button>
+                  <button class="tab-btn tab-3" role="tab" aria-selected="false" aria-controls="va-panel-c" id="va-tab-c">Image-Bsed World Models</button>
+                  <button class="tab-btn tab-4" role="tab" aria-selected="false" aria-controls="va-panel-d" id="va-tab-d">Occupancy World Models</button>
+                  <button class="tab-btn tab-5" role="tab" aria-selected="false" aria-controls="va-panel-e" id="va-tab-e">Latent World Models</button>
+                </div>
+                <div class="search" title="">
+                  🔎 <input class="paper-search" type="search" placeholder="Search: Title / Author / Source" />
+                </div>
+                <span class="count">0 items</span>
+              </div>
+              
+              <!-- Action-Only Models -->
+              <section id="va-panel-a" class="panel" role="tabpanel" aria-labelledby="va-tab-a" aria-hidden="false">
+                <div class="list"></div>
+              </section>
+              
+              <!-- Perception-Action Models -->
+              <section id="va-panel-b" class="panel" role="tabpanel" aria-labelledby="va-tab-b" aria-hidden="true">
+                <div class="list"></div>
+              </section>
+              
+              <!-- Image-Based World Models -->
+              <section id="va-panel-c" class="panel" role="tabpanel" aria-labelledby="va-tab-c" aria-hidden="true">
+                <div class="list"></div>
+              </section>
+              
+              <!-- Occupancy World Models -->
+              <section id="va-panel-d" class="panel" role="tabpanel" aria-labelledby="va-tab-d" aria-hidden="true">
+                <div class="list"></div>
+              </section>
+              
+              <!-- Latent World Models -->
+              <section id="va-panel-e" class="panel" role="tabpanel" aria-labelledby="va-tab-e" aria-hidden="true">
+                <div class="list"></div>
+              </section>
+            </section>
 
 
             <section id="projects">
-                <h2>Projects</h2>
-                <div class="wb-hr" style="margin-bottom:1.25rem;"></div>
+                <hr>
             </section>
-            <section id="va-papers" class="papers-section" data-section-key="va" data-initial="3">
-                <h2>Vision-Action Models</h2>
-                <div class="bar" aria-live="polite">
-                  <div class="tabs" role="tablist" aria-label="Vision-Action Model Categories">
-                    <button class="tab-btn tab-1" role="tab" aria-selected="true" aria-controls="va-panel-a" id="va-tab-a">Action-Only Models</button>
-                    <button class="tab-btn tab-2" role="tab" aria-selected="false" aria-controls="va-panel-b" id="va-tab-b">Perception-Action Models</button>
-                    <button class="tab-btn tab-3" role="tab" aria-selected="false" aria-controls="va-panel-c" id="va-tab-c">Image-based World Models</button>
-                    <button class="tab-btn tab-4" role="tab" aria-selected="false" aria-controls="va-panel-d" id="va-tab-d">Occupancy-based World Models</button>
-                    <button class="tab-btn tab-5" role="tab" aria-selected="false" aria-controls="va-panel-e" id="va-tab-e">Latent-based World Models</button>
-                  </div>
-                  <div class="search" title="输入关键词过滤（标题、作者、出处）">
-                    🔎 <input class="paper-search" type="search" placeholder="Search: Title / Author / Source" />
-                  </div>
-                  <span class="count">0 items</span>
-                </div>
-                
-                <!-- Action-Only Models -->
-                <section id="va-panel-a" class="panel" role="tabpanel" aria-labelledby="va-tab-a" aria-hidden="false">
-                  <div class="list"></div>
-                </section>
-                
-                <!-- Perception-Action Models -->
-                <section id="va-panel-b" class="panel" role="tabpanel" aria-labelledby="va-tab-b" aria-hidden="true">
-                  <div class="list"></div>
-                </section>
-                
-                <!-- Image-based World Models -->
-                <section id="va-panel-c" class="panel" role="tabpanel" aria-labelledby="va-tab-c" aria-hidden="true">
-                  <div class="list"></div>
-                </section>
-                
-                <!-- Occupancy-based World Models -->
-                <section id="va-panel-d" class="panel" role="tabpanel" aria-labelledby="va-tab-d" aria-hidden="true">
-                  <div class="list"></div>
-                </section>
-                
-                <!-- Latent-based World Models -->
-                <section id="va-panel-e" class="panel" role="tabpanel" aria-labelledby="va-tab-e" aria-hidden="true">
-                  <div class="list"></div>
-                </section>
-              </section>
 
-              <section id="vla-papers" class="papers-section" data-section-key="vla" data-initial="3">
-                <h2>Vision-Language-Action Models</h2>
-                <div class="bar" aria-live="polite">
-                  <div class="tabs" role="tablist" aria-label="Vision-Language-Action Model Categories">
-                    <button class="tab-btn tab-1" role="tab" aria-selected="true" aria-controls="vla-panel-a" id="vla-tab-a">Textual Action Generator</button>
-                    <button class="tab-btn tab-2" role="tab" aria-selected="false" aria-controls="vla-panel-b" id="vla-tab-b">Numerical Action Generator</button>
-                    <button class="tab-btn tab-3" role="tab" aria-selected="false" aria-controls="vla-panel-c" id="vla-tab-c">Explicit Action Guidance</button>
-                    <button class="tab-btn tab-4" role="tab" aria-selected="false" aria-controls="vla-panel-d" id="vla-tab-d">Implicit Representations Transfer</button>
-                  </div>
-                  <div class="search" title="输入关键词过滤（标题、作者、出处）">
-                    🔎 <input class="paper-search" type="search" placeholder="Search: Title / Author / Source" />
-                  </div>
-                  <span class="count">0 items</span>
-                </div>
-                
-                <!-- Textual Action Generator -->
-                <section id="vla-panel-a" class="panel" role="tabpanel" aria-labelledby="vla-tab-a" aria-hidden="false">
-                  <div class="list"></div>
-                </section>
-                
-                <!-- Numerical Action Generator -->
-                <section id="vla-panel-b" class="panel" role="tabpanel" aria-labelledby="vla-tab-b" aria-hidden="true">
-                  <div class="list"></div>
-                </section>
-                
-                <!-- Explicit Action Guidance -->
-                <section id="vla-panel-c" class="panel" role="tabpanel" aria-labelledby="vla-tab-c" aria-hidden="true">
-                  <div class="list"></div>
-                </section>
-                
-                <!-- Implicit Representations Transfer -->
-                <section id="vla-panel-d" class="panel" role="tabpanel" aria-labelledby="vla-tab-d" aria-hidden="true">
-                  <div class="list"></div>
-                </section>
-              </section>
 
-              <section id="dataset-papers" class="papers-section" data-section-key="dataset" data-initial="3">
-                <h2>Datasets & Benchmarks</h2>
-                <div class="bar" aria-live="polite">
-                  <div class="tabs" role="tablist" aria-label="Dataset Categories">
-                    <button class="tab-btn tab-1" role="tab" aria-selected="true" aria-controls="dataset-panel-a" id="dataset-tab-a">Vision-Action Datasets</button>
-                    <button class="tab-btn tab-2" role="tab" aria-selected="false" aria-controls="dataset-panel-b" id="dataset-tab-b">Vision-Language-Action Datasets</button>
-                  </div>
-                  <div class="search" title="输入关键词过滤（标题、作者、出处）">
-                    🔎 <input class="paper-search" type="search" placeholder="Search: Title / Author / Source" />
-                  </div>
-                  <span class="count">0 items</span>
+            <section id="vla-papers" class="papers-section" data-section-key="vla" data-initial="3">
+              <h2>Vision-Language-Action Models</h2>
+              <div class="bar" aria-live="polite">
+                <div class="tabs" role="tablist" aria-label="Vision-Language-Action Model Categories">
+                  <button class="tab-btn tab-1" role="tab" aria-selected="true" aria-controls="vla-panel-a" id="vla-tab-a">Textual Action Generator</button>
+                  <button class="tab-btn tab-2" role="tab" aria-selected="false" aria-controls="vla-panel-b" id="vla-tab-b">Numerical Action Generator</button>
+                  <button class="tab-btn tab-3" role="tab" aria-selected="false" aria-controls="vla-panel-c" id="vla-tab-c">Explicit Action Guidance</button>
+                  <button class="tab-btn tab-4" role="tab" aria-selected="false" aria-controls="vla-panel-d" id="vla-tab-d">Implicit Representations Transfer</button>
                 </div>
-                
-                <!-- Vision-Action Datasets -->
-                <section id="dataset-panel-a" class="panel" role="tabpanel" aria-labelledby="dataset-tab-a" aria-hidden="false">
-                  <div class="list"></div>
-                </section>
-                
-                <!-- Vision-Language-Action Datasets -->
-                <section id="dataset-panel-b" class="panel" role="tabpanel" aria-labelledby="dataset-tab-b" aria-hidden="true">
-                  <div class="list"></div>
-                </section>
-              </section>            
+                <div class="search" title="输入关键词过滤（标题、作者、出处）">
+                  🔎 <input class="paper-search" type="search" placeholder="Search: Title / Author / Source" />
+                </div>
+                <span class="count">0 items</span>
+              </div>
+              
+              <!-- Textual Action Generator -->
+              <section id="vla-panel-a" class="panel" role="tabpanel" aria-labelledby="vla-tab-a" aria-hidden="false">
+                <div class="list"></div>
+              </section>
+              
+              <!-- Numerical Action Generator -->
+              <section id="vla-panel-b" class="panel" role="tabpanel" aria-labelledby="vla-tab-b" aria-hidden="true">
+                <div class="list"></div>
+              </section>
+              
+              <!-- Explicit Action Guidance -->
+              <section id="vla-panel-c" class="panel" role="tabpanel" aria-labelledby="vla-tab-c" aria-hidden="true">
+                <div class="list"></div>
+              </section>
+              
+              <!-- Implicit Representations Transfer -->
+              <section id="vla-panel-d" class="panel" role="tabpanel" aria-labelledby="vla-tab-d" aria-hidden="true">
+                <div class="list"></div>
+              </section>
+            </section>
+
+
+            <section id="projects">
+                <hr>
+            </section>
+
+
+            <section id="dataset-papers" class="papers-section" data-section-key="dataset" data-initial="3">
+              <h2>Datasets & Benchmarks</h2>
+              <div class="bar" aria-live="polite">
+                <div class="tabs" role="tablist" aria-label="Dataset Categories">
+                  <button class="tab-btn tab-1" role="tab" aria-selected="true" aria-controls="dataset-panel-a" id="dataset-tab-a">Vision-Action Datasets</button>
+                  <button class="tab-btn tab-2" role="tab" aria-selected="false" aria-controls="dataset-panel-b" id="dataset-tab-b">Vision-Language-Action Datasets</button>
+                </div>
+                <div class="search" title="输入关键词过滤（标题、作者、出处）">
+                  🔎 <input class="paper-search" type="search" placeholder="Search: Title / Author / Source" />
+                </div>
+                <span class="count">0 items</span>
+              </div>
+              
+              <!-- Vision-Action Datasets -->
+              <section id="dataset-panel-a" class="panel" role="tabpanel" aria-labelledby="dataset-tab-a" aria-hidden="false">
+                <div class="list"></div>
+              </section>
+              
+              <!-- Vision-Language-Action Datasets -->
+              <section id="dataset-panel-b" class="panel" role="tabpanel" aria-labelledby="dataset-tab-b" aria-hidden="true">
+                <div class="list"></div>
+              </section>
+            </section>            
 
             <br><br>
-            
-              
-                <d-footnote-list></d-footnote-list>
-                <d-citation-list></d-citation-list>
-            </d-appendix>
+
+
+
+
+
+            <section id="contributors">
+              <div class="wb-section">
+                
+                <h2>Contributors</h2>
+
+                <div class="contributors-list">
+                  <!-- Row -->
+                  <div class="contributor-row">
+                    <img class="contributor-photo"
+                        src="assets_common/photos/tianshuai_hu.png"
+                        loading="lazy" width="56" height="56">
+
+                    <div class="contributor-text">
+                      <div class="contributor-name">Tianshuai Hu</div>
+                      <div class="contributor-note">Core Contributor</div>
+                    </div>
+                    <div class="contributor-links">
+                      <a href="" target="_blank" aria-label="Homepage"><i class="fas fa-globe"></i> </a>
+                      <a href="" target="_blank" aria-label="Google Scholar"> <i class="ai ai-google-scholar"></i> </a>
+                    </div>
+                  </div>  
+                
+                  <!-- Row -->
+                  <div class="contributor-row">
+                    <img class="contributor-photo"
+                        src="assets_common/icons/worldbench-circle.png"
+                        loading="lazy" width="56" height="56">
+
+                    <div class="contributor-text">
+                      <div class="contributor-name">Xiaolu Liu</div>
+                      <div class="contributor-note">Core Contributor</div>
+                    </div>
+                    <div class="contributor-links">
+                      <a href="" target="_blank" aria-label="Homepage"><i class="fas fa-globe"></i> </a>
+                      <a href="" target="_blank" aria-label="Google Scholar"> <i class="ai ai-google-scholar"></i> </a>
+                    </div>
+                  </div>  
+
+                  <!-- Row -->
+                  <div class="contributor-row">
+                    <img class="contributor-photo"
+                        src="assets_common/photos/song_wang.jpeg"
+                        loading="lazy" width="56" height="56">
+
+                    <div class="contributor-text">
+                      <div class="contributor-name">Song Wang</div>
+                      <div class="contributor-note">Core Contributor</div>
+                    </div>
+                    <div class="contributor-links">
+                      <a href="https://songw-zju.github.io/" target="_blank" aria-label="Homepage"><i class="fas fa-globe"></i> </a>
+                      <a href="https://scholar.google.com/citations?user=Jj0jbL8AAAAJ&hl=en" target="_blank" aria-label="Google Scholar"> <i class="ai ai-google-scholar"></i> </a>
+                      <a href="https://github.com/songw-zju" target="_blank" aria-label="GitHub"> <i class="fab fa-github"></i> </a>
+                    </div>
+                  </div>
+
+                  <!-- Row -->
+                  <div class="contributor-row">
+                    <img class="contributor-photo"
+                        src="assets_common/icons/worldbench-circle.png"
+                        loading="lazy" width="56" height="56">
+
+                    <div class="contributor-text">
+                      <div class="contributor-name">Yiyao Zhu</div>
+                      <div class="contributor-note">Core Contributor</div>
+                    </div>
+                    <div class="contributor-links">
+                      <a href="" target="_blank" aria-label="Homepage"><i class="fas fa-globe"></i> </a>
+                      <a href="" target="_blank" aria-label="Google Scholar"> <i class="ai ai-google-scholar"></i> </a>
+                    </div>
+                  </div>         
+
+                  <!-- Row -->
+                  <div class="contributor-row">
+                    <img class="contributor-photo"
+                        src="assets_common/photos/ao_liang.jpg"
+                        loading="lazy" width="56" height="56">
+
+                    <div class="contributor-text">
+                      <div class="contributor-name">Ao Liang</div>
+                      <div class="contributor-note">Core Contributor</div>
+                    </div>
+                    <div class="contributor-links">
+                      <a href="https://alanliangc.github.io/" target="_blank" aria-label="Homepage"><i class="fas fa-globe"></i> </a>
+                      <a href="https://scholar.google.com/citations?user=ocyBGGYAAAAJ&hl=en" target="_blank" aria-label="Google Scholar"> <i class="ai ai-google-scholar"></i> </a>
+                      <a href="https://github.com/AlanLiangC" target="_blank" aria-label="GitHub"> <i class="fab fa-github"></i> </a>
+                    </div>
+                  </div>
+                
+                  <!-- Row -->
+                  <div class="contributor-row">
+                    <img class="contributor-photo"
+                        src="assets_common/photos/lingdong_kong.jpg" 
+                        loading="lazy" width="56" height="56">
+
+                    <div class="contributor-text">
+                      <div class="contributor-name">Lingdong Kong</div>
+                      <div class="contributor-note">Core Contributor, Project Lead</div>
+                    </div>
+                    <div class="contributor-links">
+                      <a href="mailto:lingdong.kong@u.nus.edu" aria-label="Email"><i class="fas fa-envelope"></i> </a>
+                      <a href="https://ldkong.com" target="_blank" aria-label="Homepage"><i class="fas fa-globe"></i> </a>
+                      <a href="https://scholar.google.com/citations?user=-j1j7TkAAAAJ" target="_blank" aria-label="Google Scholar"> <i class="ai ai-google-scholar"></i> </a>
+                      <a href="https://github.com/ldkong1205/" target="_blank" aria-label="GitHub"> <i class="fab fa-github"></i> </a>
+                      <a href="https://www.linkedin.com/in/ldkong/" target="_blank" aria-label="LinkedIn"> <i class="fab fa-linkedin"></i> </a>
+                      <a href="https://twitter.com/ldkong1205" target="_blank" aria-label="X (Twitter)"> <i class="fab fa-twitter"> </i> </a>
+                    </div>
+                  </div>
+
+                  <!-- Row -->
+                  <div class="contributor-row">
+                    <img class="contributor-photo"
+                        src="assets_common/icons/worldbench-circle.png"
+                        loading="lazy" width="56" height="56">
+
+                    <div class="contributor-text">
+                      <div class="contributor-name">Guoyang Zhao</div>
+                      <div class="contributor-note">Contributor, VLA</div>
+                    </div>
+                    <div class="contributor-links">
+                      <a href="" target="_blank" aria-label="Homepage"><i class="fas fa-globe"></i> </a>
+                      <a href="" target="_blank" aria-label="Google Scholar"> <i class="ai ai-google-scholar"></i> </a>
+                    </div>
+                  </div>
+
+                  <!-- Row -->
+                  <div class="contributor-row">
+                    <img class="contributor-photo"
+                        src="assets_common/photos/zeying_gong.png"
+                        loading="lazy" width="56" height="56">
+
+                    <div class="contributor-text">
+                      <div class="contributor-name">Zeying Gong</div>
+                      <div class="contributor-note">Contributor, VLA</div>
+                    </div>
+                    <div class="contributor-links">
+                      <a href="" target="_blank" aria-label="Homepage"><i class="fas fa-globe"></i> </a>
+                      <a href="" target="_blank" aria-label="Google Scholar"> <i class="ai ai-google-scholar"></i> </a>
+                    </div>
+                  </div>
+
+                  <!-- Row -->
+                  <div class="contributor-row">
+                    <img class="contributor-photo"
+                        src="assets_common/icons/worldbench-circle.png"
+                        loading="lazy" width="56" height="56">
+
+                    <div class="contributor-text">
+                      <div class="contributor-name">Jun Cen</div>
+                      <div class="contributor-note">Contributor, VLA</div>
+                    </div>
+                    <div class="contributor-links">
+                      <a href="" target="_blank" aria-label="Homepage"><i class="fas fa-globe"></i> </a>
+                      <a href="" target="_blank" aria-label="Google Scholar"> <i class="ai ai-google-scholar"></i> </a>
+                    </div>
+                  </div>
+
+                  <!-- Row -->
+                  <div class="contributor-row">
+                    <img class="contributor-photo"
+                        src="assets_common/icons/worldbench-circle.png"
+                        loading="lazy" width="56" height="56">
+
+                    <div class="contributor-text">
+                      <div class="contributor-name">Zhiyu Huang</div>
+                      <div class="contributor-note">Contributor, VLA</div>
+                    </div>
+                    <div class="contributor-links">
+                      <a href="" target="_blank" aria-label="Homepage"><i class="fas fa-globe"></i> </a>
+                      <a href="" target="_blank" aria-label="Google Scholar"> <i class="ai ai-google-scholar"></i> </a>
+                    </div>
+                  </div>
+
+                  <!-- Row -->
+                  <div class="contributor-row">
+                    <img class="contributor-photo"
+                        src="assets_common/photos/xiaoshuai_hao.jpg"
+                        loading="lazy" width="56" height="56">
+
+                    <div class="contributor-text">
+                      <div class="contributor-name">Xiaoshuai Hao</div>
+                      <div class="contributor-note">Contributor, VLA</div>
+                    </div>
+                    <div class="contributor-links">
+                      <a href="" target="_blank" aria-label="Homepage"><i class="fas fa-globe"></i> </a>
+                      <a href="" target="_blank" aria-label="Google Scholar"> <i class="ai ai-google-scholar"></i> </a>
+                    </div>
+                  </div>
+
+                  <!-- Row -->
+                  <div class="contributor-row">
+                    <img class="contributor-photo"
+                        src="assets_common/photos/linfeng_li.jpeg"
+                        loading="lazy" width="56" height="56">
+
+                    <div class="contributor-text">
+                      <div class="contributor-name">Linfeng Li</div>
+                      <div class="contributor-note">Contributor, End-to-End Models</div>
+                    </div>
+                    <div class="contributor-links">
+                      <a href="#" aria-label="Homepage"><i class="fas fa-globe"></i> </a>
+                      <a href="#" aria-label="Google Scholar"> <i class="ai ai-google-scholar"></i> </a>
+                      <a href="#" aria-label="GitHub"> <i class="fab fa-github"></i> </a>
+                    </div>
+                  </div>
+
+                  <!-- Row -->
+                  <div class="contributor-row">
+                    <img class="contributor-photo"
+                        src="assets_common/icons/worldbench-circle.png"
+                        loading="lazy" width="56" height="56">
+
+                    <div class="contributor-text">
+                      <div class="contributor-name">Hang Song</div>
+                      <div class="contributor-note">Contributor, End-to-End Models</div>
+                    </div>
+                    <div class="contributor-links">
+                      <a href="" target="_blank" aria-label="Homepage"><i class="fas fa-globe"></i> </a>
+                      <a href="" target="_blank" aria-label="Google Scholar"> <i class="ai ai-google-scholar"></i> </a>
+                    </div>
+                  </div>
+
+                  <!-- Row -->
+                  <div class="contributor-row">
+                    <img class="contributor-photo"
+                        src="assets_common/icons/worldbench-circle.png"
+                        loading="lazy" width="56" height="56">
+
+                    <div class="contributor-text">
+                      <div class="contributor-name">Xiangtai Li</div>
+                      <div class="contributor-note">Contributor, End-to-End Models</div>
+                    </div>
+                    <div class="contributor-links">
+                      <a href="https://lxtgh.github.io/" target="_blank" aria-label="Homepage"><i class="fas fa-globe"></i> </a>
+                      <a href="https://scholar.google.com/citations?user=FL3ReD0AAAAJ&hl=en" target="_blank" aria-label="Google Scholar"> <i class="ai ai-google-scholar"></i> </a>
+                      <a href="https://github.com/lxtGH" target="_blank" aria-label="GitHub"> <i class="fab fa-github"></i> </a>
+                      <a href="https://twitter.com/xtl994" target="_blank" aria-label="X (Twitter)"> <i class="fab fa-twitter"> </i> </a>
+                    </div>
+                  </div>
+
+                  <!-- Row -->
+                  <div class="contributor-row">
+                    <img class="contributor-photo"
+                        src="assets_common/icons/worldbench-circle.png"
+                        loading="lazy" width="56" height="56">
+
+                    <div class="contributor-text">
+                      <div class="contributor-name">Jun Ma</div>
+                      <div class="contributor-note">Advisor</div>
+                    </div>
+                    <div class="contributor-links">
+                      <a href="" target="_blank" aria-label="Homepage"><i class="fas fa-globe"></i> </a>
+                      <a href="" target="_blank" aria-label="Google Scholar"> <i class="ai ai-google-scholar"></i> </a>
+                    </div>
+                  </div>
+
+                  <!-- Row -->
+                  <div class="contributor-row">
+                    <img class="contributor-photo"
+                        src="assets_common/icons/worldbench-circle.png"
+                        loading="lazy" width="56" height="56">
+
+                    <div class="contributor-text">
+                      <div class="contributor-name">Shaojie Shen</div>
+                      <div class="contributor-note">Advisor</div>
+                    </div>
+                    <div class="contributor-links">
+                      <a href="" target="_blank" aria-label="Homepage"><i class="fas fa-globe"></i> </a>
+                      <a href="" target="_blank" aria-label="Google Scholar"> <i class="ai ai-google-scholar"></i> </a>
+                    </div>
+                  </div>
+
+                  <!-- Row -->
+                  <div class="contributor-row">
+                    <img class="contributor-photo"
+                        src="assets_common/photos/jianke_zhu.png"
+                        loading="lazy" width="56" height="56">
+
+                    <div class="contributor-text">
+                      <div class="contributor-name">Jianke Zhu</div>
+                      <div class="contributor-note">Advisor</div>
+                    </div>
+                    <div class="contributor-links">
+                      <a href="" target="_blank" aria-label="Homepage"><i class="fas fa-globe"></i> </a>
+                      <a href="" target="_blank" aria-label="Google Scholar"> <i class="ai ai-google-scholar"></i> </a>
+                    </div>
+                  </div>
+
+                  <!-- Row -->
+                  <div class="contributor-row">
+                    <img class="contributor-photo"
+                        src="assets_common/icons/worldbench-circle.png"
+                        loading="lazy" width="56" height="56">
+
+                    <div class="contributor-text">
+                      <div class="contributor-name">Dacheng Tao</div>
+                      <div class="contributor-note">Advisor</div>
+                    </div>
+                    <div class="contributor-links">
+                      <a href="" target="_blank" aria-label="Homepage"><i class="fas fa-globe"></i> </a>
+                      <a href="" target="_blank" aria-label="Google Scholar"> <i class="ai ai-google-scholar"></i> </a>
+                    </div>
+                  </div>
+
+                  <!-- Row -->
+                  <div class="contributor-row">
+                    <img class="contributor-photo"
+                        src="assets_common/photos/ziwei_liu.png"
+                        loading="lazy" width="56" height="56">
+
+                    <div class="contributor-text">
+                      <div class="contributor-name">Ziwei Liu</div>
+                      <div class="contributor-note">Advisor</div>
+                    </div>
+                    <div class="contributor-links">
+                      <a href="https://liuziwei7.github.io/" target="_blank" aria-label="Homepage"><i class="fas fa-globe"></i> </a>
+                      <a href="https://scholar.google.com/citations?user=lc45xlcAAAAJ" target="_blank" aria-label="Google Scholar"> <i class="ai ai-google-scholar"></i> </a>
+                      <a href="https://github.com/liuziwei7" target="_blank" aria-label="GitHub"> <i class="fab fa-github"></i> </a>
+                      <a href="https://sg.linkedin.com/in/ziwei-liu-852b265a" target="_blank" aria-label="LinkedIn"> <i class="fab fa-linkedin"></i> </a>
+                      <a href="https://twitter.com/liuziwei7" target="_blank" aria-label="X (Twitter)"> <i class="fab fa-twitter"> </i> </a>
+                    </div>
+                  </div>
+
+                  <!-- Row -->
+                  <div class="contributor-row">
+                    <img class="contributor-photo"
+                        src="assets_common/icons/worldbench-circle.png"
+                        loading="lazy" width="56" height="56">
+
+                    <div class="contributor-text">
+                      <div class="contributor-name">Junwei Liang</div>
+                      <div class="contributor-note">Advisor</div>
+                    </div>
+                    <div class="contributor-links">
+                      <a href="" target="_blank" aria-label="Homepage"><i class="fas fa-globe"></i> </a>
+                      <a href="" target="_blank" aria-label="Google Scholar"> <i class="ai ai-google-scholar"></i> </a>
+                    </div>
+                  </div>
+
+                </div>
+                <br>
+              </div>
+              <br><br>
+            </section>
+
+
+
+
+            <section id="related-projects">
+              <div class="wb-section">
+
+                <h2>Related Projects</h2>
+
+                <div class="project-grid">
+
+                  <!-- Project -->
+                  <article class="wb-card project-card">
+                    <div class="project-thumb">
+                      <img src="assets_common/teasers/worldlens.png"
+                         loading="lazy">
+                    </div>
+                    <h3 class="project-title">WorldLens: Full-Spectrum Evaluations of Driving World Models</h3>
+                    <div class="project-links">
+                      <a href="" target="_blank" class="project-link">
+                        <i class="ai ai-arxiv"></i>
+                      </a>
+                      <a href="https://worldbench.github.io/worldlens" target="_blank" class="project-link">
+                        <i class="fas fa-globe"></i>
+                      </a>
+                      <a href="https://github.com/worldbench/WorldLens" target="_blank" class="project-link">
+                        <img src="assets_common/icons/github.png" class="icon-img" loading="lazy">
+                      </a>
+                      <a href="https://huggingface.co/spaces/worldbench/WorldLens" target="_blank" class="project-link">
+                        <img src="assets_common/icons/hf.png" class="icon-img" loading="lazy">
+                      </a>
+                    </div>
+                  </article>
+
+                  <!-- Project -->
+                  <article class="wb-card project-card">
+                    <div class="project-thumb">
+                      <img src="assets_common/teasers/worldbench_survey.webp"
+                         loading="lazy">
+                    </div>
+                    <h3 class="project-title">3D and 4D World Modeling: A Survey</h3>
+                    <div class="project-links">
+                      <a href="https://arxiv.org/abs/2509.07996" target="_blank" class="project-link">
+                        <i class="ai ai-arxiv"></i>
+                      </a>
+                      <a href="https://worldbench.github.io/survey" target="_blank" class="project-link">
+                        <i class="fas fa-globe"></i>
+                      </a>
+                      <a href="https://github.com/worldbench/survey" target="_blank" class="project-link">
+                        <img src="assets_common/icons/github.png" class="icon-img" loading="lazy">
+                      </a>
+                      <a href="https://huggingface.co/spaces/worldbench/WorldLens" target="_blank" class="project-link">
+                        <img src="assets_common/icons/hf.png" class="icon-img" loading="lazy">
+                      </a>
+                    </div>
+                  </article>
+
+                  <!-- Project -->
+                  <article class="wb-card project-card">
+                    <div class="project-thumb">
+                      <img src="assets_common/teasers/lidarcrafter.png"
+                         loading="lazy">
+                    </div>
+                    <h3 class="project-title">LiDARCrafter: Dynamic 4D World Modeling from LiDAR Sequences</h3>
+                    <div class="project-links">
+                      <a href="https://arxiv.org/abs/2508.03692" target="_blank" class="project-link">
+                        <i class="ai ai-arxiv"></i>
+                      </a>
+                      <a href="https://lidarcrafter.github.io/" target="_blank" class="project-link">
+                        <i class="fas fa-globe"></i>
+                      </a>
+                      <a href="https://github.com/lidarcrafter/toolkit" target="_blank" class="project-link">
+                        <img src="assets_common/icons/github.png" class="icon-img" loading="lazy">
+                      </a>
+                    </div>
+                  </article>
+
+                  <!-- Project -->
+                  <article class="wb-card project-card">
+                    <div class="project-thumb">
+                      <img src="assets_common/teasers/3eed.png"
+                         loading="lazy">
+                    </div>
+                    <h3 class="project-title">3EED: Ground Everything Everywhere in 3D</h3>
+                    <div class="project-links">
+                      <a href="https://arxiv.org/abs/2511.01755" target="_blank" class="project-link">
+                        <i class="ai ai-arxiv"></i>
+                      </a>
+                      <a href="https://project-3eed.github.io/" target="_blank" class="project-link">
+                        <i class="fas fa-globe"></i>
+                      </a>
+                      <a href="https://github.com/worldbench/3EED" target="_blank" class="project-link">
+                        <img src="assets_common/icons/github.png" class="icon-img" loading="lazy">
+                      </a>
+                      <a href="https://huggingface.co/datasets/RRRong/3EED" target="_blank" class="project-link">
+                        <img src="assets_common/icons/hf.png" class="icon-img" loading="lazy">
+                      </a>
+                    </div>
+                  </article>
+
+                  <!-- Project -->
+                  <article class="wb-card project-card">
+                    <div class="project-thumb">
+                      <img src="assets_common/teasers/pi3det.png"
+                         loading="lazy">
+                    </div>
+                    <h3 class="project-title">Perspective-Invariant 3D Object Detection</h3>
+                    <div class="project-links">
+                      <a href="https://arxiv.org/abs/2507.17665" target="_blank" class="project-link">
+                        <i class="ai ai-arxiv"></i>
+                      </a>
+                      <a href="https://pi3det.github.io/" target="_blank" class="project-link">
+                        <i class="fas fa-globe"></i>
+                      </a>
+                      <a href="https://github.com/pi3det/toolkit" target="_blank" class="project-link">
+                        <img src="assets_common/icons/github.png" class="icon-img" loading="lazy">
+                      </a>
+                      <a href="https://huggingface.co/datasets/Pi3DET/data" target="_blank" class="project-link">
+                        <img src="assets_common/icons/hf.png" class="icon-img" loading="lazy">
+                      </a>
+                    </div>
+                  </article>
+
+                  <!-- Project -->
+                  <article class="wb-card project-card">
+                    <div class="project-thumb">
+                      <img src="assets_common/teasers/drivebench.png"
+                         loading="lazy">
+                    </div>
+                    <h3 class="project-title">Are VLMs Ready for Autonomous Driving?</h3>
+                    <div class="project-links">
+                      <a href="https://arxiv.org/abs/2501.04003" target="_blank" class="project-link">
+                        <i class="ai ai-arxiv"></i>
+                      </a>
+                      <a href="https://drive-bench.github.io/" target="_blank" class="project-link">
+                        <i class="fas fa-globe"></i>
+                      </a>
+                      <a href="https://github.com/drive-bench/toolkit" target="_blank" class="project-link">
+                        <img src="assets_common/icons/github.png" class="icon-img" loading="lazy">
+                      </a>
+                      <a href="https://huggingface.co/datasets/drive-bench/arena" target="_blank" class="project-link">
+                        <img src="assets_common/icons/hf.png" class="icon-img" loading="lazy">
+                      </a>
+                    </div>
+                  </article>
+
+                  <!-- Project -->
+                  <article class="wb-card project-card">
+                    <div class="project-thumb">
+                      <img src="assets_common/teasers/dynamiccity.webp"
+                         loading="lazy">
+                    </div>
+                    <h3 class="project-title">DynamicCity: Large-Scale 4D Occupancy Generation</h3>
+                    <div class="project-links">
+                      <a href="https://arxiv.org/abs/2410.18084" target="_blank" class="project-link">
+                        <i class="ai ai-arxiv"></i>
+                      </a>
+                      <a href="https://dynamic-city.github.io/" target="_blank" class="project-link">
+                        <i class="fas fa-globe"></i>
+                      </a>
+                      <a href="https://github.com/3DTopia/DynamicCity" target="_blank" class="project-link">
+                        <img src="assets_common/icons/github.png" class="icon-img" loading="lazy">
+                      </a>
+                    </div>
+                  </article>
+
+                  <!-- Project -->
+                  <article class="wb-card project-card">
+                    <div class="project-thumb">
+                      <img src="assets_common/teasers/spiral.png"
+                         loading="lazy">
+                    </div>
+                    <h3 class="project-title">SPIRAL: Semantic-Aware Progressive LiDAR Generation</h3>
+                    <div class="project-links">
+                      <a href="https://arxiv.org/abs/2505.22643" target="_blank" class="project-link">
+                        <i class="ai ai-arxiv"></i>
+                      </a>
+                      <a href="https://dekai21.github.io/SPIRAL/" target="_blank" class="project-link">
+                        <i class="fas fa-globe"></i>
+                      </a>
+                      <a href="https://github.com/worldbench/SPIRAL" target="_blank" class="project-link">
+                        <img src="assets_common/icons/github.png" class="icon-img" loading="lazy">
+                      </a>
+                    </div>
+                  </article>
+
+                  <!-- Project -->
+                  <article class="wb-card project-card">
+                    <div class="project-thumb">
+                      <img src="assets_common/teasers/see4d.png"
+                         loading="lazy">
+                    </div>
+                    <h3 class="project-title">See4D: Pose-Free 4D Generation via Auto-Regressive Inpainting</h3>
+                    <div class="project-links">
+                      <a href="https://arxiv.org/abs/2510.26796" target="_blank" class="project-link">
+                        <i class="ai ai-arxiv"></i>
+                      </a>
+                      <a href="https://see-4d.github.io/" target="_blank" class="project-link">
+                        <i class="fas fa-globe"></i>
+                      </a>
+                    </div>
+                  </article>
+
+
+                </div>
+
+              </div><br><br>
+            </section>
+
+
+            <footer class="wb-footer">
+              <br>
+              <div class="wb-footer-content">
+                <p>
+                  This website is licensed under a
+                  <a href="https://creativecommons.org/licenses/by-sa/4.0/"
+                    target="_blank"
+                    rel="noopener noreferrer">
+                    Creative Commons Attribution-ShareAlike 4.0 International License
+                  </a>
+                </p>
+                <p>
+                  © WorldBench 2025-2026. All Rights Reserved
+                </p>
+              </div>
+              <br>
+            </footer>
+
 
         </d-article>
 
@@ -356,8 +934,6 @@
 
         
         <script src="contents_bar.js"></script>
-
-        <!-- 统一的数据与初始化脚本 -->
         <script>
 
           const paperStore = {
@@ -392,7 +968,7 @@
                 { title:"SparseDrive: End-to-End Autonomous Driving via Sparse Scene Representation", authors:"", venue:"ICRA", year:2025, paper:"https://arxiv.org/abs/2405.19620", code:"https://github.com/swc-17/SparseDrive", project:"#"},
                 { title:"DiffusionDrive: Truncated Diffusion Model for End-to-End Autonomous Driving", authors:"", venue:"CVPR", year:2025, paper:"https://arxiv.org/abs/2411.15139", code:"https://github.com/hustvl/DiffusionDrive", project:"#"}
                 ],
-                C: [  // Image-based World Models
+                C: [  // Image-Based World Models
                 { title:"DriveDreamer: Towards Real-world-driven World Models for Autonomous Driving", authors:"", venue:"ECCV", year:2024, paper:"https://arxiv.org/abs/2309.09777", code:"https://github.com/JeffWang987/DriveDreamer", project:"https://drivedreamer.github.io/"},
                 { title:"GenAD: Generalized Predictive Model for Autonomous Driving", authors:"", venue:"CVPR", year:2024, paper:"https://arxiv.org/abs/2403.09630", code:"https://github.com/OpenDriveLab/DriveAGI", project:"#"},
                 { title:"Driving into the Future: Multiview Visual Forecasting and Planning with World Model for Autonomous Driving (Drive-WM)", authors:"", venue:"CVPR", year:2024, paper:"https://arxiv.org/abs/2311.17918", code:"https://github.com/BraveGroup/Drive-WM", project:"https://drive-wm.github.io/"},
@@ -401,7 +977,7 @@
                 { title:"DrivingGPT: Unifying Driving World Modeling and Planning with Multi-modal Autoregressive Transformers", authors:"", venue:"arXiv", year:2024, paper:"https://arxiv.org/abs/2412.18607", code:"#", project:"https://rogerchern.github.io/DrivingGPT/"},
                 { title:"Epona: Autoregressive Diffusion World Model for Autonomous Driving", authors:"", venue:"ICCV", year:2025, paper:"https://arxiv.org/abs/2506.24113", code:"https://github.com/Kevin-thu/Epona", project:"https://kevin-thu.github.io/Epona/"}
                 ],
-                D: [  // Occupancy-based World Models
+                D: [  // Occupancy World Models
                 { title:"OccWorld: Learning a 3D Occupancy World Model for Autonomous Driving", authors:"", venue:"ECCV", year:2024, paper:"https://arxiv.org/abs/2311.16038", code:"https://github.com/wzzheng/OccWorld", project:"https://wzzheng.net/OccWorld/"},
                 { title:"Neural Volumetric World Models for Autonomous Driving (NeMo)", authors:"", venue:"ECCV", year:2024, paper:"https://eccv.ecva.net/virtual/2024/poster/250", code:"#", project:"#"},
                 { title:"OCCVAR: Scalable 4D Occupancy Prediction via Next-Scale Prediction", authors:"", venue:"OpenReview", year:2024, paper:"https://openreview.net/forum?id=X2HnTFsFm8", code:"#", project:"#"},
@@ -410,7 +986,7 @@
                 { title:"Driving in the Occupancy World: Vision-Centric 4D Occupancy Forecasting and Planning via World Models for Autonomous Driving (Drive-OccWorld)", authors:"", venue:"AAAI", year:2025, paper:"https://arxiv.org/abs/2408.14197", code:"https://github.com/yuyang-cloud/Drive-OccWorld", project:"https://drive-occworld.github.io/"},
                 { title:"Temporal Triplane Transformers as Occupancy World Models (T³Former)", authors:"", venue:"arXiv", year:2025, paper:"https://arxiv.org/abs/2503.07338", code:"#", project:"#"}
                 ],
-                E: [  // Latent-based World Models
+                E: [  // Latent World Models
                 { title:"Mitigating Covariate Shift in Imitation Learning for Autonomous Vehicles Using Latent Space Generative World Models", authors:"", venue:"arXiv", year:2024, paper:"https://arxiv.org/abs/2409.16663", code:"#", project:"#"},
                 { title:"World4Drive: End-to-End Autonomous Driving via Intention-aware Physical Latent World Model", authors:"", venue:"ICCV", year:2025, paper:"https://arxiv.org/abs/2507.00603", code:"#", project:"#"},
                 { title:"End-to-End Driving with Online Trajectory Evaluation via BEV World Model (WoTE)", authors:"", venue:"ICCV", year:2025, paper:"https://arxiv.org/abs/2504.01941", code:"https://github.com/liyingyanUCAS/WoTE", project:"#"},
@@ -501,13 +1077,13 @@
             },
             dataset: {
                 A: [  // Vision-Action Datasets
-                { title:"BDD100K: A diverse driving dataset for heterogeneous multitask learning", authors:"", venue:"CVPR", year:2020, paper:"https://arxiv.org/abs/1805.04687", code:"https://github.com/bdd100k/bdd100k", project:"https://bair.berkeley.edu/blog/2018/05/30/bdd/"},
-                { title:"nuScenes: A multimodal dataset for autonomous driving", authors:"", venue:"CVPR", year:2020, paper:"https://arxiv.org/abs/1903.11027", code:"#", project:"https://www.nuscenes.org/"},
-                { title:"Scalability in perception for autonomous driving: Waymo open dataset", authors:"", venue:"CVPR", year:2020, paper:"https://arxiv.org/abs/1912.04838", code:"https://github.com/waymo-research/waymo-open-dataset", project:"https://waymo.com/open/"},
-                { title:"nuPlan: A closed-loop ML-based planning benchmark for autonomous vehicles", authors:"", venue:"arXiv", year:2021, paper:"https://arxiv.org/abs/2106.11810", code:"https://github.com/motional/nuplan-devkit", project:"https://www.nuplan.org/"},
-                { title:"Argoverse 2: Next generation datasets for self-driving perception and forecasting", authors:"", venue:"NeurIPS", year:2021, paper:"https://arxiv.org/abs/2301.00493", code:"https://github.com/argoverse/av2-api", project:"https://www.argoverse.org/av2.html"},
+                { title:"BDD100K: A Diverse Driving Dataset for Heterogeneous Multitask Learning", authors:"", venue:"CVPR", year:2020, paper:"https://arxiv.org/abs/1805.04687", code:"https://github.com/bdd100k/bdd100k", project:"https://bair.berkeley.edu/blog/2018/05/30/bdd/"},
+                { title:"nuScenes: A Multimodal Dataset for Autonomous Driving", authors:"", venue:"CVPR", year:2020, paper:"https://arxiv.org/abs/1903.11027", code:"#", project:"https://www.nuscenes.org/"},
+                { title:"Scalability in Perception for Autonomous Driving: Waymo Open Dataset", authors:"", venue:"CVPR", year:2020, paper:"https://arxiv.org/abs/1912.04838", code:"https://github.com/waymo-research/waymo-open-dataset", project:"https://waymo.com/open/"},
+                { title:"nuPlan: A Closed-Loop ML-Based Planning Benchmark for Autonomous Vehicles", authors:"", venue:"arXiv", year:2021, paper:"https://arxiv.org/abs/2106.11810", code:"https://github.com/motional/nuplan-devkit", project:"https://www.nuplan.org/"},
+                { title:"Argoverse 2: Next Generation Datasets for Self-Driving Perception and Forecasting", authors:"", venue:"NeurIPS", year:2021, paper:"https://arxiv.org/abs/2301.00493", code:"https://github.com/argoverse/av2-api", project:"https://www.argoverse.org/av2.html"},
                 { title:"Bench2Drive: Towards multi-ability benchmarking of closed-loop end-to-end autonomous driving", authors:"", venue:"NeurIPS", year:2024, paper:"https://arxiv.org/abs/2406.03877", code:"https://github.com/Thinklab-SJTU/Bench2Drive", project:"#"},
-                { title:"Benchmarking and improving bird's eye view perception robustness in autonomous driving (RoboBEV)", authors:"", venue:"TPAMI", year:2025, paper:"https://arxiv.org/abs/2405.17426", code:"https://github.com/Daniel-xsy/RoboBEV", project:"#"}
+                { title:"Benchmarking and Improving Bird's Eye View Perception Robustness in Autonomous Driving", authors:"", venue:"TPAMI", year:2025, paper:"https://arxiv.org/abs/2405.17426", code:"https://github.com/Daniel-xsy/RoboBEV", project:"#"}
                 ],
                 B: [  // Vision-Language-Action Datasets
                 { title:"Textual explanations for self-driving vehicles (BDD-X)", authors:"", venue:"ECCV", year:2018, paper:"https://arxiv.org/abs/1807.11546", code:"https://github.com/JinkyuKimUCB/BDD-X-dataset", project:"#"},
@@ -549,14 +1125,14 @@
                 B: root.querySelector(`[id$="panel-b"]`),
                 C: root.querySelector(`[id$="panel-c"]`),
                 D: root.querySelector(`[id$="panel-d"]`),
-                E: root.querySelector(`[id$="panel-e"]`)  // 添加E面板
+                E: root.querySelector(`[id$="panel-e"]`)
             };
             const lists = {
                 A: panels.A?.querySelector('.list'),
                 B: panels.B?.querySelector('.list'),
                 C: panels.C?.querySelector('.list'),
                 D: panels.D?.querySelector('.list'),
-                E: panels.E?.querySelector('.list')  // 添加E列表
+                E: panels.E?.querySelector('.list')
             };
             const countEl = root.querySelector('.count');
             const searchInput = root.querySelector('.paper-search');
@@ -621,7 +1197,7 @@
                 const panelEl = panels[subKey];
                 const listEl  = lists[subKey];
                 
-                if(!panelEl || !listEl) return;  // 如果面板不存在则跳过
+                if(!panelEl || !listEl) return;
 
                 let ctrlEl = panelEl.querySelector('.showmore-wrap');
                 if(!ctrlEl){
@@ -722,7 +1298,6 @@
         </script>
 
         <script>
-            // 对页面上每个 .videogen 独立初始化
             document.querySelectorAll('.videogen').forEach((root) => {
             const heroVideo  = root.querySelector('[data-hero]');
             const heroSource = heroVideo.querySelector('source');
@@ -748,10 +1323,8 @@
                 setActive(btn);
             }
         
-            // 点击切换（仅作用于本组）
             thumbs.forEach(btn => btn.addEventListener('click', () => switchTo(btn)));
         
-            // 键盘左右切换（仅当该组获得焦点时生效）
             root.addEventListener('keydown', (e) => {
                 if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
                 const idx = thumbs.findIndex(b => b.classList.contains('is-active'));
@@ -763,7 +1336,6 @@
                 thumbs[next].scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
             });
         
-            // 若标记了 is-active，则用它作为初始；否则沿用 <source> 默认
             const initial = root.querySelector('.thumb.is-active');
             if (initial) switchTo(initial);
             });
@@ -772,14 +1344,11 @@
         <script>
           (function(){
             function buildSrc(client, base, method, file, query){
-              // 组合 viser-client 的 URL
-              // e.g. https://.../viser-client/?playbackPath=https://.../lidar_visers/lidargen/0.viser&initialCamera...
               const slash = base.endsWith('/') ? '' : '/';
               return `${client}?playbackPath=${base}${slash}${method}/${file}${query || ''}`;
             }
           
             document.querySelectorAll('.data-switcher').forEach((root)=>{
-              // 作用域：每个 data-switcher 独立
               const client = root.dataset.client;
               const base   = root.dataset.base;
               const query  = root.dataset.query || '';
@@ -802,11 +1371,11 @@
                 const method = btn.getAttribute('data-method');
                 if(!method) return;
                 iframes.forEach(ifr=>{
-                  const file = ifr.getAttribute('data-file'); // 如 0.viser / 1.viser
+                  const file = ifr.getAttribute('data-file');
                   if(!file) return;
                   const next = buildSrc(client, base, method, file, query);
                   if(ifr.src !== next){
-                    ifr.src = next; // 懒加载或切换时才填充
+                    ifr.src = next;
                   }
                 });
                 setActive(btn);
@@ -819,16 +1388,13 @@
                 if(first) switchMethod(first);
               }
           
-              // 点击切换（仅影响当前容器）
               btns.forEach(btn=>btn.addEventListener('click', ()=>switchMethod(btn)));
           
-              // 展开 <details> 时再初始化，减少首屏请求量
               root.addEventListener('toggle', ()=>{
                 if(root.open) initOnce();
               });
-              if(root.open) initOnce();       // 如果默认是展开状态，立刻初始化
+              if(root.open) initOnce();
           
-              // 键盘左右键切换（容器聚焦）
               root.tabIndex = 0;
               root.addEventListener('keydown', (e)=>{
                 if(e.key!=='ArrowLeft' && e.key!=='ArrowRight') return;
@@ -841,7 +1407,7 @@
             });
           })();
           </script>
-    
 
     </body>
+
 </html>
