@@ -2,26 +2,17 @@
 <html lang="en">
     <head>
         <title>Vision-Language-Action Models for Autonomous Driving: Past, Present, and Future</title>
-        <link rel="icon" type="image/x-icon" href="/static/img/ButtleFly.ico">
+        
+        <link rel="icon" href="assets_common/icons/worldbench-circle.png" type="image/x-icon">
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet">
 
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <!-- Open Graph -->
-        <meta property="og:url" content="https://worldbench.github.io/" />
-        <meta property="og:image" content="https://worldbench.github.io/static/img/ButtleFly_3.png" />
-        <meta property="og:title" content="DynamicVerse: Physically-Aware Multimodal Modeling for Dynamic 4D Worlds" />
-        <meta property="og:description" content="is a physical-scale, multi-modal 4D modeling framework for real-world video, which contains a novel automated data curation pipeline and corresponding large-scale 4D dataset." />
-
-        <!-- Twitter -->
-        <meta name="twitter:url" content="https://worldbench.github.io/" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:image" content="https://worldbench.github.io/static/img/ButtleFly_3.png" />
-        <meta name="twitter:title" content="DynamicVerse: Physically-Aware Multimodal Modeling for Dynamic 4D Worlds." />
-        <meta name="twitter:description" content="We introduce DynamicVerse, a physical-scale, multi-modal 4D modeling framework for real-world video, which contains a novel automated data curation pipeline and corresponding large-scale 4D dataset." />
-
         <script src="./static/js/distill_template.v2.js"></script>
-        <!-- <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script> -->
         <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
         <script src="https://d3js.org/d3.v5.min.js"></script>
@@ -42,49 +33,48 @@
             onload="renderMathInElement(document.body);"></script>
         <script defer src="./static/js/fontawesome.all.min.js"></script>
 
-
-        <!-- medium zoom https://github.com/francoischalifour/medium-zoom -->
         <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>  <!-- jquery -->
         <script defer src="./static/js/medium-zoom.min.js"></script>
         <script defer src="./static/js/zoom.js"></script>
-
-        <!-- Scoped styles for the Papers section -->
     </head>
+
     <body>
         <div class="header-wrapper">
 
             <div class="header-container", id="header-container">
                 <div class="header-content">
-                <h1>Vision-Language-Action Models for Autonomous Driving: Past, Present, and Future</h1>
+                <h1>
+                  Vision-Language-Action Models for Autonomous Driving: Past, Present, and Future
+                </h1>
+
+                <h2 style="margin:2.2rem 0 1.8rem; display:flex; align-items:center; gap:0.4rem;">
+                  <span class="icon is-small">
+                    <img src="assets_common/icons/worldbench-circle.png" style="height:1.8em; vertical-align:text-top;">
+                  </span>&nbsp;WorldBench Team
+                </h2>
+
+
                 <div class="button-container">
-                    <!-- replace arxiv -->
-                    <a href="" class="button paper-link" target="_blank">
+                    <a href="https://arxiv.org/abs/2509.07996" class="button paper-link" target="_blank">
                         <span class="icon is-small">
                             <i class="ai ai-arxiv "  style="height: 1.5em;"></i>
-                        </span>
-                        arXiv
+                        </span><span>arXiv</span>
                     </a>
-                    <!-- replace pdf -->
-                    <a href="" class="button paper-link" target="_blank">
-                        <span class="icon is-small"  style="height: 1.5em;">
-                            <i class="fas fa-file-pdf"></i>
-                        </span>
-                        <span>PDF</span>
-                    </a>
-                    <!-- replace image -->
-                    <a href="https://github.com/worldbench/awesome-vla-for-ad" class="button" target="_blank">
-                        <span class="icon is-small"  style="height: 1.5em;">
-                            <i class="fab fa-github"></i>
-                        </span>
-                        <span>GitHub</span>
-                    </a>
-
-                    <!-- <a href="https://huggingface.co/datasets/kairunwen/DynamicVerse" class="button" target="_blank">
+                    <a href="assets_common/papers/survey.pdf" class="button paper-link" target="_blank">
                         <span class="icon is-small">
-                            <img src="https://huggingface.co/front/assets/huggingface_logo-noborder.svg" alt="Hugging Face logo" style="height: 1.5em;">
-                        </span>
-                        <span>Dataset</span>
-                    </a> -->
+                            <img src="assets_common/icons/pdf.png" style="height: 1.4em;">
+                        </span><span>PDF</span>
+                    </a>
+                    <a href="https://github.com/worldbench/survey" class="button" target="_blank">
+                        <span class="icon is-small">
+                            <img src="assets_common/icons/github.png" style="height: 1.4em;">
+                        </span><span>GitHub</span>
+                    </a>
+                    <a href="https://huggingface.co/spaces/worldbench/WorldLens" class="button" target="_blank">
+                        <span class="icon is-small">
+                            <img src="assets_common/icons/hf.png" style="height: 1.5em;">
+                        </span><span>Leaderboard</span>
+                    </a>
                 </div>
                 </div>
                 <div class="header-image">
