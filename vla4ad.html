@@ -103,14 +103,24 @@
                   <div class="wb-kicker">Introduction</div>
                   <div class="wb-hr"></div>
                   <p class="wb-lead">
-                    This survey reviews <strong>Vision-Language-Action (VLA) models</strong> — an emerging paradigm that integrates 
-                    visual perception, natural language reasoning, and executable actions for autonomous driving. We trace the evolution 
-                    from traditional <strong>Vision-Action (VA) approaches</strong> to <strong>modern VLA frameworks</strong>.
+                    The pursuit of fully autonomous driving (AD) has long been a central goal in AI and robotics. 
+                    Conventional AD systems typically adopt a modular "Perception-Decision-Action" pipeline, where mapping, object detection, motion prediction, and trajectory planning are developed and optimized as separate components. 
+                  </p>
+
+                  <p class="wb-lead">
+                    While this design has achieved strong performance in structured environments, its reliance on hand-crafted interfaces and rules limits adaptability in complex, dynamic, and long-tailed scenarios.
                   </p>
 
                   <figure style="width: 100%; max-width: 1000px; display: block; margin: 24px auto;">
                     <img src="assets/vla4ad/figures/teaser.png">
                   </figure>
+
+                  <p class="wb-lead">
+                    This survey reviews <strong>Vision-Language-Action (VLA) models</strong> — an emerging paradigm that integrates 
+                    visual perception, natural language reasoning, and executable actions for autonomous driving.
+                    We trace the evolution from traditional <strong>Vision-Action (VA) approaches</strong> to <strong>modern VLA frameworks</strong>.
+                    Charting the evolution from precursor VA models to modern VLA frameworks, we provide historical context and clarify the motivations behind this paradigm shift.
+                  </p>
                 <br><br>
               </div>
             </section>
@@ -126,7 +136,6 @@
 
             <section id="definition">
               <h2>Definition</h2>
-              <div class="wb-hr" style="margin-bottom:1.25rem;"></div>
 
               <style>
                 #definition .wb-grid{
@@ -136,10 +145,11 @@
 
               <div class="wb-grid">
                 <!-- Vision-Action (VA) Models -->
+
                 <article class="wb-card" id="va-models">
                   <h3>
                       <i class="fas fa-film" aria-hidden="true"></i>
-                      <a class="wb-anchor" href="#va-models">Vision-Action (VA) Models</a>
+                      <a class="wb-anchor">Vision-Action (VA) Models</a>
                     </h3>
                     <p>
                       A vision-centric driving system that directly maps raw sensory 
@@ -147,9 +157,9 @@
                       into perception, prediction, and planning. VA models learn end-to-end policies through imitation learning 
                       or reinforcement learning.
                     </p>
-                    <p class="wb-cap">
+                    <!-- <p class="wb-cap">
                       <strong>Typical inputs</strong>: Multi-View RGB Images, LiDAR Point Clouds, Ego Vehicle State, Maps.
-                    </p>
+                    </p> -->
                     <div class="wb-meta" aria-label="VA Models tags">
                       <span class="wb-chip">End-to-End Models</span>
                       <span class="wb-chip">World Models</span>
@@ -163,7 +173,7 @@
                 <article class="wb-card" id="lidargen">
                   <h3>
                       <i class="fas fa-braille" aria-hidden="true"></i>
-                      <a class="wb-anchor" href="#vla-models">Vision-Language-Action (VLA) Models</a>
+                      <a class="wb-anchor">Vision-Language-Action (VLA) Models</a>
                     </h3>
                     <p>
                       A multimodal reasoning system that couples visual perception with 
@@ -171,10 +181,10 @@
                       linguistic reasoning, and actionable outputs within a unified framework, enabling more interpretable, 
                       generalizable, and human-aligned driving policies through natural language instructions and chain-of-thought reasoning.
                     </p>
-                    <p class="wb-cap">
+                    <!-- <p class="wb-cap">
                       <strong>Typical inputs</strong>: Multi-View RGB Images, LiDAR Point Clouds, BEV Features, Natural Language Instructions, 
                       Scene Descriptions, Traffic Rules, Ego Status, Context Demonstrations.
-                    </p>
+                    </p> -->
                     <div class="wb-meta" aria-label="VLA Models tags">
                       <span class="wb-chip">End-to-End VLA</span>
                       <span class="wb-chip">Dual-System VLA</span>
@@ -184,6 +194,16 @@
                     </div>
                 </article>
               </div>
+
+              <br><br>
+
+              
+              <div class="wb-kicker"><span class="icon is-small">
+                    <img src="assets/survey/figures/category.png" style="height: 1.6em;" loading="lazy">
+                  </span>&nbsp;Vision-Action (VA) Models</div>
+              <div class="wb-hr" style="margin-bottom:1rem;"></div>
+
+
               <br><br>
             </section>
 
@@ -523,10 +543,11 @@
                       <div class="contributor-note">Contributor, VLA</div>
                     </div>
                     <div class="contributor-links">
-                      <a href="" target="_blank" aria-label="Homepage"><i class="fas fa-globe"></i> </a>
-                      <a href="" target="_blank" aria-label="Google Scholar"> <i class="ai ai-google-scholar"></i> </a>
-                      <a href="" target="_blank" aria-label="GitHub"> <i class="fab fa-github"></i> </a>
-                      <a href="" target="_blank" aria-label="LinkedIn"> <i class="fab fa-linkedin"></i> </a>
+                      <a href="https://mczhi.github.io/" target="_blank" aria-label="Homepage"><i class="fas fa-globe"></i> </a>
+                      <a href="https://scholar.google.com/citations?user=aLZEVCsAAAAJ&hl=en" target="_blank" aria-label="Google Scholar"> <i class="ai ai-google-scholar"></i> </a>
+                      <a href="https://github.com/MCZhi" target="_blank" aria-label="GitHub"> <i class="fab fa-github"></i> </a>
+                      <a href="https://www.linkedin.com/in/zhiyu-huang-a611ab191" target="_blank" aria-label="LinkedIn"> <i class="fab fa-linkedin"></i> </a>
+                      <a href="https://twitter.com/ZhiyuChris" target="_blank" aria-label="X (Twitter)"> <i class="fab fa-twitter"> </i> </a>
                     </div>
                   </div>
 
@@ -541,8 +562,8 @@
                       <div class="contributor-note">Contributor, VLA</div>
                     </div>
                     <div class="contributor-links">
-                      <a href="" target="_blank" aria-label="Homepage"><i class="fas fa-globe"></i> </a>
-                      <a href="" target="_blank" aria-label="Google Scholar"> <i class="ai ai-google-scholar"></i> </a>
+                      <a href="https://haoxiaoshuai.github.io/homepage/" target="_blank" aria-label="Homepage"><i class="fas fa-globe"></i> </a>
+                      <a href="https://scholar.google.com.hk/citations?user=ui0lvY4AAAAJ&hl=en" target="_blank" aria-label="Google Scholar"> <i class="ai ai-google-scholar"></i> </a>
                     </div>
                   </div>
 
@@ -574,8 +595,9 @@
                       <div class="contributor-note">Contributor, End-to-End Models</div>
                     </div>
                     <div class="contributor-links">
-                      <a href="" target="_blank" aria-label="Homepage"><i class="fas fa-globe"></i> </a>
-                      <a href="" target="_blank" aria-label="Google Scholar"> <i class="ai ai-google-scholar"></i> </a>
+                      <a href="#" aria-label="Homepage"><i class="fas fa-globe"></i> </a>
+                      <a href="#" aria-label="Google Scholar"> <i class="ai ai-google-scholar"></i> </a>
+                      <a href="#" aria-label="GitHub"> <i class="fab fa-github"></i> </a>
                     </div>
                   </div>
 
@@ -609,7 +631,8 @@
                     </div>
                     <div class="contributor-links">
                       <a href="https://personal.hkust-gz.edu.cn/junma/people-page.html" target="_blank" aria-label="Homepage"><i class="fas fa-globe"></i> </a>
-                      <a href="" target="_blank" aria-label="Google Scholar"> <i class="ai ai-google-scholar"></i> </a>
+                      <a href="https://scholar.google.com/citations?user=kVADeNQAAAAJ&hl=en" target="_blank" aria-label="Google Scholar"> <i class="ai ai-google-scholar"></i> </a>
+                      <a href="https://hk.linkedin.com/in/benedictjunma" target="_blank" aria-label="LinkedIn"> <i class="fab fa-linkedin"></i> </a>
                     </div>
                   </div>
 
@@ -624,8 +647,9 @@
                       <div class="contributor-note">Advisor</div>
                     </div>
                     <div class="contributor-links">
-                      <a href="" target="_blank" aria-label="Homepage"><i class="fas fa-globe"></i> </a>
-                      <a href="" target="_blank" aria-label="Google Scholar"> <i class="ai ai-google-scholar"></i> </a>
+                      <a href="https://uav.hkust.edu.hk/group/" target="_blank" aria-label="Homepage"><i class="fas fa-globe"></i> </a>
+                      <a href="https://scholar.google.co.jp/citations?user=u8Q0_xsAAAAJ&hl=en" target="_blank" aria-label="Google Scholar"> <i class="ai ai-google-scholar"></i> </a>
+                      <a href="https://hk.linkedin.com/in/shaojie-shen-21246b24" target="_blank" aria-label="LinkedIn"> <i class="fab fa-linkedin"></i> </a>
                     </div>
                   </div>
 
@@ -640,8 +664,8 @@
                       <div class="contributor-note">Advisor</div>
                     </div>
                     <div class="contributor-links">
-                      <a href="" target="_blank" aria-label="Homepage"><i class="fas fa-globe"></i> </a>
-                      <a href="" target="_blank" aria-label="Google Scholar"> <i class="ai ai-google-scholar"></i> </a>
+                      <a href="https://jkzhu.github.io/" target="_blank" aria-label="Homepage"><i class="fas fa-globe"></i> </a>
+                      <a href="https://scholar.google.com/citations?user=SC-WmzwAAAAJ&hl=en" target="_blank" aria-label="Google Scholar"> <i class="ai ai-google-scholar"></i> </a>
                     </div>
                   </div>
 
@@ -656,8 +680,8 @@
                       <div class="contributor-note">Advisor</div>
                     </div>
                     <div class="contributor-links">
-                      <a href="" target="_blank" aria-label="Homepage"><i class="fas fa-globe"></i> </a>
-                      <a href="" target="_blank" aria-label="Google Scholar"> <i class="ai ai-google-scholar"></i> </a>
+                      <a href="https://en.wikipedia.org/wiki/Dacheng_Tao" target="_blank" aria-label="Homepage"><i class="fas fa-globe"></i> </a>
+                      <a href="https://scholar.google.com/citations?user=RwlJNLcAAAAJ&hl=en" target="_blank" aria-label="Google Scholar"> <i class="ai ai-google-scholar"></i> </a>
                     </div>
                   </div>
 
@@ -691,8 +715,11 @@
                       <div class="contributor-note">Advisor</div>
                     </div>
                     <div class="contributor-links">
-                      <a href="" target="_blank" aria-label="Homepage"><i class="fas fa-globe"></i> </a>
-                      <a href="" target="_blank" aria-label="Google Scholar"> <i class="ai ai-google-scholar"></i> </a>
+                      <a href="https://junweiliang.me/" target="_blank" aria-label="Homepage"><i class="fas fa-globe"></i> </a>
+                      <a href="https://scholar.google.com/citations?user=bMedjfUAAAAJ&hl=en" target="_blank" aria-label="Google Scholar"> <i class="ai ai-google-scholar"></i> </a>
+                      <a href="https://github.com/JunweiLiang" target="_blank" aria-label="GitHub"> <i class="fab fa-github"></i> </a>
+                      <a href="https://www.linkedin.com/in/junweiliang/" target="_blank" aria-label="LinkedIn"> <i class="fab fa-linkedin"></i> </a>
+                      <a href="https://twitter.com/JunweiLiangCMU" target="_blank" aria-label="X (Twitter)"> <i class="fab fa-twitter"> </i> </a>
                     </div>
                   </div>
 
