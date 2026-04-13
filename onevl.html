@@ -610,6 +610,160 @@
                     </table>
                   </div>
 
+                  <br>
+
+                  <p class="wb-lead">
+                    On Impromptu, OneVL achieves <b>1.34</b> ADE and <b>3.70</b> FDE (meters), outperforming both Impromptu VLA (1.60 / 4.28) and explicit AR CoT (1.42 / 3.96). Latency is <b>4.02s</b> &mdash; faster than answer-only prediction and 41% faster than AR CoT (6.84s).
+                  </p>
+
+                  <br>
+
+                  <div class="onevl-table-wrap">
+                    <p class="onevl-table-caption"><b>Performance comparisons on the Impromptu benchmark.</b> ADE and FDE (meters; lower is better), latency (lower is better).</p>
+                    <table class="onevl-table">
+                      <thead>
+                        <tr>
+                          <th>Method</th>
+                          <th>ADE (m) &darr;</th>
+                          <th>FDE (m) &darr;</th>
+                          <th>Latency (s) &darr;</th>
+                          <th>Interpretability</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr class="group-header"><td colspan="5">Previous State-of-the-Art</td></tr>
+                        <tr>
+                          <td>Impromptu VLA</td>
+                          <td>1.60</td>
+                          <td>4.28</td>
+                          <td>6.10</td>
+                          <td>&mdash;</td>
+                        </tr>
+                        <tr class="group-header"><td colspan="5">AR-based Baselines (4B, Qwen3-VL)</td></tr>
+                        <tr>
+                          <td>AR Answer</td>
+                          <td>1.46</td>
+                          <td>4.03</td>
+                          <td class="underline">4.24</td>
+                          <td>&mdash;</td>
+                        </tr>
+                        <tr>
+                          <td>AR CoT+Answer</td>
+                          <td class="underline">1.42</td>
+                          <td class="underline">3.96</td>
+                          <td>6.84</td>
+                          <td>Language</td>
+                        </tr>
+                        <tr class="group-header"><td colspan="5">Latent CoT Baselines (4B, Qwen3-VL)</td></tr>
+                        <tr>
+                          <td>COCONUT</td>
+                          <td>1.49</td>
+                          <td>4.07</td>
+                          <td>5.27</td>
+                          <td>&mdash;</td>
+                        </tr>
+                        <tr>
+                          <td>CODI</td>
+                          <td>1.86</td>
+                          <td>5.18</td>
+                          <td>5.24</td>
+                          <td>&mdash;</td>
+                        </tr>
+                        <tr>
+                          <td>SIM-CoT</td>
+                          <td>2.43</td>
+                          <td>6.10</td>
+                          <td>5.09</td>
+                          <td>Language</td>
+                        </tr>
+                        <tr class="row-ours">
+                          <td><b>OneVL</b></td>
+                          <td class="best">1.34</td>
+                          <td class="best">3.70</td>
+                          <td class="best">4.02</td>
+                          <td>Vision + Language</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+
+                  <br>
+
+                  <p class="wb-lead">
+                    On Alpamayo-R1, OneVL achieves <b>2.69</b> ADE (meters), the best among all methods, and <b>7.72</b> FDE, competitive with Cosmos-Reason (7.42) which uses RL-based fine-tuning. Latency is <b>3.26s</b>, faster than all latent CoT baselines.
+                  </p>
+
+                  <br>
+
+                  <div class="onevl-table-wrap">
+                    <p class="onevl-table-caption"><b>Performance comparisons on the Alpamayo-R1 benchmark.</b> ADE and FDE (meters; lower is better), latency (lower is better).</p>
+                    <table class="onevl-table">
+                      <thead>
+                        <tr>
+                          <th>Method</th>
+                          <th>ADE (m) &darr;</th>
+                          <th>FDE (m) &darr;</th>
+                          <th>Latency (s) &darr;</th>
+                          <th>Interpretability</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr class="group-header"><td colspan="5">Previous State-of-the-Art</td></tr>
+                        <tr>
+                          <td>Cosmos-Reason</td>
+                          <td class="underline">2.86</td>
+                          <td class="best">7.42</td>
+                          <td>&mdash;</td>
+                          <td>Language</td>
+                        </tr>
+                        <tr class="group-header"><td colspan="5">AR-based Baselines (4B, Qwen3-VL)</td></tr>
+                        <tr>
+                          <td>AR Answer</td>
+                          <td>3.27</td>
+                          <td>9.59</td>
+                          <td>3.06</td>
+                          <td>&mdash;</td>
+                        </tr>
+                        <tr>
+                          <td>AR CoT+Answer</td>
+                          <td>2.99</td>
+                          <td>8.54</td>
+                          <td>3.51</td>
+                          <td>Language</td>
+                        </tr>
+                        <tr class="group-header"><td colspan="5">Latent CoT Baselines (4B, Qwen3-VL)</td></tr>
+                        <tr>
+                          <td>COCONUT</td>
+                          <td>3.29</td>
+                          <td>9.48</td>
+                          <td>3.76</td>
+                          <td>&mdash;</td>
+                        </tr>
+                        <tr>
+                          <td>CODI</td>
+                          <td>3.22</td>
+                          <td>9.25</td>
+                          <td>3.85</td>
+                          <td>&mdash;</td>
+                        </tr>
+                        <tr>
+                          <td>SIM-CoT</td>
+                          <td>3.40</td>
+                          <td>9.85</td>
+                          <td>3.78</td>
+                          <td>Language</td>
+                        </tr>
+                        <tr class="row-ours">
+                          <td><b>OneVL</b></td>
+                          <td class="best">2.69</td>
+                          <td class="underline">7.72</td>
+                          <td class="best">3.26</td>
+                          <td>Vision + Language</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+
                   <br><br><br><br>
                 </div>
               </section>
