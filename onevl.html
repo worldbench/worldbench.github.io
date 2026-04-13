@@ -1,0 +1,518 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>OneVL: One-Step Latent Reasoning and Planning with Vision-Language Explanation</title>
+
+        <link rel="icon" href="assets_common/icons/worldbench-circle.png" type="image/x-icon">
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet">
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <script src="./static/js/distill_template.v2.js"></script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+        <script defer="" src="./static/js/hider.js"></script>
+
+        <link rel="stylesheet" href="./static/css/style.css">
+        <link rel="stylesheet" href="./static/css/onevl.css">
+        <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css" integrity="sha384-yFRtMMDnQtDRO8rLpMIKrtPCD5jdktao2TV19YiZYWMDkUR5GQZR/NOVTdquEx1j" crossorigin="anonymous">
+        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.js" integrity="sha384-9Nhn55MVVN0/4OFx7EE5kpFBPsEMZxKTCnA+4fqDmg12eCTqGi6+BB2LjY8brQxJ" crossorigin="anonymous"></script>
+        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
+            onload="renderMathInElement(document.body);"></script>
+        <script defer src="./static/js/fontawesome.all.min.js"></script>
+
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+        <script defer src="./static/js/medium-zoom.min.js"></script>
+        <script defer src="./static/js/zoom.js"></script>
+
+        <style>
+          .onevl-name {
+            font-weight: bold;
+          }
+          .onevl-name .o1 { color: #e8700a; }
+          .onevl-name .n  { color: #d4650c; }
+          .onevl-name .e  { color: #c05a0e; }
+          .onevl-name .v  { color: #a94e10; }
+          .onevl-name .l  { color: #8b3e12; }
+        </style>
+    </head>
+
+
+    <body>
+        <div class="header-wrapper">
+
+            <div class="header-container", id="header-container">
+                <div class="header-content">
+                <h1 style="font-size:3.2rem;">
+                  <span class="onevl-name"><span class="o1">O</span><span class="n">n</span><span class="e">e</span><span class="v">V</span><span class="l">L</span></span>:
+                  One-Step Latent Reasoning and Planning with Vision-Language Explanation
+                </h1>
+
+                <h2 style="margin:2.2rem 0 1.8rem; display:flex; align-items:center; gap:0.4rem;">
+                  <!-- TODO: Replace with Xiaomi EI team logo if available -->
+                  <span class="icon is-small">
+                    <img src="assets/onevl/figures/xiaomi.png" style="height:1.8em; vertical-align:text-top;">
+                  </span>&nbsp;Xiaomi Embodied Intelligence Team
+                </h2>
+
+                <div class="button-container">
+                    <a href="#" class="button paper-link" target="_blank">
+                        <span class="icon is-small">
+                            <i class="ai ai-arxiv" style="height: 1.5em;"></i>
+                        </span><span>arXiv</span>
+                    </a>
+                    <a href="#" class="button paper-link" target="_blank">
+                        <span class="icon is-small">
+                            <img src="assets_common/icons/pdf.png" style="height: 1.4em;">
+                        </span><span>PDF</span>
+                    </a>
+                    <a href="#" class="button" target="_blank">
+                        <span class="icon is-small">
+                            <img src="assets_common/icons/github.png" style="height: 1.4em;">
+                        </span><span>GitHub</span>
+                    </a>
+                    <!-- TODO: Add HuggingFace / Leaderboard / Data buttons when ready -->
+                </div>
+                </div>
+                <div class="header-image">
+                    <!-- TODO: Replace with OneVL teaser bar chart (Fig 1 from paper) -->
+                    <img src="assets/onevl/figures/teaser.png" alt="Teaser Image" class="teaser-image">
+                </div>
+            </div>
+        </div>
+
+        <d-article>
+            <d-contents>
+                <nav>
+                    <h4>Contents</h4>
+                    <div><a href="#introduction">Introduction</a></div>
+                    <div><a href="#architecture">Architecture</a></div>
+                    <div><a href="#pipeline">Training Pipeline</a></div>
+                    <div><a href="#results">Results</a></div>
+                    <div><a href="#qualitative">Qualitative</a></div>
+                    <div><a href="#contributors">Contributors</a></div>
+                    <div><a href="#related-projects">Related Projects</a></div>
+                </nav>
+            </d-contents>
+
+
+
+              <!-- ==================== Introduction ==================== -->
+              <section id="introduction">
+                <div class="wb-section">
+                  <div class="wb-kicker">
+                    Can latent reasoning outperform explicit CoT?
+                  </div>
+                  <div class="onevl-hr"></div>
+
+                  <p class="wb-lead">
+                    Chain-of-Thought (CoT) reasoning has become a powerful driver of trajectory prediction in VLA-based autonomous driving, yet its autoregressive nature imposes a latency cost that is prohibitive for real-time deployment.
+                  </p>
+                  <p class="wb-lead">
+                    Latent CoT methods compress reasoning into hidden states to reduce latency, but consistently underperform explicit CoT &mdash; because purely linguistic latents encode symbolic abstractions, not the causal dynamics that govern driving.
+                  </p>
+
+                  <figure style="width: 100%; max-width: 1000px; display: block; margin: 24px auto;">
+                    <img src="assets/onevl/figures/paradigm.png" alt="Comparison of three CoT paradigms">
+                  </figure>
+                  
+                  <p class="wb-lead">
+                    We argue that the compression target itself must capture genuine causal relationships. A latent vector that compresses only language is merely compressing an abstraction of the world, not the underlying physical structure.
+                  </p>
+
+                  <p class="wb-lead">
+                    <span class="onevl-name"><span class="o1">O</span><span class="n">n</span><span class="e">e</span><span class="v">V</span><span class="l">L</span></span> addresses this with dual auxiliary decoders: a <b>language decoder</b> that reconstructs text CoT, and a <b>visual world model decoder</b> that predicts future-frame tokens &mdash; forcing the latent space to internalize causal scene dynamics rather than symbolic summaries.
+                  </p>
+                  <p class="wb-lead">
+                    Across four benchmarks, <span class="onevl-name"><span class="o1">O</span><span class="n">n</span><span class="e">e</span><span class="v">V</span><span class="l">L</span></span> is the <b>first</b> latent CoT method to surpass explicit CoT, delivering state-of-the-art accuracy at answer-only latency.
+                  </p>
+
+                  <br><br>
+                </div>
+              </section>
+
+
+
+              <!-- ==================== Architecture ==================== -->
+              <section id="architecture">
+                <div class="wb-section">
+
+                  <h2>Model Architecture</h2>
+
+                  <!-- TODO: Replace with Fig 3 from paper (full architecture diagram) -->
+                  <figure style="width: 100%; max-width: 1000px; display: block; margin: 24px auto;">
+                    <img src="assets/onevl/figures/onevl.png" alt="OneVL Architecture">
+                  </figure>
+
+                  <div class="wb-kicker">
+                    <span class="onevl-name"><span class="o1">O</span><span class="n">n</span><span class="e">e</span><span class="v">V</span><span class="l">L</span></span>: Dual-Modal Latent Reasoning
+                  </div>
+                  <div class="onevl-hr"></div>
+
+                  <p class="wb-lead">
+                    OneVL augments a pretrained VLM with a compact latent token interface and dual auxiliary decoders for multimodal explanation.
+                    During inference, the auxiliary decoders are discarded and all latent tokens are prefilled in a single parallel pass, matching answer-only AR prediction latency.
+                  </p>
+
+                  <style>
+                    #architecture .wb-grid {
+                      grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+                      max-width: 960px;
+                      margin: 0 auto;
+                      gap: 2rem 2.5rem;
+                    }
+                    #architecture .wb-grid .wb-card {
+                      margin: 0.75rem 0;
+                    }
+                    @media (max-width: 1024px) {
+                      #architecture .wb-grid { grid-template-columns: 1fr !important; }
+                    }
+                  </style>
+
+                  <div class="wb-grid">
+
+                    <article class="wb-card">
+                      <h3>
+                        <a class="wb-anchor">Dual Latent Tokens</a>
+                      </h3>
+                      <p>
+                        <b>35 visual</b> + <b>20 language</b> latent tokens create a tight information bottleneck that forces the model to distill only the causal structure of the scene &mdash; discouraging memorization in favor of generalizable representations.
+                      </p>
+                    </article>
+
+                    <article class="wb-card">
+                      <h3>
+                        <a class="wb-anchor">Language Auxiliary Decoder</a>
+                      </h3>
+                      <p>
+                        Recovers <b>human-readable CoT text</b> from language latent states, grounding the bottleneck in semantic intent: scene interpretation, object analysis, and driving decisions.
+                      </p>
+                    </article>
+
+                    <article class="wb-card">
+                      <h3>
+                        <a class="wb-anchor">Visual Auxiliary Decoder</a>
+                      </h3>
+                      <p>
+                        Predicts <b>future-frame visual tokens</b> at +0.5s and +1.0s, acting as a <b>world model auxiliary</b> that grounds the bottleneck in physical scene dynamics &mdash; a causal compression target that language alone cannot supply.
+                      </p>
+                    </article>
+
+                  </div>
+
+                  <br><br><br>
+                </div>
+              </section>
+
+
+
+              <!-- ==================== Training Pipeline ==================== -->
+              <section id="pipeline">
+                <div class="wb-section">
+
+                  <h2>Three-Stage Training Pipeline</h2>
+
+                  <div class="wb-kicker">
+                    Progressive Alignment for Stable Compression
+                  </div>
+                  <div class="onevl-hr"></div>
+
+                  <p class="wb-lead">
+                    Training OneVL presents a unique optimization challenge: the main VLM, the language auxiliary decoder, and the visual auxiliary decoder must all be jointly optimized, yet they have fundamentally different learning objectives.
+                    A principled three-stage pipeline progressively aligns these components.
+                  </p>
+
+
+                  <div class="stage-grid">
+
+                    <article class="wb-card">
+                      <h3>
+                        <span class="stage-num">0</span>
+                        <a class="wb-anchor">Main Model Warmup</a>
+                      </h3>
+                      <p>
+                        Train the main VLM end-to-end on trajectory prediction with latent tokens embedded in each training sample.
+                        The model learns to develop meaningful latent representations and establish information routing pathways.
+                      </p>
+                    </article>
+
+                    <article class="wb-card">
+                      <h3>
+                        <span class="stage-num">1</span>
+                        <a class="wb-anchor">Auxiliary Decoder Warmup</a>
+                      </h3>
+                      <p>
+                        Freeze the main model and train the auxiliary decoders to align with the stable latent representations.
+                        The language decoder learns to decode CoT text; the visual decoder learns to predict future frames.
+                      </p>
+                    </article>
+
+                    <article class="wb-card">
+                      <h3>
+                        <span class="stage-num">2</span>
+                        <a class="wb-anchor">Joint End-to-End Fine-tuning</a>
+                      </h3>
+                      <p>
+                        Jointly fine-tune all three model components.
+                        Gradients from both decoders flow back into the main model, creating a virtuous cycle that tightens the information bottleneck from both sides.
+                      </p>
+                    </article>
+
+                  </div>
+
+                  <br><br><br>
+                </div>
+              </section>
+
+
+
+              <!-- ==================== Results ==================== -->
+              <section id="results">
+                <div class="wb-section">
+
+                  <h2>Key Results</h2>
+
+                  <div class="wb-kicker">
+                    State-of-the-Art Across Benchmarks
+                  </div>
+                  <div class="onevl-hr"></div>
+
+                  <p class="wb-lead">
+                    OneVL achieves state-of-the-art performance across NAVSIM, ROADWork, Impromptu, and APR1 with a <b>4B parameter model</b>, surpassing prior 8B methods.
+                    Prefill inference matches answer-only prediction speed, and an MLP variant reaches <b>0.24s latency (4.16 Hz)</b> for real-world deployment.
+                  </p>
+
+                  <div class="results-grid">
+
+                    <article class="wb-card result-card">
+                      <div class="result-benchmark">NAVSIM</div>
+                      <div class="result-value">88.84</div>
+                      <div class="result-label">PDM-score</div>
+                    </article>
+
+                    <article class="wb-card result-card">
+                      <div class="result-benchmark">ROADWork</div>
+                      <div class="result-value">12.49</div>
+                      <div class="result-label">ADE (pixels)</div>
+                    </article>
+
+                    <article class="wb-card result-card">
+                      <div class="result-benchmark">Impromptu</div>
+                      <div class="result-value">1.31</div>
+                      <div class="result-label">ADE (meters)</div>
+                    </article>
+
+                    <article class="wb-card result-card">
+                      <div class="result-benchmark">APR1</div>
+                      <div class="result-value">2.71</div>
+                      <div class="result-label">ADE (meters)</div>
+                    </article>
+
+                  </div>
+
+                  <br>
+
+                  <!-- TODO: Add leaderboard iframe when ready -->
+                  <div class="placeholder-box">
+                    Official Leaderboard coming soon
+                  </div>
+
+                  <br><br><br>
+                </div>
+              </section>
+
+
+
+              <!-- ==================== Qualitative Examples ==================== -->
+              <section id="qualitative">
+                <div class="wb-section">
+
+                  <div class="wb-kicker">
+                    Trajectory Prediction &amp; Interpretable Explanations
+                  </div>
+                  <div class="onevl-hr"></div>
+
+                  <p class="wb-lead">
+                    OneVL provides human-interpretable explanations in both language and vision.
+                    The language auxiliary decoder recovers high-quality CoT text from compressed latents, while the visual auxiliary decoder generates spatially coherent future-frame previews.
+                  </p>
+
+                  <!-- TODO: Replace with qualitative figures (Fig 4/5/6 from paper) -->
+                  <figure style="width: 100%; max-width: 1000px; display: block; margin: 24px auto;">
+                    <img src="assets/onevl/figures/qualitative_navsim.png" alt="NAVSIM qualitative examples">
+                  </figure>
+
+                  <figure style="width: 100%; max-width: 1000px; display: block; margin: 24px auto;">
+                    <img src="assets/onevl/figures/qualitative_roadwork.png" alt="ROADWork qualitative examples">
+                  </figure>
+
+                  <figure style="width: 100%; max-width: 1000px; display: block; margin: 24px auto;">
+                    <img src="assets/onevl/figures/qualitative_impromptu.png" alt="Impromptu qualitative examples">
+                  </figure>
+
+                  <br>
+
+                  <div class="wb-kicker">
+                    Video Demonstrations
+                  </div>
+                  <div class="onevl-hr"></div>
+
+                  <style>
+                    .onevl-video-item {
+                      max-width: 900px;
+                      margin: 0 auto 2.5rem;
+                    }
+                    .onevl-video-item video {
+                      width: 100%;
+                      height: auto;
+                      display: block;
+                      border-radius: 12px;
+                      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+                      background: #111;
+                    }
+                    .onevl-video-caption {
+                      text-align: center;
+                      font-size: 0.92rem;
+                      color: #6b7280;
+                      margin-top: 0.6rem;
+                      font-family: "Rubik", sans-serif;
+                    }
+                  </style>
+
+                  <!-- TODO: Replace placeholder video paths with actual files -->
+                  <div class="onevl-video-item">
+                    <video autoplay loop muted playsinline>
+                      <source src="assets/onevl/videos/navsim.mp4" type="video/mp4" />
+                    </video>
+                    <p class="onevl-video-caption">Trajectory prediction on NAVSIM. OneVL vs. AR baseline.</p>
+                  </div>
+
+                  <div class="onevl-video-item">
+                    <video autoplay loop muted playsinline>
+                      <source src="assets/onevl/videos/roadwork.mp4" type="video/mp4" />
+                    </video>
+                    <p class="onevl-video-caption">Navigation in road construction work zones on ROADWork.</p>
+                  </div>
+
+                  <div class="onevl-video-item">
+                    <video autoplay loop muted playsinline>
+                      <source src="assets/onevl/videos/impromptu.mp4" type="video/mp4" />
+                    </video>
+                    <p class="onevl-video-caption">Corner-case trajectory prediction on Impromptu.</p>
+                  </div>
+
+                  <br><br><br>
+                </div>
+              </section>
+
+
+
+              <!-- ==================== Contributors ==================== -->
+              <section id="contributors">
+                <div class="wb-section">
+
+                  <h2>Contributors</h2>
+
+                  <p class="wb-lead">
+                    <span class="onevl-name"><span class="o1">O</span><span class="n">n</span><span class="e">e</span><span class="v">V</span><span class="l">L</span></span> is developed by the <b>Xiaomi Embodied Intelligence Team</b>.
+                  </p>
+
+                  <div class="wb-kicker" style="font-size:1.1rem;">Core Contributors</div>
+                  <div class="onevl-hr"></div>
+                  <div class="contributors-name-list">
+                    <span>Jinghui Lu</span>
+                    <span>Jiayi Guan</span>
+                    <span>Zhijian Huang</span>
+                    <span>Jinlong Li</span>
+                    <span>Guang Li</span>
+                    <span>Lingdong Kong</span>
+                    <span>Yingyan Li</span>
+                    <span>Han Wang</span>
+                    <span>Shaoqing Xu</span>
+                    <span>Yuechen Luo</span>
+                    <span>Fang Li</span>
+                    <span>Chenxu Dang</span>
+                    <span>Junli Wang</span>
+                    <span>Tao Xu</span>
+                    <span>Jing Wu</span>
+                    <span>Jianhua Wu</span>
+                    <span>Xiaoshuai Hao</span>
+                    <span>Wen Zhang</span>
+                    <span>Tianyi Jiang</span>
+                    <span>Kuiyuan Yang</span>
+                    <span>Hangjun Ye</span>
+                    <span>Long Chen</span>
+                  </div>
+
+                  <br>
+
+                  <div class="wb-kicker" style="font-size:1.1rem;">Contributors</div>
+                  <div class="onevl-hr"></div>
+                  <div class="contributors-name-list">
+                    <span>Lingfeng Zhang</span>
+                    <span>Lei Zhou</span>
+                    <span>Yingbo Tang</span>
+                    <span>Jie Wang</span>
+                    <span>Yinfeng Gao</span>
+                    <span>Haochen Tian</span>
+                    <span>Yihang Qiu</span>
+                    <span>Feiyang Jia</span>
+                    <span>Lin Liu</span>
+                    <span>Yigu Ge</span>
+                    <span>Hanbing Li</span>
+                    <span>Yuannan Shen</span>
+                    <span>Jingwei Zhao</span>
+                    <span>Jiahui Huang</span>
+                    <span>Pei Liu</span>
+                    <span>Zeyu Zhu</span>
+                    <span>Chuhong Gong</span>
+                    <span>Hanchao Leng</span>
+                    <span>Kun Ma</span>
+                    <span>Naiyan Wang</span>
+                    <span>Guang Chen</span>
+                  </div>
+
+                  <br>
+                </div>
+                <br><br>
+              </section>
+
+
+
+
+            <br><br>
+
+
+            <footer class="wb-footer">
+              <br>
+              <div class="wb-footer-content">
+                <p>
+                  This website is licensed under a
+                  <a href="https://creativecommons.org/licenses/by-sa/4.0/"
+                    target="_blank"
+                    rel="noopener noreferrer">
+                    Creative Commons Attribution-ShareAlike 4.0 International License
+                  </a>
+                </p>
+                <p>
+                  &copy; <b>Xiaomi Embodied Intelligence Team</b> 2026. All Rights Reserved
+                </p>
+              </div>
+              <br>
+            </footer>
+
+
+        </d-article>
+
+
+        <script src="contents_bar.js"></script>
+
+    </body>
+</html>

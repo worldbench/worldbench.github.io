@@ -1,0 +1,117 @@
+/* OneVL project-specific overrides */
+
+/* Name gradient: orange → brown */
+.onevl-name {
+  font-weight: bold;
+}
+.onevl-name .o1 { color: #e8700a; }
+.onevl-name .n  { color: #d4650c; }
+.onevl-name .e  { color: #c05a0e; }
+.onevl-name .v  { color: #a94e10; }
+.onevl-name .l  { color: #8b3e12; }
+
+/* Pipeline stage cards */
+#pipeline .stage-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.25rem;
+  margin-top: 1rem;
+}
+@media (max-width: 1024px) {
+  #pipeline .stage-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 640px) {
+  #pipeline .stage-grid { grid-template-columns: 1fr; }
+}
+#pipeline .stage-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #e8700a, #8b3e12);
+  color: #fff;
+  font-size: 0.82rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+/* Results highlight cards */
+#results .results-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+@media (max-width: 1024px) {
+  #results .results-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 640px) {
+  #results .results-grid { grid-template-columns: 1fr; }
+}
+.result-card {
+  text-align: center;
+  padding: 1.2rem 0.8rem;
+}
+.result-card .result-value {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #c05a0e;
+  line-height: 1.2;
+}
+.result-card .result-label {
+  font-size: 0.88rem;
+  color: #6b7280;
+  margin-top: 0.3rem;
+}
+.result-card .result-benchmark {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 0.2rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* Override wb-hr gradient to orange-brown */
+.onevl-hr {
+  height: 3px;
+  width: 72px;
+  background: linear-gradient(90deg, #8b3e12, #c05a0e 60%, #e8700a);
+  border-radius: 999px;
+  margin: .75rem 0 1.25rem;
+}
+
+/* Contributors name list (compact) */
+.contributors-name-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem 0.6rem;
+  margin-top: 0.6rem;
+  font-size: 0.92rem;
+  color: #374151;
+  line-height: 1.8;
+}
+.contributors-name-list span {
+  white-space: nowrap;
+}
+.contributors-name-list span::after {
+  content: ",";
+  color: #9ca3af;
+}
+.contributors-name-list span:last-child::after {
+  content: "";
+}
+
+/* Placeholder box for future content */
+.placeholder-box {
+  border: 2px dashed #d1d5db;
+  border-radius: 14px;
+  padding: 2rem;
+  text-align: center;
+  color: #9ca3af;
+  font-size: 0.95rem;
+  background: #fafafa;
+  margin: 1.5rem 0;
+}
