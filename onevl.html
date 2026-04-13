@@ -393,6 +393,223 @@
                     <img src="assets/onevl/figures/benchmark.png" alt="Accuracy and efficiency comparison across four benchmarks">
                   </figure>
 
+                  <br>
+                  
+                  <p class="wb-lead">
+                    On NAVSIM, OneVL achieves <b>88.84</b> PDM-score with a 4B model, surpassing 8B methods AdaThinkDrive (86.20) and LaST-VLA (87.30). Prefill inference reaches <b>4.46s</b> latency &mdash; matching answer-only prediction (4.49s) while being 32% faster than explicit AR CoT (6.58s).
+                  </p>
+
+                  <br>
+
+                  <style>
+                    .onevl-table-wrap {
+                      max-width: 900px;
+                      margin: 0 auto;
+                      overflow-x: auto;
+                    }
+                    .onevl-table {
+                      width: 100%;
+                      border-collapse: collapse;
+                      font-family: "Rubik", sans-serif;
+                      font-size: 0.92rem;
+                      line-height: 1.5;
+                    }
+                    .onevl-table th,
+                    .onevl-table td {
+                      padding: 0.5rem 0.75rem;
+                      text-align: center;
+                      border-bottom: 1px solid #e5e7eb;
+                    }
+                    .onevl-table th {
+                      font-weight: 600;
+                      color: #111827;
+                      border-bottom: 2px solid #374151;
+                    }
+                    .onevl-table td:first-child,
+                    .onevl-table th:first-child {
+                      text-align: left;
+                    }
+                    .onevl-table .group-header td {
+                      font-style: italic;
+                      color: #6b7280;
+                      text-align: center;
+                      background: #fff3ea;
+                      border-bottom: 1px solid #e5e7eb;
+                      padding: 0.35rem 0.75rem;
+                      font-size: 0.88rem;
+                    }
+                    .onevl-table .row-ours {
+                      background: #fff3ea;
+                      font-weight: 600;
+                    }
+                    .onevl-table .best {
+                      font-weight: 700;
+                    }
+                    .onevl-table .underline {
+                      text-decoration: underline;
+                    }
+                    .onevl-table-caption {
+                      text-align: center;
+                      font-size: 0.88rem;
+                      color: #6b7280;
+                      margin: 0 0 0.5rem !important;
+                      font-family: "Rubik", sans-serif;
+                    }
+                  </style>
+
+                  <div class="onevl-table-wrap">
+                    <p class="onevl-table-caption"><b>Performance comparisons on the NAVSIM benchmark.</b> PDM-score (higher is better) and average inference latency (lower is better). * indicates the result is derived from the corresponding paper.</p>
+                    <table class="onevl-table">
+                      <thead>
+                        <tr>
+                          <th>Method</th>
+                          <th>Model Size</th>
+                          <th>PDM-score &uarr;</th>
+                          <th>Latency (s) &darr;</th>
+                          <th>Interpretability</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr class="group-header"><td colspan="5">Previous State-of-the-Art</td></tr>
+                        <tr>
+                          <td>AdaThinkDrive</td>
+                          <td>8B</td>
+                          <td>86.20*</td>
+                          <td>&mdash;</td>
+                          <td>Language</td>
+                        </tr>
+                        <tr>
+                          <td>LaST-VLA</td>
+                          <td>8B</td>
+                          <td>87.30*</td>
+                          <td>&mdash;</td>
+                          <td>&mdash;</td>
+                        </tr>
+                        <tr class="group-header"><td colspan="5">AR-based Baselines (4B, Qwen3-VL)</td></tr>
+                        <tr>
+                          <td>AR Answer</td>
+                          <td>4B</td>
+                          <td>87.47</td>
+                          <td class="underline">4.49</td>
+                          <td>&mdash;</td>
+                        </tr>
+                        <tr>
+                          <td>AR CoT+Answer</td>
+                          <td>4B</td>
+                          <td class="underline">88.29</td>
+                          <td>6.58</td>
+                          <td>Language</td>
+                        </tr>
+                        <tr class="group-header"><td colspan="5">Latent CoT Baselines (4B, Qwen3-VL)</td></tr>
+                        <tr>
+                          <td>COCONUT</td>
+                          <td>4B</td>
+                          <td>84.84</td>
+                          <td>5.93</td>
+                          <td>&mdash;</td>
+                        </tr>
+                        <tr>
+                          <td>CODI</td>
+                          <td>4B</td>
+                          <td>83.92</td>
+                          <td>8.62</td>
+                          <td>&mdash;</td>
+                        </tr>
+                        <tr>
+                          <td>SIM-CoT</td>
+                          <td>4B</td>
+                          <td>84.21</td>
+                          <td>10.86</td>
+                          <td>Language</td>
+                        </tr>
+                        <tr class="row-ours">
+                          <td><b>OneVL</b></td>
+                          <td>4B</td>
+                          <td class="best">88.84</td>
+                          <td class="best">4.46</td>
+                          <td>Vision + Language</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+
+                  <br>
+
+                  <p class="wb-lead">
+                    On ROADWork, OneVL achieves <b>12.49</b> ADE and <b>28.80</b> FDE (pixels), significantly outperforming the previous SOTA YNet (22.68 / 80.78) and all latent CoT baselines. Inference latency is <b>4.71s</b> &mdash; faster than answer-only prediction and over 2x faster than explicit AR CoT (10.74s).
+                  </p>
+
+                  <br>
+
+                  <div class="onevl-table-wrap">
+                    <p class="onevl-table-caption"><b>Performance comparisons on the ROADWork benchmark.</b> ADE and FDE (pixels; lower is better), latency (lower is better). * indicates the result is derived from the corresponding paper.</p>
+                    <table class="onevl-table">
+                      <thead>
+                        <tr>
+                          <th>Method</th>
+                          <th>ADE (pixel) &darr;</th>
+                          <th>FDE (pixel) &darr;</th>
+                          <th>Latency (s) &darr;</th>
+                          <th>Interpretability</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr class="group-header"><td colspan="5">Previous State-of-the-Art</td></tr>
+                        <tr>
+                          <td>YNet</td>
+                          <td>22.68*</td>
+                          <td>80.78*</td>
+                          <td>&mdash;</td>
+                          <td>&mdash;</td>
+                        </tr>
+                        <tr class="group-header"><td colspan="5">AR-based Baselines (4B, Qwen3-VL)</td></tr>
+                        <tr>
+                          <td>AR Answer</td>
+                          <td>15.98</td>
+                          <td>40.29</td>
+                          <td class="underline">4.74</td>
+                          <td>&mdash;</td>
+                        </tr>
+                        <tr>
+                          <td>AR CoT+Answer</td>
+                          <td class="underline">13.18</td>
+                          <td class="underline">29.98</td>
+                          <td>10.74</td>
+                          <td>Language</td>
+                        </tr>
+                        <tr class="group-header"><td colspan="5">Latent CoT Baselines (4B, Qwen3-VL)</td></tr>
+                        <tr>
+                          <td>COCONUT</td>
+                          <td>15.44</td>
+                          <td>38.60</td>
+                          <td class="underline">6.06</td>
+                          <td>&mdash;</td>
+                        </tr>
+                        <tr>
+                          <td>CODI</td>
+                          <td>16.45</td>
+                          <td>44.28</td>
+                          <td>6.73</td>
+                          <td>&mdash;</td>
+                        </tr>
+                        <tr>
+                          <td>SIM-CoT</td>
+                          <td>16.49</td>
+                          <td>44.32</td>
+                          <td>6.19</td>
+                          <td>Language</td>
+                        </tr>
+                        <tr class="row-ours">
+                          <td><b>OneVL</b></td>
+                          <td class="best">12.49</td>
+                          <td class="best">28.80</td>
+                          <td class="best">4.71</td>
+                          <td>Vision + Language</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+
                   <br><br><br><br>
                 </div>
               </section>
