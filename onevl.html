@@ -351,16 +351,21 @@
                       border-radius: 0;
                       background: transparent;
                     }
-                    .onevl-video-caption {
+                    .onevl-video-item p.onevl-video-caption {
                       text-align: center;
                       font-size: 0.92rem;
                       color: #6b7280;
-                      margin-top: 0.6rem;
+                      margin: 0 0 0.3rem !important;
+                      padding: 0;
                       font-family: "Rubik", sans-serif;
+                    }
+                    .onevl-video-item video {
+                      margin-bottom: 0;
                     }
                   </style>
 
                   <div class="onevl-video-item">
+                    <p class="onevl-video-caption">NAVSIM video log: OneVL trajectory prediction vs. AR baseline with BEV visualization.</p>
                     <video autoplay loop muted playsinline>
                       <source src="assets/onevl/videos/demo.mp4" type="video/mp4" />
                     </video>
@@ -368,12 +373,27 @@
 
 
                   <div class="onevl-video-item">
+                    <p class="onevl-video-caption">NAVSIM video log: OneVL trajectory prediction with multi-view and BEV visualization.</p>
                     <video autoplay loop muted playsinline>
-                      <source src="assets/onevl/videos/demo.mp4" type="video/mp4" />
+                      <source src="assets/onevl/videos/demo2.mp4" type="video/mp4" />
                     </video>
                   </div>
 
-                  <br><br><br>
+
+                  <div class="wb-kicker">
+                    Accuracy &amp; Efficiency across Benchmarks
+                  </div>
+                  <div class="onevl-hr"></div>
+
+                  <p class="wb-lead">
+                    OneVL consistently achieves the best accuracy across all four benchmarks while matching answer-only prediction latency. Existing latent CoT methods (COCONUT, CODI, SIM-CoT) underperform even the AR baseline, whereas OneVL surpasses explicit AR CoT at a fraction of the inference cost.
+                  </p>
+
+                  <figure style="width: 100%; max-width: 1000px; display: block; margin: 24px auto;">
+                    <img src="assets/onevl/figures/benchmark.png" alt="Accuracy and efficiency comparison across four benchmarks">
+                  </figure>
+
+                  <br><br><br><br>
                 </div>
               </section>
 
