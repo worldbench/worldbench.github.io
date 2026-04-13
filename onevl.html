@@ -78,7 +78,11 @@
                             <img src="assets_common/icons/github.png" style="height: 1.4em;">
                         </span><span>GitHub</span>
                     </a>
-                    <!-- TODO: Add HuggingFace / Leaderboard / Data buttons when ready -->
+                    <a href="#" class="button" target="_blank">
+                        <span class="icon is-small">
+                            <img src="assets_common/icons/hf.png" style="height: 1.5em;">
+                        </span><span>HuggingFace</span>
+                    </a>
                 </div>
                 </div>
                 <div class="header-image">
@@ -97,8 +101,8 @@
                     <div><a href="#pipeline">Training Pipeline</a></div>
                     <div><a href="#results">Results</a></div>
                     <div><a href="#qualitative">Qualitative</a></div>
+                    <div><a href="#examples">Detailed Examples</a></div>
                     <div><a href="#contributors">Contributors</a></div>
-                    <div><a href="#related-projects">Related Projects</a></div>
                 </nav>
             </d-contents>
 
@@ -367,7 +371,7 @@
                   <div class="onevl-video-item">
                     <p class="onevl-video-caption">NAVSIM video log: OneVL trajectory prediction with multi-view and BEV visualization.</p>
                     <video autoplay loop muted playsinline>
-                      <source src="assets/onevl/videos/demo.mp4" type="video/mp4" />
+                      <source src="assets/onevl/videos/demo1.mp4" type="video/mp4" />
                     </video>
                   </div>
 
@@ -378,6 +382,16 @@
                       <source src="assets/onevl/videos/demo2.mp4" type="video/mp4" />
                     </video>
                   </div>
+
+
+                  <div class="onevl-video-item">
+                    <p class="onevl-video-caption">NAVSIM video log: OneVL trajectory prediction with multi-view and BEV visualization.</p>
+                    <video autoplay loop muted playsinline>
+                      <source src="assets/onevl/videos/demo3.mp4" type="video/mp4" />
+                    </video>
+                  </div>
+
+
 
 
                   <div class="wb-kicker">
@@ -762,6 +776,177 @@
                         </tr>
                       </tbody>
                     </table>
+                  </div>
+
+                  <br><br><br><br>
+                </div>
+              </section>
+
+
+
+              <!-- ==================== Detailed Examples ==================== -->
+              <section id="examples">
+                <div class="wb-section">
+
+                  <div class="wb-kicker">
+                    Trajectory, Future Frames &amp; Reasoning
+                  </div>
+                  <div class="onevl-hr"></div>
+
+                  <p class="wb-lead">
+                    Each panel compares the AR baseline and OneVL side by side: front-view trajectory overlays, bird's-eye-view (BEV) plans, predicted future frames (T+1, T+2), and the decoded chain-of-thought reasoning.
+                  </p>
+
+                  <style>
+                    .qual-panel {
+                      max-width: 960px;
+                      margin: 1.5rem auto;
+                      border: 1px solid #e5e7eb;
+                      border-radius: 14px;
+                      overflow: hidden;
+                      background: #fff;
+                      box-shadow: none;
+                    }
+                    .qual-row-header {
+                      display: grid;
+                      gap: 0;
+                      background: #fde0c8;
+                      font-family: "Rubik", sans-serif;
+                      font-weight: 600;
+                      font-size: 0.92rem;
+                      color: #111827;
+                      text-align: center;
+                      border-bottom: 1px solid #e5e7eb;
+                    }
+                    .qual-row-header.two-col {
+                      grid-template-columns: 3fr 2fr;
+                    }
+                    .qual-row-header.three-col {
+                      grid-template-columns: 1fr 1fr 1fr;
+                    }
+                    .qual-row-header span {
+                      padding: 0.4rem 0.5rem;
+                    }
+                    .qual-row-header span:not(:last-child) {
+                      border-right: 1px solid rgba(0,0,0,0.08);
+                    }
+                    .qual-row {
+                      display: grid;
+                      gap: 0;
+                      border-bottom: 1px solid #e5e7eb;
+                    }
+                    .qual-row.two-col {
+                      grid-template-columns: 3fr 2fr;
+                    }
+                    .qual-row.three-col {
+                      grid-template-columns: 1fr 1fr 1fr;
+                    }
+                    .qual-row:last-child {
+                      border-bottom: none;
+                    }
+                    .qual-cell {
+                      padding: 0.5rem;
+                      display: flex;
+                      align-items: center;
+                      justify-content: center;
+                    }
+                    .qual-cell:not(:last-child) {
+                      border-right: 1px solid #e5e7eb;
+                    }
+                    .qual-cell img {
+                      width: 100%;
+                      height: auto;
+                      display: block;
+                      border-radius: 6px;
+                    }
+                    .qual-cell .qual-placeholder {
+                      width: 100%;
+                      aspect-ratio: 16 / 10;
+                      background: #f3f4f6;
+                      border: 2px dashed #d1d5db;
+                      border-radius: 6px;
+                      display: flex;
+                      align-items: center;
+                      justify-content: center;
+                      color: #9ca3af;
+                      font-size: 0.82rem;
+                      font-family: "Rubik", sans-serif;
+                    }
+                    .qual-cell .qual-reasoning {
+                      width: 100%;
+                      padding: 0.6rem 0.8rem;
+                      font-size: 0.82rem;
+                      line-height: 1.55;
+                      color: #374151;
+                      font-family: "Rubik", sans-serif;
+                    }
+                    .qual-cell .qual-reasoning b {
+                      color: #111827;
+                    }
+                    @media (max-width: 640px) {
+                      .qual-row.two-col { grid-template-columns: 1fr; }
+                      .qual-row.three-col { grid-template-columns: 1fr; }
+                      .qual-row-header.two-col { grid-template-columns: 1fr; }
+                      .qual-row-header.three-col { grid-template-columns: 1fr; }
+                      .qual-cell:not(:last-child) { border-right: none; border-bottom: 1px solid #e5e7eb; }
+                      .qual-row-header span:not(:last-child) { border-right: none; border-bottom: 1px solid rgba(0,0,0,0.08); }
+                    }
+                  </style>
+
+                  <div class="qual-panel">
+                    <!-- Row 1: Baseline -->
+                    <div class="qual-row-header two-col">
+                      <span>Baseline Front View</span>
+                      <span>Baseline BEV</span>
+                    </div>
+                    <div class="qual-row two-col">
+                      <div class="qual-cell">
+                        <img src="assets/onevl/figures/example1/baseline_front_view.jpg" alt="Baseline Front View">
+                      </div>
+                      <div class="qual-cell">
+                        <img src="assets/onevl/figures/example1/baseline_bev.png" alt="Baseline BEV">
+                      </div>
+                    </div>
+
+                    <!-- Row 2: OneVL -->
+                    <div class="qual-row-header two-col">
+                      <span>OneVL Front View</span>
+                      <span>OneVL BEV</span>
+                    </div>
+                    <div class="qual-row two-col">
+                      <div class="qual-cell">
+                        <img src="assets/onevl/figures/example1/onevl_front_view.jpg" alt="OneVL Front View">
+                      </div>
+                      <div class="qual-cell">
+                        <img src="assets/onevl/figures/example1/onevl_bev.png" alt="OneVL BEV">
+                      </div>
+                    </div>
+
+                    <!-- Row 3: Future frames + Reasoning -->
+                    <div class="qual-row-header" style="display:grid; grid-template-columns: 1fr 1fr;">
+                      <span>OneVL T+1</span>
+                      <span>OneVL T+2</span>
+                    </div>
+                    <div class="qual-row" style="display:grid; grid-template-columns: 1fr 1fr;">
+                      <div class="qual-cell">
+                        <img src="assets/onevl/figures/example1/onevl_t+1.jpg" alt="OneVL T+1 Future Frame">
+                      </div>
+                      <div class="qual-cell">
+                        <img src="assets/onevl/figures/example1/onevl_t+2.jpg" alt="OneVL T+2 Future Frame">
+                      </div>
+                    </div>
+
+                    <!-- Row 4: Reasoning -->
+                    <div class="qual-row-header" style="display:block; text-align:center;">
+                      <span>OneVL Reasoning</span>
+                    </div>
+                    <div class="qual-row" style="display:block;">
+                      <div class="qual-cell" style="border-right:none;">
+                        <div class="qual-reasoning">
+                          <b>CoT:</b> The right side of the lane where ego vehicle is located is close to the undrivable area, so I need to drive slightly to the left. There are no objects in the current scene that I need to pay attention to. Based on the understanding of the scene and the navigation information, the ego should maintain speed and turn left.
+                        </div>
+                      </div>
+                    </div>
                   </div>
 
                   <br><br><br><br>
