@@ -3,7 +3,7 @@
     <head>
         <title>OneVL: One-Step Latent Reasoning and Planning with Vision-Language Explanation</title>
 
-        <link rel="icon" href="assets_common/icons/worldbench-circle.png" type="image/x-icon">
+        <link rel="icon" href="assets/onevl/figures/xiaomi.png" type="image/x-icon">
 
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -36,11 +36,11 @@
           .onevl-name {
             font-weight: bold;
           }
-          .onevl-name .o1 { color: #e8700a; }
-          .onevl-name .n  { color: #d4650c; }
-          .onevl-name .e  { color: #c05a0e; }
-          .onevl-name .v  { color: #a94e10; }
-          .onevl-name .l  { color: #8b3e12; }
+          .onevl-name .o1 { color: #ff6900; }
+          .onevl-name .n  { color: #f47216; }
+          .onevl-name .e  { color: #ea7c2b; }
+          .onevl-name .v  { color: #df8540; }
+          .onevl-name .l  { color: #d48f55; }
         </style>
     </head>
 
@@ -122,7 +122,7 @@
                   <figure style="width: 100%; max-width: 1000px; display: block; margin: 24px auto;">
                     <img src="assets/onevl/figures/paradigm.png" alt="Comparison of three CoT paradigms">
                   </figure>
-                  
+
                   <p class="wb-lead">
                     We argue that the compression target itself must capture genuine causal relationships. A latent vector that compresses only language is merely compressing an abstraction of the world, not the underlying physical structure.
                   </p>
@@ -285,7 +285,7 @@
                   <div class="onevl-hr"></div>
 
                   <p class="wb-lead">
-                    OneVL achieves state-of-the-art performance across NAVSIM, ROADWork, Impromptu, and APR1 with a <b>4B parameter model</b>, surpassing prior 8B methods.
+                    OneVL achieves state-of-the-art performance across NAVSIM, ROADWork, Impromptu, and Alpamayo-R1 with a <b>4B parameter model</b>, surpassing prior 8B methods.
                     Prefill inference matches answer-only prediction speed, and an MLP variant reaches <b>0.24s latency (4.16 Hz)</b> for real-world deployment.
                   </p>
 
@@ -310,18 +310,11 @@
                     </article>
 
                     <article class="wb-card result-card">
-                      <div class="result-benchmark">APR1</div>
+                      <div class="result-benchmark">Alpamayo-R1</div>
                       <div class="result-value">2.71</div>
                       <div class="result-label">ADE (meters)</div>
                     </article>
 
-                  </div>
-
-                  <br>
-
-                  <!-- TODO: Add leaderboard iframe when ready -->
-                  <div class="placeholder-box">
-                    Official Leaderboard coming soon
                   </div>
 
                   <br><br><br>
@@ -344,25 +337,7 @@
                     The language auxiliary decoder recovers high-quality CoT text from compressed latents, while the visual auxiliary decoder generates spatially coherent future-frame previews.
                   </p>
 
-                  <!-- TODO: Replace with qualitative figures (Fig 4/5/6 from paper) -->
-                  <figure style="width: 100%; max-width: 1000px; display: block; margin: 24px auto;">
-                    <img src="assets/onevl/figures/qualitative_navsim.png" alt="NAVSIM qualitative examples">
-                  </figure>
-
-                  <figure style="width: 100%; max-width: 1000px; display: block; margin: 24px auto;">
-                    <img src="assets/onevl/figures/qualitative_roadwork.png" alt="ROADWork qualitative examples">
-                  </figure>
-
-                  <figure style="width: 100%; max-width: 1000px; display: block; margin: 24px auto;">
-                    <img src="assets/onevl/figures/qualitative_impromptu.png" alt="Impromptu qualitative examples">
-                  </figure>
-
                   <br>
-
-                  <div class="wb-kicker">
-                    Video Demonstrations
-                  </div>
-                  <div class="onevl-hr"></div>
 
                   <style>
                     .onevl-video-item {
@@ -373,9 +348,8 @@
                       width: 100%;
                       height: auto;
                       display: block;
-                      border-radius: 12px;
-                      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-                      background: #111;
+                      border-radius: 0;
+                      background: transparent;
                     }
                     .onevl-video-caption {
                       text-align: center;
@@ -386,26 +360,17 @@
                     }
                   </style>
 
-                  <!-- TODO: Replace placeholder video paths with actual files -->
                   <div class="onevl-video-item">
                     <video autoplay loop muted playsinline>
-                      <source src="assets/onevl/videos/navsim.mp4" type="video/mp4" />
+                      <source src="assets/onevl/videos/demo.mp4" type="video/mp4" />
                     </video>
-                    <p class="onevl-video-caption">Trajectory prediction on NAVSIM. OneVL vs. AR baseline.</p>
                   </div>
+
 
                   <div class="onevl-video-item">
                     <video autoplay loop muted playsinline>
-                      <source src="assets/onevl/videos/roadwork.mp4" type="video/mp4" />
+                      <source src="assets/onevl/videos/demo.mp4" type="video/mp4" />
                     </video>
-                    <p class="onevl-video-caption">Navigation in road construction work zones on ROADWork.</p>
-                  </div>
-
-                  <div class="onevl-video-item">
-                    <video autoplay loop muted playsinline>
-                      <source src="assets/onevl/videos/impromptu.mp4" type="video/mp4" />
-                    </video>
-                    <p class="onevl-video-caption">Corner-case trajectory prediction on Impromptu.</p>
                   </div>
 
                   <br><br><br>

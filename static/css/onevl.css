@@ -1,14 +1,14 @@
 /* OneVL project-specific overrides */
 
-/* Name gradient: orange → brown */
+/* Name gradient: lighter orange */
 .onevl-name {
   font-weight: bold;
 }
-.onevl-name .o1 { color: #e8700a; }
-.onevl-name .n  { color: #d4650c; }
-.onevl-name .e  { color: #c05a0e; }
-.onevl-name .v  { color: #a94e10; }
-.onevl-name .l  { color: #8b3e12; }
+.onevl-name .o1 { color: #ff6900; }
+.onevl-name .n  { color: #f47216; }
+.onevl-name .e  { color: #ea7c2b; }
+.onevl-name .v  { color: #df8540; }
+.onevl-name .l  { color: #d48f55; }
 
 /* Pipeline stage cards */
 #pipeline .stage-grid {
@@ -30,7 +30,7 @@
   width: 28px;
   height: 28px;
   border-radius: 999px;
-  background: linear-gradient(135deg, #e8700a, #8b3e12);
+  background: linear-gradient(135deg, #ff6900, #d48f55);
   color: #fff;
   font-size: 0.82rem;
   font-weight: 700;
@@ -57,7 +57,7 @@
 .result-card .result-value {
   font-size: 1.8rem;
   font-weight: 700;
-  color: #c05a0e;
+  color: #f47216;
   line-height: 1.2;
 }
 .result-card .result-label {
@@ -78,7 +78,7 @@
 .onevl-hr {
   height: 3px;
   width: 72px;
-  background: linear-gradient(90deg, #8b3e12, #c05a0e 60%, #e8700a);
+  background: linear-gradient(90deg, #d48f55, #f47216 60%, #ff6900);
   border-radius: 999px;
   margin: .75rem 0 1.25rem;
 }
