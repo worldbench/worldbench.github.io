@@ -7,81 +7,529 @@
 
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet">
 
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <script src="./static/js/distill_template.v2.js"></script>
-
-        <link rel="stylesheet" href="./static/css/style.css">
         <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-
         <script defer src="./static/js/fontawesome.all.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
-        <script defer src="./static/js/medium-zoom.min.js"></script>
-        <script defer src="./static/js/zoom.js"></script>
 
         <style>
-          /* Homepage-specific styles */
+          /* ===== Reset & Base ===== */
+          *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+          body {
+            font-family: "Rubik", sans-serif;
+            color: #1f2937;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+          }
+          a { color: inherit; text-decoration: none; }
+          img { max-width: 100%; display: block; }
 
-          .hero-title {
-            font-size: 4rem;
+          /* ===== Sticky Nav ===== */
+          .sticky-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: transparent;
+            border-bottom: 1px solid transparent;
+            padding: 0.7rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+            transition: background 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+          }
+          .sticky-nav.scrolled {
+            background: rgba(255,255,255,0.92);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom-color: rgba(0,0,0,0.06);
+            box-shadow: 0 1px 8px rgba(0,0,0,0.04);
+          }
+          .sticky-nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
             font-weight: 700;
-            margin-bottom: 0.3em;
-            letter-spacing: 2px;
+            font-size: 1rem;
+            color: #fff;
+            margin-right: auto;
+            transition: color 0.35s;
+          }
+          .sticky-nav.scrolled .sticky-nav-brand {
+            color: #111827;
+          }
+          .sticky-nav-brand img {
+            height: 28px;
+            width: 28px;
+            border-radius: 6px;
+          }
+          .sticky-nav a.nav-link {
+            font-size: 0.88rem;
+            font-weight: 500;
+            color: rgba(255,255,255,0.75);
+            transition: color 0.2s;
+            padding: 0.3rem 0;
+          }
+          .sticky-nav a.nav-link:hover {
+            color: #fff;
+          }
+          .sticky-nav.scrolled a.nav-link {
+            color: #6b7280;
+          }
+          .sticky-nav.scrolled a.nav-link:hover {
+            color: #111827;
+          }
+          @media (max-width: 640px) {
+            .sticky-nav { gap: 1rem; padding: 0.5rem 1rem; }
+            .sticky-nav-brand { font-size: 0.88rem; margin-right: 0; }
+            .sticky-nav a.nav-link { font-size: 0.78rem; }
           }
 
-          .hero-tagline {
-            font-size: 1.25rem;
+          /* ===== Scroll Animations ===== */
+          .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+          }
+          .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+          }
+
+          /* ===== Stats Bar ===== */
+          .stats-bar {
+            background: linear-gradient(135deg, #1e293b, #0f172a);
+            color: #fff;
+            padding: 2.5rem 2rem;
+          }
+          .stats-inner {
+            max-width: 900px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            text-align: center;
+          }
+          .stat-item .stat-number {
+            font-size: 2.2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #60a5fa, #a78bfa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+          }
+          .stat-item .stat-label {
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.6);
+            margin-top: 0.2rem;
+          }
+          @media (max-width: 640px) {
+            .stats-inner { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+            .stat-item .stat-number { font-size: 1.8rem; }
+          }
+
+          /* ===== Logo Bar ===== */
+          .logo-bar {
+            background: #f1f5f9;
+            padding: 1.8rem 2rem;
+            text-align: center;
+          }
+          .logo-bar-label {
+            font-size: 0.78rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #9ca3af;
+            margin-bottom: 1rem;
+          }
+          .logo-bar-items {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2rem 2.5rem;
+            max-width: 900px;
+            margin: 0 auto;
+          }
+          .logo-bar-items img {
+            height: 32px;
+            width: auto;
+            opacity: 0.5;
+            filter: grayscale(100%);
+            transition: opacity 0.2s, filter 0.2s;
+          }
+          .logo-bar-items img:hover {
+            opacity: 1;
+            filter: grayscale(0%);
+          }
+          .logo-bar-items .logo-text {
+            font-size: 0.88rem;
+            font-weight: 600;
+            color: #9ca3af;
+            transition: color 0.2s;
+          }
+          .logo-bar-items .logo-text:hover {
+            color: #374151;
+          }
+
+          /* ===== Layout ===== */
+          .landing-section {
+            width: 100%;
+            padding: 5rem 2rem;
+            position: relative;
+          }
+          .landing-section::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAI0lEQVQoU2NkYGBg+M+ABaNgFIwCjAqGBoYGBgYGBgYGAAAO+CD0TA6o/cAAAAASUVORK5CYII=');
+            background-repeat: repeat;
+            opacity: 0.03;
+            pointer-events: none;
+          }
+          .landing-container {
+            max-width: 1120px;
+            margin: 0 auto;
+          }
+          .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 0.5rem;
+            color: #111827;
+          }
+          .section-subtitle {
+            text-align: center;
+            font-size: 1.05rem;
+            color: #6b7280;
+            max-width: 640px;
+            margin: 0 auto 2.5rem;
+            line-height: 1.65;
+          }
+          .section-divider {
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, #6366f1, #60a5fa);
+            border-radius: 999px;
+            margin: 0.5rem auto 1.5rem;
+          }
+
+          /* ===== Hero ===== */
+          .hero {
+            position: relative;
+            background: linear-gradient(220deg, #eddfb4 0%, #01335ec0 40%, #000000 100%);
+            background-size: 300% 300%;
+            animation: heroGradient 12s ease infinite;
+            overflow: hidden;
+            text-align: center;
+            padding: 6rem 2rem 5rem;
             color: #FFF7D4;
-            max-width: 600px;
-            line-height: 1.6;
+          }
+          @keyframes heroGradient {
+            0%   { background-position: 0% 50%; }
+            50%  { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+          }
+          .hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAI0lEQVQoU2NkYGBg+M+ABaNgFIwCjAqGBoYGBgYGBgYGAAAO+CD0TA6o/cAAAAASUVORK5CYII=');
+            background-repeat: repeat;
+            opacity: 0.1;
+            pointer-events: none;
+          }
+          .hero-inner {
+            position: relative;
+            z-index: 1;
+          }
+          .hero-parallax-layer {
+            transition: transform 0.15s ease-out;
+          }
+          .hero-logo {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 1.5rem;
+            border-radius: 20px;
+          }
+          .hero h1 {
+            font-size: 3.6rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #60a5fa, #a78bfa, #f472b6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+          }
+          .hero-tagline {
+            font-size: 1.2rem;
+            max-width: 620px;
+            margin: 0 auto 2rem;
+            line-height: 1.7;
             opacity: 0.9;
           }
-
-          .hero-logo {
-            max-width: 280px;
-            height: auto;
-            border-radius: 16px;
+          .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 0.75rem;
+            flex-wrap: wrap;
           }
-
-          @media (max-width: 768px) {
-            .hero-title { font-size: 2.5rem; }
-            .hero-tagline { font-size: 1.05rem; }
-            .hero-logo { max-width: 200px; }
+          .hero-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.6rem 1.2rem;
+            border-radius: 12px;
+            background: #fffce9;
+            color: #000;
+            font-weight: 600;
+            font-size: 0.95rem;
+            border: 2px solid rgba(1, 8, 67, 0.5);
+            transition: background 0.2s, color 0.2s;
           }
-
-          /* Category sub-headers */
-          .category-kicker {
+          .hero-btn:hover {
+            background: #EAB682;
+            color: #fff;
+          }
+          .hero-btn img {
+            height: 1.3em;
+            width: auto;
             display: inline-block;
-            font-size: 1.15rem;
-            letter-spacing: 0.01em;
-            font-weight: 700;
-            color: #374151;
-            margin: 2rem 0 0.5rem;
-            font-family: "Rubik", sans-serif;
           }
-          .category-hr {
-            height: 2px;
-            width: 56px;
-            background: linear-gradient(90deg, #111827, #6366f1 60%, #60a5fa);
-            border-radius: 999px;
-            margin: 0.4rem 0 1rem;
+          @media (max-width: 768px) {
+            .hero h1 { font-size: 2.4rem; }
+            .hero-tagline { font-size: 1.05rem; }
+            .hero { padding: 4rem 1.5rem 3.5rem; }
           }
 
-          /* Team grid */
+          /* ===== About ===== */
+          .about-section {
+            background: #fff;
+          }
+          .about-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 1rem;
+          }
+          .about-card {
+            text-align: center;
+            padding: 2rem 1.5rem;
+            border-radius: 14px;
+            background: #f9fafb;
+            border: 1px solid #e5e7eb;
+            transition: transform 0.2s, box-shadow 0.2s;
+          }
+          .about-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+          }
+          .about-card-icon {
+            font-size: 2rem;
+            margin-bottom: 0.8rem;
+            color: #6366f1;
+          }
+          .about-card h3 {
+            font-size: 1.05rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #111827;
+          }
+          .about-card p {
+            font-size: 0.92rem;
+            color: #6b7280;
+            line-height: 1.6;
+          }
+          @media (max-width: 768px) {
+            .about-grid { grid-template-columns: 1fr; }
+          }
+
+          /* ===== Projects ===== */
+          .projects-section {
+            background: #f9fafb;
+          }
+          .category-label {
+            display: inline-block;
+            font-size: 0.82rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            padding: 0.3rem 0.9rem;
+            border-radius: 999px;
+            margin-bottom: 1.2rem;
+          }
+          .cat-survey     { color: #7c3aed; background: #f3e8ff; }
+          .cat-benchmark  { color: #0369a1; background: #e0f2fe; }
+          .cat-worldmodel { color: #15803d; background: #dcfce7; }
+          .cat-perception { color: #b45309; background: #fef3c7; }
+          .cat-planning   { color: #be123c; background: #ffe4e6; }
+          .category-group {
+            margin-bottom: 3rem;
+          }
+
+          /* ===== Spotlight ===== */
+          .spotlight-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 3.5rem;
+          }
+          @media (max-width: 768px) {
+            .spotlight-grid { grid-template-columns: 1fr; }
+          }
+          .spotlight-card {
+            background: #fff;
+            border: 1px solid #e5e7eb;
+            border-radius: 16px;
+            overflow: hidden;
+            transition: transform 0.25s, box-shadow 0.25s;
+            display: flex;
+            flex-direction: column;
+          }
+          .spotlight-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 14px 36px rgba(0,0,0,0.09);
+          }
+          .spotlight-thumb {
+            width: 100%;
+            aspect-ratio: 2 / 1;
+            overflow: hidden;
+            background: #e5e7eb;
+          }
+          .spotlight-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+          .spotlight-body {
+            padding: 1.3rem 1.4rem 1.4rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+          }
+          .spotlight-badge {
+            display: inline-block;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            padding: 0.2rem 0.6rem;
+            border-radius: 999px;
+            margin-bottom: 0.6rem;
+            width: fit-content;
+          }
+          .spotlight-body h3 {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: #111827;
+            margin-bottom: 0.4rem;
+            line-height: 1.35;
+          }
+          .spotlight-body p {
+            font-size: 0.88rem;
+            color: #6b7280;
+            line-height: 1.6;
+            margin-bottom: 0.8rem;
+            flex-grow: 1;
+          }
+          .project-grid-landing {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+          }
+          @media (max-width: 1024px) {
+            .project-grid-landing { grid-template-columns: repeat(2, 1fr); }
+          }
+          @media (max-width: 640px) {
+            .project-grid-landing { grid-template-columns: 1fr; }
+          }
+          .proj-card {
+            background: #fff;
+            border: 1px solid #e5e7eb;
+            border-radius: 14px;
+            overflow: hidden;
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: flex;
+            flex-direction: column;
+          }
+          .proj-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 28px rgba(0,0,0,0.07);
+          }
+          .proj-card-thumb {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            overflow: hidden;
+            background: #e5e7eb;
+          }
+          .proj-card-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+          .proj-card-body {
+            padding: 1rem 1.1rem 1.1rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+          }
+          .proj-card-body h3 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #111827;
+            margin-bottom: 0.6rem;
+            line-height: 1.35;
+          }
+          .proj-card-links {
+            display: flex;
+            gap: 0.4rem;
+            flex-wrap: wrap;
+            margin-top: auto;
+          }
+          .proj-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.2rem;
+            font-size: 0.78rem;
+            padding: 0.2rem 0.5rem;
+            border-radius: 999px;
+            border: 1px solid rgba(148,163,184,0.7);
+            color: #111827;
+            background: #fff;
+            transition: border-color 0.15s, color 0.15s;
+          }
+          .proj-link:hover {
+            border-color: #6366f1;
+            color: #4f46e5;
+          }
+          .proj-link i { font-size: 0.85rem; }
+          .proj-link .icon-img {
+            height: 0.9rem;
+            width: auto;
+            display: inline-block;
+          }
+
+          /* ===== Team ===== */
+          .team-section {
+            background: #fff;
+          }
           .team-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-            gap: 1.2rem 0.8rem;
-            margin-top: 1rem;
+            gap: 1.5rem 1rem;
+            margin-top: 1.5rem;
           }
           @media (max-width: 640px) {
             .team-grid {
               grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
-              gap: 0.8rem 0.5rem;
+              gap: 1rem 0.6rem;
             }
           }
           .team-member {
@@ -93,643 +541,754 @@
             border-radius: 50%;
             object-fit: cover;
             border: 2px solid #e5e7eb;
-            box-shadow: 0 2px 6px rgba(15,23,42,0.1);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: 0 2px 8px rgba(15,23,42,0.08);
+            transition: transform 0.2s, box-shadow 0.2s;
+            margin: 0 auto;
           }
           .team-member img:hover {
-            transform: scale(1.08);
-            box-shadow: 0 4px 12px rgba(15,23,42,0.18);
+            transform: scale(1.1);
+            box-shadow: 0 6px 16px rgba(15,23,42,0.15);
           }
           .team-member-name {
             font-size: 0.72rem;
             color: #374151;
-            margin-top: 0.3rem;
-            font-family: "Rubik", sans-serif;
+            margin-top: 0.4rem;
             line-height: 1.3;
           }
           @media (max-width: 640px) {
             .team-member img { width: 64px; height: 64px; }
             .team-member-name { font-size: 0.65rem; }
           }
+
+          /* ===== Footer ===== */
+          .landing-footer {
+            background: #111827;
+            color: rgba(255,255,255,0.6);
+            text-align: center;
+            padding: 2.5rem 2rem;
+            font-size: 0.85rem;
+            line-height: 1.7;
+          }
+          .landing-footer a {
+            color: rgba(255,255,255,0.8);
+            border-bottom: 1px dotted rgba(255,255,255,0.3);
+          }
+          .landing-footer a:hover {
+            color: #fff;
+          }
+          .landing-footer p { margin: 0.2rem 0; }
         </style>
     </head>
 
 
     <body>
 
-        <!-- ==================== Hero Header ==================== -->
-        <div class="header-wrapper">
-            <div class="header-container" id="header-container">
-                <div class="header-content">
+        <!-- ===== Sticky Navigation ===== -->
+        <nav class="sticky-nav" id="stickyNav">
+          <div class="sticky-nav-brand">
+            <img src="assets_common/icons/worldbench-circle.png" alt="WorldBench">
+            WorldBench
+          </div>
+          <a href="#about" class="nav-link">About</a>
+          <a href="#projects" class="nav-link">Projects</a>
+          <a href="#team" class="nav-link">Team</a>
+          <a href="https://github.com/worldbench" class="nav-link" target="_blank">GitHub</a>
+        </nav>
 
-                <h1 class="hero-title">
-                  <span class="icon is-small">
-                    <img src="assets_common/icons/worldbench-mini.gif" style="height:1.2em; vertical-align:text-bottom;">
-                  </span>
-                  WorldBench
-                </h1>
-
-                <p class="hero-tagline">
-                  Advancing research in 3D and 4D world modeling, embodied AI, and autonomous driving through benchmarks, evaluation frameworks, and open-source tools.
-                </p>
-
-                <div class="button-container" style="margin-top:1.5rem;">
-                    <a href="https://github.com/worldbench" class="button" target="_blank">
-                        <span class="icon is-small">
-                            <img src="assets_common/icons/github.png" style="height: 1.4em;">
-                        </span><span>GitHub</span>
-                    </a>
-                    <a href="https://worldbench.github.io/survey" class="button" target="_blank">
-                        <span class="icon is-small">
-                            <img src="assets_common/icons/pdf.png" style="height: 1.4em;">
-                        </span><span>Survey</span>
-                    </a>
-                    <a href="https://huggingface.co/worldbench" class="button" target="_blank">
-                        <span class="icon is-small">
-                            <img src="assets_common/icons/hf.png" style="height: 1.5em;">
-                        </span><span>HuggingFace</span>
-                    </a>
-                </div>
-
-                </div>
-                <div class="header-image">
-                    <img src="assets_common/icons/worldbench.gif" alt="WorldBench" class="hero-logo">
-                </div>
+        <!-- ==================== Hero ==================== -->
+        <div class="hero">
+          <div class="hero-inner">
+            <img src="assets_common/icons/worldbench.gif" alt="WorldBench" class="hero-logo hero-parallax-layer" data-speed="0.03">
+            <h1 class="hero-parallax-layer" data-speed="0.015">WorldBench</h1>
+            <p class="hero-tagline hero-parallax-layer" data-speed="0.008">
+              Advancing research in 3D and 4D world modeling, embodied AI, and autonomous driving through benchmarks, evaluation frameworks, and open-source tools.
+            </p>
+            <div class="hero-buttons">
+              <a href="https://github.com/worldbench" class="hero-btn" target="_blank">
+                <img src="assets_common/icons/github.png"> GitHub
+              </a>
+              <a href="https://worldbench.github.io/survey" class="hero-btn" target="_blank">
+                <img src="assets_common/icons/pdf.png"> Survey
+              </a>
+              <a href="https://huggingface.co/worldbench" class="hero-btn" target="_blank">
+                <img src="assets_common/icons/hf.png"> HuggingFace
+              </a>
             </div>
+          </div>
         </div>
 
 
-        <d-article>
-
-
-              <!-- ==================== About ==================== -->
-              <section id="about">
-                <div class="wb-section">
-                  <div class="wb-kicker">
-                    About WorldBench
-                  </div>
-                  <div class="wb-hr"></div>
-
-                  <p class="wb-lead">
-                    WorldBench is an open research initiative focused on building, evaluating, and understanding generative world models for embodied AI and autonomous systems.
-                  </p>
-                  <p class="wb-lead">
-                    Our work spans full-spectrum benchmarking of driving world models, large-scale surveys of 3D/4D modeling, vision-language-action architectures, and open-source evaluation toolkits.
-                  </p>
-                  <p class="wb-lead">
-                    We believe that rigorous evaluation and open collaboration are essential for advancing world models from visual realism toward genuine physical understanding.
-                  </p>
-
-                  <br>
-                </div>
-              </section>
-
-
-
-              <!-- ==================== Projects ==================== -->
-              <section id="projects">
-                <div class="wb-section">
-
-                  <h2><span class="icon is-small">
-                    <img src="assets_common/icons/worldbench-mini.gif" style="height: 1.5em; vertical-align:text-bottom;">
-                    </span>Projects</h2>
-
-
-                  <!-- ── Surveys ── -->
-                  <div class="category-kicker">Surveys</div>
-                  <div class="category-hr"></div>
-
-                  <div class="project-grid">
-
-                    <article class="wb-card project-card">
-                      <div class="project-thumb">
-                        <img src="assets_common/teasers/worldbench_survey.webp" loading="lazy">
-                      </div>
-                      <h3 class="project-title">3D and 4D World Modeling: A Survey</h3>
-                      <div class="project-links">
-                        <a href="https://arxiv.org/abs/2509.07996" target="_blank" class="project-link"><i class="ai ai-arxiv"></i></a>
-                        <a href="https://worldbench.github.io/survey" target="_blank" class="project-link"><i class="fas fa-globe"></i></a>
-                        <a href="https://github.com/worldbench/survey" target="_blank" class="project-link"><img src="assets_common/icons/github.png" class="icon-img" loading="lazy"></a>
-                        <a href="https://huggingface.co/spaces/worldbench/WorldLens" target="_blank" class="project-link"><img src="assets_common/icons/hf.png" class="icon-img" loading="lazy"></a>
-                      </div>
-                    </article>
-
-                    <article class="wb-card project-card">
-                      <div class="project-thumb">
-                        <img src="assets_common/teasers/survey_vla4ad.webp" loading="lazy">
-                      </div>
-                      <h3 class="project-title">VLA for Autonomous Driving: Past, Present, and Future</h3>
-                      <div class="project-links">
-                        <a href="https://worldbench.github.io/vla4ad.pdf" target="_blank" class="project-link"><i class="ai ai-arxiv"></i></a>
-                        <a href="https://worldbench.github.io/vla4ad" target="_blank" class="project-link"><i class="fas fa-globe"></i></a>
-                        <a href="https://github.com/worldbench/awesome-vla-for-ad" target="_blank" class="project-link"><img src="assets_common/icons/github.png" class="icon-img" loading="lazy"></a>
-                        <a href="https://huggingface.co/spaces/worldbench/vla4ad" target="_blank" class="project-link"><img src="assets_common/icons/hf.png" class="icon-img" loading="lazy"></a>
-                      </div>
-                    </article>
-
-                  </div>
-
-
-                  <!-- ── Benchmarks & Evaluation ── -->
-                  <div class="category-kicker">Benchmarks &amp; Evaluation</div>
-                  <div class="category-hr"></div>
-
-                  <div class="project-grid">
-
-                    <article class="wb-card project-card">
-                      <div class="project-thumb">
-                        <img src="assets_common/teasers/worldlens.png" loading="lazy">
-                      </div>
-                      <h3 class="project-title">WorldLens: Full-Spectrum Evaluations of Driving World Models</h3>
-                      <div class="project-links">
-                        <a href="https://arxiv.org/abs/2512.10958" target="_blank" class="project-link"><i class="ai ai-arxiv"></i></a>
-                        <a href="https://worldbench.github.io/worldlens" target="_blank" class="project-link"><i class="fas fa-globe"></i></a>
-                        <a href="https://github.com/worldbench/WorldLens" target="_blank" class="project-link"><img src="assets_common/icons/github.png" class="icon-img" loading="lazy"></a>
-                        <a href="https://huggingface.co/spaces/worldbench/WorldLens" target="_blank" class="project-link"><img src="assets_common/icons/hf.png" class="icon-img" loading="lazy"></a>
-                      </div>
-                    </article>
-
-                    <article class="wb-card project-card">
-                      <div class="project-thumb">
-                        <img src="assets_common/teasers/vbench.png" loading="lazy">
-                      </div>
-                      <h3 class="project-title">VBench: Benchmark Suite for Video Generative Models</h3>
-                      <div class="project-links">
-                        <a href="https://arxiv.org/abs/2311.17982" target="_blank" class="project-link"><i class="ai ai-arxiv"></i></a>
-                        <a href="https://vchitect.github.io/VBench-project/" target="_blank" class="project-link"><i class="fas fa-globe"></i></a>
-                        <a href="https://github.com/Vchitect/VBench" target="_blank" class="project-link"><img src="assets_common/icons/github.png" class="icon-img" loading="lazy"></a>
-                        <a href="https://huggingface.co/spaces/Vchitect/VBench_Leaderboard" target="_blank" class="project-link"><img src="assets_common/icons/hf.png" class="icon-img" loading="lazy"></a>
-                      </div>
-                    </article>
-
-                    <article class="wb-card project-card">
-                      <div class="project-thumb">
-                        <img src="assets_common/teasers/vbench2.png" loading="lazy">
-                      </div>
-                      <h3 class="project-title">VBench++: Versatile Video Generation Benchmark</h3>
-                      <div class="project-links">
-                        <a href="https://arxiv.org/abs/2411.13503" target="_blank" class="project-link"><i class="ai ai-arxiv"></i></a>
-                        <a href="https://vchitect.github.io/VBench-project/" target="_blank" class="project-link"><i class="fas fa-globe"></i></a>
-                        <a href="https://github.com/Vchitect/VBench" target="_blank" class="project-link"><img src="assets_common/icons/github.png" class="icon-img" loading="lazy"></a>
-                        <a href="https://huggingface.co/spaces/Vchitect/VBench_Leaderboard" target="_blank" class="project-link"><img src="assets_common/icons/hf.png" class="icon-img" loading="lazy"></a>
-                      </div>
-                    </article>
-
-                    <article class="wb-card project-card">
-                      <div class="project-thumb">
-                        <img src="assets_common/teasers/drivebench.png" loading="lazy">
-                      </div>
-                      <h3 class="project-title">DriveBench: Are VLMs Ready for Autonomous Driving?</h3>
-                      <div class="project-links">
-                        <a href="https://arxiv.org/abs/2501.04003" target="_blank" class="project-link"><i class="ai ai-arxiv"></i></a>
-                        <a href="https://drive-bench.github.io/" target="_blank" class="project-link"><i class="fas fa-globe"></i></a>
-                        <a href="https://github.com/drive-bench/toolkit" target="_blank" class="project-link"><img src="assets_common/icons/github.png" class="icon-img" loading="lazy"></a>
-                        <a href="https://huggingface.co/datasets/drive-bench/arena" target="_blank" class="project-link"><img src="assets_common/icons/hf.png" class="icon-img" loading="lazy"></a>
-                      </div>
-                    </article>
-
-                    <article class="wb-card project-card">
-                      <div class="project-thumb">
-                        <img src="assets_common/teasers/pi3det.png" loading="lazy">
-                      </div>
-                      <h3 class="project-title">Pi3DET: Perspective-Invariant 3D Object Detection</h3>
-                      <div class="project-links">
-                        <a href="https://arxiv.org/abs/2507.17665" target="_blank" class="project-link"><i class="ai ai-arxiv"></i></a>
-                        <a href="https://pi3det.github.io/" target="_blank" class="project-link"><i class="fas fa-globe"></i></a>
-                        <a href="https://github.com/pi3det/toolkit" target="_blank" class="project-link"><img src="assets_common/icons/github.png" class="icon-img" loading="lazy"></a>
-                        <a href="https://huggingface.co/datasets/Pi3DET/data" target="_blank" class="project-link"><img src="assets_common/icons/hf.png" class="icon-img" loading="lazy"></a>
-                      </div>
-                    </article>
-
-                  </div>
-
-
-                  <!-- ── World Modeling & Generation ── -->
-                  <div class="category-kicker">World Modeling &amp; Generation</div>
-                  <div class="category-hr"></div>
-
-                  <div class="project-grid">
-
-                    <article class="wb-card project-card">
-                      <div class="project-thumb">
-                        <img src="assets_common/teasers/dynamiccity.webp" loading="lazy">
-                      </div>
-                      <h3 class="project-title">DynamicCity: Large-Scale 4D Occupancy Generation</h3>
-                      <div class="project-links">
-                        <a href="https://arxiv.org/abs/2410.18084" target="_blank" class="project-link"><i class="ai ai-arxiv"></i></a>
-                        <a href="https://dynamic-city.github.io/" target="_blank" class="project-link"><i class="fas fa-globe"></i></a>
-                        <a href="https://github.com/3DTopia/DynamicCity" target="_blank" class="project-link"><img src="assets_common/icons/github.png" class="icon-img" loading="lazy"></a>
-                      </div>
-                    </article>
-
-                    <article class="wb-card project-card">
-                      <div class="project-thumb">
-                        <img src="assets_common/teasers/lidarcrafter.png" loading="lazy">
-                      </div>
-                      <h3 class="project-title">LiDARCrafter: Dynamic 4D World Modeling from LiDAR</h3>
-                      <div class="project-links">
-                        <a href="https://arxiv.org/abs/2508.03692" target="_blank" class="project-link"><i class="ai ai-arxiv"></i></a>
-                        <a href="https://lidarcrafter.github.io/" target="_blank" class="project-link"><i class="fas fa-globe"></i></a>
-                        <a href="https://github.com/lidarcrafter/toolkit" target="_blank" class="project-link"><img src="assets_common/icons/github.png" class="icon-img" loading="lazy"></a>
-                      </div>
-                    </article>
-
-                    <article class="wb-card project-card">
-                      <div class="project-thumb">
-                        <img src="assets_common/teasers/spiral.png" loading="lazy">
-                      </div>
-                      <h3 class="project-title">SPIRAL: Semantic-Aware Progressive LiDAR Generation</h3>
-                      <div class="project-links">
-                        <a href="https://arxiv.org/abs/2505.22643" target="_blank" class="project-link"><i class="ai ai-arxiv"></i></a>
-                        <a href="https://dekai21.github.io/SPIRAL/" target="_blank" class="project-link"><i class="fas fa-globe"></i></a>
-                        <a href="https://github.com/worldbench/SPIRAL" target="_blank" class="project-link"><img src="assets_common/icons/github.png" class="icon-img" loading="lazy"></a>
-                      </div>
-                    </article>
-
-                    <article class="wb-card project-card">
-                      <div class="project-thumb">
-                        <img src="assets_common/teasers/see4d.png" loading="lazy">
-                      </div>
-                      <h3 class="project-title">See4D: Pose-Free 4D Generation via Auto-Regressive Inpainting</h3>
-                      <div class="project-links">
-                        <a href="https://arxiv.org/abs/2510.26796" target="_blank" class="project-link"><i class="ai ai-arxiv"></i></a>
-                        <a href="https://see-4d.github.io/" target="_blank" class="project-link"><i class="fas fa-globe"></i></a>
-                      </div>
-                    </article>
-
-                    <article class="wb-card project-card">
-                      <div class="project-thumb">
-                        <img src="assets_common/teasers/u4d.png" loading="lazy">
-                      </div>
-                      <h3 class="project-title">U4D: Uncertainty-Aware 4D World Modeling</h3>
-                      <div class="project-links">
-                        <a href="https://arxiv.org/abs/2512.02982" target="_blank" class="project-link"><i class="ai ai-arxiv"></i></a>
-                        <a href="https://github.com/worldbench/U4D" target="_blank" class="project-link"><img src="assets_common/icons/github.png" class="icon-img" loading="lazy"></a>
-                      </div>
-                    </article>
-
-                    <article class="wb-card project-card">
-                      <div class="project-thumb">
-                        <img src="assets_common/teasers/ad-r1.png" loading="lazy">
-                      </div>
-                      <h3 class="project-title">AD-R1: Closed-Loop E2E Driving with World Models</h3>
-                      <div class="project-links">
-                        <a href="https://arxiv.org/abs/2511.20325" target="_blank" class="project-link"><i class="ai ai-arxiv"></i></a>
-                      </div>
-                    </article>
-
-                  </div>
-
-
-                  <!-- ── Perception & Understanding ── -->
-                  <div class="category-kicker">Perception &amp; Understanding</div>
-                  <div class="category-hr"></div>
-
-                  <div class="project-grid">
-
-                    <article class="wb-card project-card">
-                      <div class="project-thumb">
-                        <img src="assets_common/teasers/3eed.png" loading="lazy">
-                      </div>
-                      <h3 class="project-title">3EED: Ground Everything Everywhere in 3D</h3>
-                      <div class="project-links">
-                        <a href="https://arxiv.org/abs/2511.01755" target="_blank" class="project-link"><i class="ai ai-arxiv"></i></a>
-                        <a href="https://project-3eed.github.io/" target="_blank" class="project-link"><i class="fas fa-globe"></i></a>
-                        <a href="https://github.com/worldbench/3EED" target="_blank" class="project-link"><img src="assets_common/icons/github.png" class="icon-img" loading="lazy"></a>
-                        <a href="https://huggingface.co/datasets/RRRong/3EED" target="_blank" class="project-link"><img src="assets_common/icons/hf.png" class="icon-img" loading="lazy"></a>
-                      </div>
-                    </article>
-
-                    <article class="wb-card project-card">
-                      <div class="project-thumb">
-                        <img src="assets_common/teasers/lasermix.png" loading="lazy">
-                      </div>
-                      <h3 class="project-title">LaserMix: Multi-Modal 3D Scene Understanding</h3>
-                      <div class="project-links">
-                        <a href="https://arxiv.org/abs/2405.05258" target="_blank" class="project-link"><i class="ai ai-arxiv"></i></a>
-                        <a href="https://ldkong.com/LaserMix" target="_blank" class="project-link"><i class="fas fa-globe"></i></a>
-                        <a href="https://github.com/ldkong1205/LaserMix" target="_blank" class="project-link"><img src="assets_common/icons/github.png" class="icon-img" loading="lazy"></a>
-                      </div>
-                    </article>
-
-                    <article class="wb-card project-card">
-                      <div class="project-thumb">
-                        <img src="assets_common/teasers/large-ad.png" loading="lazy">
-                      </div>
-                      <h3 class="project-title">LargeAD: Large-Scale Data Pretraining for Autonomous Driving</h3>
-                      <div class="project-links">
-                        <a href="https://arxiv.org/abs/2501.04005" target="_blank" class="project-link"><i class="ai ai-arxiv"></i></a>
-                        <a href="https://ldkong.com/LargeAD" target="_blank" class="project-link"><i class="fas fa-globe"></i></a>
-                        <a href="https://github.com/ldkong1205/LargeAD" target="_blank" class="project-link"><img src="assets_common/icons/github.png" class="icon-img" loading="lazy"></a>
-                      </div>
-                    </article>
-
-                  </div>
-
-
-                  <!-- ── Planning & Reasoning ── -->
-                  <div class="category-kicker">Planning &amp; Reasoning</div>
-                  <div class="category-hr"></div>
-
-                  <div class="project-grid">
-
-                    <article class="wb-card project-card">
-                      <div class="project-thumb">
-                        <img src="assets/onevl/figures/teaser.png" loading="lazy">
-                      </div>
-                      <h3 class="project-title">OneVL: One-Step Latent Reasoning and Planning</h3>
-                      <div class="project-links">
-                        <a href="#" target="_blank" class="project-link"><i class="ai ai-arxiv"></i></a>
-                        <a href="https://worldbench.github.io/onevl" target="_blank" class="project-link"><i class="fas fa-globe"></i></a>
-                      </div>
-                    </article>
-
-                  </div>
-
-                  <br><br>
-                </div>
-              </section>
-
-
-
-              <!-- ==================== Team ==================== -->
-              <section id="team">
-                <div class="wb-section">
-
-                  <h2><span class="icon is-small">
-                    <img src="assets_common/icons/worldbench-mini.gif" style="height: 1.5em; vertical-align:text-bottom;">
-                    </span>Team</h2>
-
-                  <p class="wb-lead">
-                    WorldBench is driven by a growing community of researchers across institutions and industry labs worldwide.
-                  </p>
-
-                  <div class="team-grid">
-
-                    <div class="team-member">
-                      <img src="assets_common/photos/lingdong_kong.jpg" loading="lazy" alt="Lingdong Kong">
-                      <div class="team-member-name">Lingdong Kong</div>
-                    </div>
-
-                    <div class="team-member">
-                      <img src="assets_common/photos/ao_liang.jpg" loading="lazy" alt="Ao Liang">
-                      <div class="team-member-name">Ao Liang</div>
-                    </div>
-
-                    <div class="team-member">
-                      <img src="assets_common/photos/tianyi_yan.jpg" loading="lazy" alt="Tianyi Yan">
-                      <div class="team-member-name">Tianyi Yan</div>
-                    </div>
-
-                    <div class="team-member">
-                      <img src="assets_common/photos/hongsi_liu.png" loading="lazy" alt="Hongsi Liu">
-                      <div class="team-member-name">Hongsi Liu</div>
-                    </div>
-
-                    <div class="team-member">
-                      <img src="assets_common/photos/dekai_zhu.jpg" loading="lazy" alt="Dekai Zhu">
-                      <div class="team-member-name">Dekai Zhu</div>
-                    </div>
-
-                    <div class="team-member">
-                      <img src="assets_common/photos/dongyue_lu.jpg" loading="lazy" alt="Dongyue Lu">
-                      <div class="team-member-name">Dongyue Lu</div>
-                    </div>
-
-                    <div class="team-member">
-                      <img src="assets_common/photos/wei_yin.jpeg" loading="lazy" alt="Wei Yin">
-                      <div class="team-member-name">Wei Yin</div>
-                    </div>
-
-                    <div class="team-member">
-                      <img src="assets_common/photos/xiaoshuai_hao.jpg" loading="lazy" alt="Xiaoshuai Hao">
-                      <div class="team-member-name">Xiaoshuai Hao</div>
-                    </div>
-
-                    <div class="team-member">
-                      <img src="assets_common/photos/xiaotao_hu.jpg" loading="lazy" alt="Xiaotao Hu">
-                      <div class="team-member-name">Xiaotao Hu</div>
-                    </div>
-
-                    <div class="team-member">
-                      <img src="assets_common/photos/youquan_liu.jpg" loading="lazy" alt="Youquan Liu">
-                      <div class="team-member-name">Youquan Liu</div>
-                    </div>
-
-                    <div class="team-member">
-                      <img src="assets_common/photos/ziqi_huang.jpg" loading="lazy" alt="Ziqi Huang">
-                      <div class="team-member-name">Ziqi Huang</div>
-                    </div>
-
-                    <div class="team-member">
-                      <img src="assets_common/photos/guoyang_zhao.png" loading="lazy" alt="Guoyang Zhao">
-                      <div class="team-member-name">Guoyang Zhao</div>
-                    </div>
-
-                    <div class="team-member">
-                      <img src="assets_common/photos/jianbiao_mei.jpg" loading="lazy" alt="Jianbiao Mei">
-                      <div class="team-member-name">Jianbiao Mei</div>
-                    </div>
-
-                    <div class="team-member">
-                      <img src="assets_common/photos/junyuan_deng.jpg" loading="lazy" alt="Junyuan Deng">
-                      <div class="team-member-name">Junyuan Deng</div>
-                    </div>
-
-                    <div class="team-member">
-                      <img src="assets_common/photos/kaiwen_zhang.jpg" loading="lazy" alt="Kaiwen Zhang">
-                      <div class="team-member-name">Kaiwen Zhang</div>
-                    </div>
-
-                    <div class="team-member">
-                      <img src="assets_common/photos/mingkai_jia.jpg" loading="lazy" alt="Mingkai Jia">
-                      <div class="team-member-name">Mingkai Jia</div>
-                    </div>
-
-                    <div class="team-member">
-                      <img src="assets_common/photos/jialong_zuo.jpg" loading="lazy" alt="Jialong Zuo">
-                      <div class="team-member-name">Jialong Zuo</div>
-                    </div>
-
-                    <div class="team-member">
-                      <img src="assets_common/photos/yixuan_hu.jpg" loading="lazy" alt="Yixuan Hu">
-                      <div class="team-member-name">Yixuan Hu</div>
-                    </div>
-
-                    <div class="team-member">
-                      <img src="assets_common/photos/guangfeng_jiang.jpg" loading="lazy" alt="Guangfeng Jiang">
-                      <div class="team-member-name">Guangfeng Jiang</div>
-                    </div>
-
-                    <div class="team-member">
-                      <img src="assets_common/photos/linfeng_li.jpeg" loading="lazy" alt="Linfeng Li">
-                      <div class="team-member-name">Linfeng Li</div>
-                    </div>
-
-                    <div class="team-member">
-                      <img src="assets_common/photos/xiangtai_li.jpg" loading="lazy" alt="Xiangtai Li">
-                      <div class="team-member-name">Xiangtai Li</div>
-                    </div>
-
-                    <div class="team-member">
-                      <img src="assets_common/photos/long_zhuo.png" loading="lazy" alt="Long Zhuo">
-                      <div class="team-member-name">Long Zhuo</div>
-                    </div>
-
-                    <div class="team-member">
-                      <img src="assets_common/photos/song_wang.jpeg" loading="lazy" alt="Song Wang">
-                      <div class="team-member-name">Song Wang</div>
-                    </div>
-
-                    <div class="team-member">
-                      <img src="assets_common/photos/hang_song.jpg" loading="lazy" alt="Hang Song">
-                      <div class="team-member-name">Hang Song</div>
-                    </div>
-
-                    <div class="team-member">
-                      <img src="assets_common/photos/zeying_gong.png" loading="lazy" alt="Zeying Gong">
-                      <div class="team-member-name">Zeying Gong</div>
-                    </div>
-
-                    <div class="team-member">
-                      <img src="assets_common/photos/zhiyu_huang.png" loading="lazy" alt="Zhiyu Huang">
-                      <div class="team-member-name">Zhiyu Huang</div>
-                    </div>
-
-                    <div class="team-member">
-                      <img src="assets_common/photos/jun_cen.jpg" loading="lazy" alt="Jun Cen">
-                      <div class="team-member-name">Jun Cen</div>
-                    </div>
-
-                    <div class="team-member">
-                      <img src="assets_common/photos/yang_wu.jpg" loading="lazy" alt="Yang Wu">
-                      <div class="team-member-name">Yang Wu</div>
-                    </div>
-
-                    <div class="team-member">
-                      <img src="assets_common/photos/yu_yang.jpg" loading="lazy" alt="Yu Yang">
-                      <div class="team-member-name">Yu Yang</div>
-                    </div>
-
-                    <div class="team-member">
-                      <img src="assets_common/photos/shenyuan_gao.jpg" loading="lazy" alt="Shenyuan Gao">
-                      <div class="team-member-name">Shenyuan Gao</div>
-                    </div>
-
-                    <div class="team-member">
-                      <img src="assets_common/photos/tianshuai_hu.png" loading="lazy" alt="Tianshuai Hu">
-                      <div class="team-member-name">Tianshuai Hu</div>
-                    </div>
-
-                    <div class="team-member">
-                      <img src="assets_common/photos/yiyao_zhu.png" loading="lazy" alt="Yiyao Zhu">
-                      <div class="team-member-name">Yiyao Zhu</div>
-                    </div>
-
-                    <div class="team-member">
-                      <img src="assets_common/photos/xiaolu_liu.jpg" loading="lazy" alt="Xiaolu Liu">
-                      <div class="team-member-name">Xiaolu Liu</div>
-                    </div>
-
-                    <div class="team-member">
-                      <img src="assets_common/photos/yong_liu.png" loading="lazy" alt="Yong Liu">
-                      <div class="team-member-name">Yong Liu</div>
-                    </div>
-
-                    <!-- ── Advisors ── -->
-
-                    <div class="team-member">
-                      <img src="assets_common/photos/lai_xing_ng.jpg" loading="lazy" alt="Lai Xing Ng">
-                      <div class="team-member-name">Lai Xing Ng</div>
-                    </div>
-
-                    <div class="team-member">
-                      <img src="assets_common/photos/benoit_cottereau.jpg" loading="lazy" alt="Benoit R. Cottereau">
-                      <div class="team-member-name">Benoit R. Cottereau</div>
-                    </div>
-
-                    <div class="team-member">
-                      <img src="assets_common/photos/changxin_gao.jpeg" loading="lazy" alt="Changxin Gao">
-                      <div class="team-member-name">Changxin Gao</div>
-                    </div>
-
-                    <div class="team-member">
-                      <img src="assets_common/photos/liang_pan.png" loading="lazy" alt="Liang Pan">
-                      <div class="team-member-name">Liang Pan</div>
-                    </div>
-
-                    <div class="team-member">
-                      <img src="assets_common/photos/jun_ma.png" loading="lazy" alt="Jun Ma">
-                      <div class="team-member-name">Jun Ma</div>
-                    </div>
-
-                    <div class="team-member">
-                      <img src="assets_common/photos/jianke_zhu.png" loading="lazy" alt="Jianke Zhu">
-                      <div class="team-member-name">Jianke Zhu</div>
-                    </div>
-
-                    <div class="team-member">
-                      <img src="assets_common/photos/shaojie_shen.jpeg" loading="lazy" alt="Shaojie Shen">
-                      <div class="team-member-name">Shaojie Shen</div>
-                    </div>
-
-                    <div class="team-member">
-                      <img src="assets_common/photos/junwei_liang.jpeg" loading="lazy" alt="Junwei Liang">
-                      <div class="team-member-name">Junwei Liang</div>
-                    </div>
-
-                    <div class="team-member">
-                      <img src="assets_common/photos/steven_c_h_hoi.jpg" loading="lazy" alt="Steven C.H. Hoi">
-                      <div class="team-member-name">Steven C.H. Hoi</div>
-                    </div>
-
-                    <div class="team-member">
-                      <img src="assets_common/photos/wei_tsang_ooi.png" loading="lazy" alt="Wei Tsang Ooi">
-                      <div class="team-member-name">Wei Tsang Ooi</div>
-                    </div>
-
-                    <div class="team-member">
-                      <img src="assets_common/photos/dacheng_tao.jpeg" loading="lazy" alt="Dacheng Tao">
-                      <div class="team-member-name">Dacheng Tao</div>
-                    </div>
-
-                    <div class="team-member">
-                      <img src="assets_common/photos/ziwei_liu.png" loading="lazy" alt="Ziwei Liu">
-                      <div class="team-member-name">Ziwei Liu</div>
-                    </div>
-
-                  </div>
-
-                  <br>
-                </div>
-                <br><br>
-              </section>
-
-
-
-            <br><br>
-
-
-            <footer class="wb-footer">
-              <br>
-              <div class="wb-footer-content">
-                <p>
-                  This website is licensed under a
-                  <a href="https://creativecommons.org/licenses/by-sa/4.0/"
-                    target="_blank"
-                    rel="noopener noreferrer">
-                    Creative Commons Attribution-ShareAlike 4.0 International License
-                  </a>
-                </p>
-                <p>
-                  &copy; WorldBench 2025-2026. All Rights Reserved
-                </p>
+        <!-- ==================== Stats Bar ==================== -->
+        <div class="stats-bar">
+          <div class="stats-inner">
+            <div class="stat-item">
+              <div class="stat-number">16+</div>
+              <div class="stat-label">Projects</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number">45+</div>
+              <div class="stat-label">Researchers</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number">5</div>
+              <div class="stat-label">Benchmarks</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number">10+</div>
+              <div class="stat-label">Open-Source Repos</div>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- ==================== Logo Bar ==================== -->
+        <div class="logo-bar">
+          <div class="logo-bar-label">Contributing Institutions</div>
+          <div class="logo-bar-items">
+            <!-- TODO: Replace with actual institution logo images -->
+            <span class="logo-text">NUS</span>
+            <span class="logo-text">NTU</span>
+            <span class="logo-text">HUST</span>
+            <span class="logo-text">HKUST</span>
+            <span class="logo-text">ZJU</span>
+            <span class="logo-text">CNRS-IPAL</span>
+            <span class="logo-text">SenseTime</span>
+            <span class="logo-text">Salesforce</span>
+          </div>
+        </div>
+
+
+        <!-- ==================== About ==================== -->
+        <div class="landing-section about-section" id="about">
+          <div class="landing-container fade-in">
+            <h2 class="section-title">About WorldBench</h2>
+            <div class="section-divider"></div>
+            <p class="section-subtitle">
+              An open research initiative building the evaluation infrastructure for generative world models &mdash; from 3D scene understanding to closed-loop autonomous driving.
+            </p>
+
+            <div class="about-grid">
+              <div class="about-card">
+                <div class="about-card-icon"><i class="fas fa-flask"></i></div>
+                <h3>Benchmarks</h3>
+                <p>Full-spectrum evaluation frameworks that go beyond perceptual metrics to assess geometry, physics, and behavioral realism.</p>
               </div>
-              <br>
-            </footer>
+              <div class="about-card">
+                <div class="about-card-icon"><i class="fas fa-globe-americas"></i></div>
+                <h3>World Modeling</h3>
+                <p>Research on 3D/4D generative models, LiDAR synthesis, occupancy prediction, and future scene forecasting.</p>
+              </div>
+              <div class="about-card">
+                <div class="about-card-icon"><i class="fas fa-car"></i></div>
+                <h3>Autonomous Driving</h3>
+                <p>Vision-language-action architectures, trajectory planning, and safety evaluation for real-world deployment.</p>
+              </div>
+            </div>
+          </div>
+        </div>
 
 
-        </d-article>
+        <!-- ==================== Projects ==================== -->
+        <div class="landing-section projects-section" id="projects">
+          <div class="landing-container fade-in">
+            <h2 class="section-title">Projects</h2>
+            <div class="section-divider"></div>
+            <p class="section-subtitle">
+              A growing collection of benchmarks, surveys, models, and toolkits advancing world modeling research.
+            </p>
+
+            <!-- ── Spotlights ── -->
+            <div class="spotlight-grid">
+              <article class="spotlight-card">
+                <div class="spotlight-thumb">
+                  <img src="assets_common/teasers/worldlens.png" loading="lazy">
+                </div>
+                <div class="spotlight-body">
+                  <div class="spotlight-badge cat-benchmark">Flagship Benchmark</div>
+                  <h3>WorldLens: Full-Spectrum Evaluations of Driving World Models in Real World</h3>
+                  <p>A unified benchmark evaluating how well a model builds, understands, and behaves within its generated world &mdash; spanning generation, reconstruction, action-following, downstream tasks, and human preference.</p>
+                  <div class="proj-card-links">
+                    <a href="https://arxiv.org/abs/2512.10958" target="_blank" class="proj-link"><i class="ai ai-arxiv"></i></a>
+                    <a href="https://worldbench.github.io/worldlens" target="_blank" class="proj-link"><i class="fas fa-globe"></i></a>
+                    <a href="https://github.com/worldbench/WorldLens" target="_blank" class="proj-link"><img src="assets_common/icons/github.png" class="icon-img"></a>
+                    <a href="https://huggingface.co/spaces/worldbench/WorldLens" target="_blank" class="proj-link"><img src="assets_common/icons/hf.png" class="icon-img"></a>
+                  </div>
+                </div>
+              </article>
+
+              <article class="spotlight-card">
+                <div class="spotlight-thumb">
+                  <img src="assets_common/teasers/worldbench_survey.webp" loading="lazy">
+                </div>
+                <div class="spotlight-body">
+                  <div class="spotlight-badge cat-survey">Comprehensive Survey</div>
+                  <h3>3D and 4D World Modeling: A Survey</h3>
+                  <p>A systematic survey covering the landscape of 3D and 4D generative world models &mdash; from video generation and scene reconstruction to occupancy prediction and LiDAR synthesis.</p>
+                  <div class="proj-card-links">
+                    <a href="https://arxiv.org/abs/2509.07996" target="_blank" class="proj-link"><i class="ai ai-arxiv"></i></a>
+                    <a href="https://worldbench.github.io/survey" target="_blank" class="proj-link"><i class="fas fa-globe"></i></a>
+                    <a href="https://github.com/worldbench/survey" target="_blank" class="proj-link"><img src="assets_common/icons/github.png" class="icon-img"></a>
+                    <a href="https://huggingface.co/spaces/worldbench/WorldLens" target="_blank" class="proj-link"><img src="assets_common/icons/hf.png" class="icon-img"></a>
+                  </div>
+                </div>
+              </article>
+            </div>
+
+
+            <!-- ── Surveys ── -->
+            <div class="category-group">
+              <div class="category-label cat-survey">Surveys</div>
+              <div class="project-grid-landing">
+
+                <article class="proj-card">
+                  <div class="proj-card-thumb">
+                    <img src="assets_common/teasers/worldbench_survey.webp" loading="lazy">
+                  </div>
+                  <div class="proj-card-body">
+                    <h3>3D and 4D World Modeling: A Survey</h3>
+                    <div class="proj-card-links">
+                      <a href="https://arxiv.org/abs/2509.07996" target="_blank" class="proj-link"><i class="ai ai-arxiv"></i></a>
+                      <a href="https://worldbench.github.io/survey" target="_blank" class="proj-link"><i class="fas fa-globe"></i></a>
+                      <a href="https://github.com/worldbench/survey" target="_blank" class="proj-link"><img src="assets_common/icons/github.png" class="icon-img"></a>
+                      <a href="https://huggingface.co/spaces/worldbench/WorldLens" target="_blank" class="proj-link"><img src="assets_common/icons/hf.png" class="icon-img"></a>
+                    </div>
+                  </div>
+                </article>
+
+                <article class="proj-card">
+                  <div class="proj-card-thumb">
+                    <img src="assets_common/teasers/survey_vla4ad.webp" loading="lazy">
+                  </div>
+                  <div class="proj-card-body">
+                    <h3>VLA for Autonomous Driving: Past, Present, and Future</h3>
+                    <div class="proj-card-links">
+                      <a href="https://worldbench.github.io/vla4ad.pdf" target="_blank" class="proj-link"><i class="ai ai-arxiv"></i></a>
+                      <a href="https://worldbench.github.io/vla4ad" target="_blank" class="proj-link"><i class="fas fa-globe"></i></a>
+                      <a href="https://github.com/worldbench/awesome-vla-for-ad" target="_blank" class="proj-link"><img src="assets_common/icons/github.png" class="icon-img"></a>
+                      <a href="https://huggingface.co/spaces/worldbench/vla4ad" target="_blank" class="proj-link"><img src="assets_common/icons/hf.png" class="icon-img"></a>
+                    </div>
+                  </div>
+                </article>
+
+              </div>
+            </div>
+
+
+            <!-- ── Benchmarks & Evaluation ── -->
+            <div class="category-group">
+              <div class="category-label cat-benchmark">Benchmarks &amp; Evaluation</div>
+              <div class="project-grid-landing">
+
+                <article class="proj-card">
+                  <div class="proj-card-thumb">
+                    <img src="assets_common/teasers/worldlens.png" loading="lazy">
+                  </div>
+                  <div class="proj-card-body">
+                    <h3>WorldLens: Full-Spectrum Evaluations of Driving World Models</h3>
+                    <div class="proj-card-links">
+                      <a href="https://arxiv.org/abs/2512.10958" target="_blank" class="proj-link"><i class="ai ai-arxiv"></i></a>
+                      <a href="https://worldbench.github.io/worldlens" target="_blank" class="proj-link"><i class="fas fa-globe"></i></a>
+                      <a href="https://github.com/worldbench/WorldLens" target="_blank" class="proj-link"><img src="assets_common/icons/github.png" class="icon-img"></a>
+                      <a href="https://huggingface.co/spaces/worldbench/WorldLens" target="_blank" class="proj-link"><img src="assets_common/icons/hf.png" class="icon-img"></a>
+                    </div>
+                  </div>
+                </article>
+
+                <article class="proj-card">
+                  <div class="proj-card-thumb">
+                    <img src="assets_common/teasers/vbench.png" loading="lazy">
+                  </div>
+                  <div class="proj-card-body">
+                    <h3>VBench: Benchmark Suite for Video Generative Models</h3>
+                    <div class="proj-card-links">
+                      <a href="https://arxiv.org/abs/2311.17982" target="_blank" class="proj-link"><i class="ai ai-arxiv"></i></a>
+                      <a href="https://vchitect.github.io/VBench-project/" target="_blank" class="proj-link"><i class="fas fa-globe"></i></a>
+                      <a href="https://github.com/Vchitect/VBench" target="_blank" class="proj-link"><img src="assets_common/icons/github.png" class="icon-img"></a>
+                      <a href="https://huggingface.co/spaces/Vchitect/VBench_Leaderboard" target="_blank" class="proj-link"><img src="assets_common/icons/hf.png" class="icon-img"></a>
+                    </div>
+                  </div>
+                </article>
+
+                <article class="proj-card">
+                  <div class="proj-card-thumb">
+                    <img src="assets_common/teasers/vbench2.png" loading="lazy">
+                  </div>
+                  <div class="proj-card-body">
+                    <h3>VBench++: Versatile Video Generation Benchmark</h3>
+                    <div class="proj-card-links">
+                      <a href="https://arxiv.org/abs/2411.13503" target="_blank" class="proj-link"><i class="ai ai-arxiv"></i></a>
+                      <a href="https://vchitect.github.io/VBench-project/" target="_blank" class="proj-link"><i class="fas fa-globe"></i></a>
+                      <a href="https://github.com/Vchitect/VBench" target="_blank" class="proj-link"><img src="assets_common/icons/github.png" class="icon-img"></a>
+                      <a href="https://huggingface.co/spaces/Vchitect/VBench_Leaderboard" target="_blank" class="proj-link"><img src="assets_common/icons/hf.png" class="icon-img"></a>
+                    </div>
+                  </div>
+                </article>
+
+                <article class="proj-card">
+                  <div class="proj-card-thumb">
+                    <img src="assets_common/teasers/drivebench.png" loading="lazy">
+                  </div>
+                  <div class="proj-card-body">
+                    <h3>DriveBench: Are VLMs Ready for Autonomous Driving?</h3>
+                    <div class="proj-card-links">
+                      <a href="https://arxiv.org/abs/2501.04003" target="_blank" class="proj-link"><i class="ai ai-arxiv"></i></a>
+                      <a href="https://drive-bench.github.io/" target="_blank" class="proj-link"><i class="fas fa-globe"></i></a>
+                      <a href="https://github.com/drive-bench/toolkit" target="_blank" class="proj-link"><img src="assets_common/icons/github.png" class="icon-img"></a>
+                      <a href="https://huggingface.co/datasets/drive-bench/arena" target="_blank" class="proj-link"><img src="assets_common/icons/hf.png" class="icon-img"></a>
+                    </div>
+                  </div>
+                </article>
+
+                <article class="proj-card">
+                  <div class="proj-card-thumb">
+                    <img src="assets_common/teasers/pi3det.png" loading="lazy">
+                  </div>
+                  <div class="proj-card-body">
+                    <h3>Pi3DET: Perspective-Invariant 3D Object Detection</h3>
+                    <div class="proj-card-links">
+                      <a href="https://arxiv.org/abs/2507.17665" target="_blank" class="proj-link"><i class="ai ai-arxiv"></i></a>
+                      <a href="https://pi3det.github.io/" target="_blank" class="proj-link"><i class="fas fa-globe"></i></a>
+                      <a href="https://github.com/pi3det/toolkit" target="_blank" class="proj-link"><img src="assets_common/icons/github.png" class="icon-img"></a>
+                      <a href="https://huggingface.co/datasets/Pi3DET/data" target="_blank" class="proj-link"><img src="assets_common/icons/hf.png" class="icon-img"></a>
+                    </div>
+                  </div>
+                </article>
+
+              </div>
+            </div>
+
+
+            <!-- ── World Modeling & Generation ── -->
+            <div class="category-group">
+              <div class="category-label cat-worldmodel">World Modeling &amp; Generation</div>
+              <div class="project-grid-landing">
+
+                <article class="proj-card">
+                  <div class="proj-card-thumb">
+                    <img src="assets_common/teasers/dynamiccity.webp" loading="lazy">
+                  </div>
+                  <div class="proj-card-body">
+                    <h3>DynamicCity: Large-Scale 4D Occupancy Generation</h3>
+                    <div class="proj-card-links">
+                      <a href="https://arxiv.org/abs/2410.18084" target="_blank" class="proj-link"><i class="ai ai-arxiv"></i></a>
+                      <a href="https://dynamic-city.github.io/" target="_blank" class="proj-link"><i class="fas fa-globe"></i></a>
+                      <a href="https://github.com/3DTopia/DynamicCity" target="_blank" class="proj-link"><img src="assets_common/icons/github.png" class="icon-img"></a>
+                    </div>
+                  </div>
+                </article>
+
+                <article class="proj-card">
+                  <div class="proj-card-thumb">
+                    <img src="assets_common/teasers/lidarcrafter.png" loading="lazy">
+                  </div>
+                  <div class="proj-card-body">
+                    <h3>LiDARCrafter: Dynamic 4D World Modeling from LiDAR</h3>
+                    <div class="proj-card-links">
+                      <a href="https://arxiv.org/abs/2508.03692" target="_blank" class="proj-link"><i class="ai ai-arxiv"></i></a>
+                      <a href="https://lidarcrafter.github.io/" target="_blank" class="proj-link"><i class="fas fa-globe"></i></a>
+                      <a href="https://github.com/lidarcrafter/toolkit" target="_blank" class="proj-link"><img src="assets_common/icons/github.png" class="icon-img"></a>
+                    </div>
+                  </div>
+                </article>
+
+                <article class="proj-card">
+                  <div class="proj-card-thumb">
+                    <img src="assets_common/teasers/spiral.png" loading="lazy">
+                  </div>
+                  <div class="proj-card-body">
+                    <h3>SPIRAL: Semantic-Aware Progressive LiDAR Generation</h3>
+                    <div class="proj-card-links">
+                      <a href="https://arxiv.org/abs/2505.22643" target="_blank" class="proj-link"><i class="ai ai-arxiv"></i></a>
+                      <a href="https://dekai21.github.io/SPIRAL/" target="_blank" class="proj-link"><i class="fas fa-globe"></i></a>
+                      <a href="https://github.com/worldbench/SPIRAL" target="_blank" class="proj-link"><img src="assets_common/icons/github.png" class="icon-img"></a>
+                    </div>
+                  </div>
+                </article>
+
+                <article class="proj-card">
+                  <div class="proj-card-thumb">
+                    <img src="assets_common/teasers/see4d.png" loading="lazy">
+                  </div>
+                  <div class="proj-card-body">
+                    <h3>See4D: Pose-Free 4D Generation via Auto-Regressive Inpainting</h3>
+                    <div class="proj-card-links">
+                      <a href="https://arxiv.org/abs/2510.26796" target="_blank" class="proj-link"><i class="ai ai-arxiv"></i></a>
+                      <a href="https://see-4d.github.io/" target="_blank" class="proj-link"><i class="fas fa-globe"></i></a>
+                    </div>
+                  </div>
+                </article>
+
+                <article class="proj-card">
+                  <div class="proj-card-thumb">
+                    <img src="assets_common/teasers/u4d.png" loading="lazy">
+                  </div>
+                  <div class="proj-card-body">
+                    <h3>U4D: Uncertainty-Aware 4D World Modeling</h3>
+                    <div class="proj-card-links">
+                      <a href="https://arxiv.org/abs/2512.02982" target="_blank" class="proj-link"><i class="ai ai-arxiv"></i></a>
+                      <a href="https://github.com/worldbench/U4D" target="_blank" class="proj-link"><img src="assets_common/icons/github.png" class="icon-img"></a>
+                    </div>
+                  </div>
+                </article>
+
+                <article class="proj-card">
+                  <div class="proj-card-thumb">
+                    <img src="assets_common/teasers/ad-r1.png" loading="lazy">
+                  </div>
+                  <div class="proj-card-body">
+                    <h3>AD-R1: Closed-Loop E2E Driving with World Models</h3>
+                    <div class="proj-card-links">
+                      <a href="https://arxiv.org/abs/2511.20325" target="_blank" class="proj-link"><i class="ai ai-arxiv"></i></a>
+                    </div>
+                  </div>
+                </article>
+
+              </div>
+            </div>
+
+
+            <!-- ── Perception & Understanding ── -->
+            <div class="category-group">
+              <div class="category-label cat-perception">Perception &amp; Understanding</div>
+              <div class="project-grid-landing">
+
+                <article class="proj-card">
+                  <div class="proj-card-thumb">
+                    <img src="assets_common/teasers/3eed.png" loading="lazy">
+                  </div>
+                  <div class="proj-card-body">
+                    <h3>3EED: Ground Everything Everywhere in 3D</h3>
+                    <div class="proj-card-links">
+                      <a href="https://arxiv.org/abs/2511.01755" target="_blank" class="proj-link"><i class="ai ai-arxiv"></i></a>
+                      <a href="https://project-3eed.github.io/" target="_blank" class="proj-link"><i class="fas fa-globe"></i></a>
+                      <a href="https://github.com/worldbench/3EED" target="_blank" class="proj-link"><img src="assets_common/icons/github.png" class="icon-img"></a>
+                      <a href="https://huggingface.co/datasets/RRRong/3EED" target="_blank" class="proj-link"><img src="assets_common/icons/hf.png" class="icon-img"></a>
+                    </div>
+                  </div>
+                </article>
+
+                <article class="proj-card">
+                  <div class="proj-card-thumb">
+                    <img src="assets_common/teasers/lasermix.png" loading="lazy">
+                  </div>
+                  <div class="proj-card-body">
+                    <h3>LaserMix: Multi-Modal 3D Scene Understanding</h3>
+                    <div class="proj-card-links">
+                      <a href="https://arxiv.org/abs/2405.05258" target="_blank" class="proj-link"><i class="ai ai-arxiv"></i></a>
+                      <a href="https://ldkong.com/LaserMix" target="_blank" class="proj-link"><i class="fas fa-globe"></i></a>
+                      <a href="https://github.com/ldkong1205/LaserMix" target="_blank" class="proj-link"><img src="assets_common/icons/github.png" class="icon-img"></a>
+                    </div>
+                  </div>
+                </article>
+
+                <article class="proj-card">
+                  <div class="proj-card-thumb">
+                    <img src="assets_common/teasers/large-ad.png" loading="lazy">
+                  </div>
+                  <div class="proj-card-body">
+                    <h3>LargeAD: Large-Scale Data Pretraining for Autonomous Driving</h3>
+                    <div class="proj-card-links">
+                      <a href="https://arxiv.org/abs/2501.04005" target="_blank" class="proj-link"><i class="ai ai-arxiv"></i></a>
+                      <a href="https://ldkong.com/LargeAD" target="_blank" class="proj-link"><i class="fas fa-globe"></i></a>
+                      <a href="https://github.com/ldkong1205/LargeAD" target="_blank" class="proj-link"><img src="assets_common/icons/github.png" class="icon-img"></a>
+                    </div>
+                  </div>
+                </article>
+
+              </div>
+            </div>
+
+
+            <!-- ── Planning & Reasoning ── -->
+            <div class="category-group">
+              <div class="category-label cat-planning">Planning &amp; Reasoning</div>
+              <div class="project-grid-landing">
+
+                <article class="proj-card">
+                  <div class="proj-card-thumb">
+                    <img src="assets/onevl/figures/teaser.png" loading="lazy">
+                  </div>
+                  <div class="proj-card-body">
+                    <h3>OneVL: One-Step Latent Reasoning and Planning</h3>
+                    <div class="proj-card-links">
+                      <a href="#" target="_blank" class="proj-link"><i class="ai ai-arxiv"></i></a>
+                      <a href="https://Xiaomi-Embodied-Intelligence.github.io/OneVL" target="_blank" class="proj-link"><i class="fas fa-globe"></i></a>
+                    </div>
+                  </div>
+                </article>
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+
+        <!-- ==================== Team ==================== -->
+        <div class="landing-section team-section" id="team">
+          <div class="landing-container fade-in">
+            <h2 class="section-title">Team</h2>
+            <div class="section-divider"></div>
+            <p class="section-subtitle">
+              A growing community of researchers across institutions and industry labs worldwide.
+            </p>
+
+            <div class="team-grid">
+              <div class="team-member">
+                <img src="assets_common/photos/lingdong_kong.jpg" loading="lazy" alt="Lingdong Kong">
+                <div class="team-member-name">Lingdong Kong</div>
+              </div>
+              <div class="team-member">
+                <img src="assets_common/photos/ao_liang.jpg" loading="lazy" alt="Ao Liang">
+                <div class="team-member-name">Ao Liang</div>
+              </div>
+              <div class="team-member">
+                <img src="assets_common/photos/tianyi_yan.jpg" loading="lazy" alt="Tianyi Yan">
+                <div class="team-member-name">Tianyi Yan</div>
+              </div>
+              <div class="team-member">
+                <img src="assets_common/photos/hongsi_liu.png" loading="lazy" alt="Hongsi Liu">
+                <div class="team-member-name">Hongsi Liu</div>
+              </div>
+              <div class="team-member">
+                <img src="assets_common/photos/dekai_zhu.jpg" loading="lazy" alt="Dekai Zhu">
+                <div class="team-member-name">Dekai Zhu</div>
+              </div>
+              <div class="team-member">
+                <img src="assets_common/photos/dongyue_lu.jpg" loading="lazy" alt="Dongyue Lu">
+                <div class="team-member-name">Dongyue Lu</div>
+              </div>
+              <div class="team-member">
+                <img src="assets_common/photos/wei_yin.jpeg" loading="lazy" alt="Wei Yin">
+                <div class="team-member-name">Wei Yin</div>
+              </div>
+              <div class="team-member">
+                <img src="assets_common/photos/xiaoshuai_hao.jpg" loading="lazy" alt="Xiaoshuai Hao">
+                <div class="team-member-name">Xiaoshuai Hao</div>
+              </div>
+              <div class="team-member">
+                <img src="assets_common/photos/xiaotao_hu.jpg" loading="lazy" alt="Xiaotao Hu">
+                <div class="team-member-name">Xiaotao Hu</div>
+              </div>
+              <div class="team-member">
+                <img src="assets_common/photos/youquan_liu.jpg" loading="lazy" alt="Youquan Liu">
+                <div class="team-member-name">Youquan Liu</div>
+              </div>
+              <div class="team-member">
+                <img src="assets_common/photos/ziqi_huang.jpg" loading="lazy" alt="Ziqi Huang">
+                <div class="team-member-name">Ziqi Huang</div>
+              </div>
+              <div class="team-member">
+                <img src="assets_common/photos/guoyang_zhao.png" loading="lazy" alt="Guoyang Zhao">
+                <div class="team-member-name">Guoyang Zhao</div>
+              </div>
+              <div class="team-member">
+                <img src="assets_common/photos/jianbiao_mei.jpg" loading="lazy" alt="Jianbiao Mei">
+                <div class="team-member-name">Jianbiao Mei</div>
+              </div>
+              <div class="team-member">
+                <img src="assets_common/photos/junyuan_deng.jpg" loading="lazy" alt="Junyuan Deng">
+                <div class="team-member-name">Junyuan Deng</div>
+              </div>
+              <div class="team-member">
+                <img src="assets_common/photos/kaiwen_zhang.jpg" loading="lazy" alt="Kaiwen Zhang">
+                <div class="team-member-name">Kaiwen Zhang</div>
+              </div>
+              <div class="team-member">
+                <img src="assets_common/photos/mingkai_jia.jpg" loading="lazy" alt="Mingkai Jia">
+                <div class="team-member-name">Mingkai Jia</div>
+              </div>
+              <div class="team-member">
+                <img src="assets_common/photos/jialong_zuo.jpg" loading="lazy" alt="Jialong Zuo">
+                <div class="team-member-name">Jialong Zuo</div>
+              </div>
+              <div class="team-member">
+                <img src="assets_common/photos/yixuan_hu.jpg" loading="lazy" alt="Yixuan Hu">
+                <div class="team-member-name">Yixuan Hu</div>
+              </div>
+              <div class="team-member">
+                <img src="assets_common/photos/guangfeng_jiang.jpg" loading="lazy" alt="Guangfeng Jiang">
+                <div class="team-member-name">Guangfeng Jiang</div>
+              </div>
+              <div class="team-member">
+                <img src="assets_common/photos/linfeng_li.jpeg" loading="lazy" alt="Linfeng Li">
+                <div class="team-member-name">Linfeng Li</div>
+              </div>
+              <div class="team-member">
+                <img src="assets_common/photos/xiangtai_li.jpg" loading="lazy" alt="Xiangtai Li">
+                <div class="team-member-name">Xiangtai Li</div>
+              </div>
+              <div class="team-member">
+                <img src="assets_common/photos/long_zhuo.png" loading="lazy" alt="Long Zhuo">
+                <div class="team-member-name">Long Zhuo</div>
+              </div>
+              <div class="team-member">
+                <img src="assets_common/photos/song_wang.jpeg" loading="lazy" alt="Song Wang">
+                <div class="team-member-name">Song Wang</div>
+              </div>
+              <div class="team-member">
+                <img src="assets_common/photos/hang_song.jpg" loading="lazy" alt="Hang Song">
+                <div class="team-member-name">Hang Song</div>
+              </div>
+              <div class="team-member">
+                <img src="assets_common/photos/zeying_gong.png" loading="lazy" alt="Zeying Gong">
+                <div class="team-member-name">Zeying Gong</div>
+              </div>
+              <div class="team-member">
+                <img src="assets_common/photos/zhiyu_huang.png" loading="lazy" alt="Zhiyu Huang">
+                <div class="team-member-name">Zhiyu Huang</div>
+              </div>
+              <div class="team-member">
+                <img src="assets_common/photos/jun_cen.jpg" loading="lazy" alt="Jun Cen">
+                <div class="team-member-name">Jun Cen</div>
+              </div>
+              <div class="team-member">
+                <img src="assets_common/photos/yang_wu.jpg" loading="lazy" alt="Yang Wu">
+                <div class="team-member-name">Yang Wu</div>
+              </div>
+              <div class="team-member">
+                <img src="assets_common/photos/yu_yang.jpg" loading="lazy" alt="Yu Yang">
+                <div class="team-member-name">Yu Yang</div>
+              </div>
+              <div class="team-member">
+                <img src="assets_common/photos/shenyuan_gao.jpg" loading="lazy" alt="Shenyuan Gao">
+                <div class="team-member-name">Shenyuan Gao</div>
+              </div>
+              <div class="team-member">
+                <img src="assets_common/photos/tianshuai_hu.png" loading="lazy" alt="Tianshuai Hu">
+                <div class="team-member-name">Tianshuai Hu</div>
+              </div>
+              <div class="team-member">
+                <img src="assets_common/photos/yiyao_zhu.png" loading="lazy" alt="Yiyao Zhu">
+                <div class="team-member-name">Yiyao Zhu</div>
+              </div>
+              <div class="team-member">
+                <img src="assets_common/photos/xiaolu_liu.jpg" loading="lazy" alt="Xiaolu Liu">
+                <div class="team-member-name">Xiaolu Liu</div>
+              </div>
+              <div class="team-member">
+                <img src="assets_common/photos/yong_liu.png" loading="lazy" alt="Yong Liu">
+                <div class="team-member-name">Yong Liu</div>
+              </div>
+              <div class="team-member">
+                <img src="assets_common/photos/lai_xing_ng.jpg" loading="lazy" alt="Lai Xing Ng">
+                <div class="team-member-name">Lai Xing Ng</div>
+              </div>
+              <div class="team-member">
+                <img src="assets_common/photos/benoit_cottereau.jpg" loading="lazy" alt="Benoit R. Cottereau">
+                <div class="team-member-name">Benoit R. Cottereau</div>
+              </div>
+              <div class="team-member">
+                <img src="assets_common/photos/changxin_gao.jpeg" loading="lazy" alt="Changxin Gao">
+                <div class="team-member-name">Changxin Gao</div>
+              </div>
+              <div class="team-member">
+                <img src="assets_common/photos/liang_pan.png" loading="lazy" alt="Liang Pan">
+                <div class="team-member-name">Liang Pan</div>
+              </div>
+              <div class="team-member">
+                <img src="assets_common/photos/jun_ma.png" loading="lazy" alt="Jun Ma">
+                <div class="team-member-name">Jun Ma</div>
+              </div>
+              <div class="team-member">
+                <img src="assets_common/photos/jianke_zhu.png" loading="lazy" alt="Jianke Zhu">
+                <div class="team-member-name">Jianke Zhu</div>
+              </div>
+              <div class="team-member">
+                <img src="assets_common/photos/shaojie_shen.jpeg" loading="lazy" alt="Shaojie Shen">
+                <div class="team-member-name">Shaojie Shen</div>
+              </div>
+              <div class="team-member">
+                <img src="assets_common/photos/junwei_liang.jpeg" loading="lazy" alt="Junwei Liang">
+                <div class="team-member-name">Junwei Liang</div>
+              </div>
+              <div class="team-member">
+                <img src="assets_common/photos/steven_c_h_hoi.jpg" loading="lazy" alt="Steven C.H. Hoi">
+                <div class="team-member-name">Steven C.H. Hoi</div>
+              </div>
+              <div class="team-member">
+                <img src="assets_common/photos/wei_tsang_ooi.png" loading="lazy" alt="Wei Tsang Ooi">
+                <div class="team-member-name">Wei Tsang Ooi</div>
+              </div>
+              <div class="team-member">
+                <img src="assets_common/photos/dacheng_tao.jpeg" loading="lazy" alt="Dacheng Tao">
+                <div class="team-member-name">Dacheng Tao</div>
+              </div>
+              <div class="team-member">
+                <img src="assets_common/photos/ziwei_liu.png" loading="lazy" alt="Ziwei Liu">
+                <div class="team-member-name">Ziwei Liu</div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+
+        <!-- ==================== Footer ==================== -->
+        <footer class="landing-footer">
+          <p>
+            This website is licensed under a
+            <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer">
+              Creative Commons Attribution-ShareAlike 4.0 International License
+            </a>
+          </p>
+          <p>&copy; WorldBench 2025-2026. All Rights Reserved</p>
+        </footer>
+
+        <!-- ===== Scripts ===== -->
+        <script>
+          // Sticky nav: transparent over hero, solid after scrolling past
+          const nav = document.getElementById('stickyNav');
+          const hero = document.querySelector('.hero');
+          window.addEventListener('scroll', () => {
+            if (window.scrollY > hero.offsetHeight * 0.3) {
+              nav.classList.add('scrolled');
+            } else {
+              nav.classList.remove('scrolled');
+            }
+          }, { passive: true });
+
+          // Smooth scroll for nav links
+          document.querySelectorAll('.sticky-nav a[href^="#"]').forEach(a => {
+            a.addEventListener('click', e => {
+              e.preventDefault();
+              const target = document.querySelector(a.getAttribute('href'));
+              if (target) {
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              }
+            });
+          });
+
+          // Scroll-in fade animations
+          const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+              }
+            });
+          }, { threshold: 0.1 });
+          document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+          // Parallax mouse movement on hero
+          const heroEl = document.querySelector('.hero');
+          const parallaxLayers = document.querySelectorAll('.hero-parallax-layer');
+          heroEl.addEventListener('mousemove', (e) => {
+            const rect = heroEl.getBoundingClientRect();
+            const x = (e.clientX - rect.left) / rect.width - 0.5;
+            const y = (e.clientY - rect.top) / rect.height - 0.5;
+            parallaxLayers.forEach(layer => {
+              const speed = parseFloat(layer.dataset.speed) || 0.02;
+              const moveX = x * speed * 100;
+              const moveY = y * speed * 100;
+              layer.style.transform = `translate(${moveX}px, ${moveY}px)`;
+            });
+          });
+          heroEl.addEventListener('mouseleave', () => {
+            parallaxLayers.forEach(layer => {
+              layer.style.transform = 'translate(0, 0)';
+            });
+          });
+        </script>
 
     </body>
 </html>
