@@ -2112,3 +2112,17 @@ d-article > .wb-simple-card img {
   width: auto;
   display: inline-block;
 }
+
+
+/* Scroll Progress Bar */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #34cccc, #5fcaa1, #9bc765, #e3c21c, #ffc000);
+  z-index: 1100;
+  width: 0%;
+  transition: width 0.05s linear;
+  pointer-events: none;
+}

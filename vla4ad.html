@@ -39,6 +39,7 @@
     </head>
 
     <body>
+        <div class="scroll-progress" id="scrollProgress"></div>
         <div class="header-wrapper">
 
             <div class="header-container", id="header-container">
@@ -1526,6 +1527,14 @@
             });
           })();
           </script>
+
+        <script>
+          window.addEventListener('scroll', () => {
+            const p = document.getElementById('scrollProgress');
+            const h = document.documentElement.scrollHeight - window.innerHeight;
+            p.style.width = h > 0 ? (window.scrollY / h * 100) + '%' : '0%';
+          }, { passive: true });
+        </script>
 
     </body>
 
