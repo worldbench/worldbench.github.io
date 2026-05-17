@@ -1,0 +1,905 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>AI for Auto-Research: Roadmap &amp; User Guide</title>
+
+        <link rel="icon" href="assets/auto-research/figures/teaser.png" type="image/png">
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet">
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <meta name="description" content="AI for Auto-Research: Roadmap & User Guide — the first end-to-end analysis of AI across the complete research lifecycle, covering idea generation, literature review, coding, writing, peer review, rebuttal, and dissemination.">
+
+        <script src="./static/js/distill_template.v2.js"></script>
+
+        <link rel="stylesheet" href="./static/css/style.css">
+        <link rel="stylesheet" href="./static/css/auto-research.css">
+        <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+
+        <script defer src="./static/js/fontawesome.all.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+        <script defer src="./static/js/medium-zoom.min.js"></script>
+        <script defer src="./static/js/zoom.js"></script>
+    </head>
+
+
+    <body>
+        <div class="scroll-progress" id="scrollProgress" style="background: linear-gradient(90deg, #92400e, #d97706, #f59e0b, #fbbf24, #fde68a);"></div>
+        <div class="header-wrapper" style="background: linear-gradient(220deg, #fde68a 0%, #92400ec0 40%, #1c1917 100%);">
+
+            <div class="header-container" id="header-container">
+                <div class="header-content">
+                <h1 style="font-size:3.0rem;">
+                  AI for Auto-Research: Roadmap &amp; User Guide
+                </h1>
+
+                <h2 style="margin:1.2rem 0 1.6rem; font-size:1.15rem; line-height:1.5; color:#FFF7D4; font-weight:400; max-width:520px;">
+                  <span style="display:flex; align-items:center; gap:0.4rem; margin-bottom:0.6rem; font-weight:600; font-size:1.05rem; color:#fff;">
+                    <img src="assets_common/icons/worldbench.png" style="height:1.6em; vertical-align:text-bottom;" onerror="this.style.display='none'">&nbsp;Awesome AI Auto-Research Team
+                  </span>
+                </h2>
+
+                <div class="button-container">
+                    <a href="https://arxiv.org/abs/YOUR_ARXIV_ID" class="button paper-link" target="_blank">
+                        <span class="icon is-small">
+                            <i class="ai ai-arxiv" style="height: 1.5em;"></i>
+                        </span><span>arXiv</span>
+                    </a>
+                    <a href="#" class="button paper-link" target="_blank">
+                        <span class="icon is-small">
+                            <img src="assets_common/icons/pdf.png" style="height: 1.4em;">
+                        </span><span>PDF</span>
+                    </a>
+                    <a href="https://github.com/worldbench/awesome-auto-research" class="button" target="_blank">
+                        <span class="icon is-small">
+                            <img src="assets_common/icons/github.png" style="height: 1.4em;">
+                        </span><span>GitHub</span>
+                    </a>
+                    <a href="#" class="button" target="_blank">
+                        <span class="icon is-small">
+                            <img src="assets_common/icons/hf.png" style="height: 1.5em;">
+                        </span><span>Reading List</span>
+                    </a>
+                </div>
+                </div>
+                <div class="header-image">
+                    <img src="assets/auto-research/figures/teaser.png" alt="AI Auto-Research Teaser" class="teaser-image">
+                </div>
+            </div>
+        </div>
+
+        <d-article>
+            <d-contents>
+                <nav>
+                    <h4>Contents</h4>
+                    <div><a href="#abstract">Abstract</a></div>
+                    <div><a href="#lifecycle">Research Lifecycle</a></div>
+                    <div><a href="#insights">Key Insights</a></div>
+                    <div><a href="#exhibition">Poster Exhibition</a></div>
+                    <div><a href="#collection">Paper Collection</a></div>
+                    <div><a href="#authors">Authors</a></div>
+                    <div><a href="#citation">Citation</a></div>
+                </nav>
+            </d-contents>
+
+
+
+              <!-- ==================== Abstract ==================== -->
+              <section id="abstract">
+                <div class="wb-section">
+                  <div class="wb-kicker">
+                    From Idea to Impact
+                  </div>
+                  <div class="ar-hr"></div>
+
+                  <p class="wb-lead">
+                    A fully automated AI system today can generate a research paper every <b>2.3 hours</b> at <b>$15</b>, yet every leading LLM will fabricate academic results under pressure. This <i>capability-vs-integrity</i> tension defines the current moment in AI-assisted research.
+                  </p>
+                  <p class="wb-lead">
+                    We present the <b>first end-to-end analysis</b> of AI across the <b>complete</b> research lifecycle, organizing eight stages into four epistemological phases:
+                    <b>Creation</b> (idea generation, literature review, coding &amp; experiments, figures &amp; tables),
+                    <b>Validation</b> (peer review, rebuttal &amp; revision),
+                    <b>Communication</b> (paper writing), and
+                    <b>Dissemination</b> (posters, slides, video, social media) &mdash; three stages of which are entirely absent from all prior work.
+                  </p>
+                  <p class="wb-lead">
+                    Drawing on over <b>200 papers</b> published since 2023, we surface <b>six cross-cutting insights</b> from current AI auto-research systems and identify a shared <b>three-layer architecture</b> that the most successful systems converge on.
+                  </p>
+
+                  <div class="ar-stats">
+                    <div class="ar-stat">
+                      <div class="ar-stat-num">200+</div>
+                      <div class="ar-stat-label">Papers Surveyed</div>
+                    </div>
+                    <div class="ar-stat">
+                      <div class="ar-stat-num">8</div>
+                      <div class="ar-stat-label">Research Stages</div>
+                    </div>
+                    <div class="ar-stat">
+                      <div class="ar-stat-num">4</div>
+                      <div class="ar-stat-label">Lifecycle Phases</div>
+                    </div>
+                    <div class="ar-stat">
+                      <div class="ar-stat-num">6</div>
+                      <div class="ar-stat-label">Cross-Cutting Insights</div>
+                    </div>
+                  </div>
+
+                  <br><br>
+                </div>
+              </section>
+
+
+
+              <!-- ==================== Research Lifecycle ==================== -->
+              <section id="lifecycle">
+                <div class="wb-section">
+
+                  <h2>The Academic Research Full Lifecycle</h2>
+
+                  <div class="wb-kicker">
+                    Four Phases, Eight Stages
+                  </div>
+                  <div class="ar-hr"></div>
+
+                  <p class="wb-lead">
+                    We define the academic research lifecycle as eight interconnected stages organized into four epistemological phases. Click the glowing nodes on the tree to explore each phase.
+                  </p>
+
+                  <div class="itree">
+
+                    <!-- ── Illustrated SVG Tree ── -->
+                    <svg class="itree-svg" viewBox="0 0 900 520" xmlns="http://www.w3.org/2000/svg">
+                      <defs>
+                        <filter id="glow1" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="6" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+                        <filter id="glow2" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="6" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+                        <filter id="glow3" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="6" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+                        <filter id="glow4" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="6" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+                        <radialGradient id="trunkGrad" cx="50%" cy="0%" r="80%"><stop offset="0%" stop-color="#a0785c"/><stop offset="100%" stop-color="#5c3d2e"/></radialGradient>
+                        <linearGradient id="groundGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#4a7c59" stop-opacity="0.12"/><stop offset="100%" stop-color="#4a7c59" stop-opacity="0"/></linearGradient>
+                      </defs>
+
+                      <!-- Ground -->
+                      <ellipse cx="450" cy="498" rx="320" ry="22" fill="url(#groundGrad)"/>
+
+                      <!-- Trunk -->
+                      <path class="trunk" d="M450,495 C448,440 445,380 448,310 C450,280 450,260 450,240" stroke="url(#trunkGrad)"/>
+                      <path class="trunk-inner" d="M450,490 C449,435 447,375 449,308 C450,278 450,258 450,240"/>
+
+                      <!-- Main left branch -->
+                      <path class="branch" d="M450,280 C420,250 360,220 280,200" stroke="#6b4c38"/>
+                      <!-- Main right branch -->
+                      <path class="branch" d="M450,280 C480,250 540,220 620,200" stroke="#6b4c38"/>
+
+                      <!-- Sub-branches (twigs to nodes) -->
+                      <!-- Phase I: far left -->
+                      <path class="twig twig-c1" d="M280,200 C240,170 190,130 130,95"/>
+                      <!-- Phase II: center-left -->
+                      <path class="twig twig-c2" d="M280,200 C300,160 330,120 350,75"/>
+                      <!-- Phase III: center-right -->
+                      <path class="twig twig-c3" d="M620,200 C600,160 570,120 550,75"/>
+                      <!-- Phase IV: far right -->
+                      <path class="twig twig-c4" d="M620,200 C660,170 710,130 770,95"/>
+
+                      <!-- Leaf clusters (decorative ellipses) -->
+                      <g class="leaves">
+                        <!-- Around Phase I -->
+                        <ellipse class="leaf-c1" cx="100" cy="70" rx="40" ry="22" opacity="0.12"/>
+                        <ellipse class="leaf-c1" cx="155" cy="55" rx="30" ry="18" opacity="0.10"/>
+                        <ellipse class="leaf-c1" cx="115" cy="110" rx="28" ry="16" opacity="0.08"/>
+                        <!-- Around Phase II -->
+                        <ellipse class="leaf-c2" cx="330" cy="48" rx="38" ry="20" opacity="0.12"/>
+                        <ellipse class="leaf-c2" cx="375" cy="65" rx="25" ry="15" opacity="0.09"/>
+                        <ellipse class="leaf-c2" cx="320" cy="90" rx="22" ry="14" opacity="0.08"/>
+                        <!-- Around Phase III -->
+                        <ellipse class="leaf-c3" cx="570" cy="48" rx="38" ry="20" opacity="0.12"/>
+                        <ellipse class="leaf-c3" cx="525" cy="65" rx="25" ry="15" opacity="0.09"/>
+                        <ellipse class="leaf-c3" cx="580" cy="90" rx="22" ry="14" opacity="0.08"/>
+                        <!-- Around Phase IV -->
+                        <ellipse class="leaf-c4" cx="800" cy="70" rx="40" ry="22" opacity="0.12"/>
+                        <ellipse class="leaf-c4" cx="745" cy="55" rx="30" ry="18" opacity="0.10"/>
+                        <ellipse class="leaf-c4" cx="785" cy="110" rx="28" ry="16" opacity="0.08"/>
+                        <!-- Canopy fill -->
+                        <ellipse cx="450" cy="45" rx="120" ry="35" fill="#4a7c59" opacity="0.05"/>
+                        <ellipse cx="300" cy="60" rx="80" ry="25" fill="#4a7c59" opacity="0.04"/>
+                        <ellipse cx="600" cy="60" rx="80" ry="25" fill="#4a7c59" opacity="0.04"/>
+                      </g>
+
+                      <!-- Root node -->
+                      <rect x="355" y="468" width="190" height="36" rx="10" fill="#374151"/>
+                      <text class="root-node" x="450" y="491" font-size="13">AI-Assisted Research</text>
+
+                      <!-- ── Node: Phase I (Creation) ── -->
+                      <g class="node-group" data-phase="0" onclick="togglePhase(0)">
+                        <circle class="node-glow" cx="130" cy="95" r="38" fill="#3b82f6" filter="url(#glow1)"/>
+                        <circle class="node-core" cx="130" cy="95" r="28" fill="url(#nodeGrad1)"/>
+                        <defs><radialGradient id="nodeGrad1"><stop offset="0%" stop-color="#60a5fa"/><stop offset="100%" stop-color="#2563eb"/></radialGradient></defs>
+                        <text class="node-text" x="130" y="91" font-size="18">I</text>
+                        <text class="node-text" x="130" y="105" font-size="8" opacity="0.8">4 stages</text>
+                        <text class="node-label" x="130" y="140" font-size="13" fill="#1d4ed8">Creation</text>
+                        <text class="node-sublabel" x="130" y="155" font-size="10">S1 &ndash; S4</text>
+                      </g>
+
+                      <!-- ── Node: Phase II (Validation) ── -->
+                      <g class="node-group" data-phase="1" onclick="togglePhase(1)">
+                        <circle class="node-glow" cx="350" cy="75" r="38" fill="#a855f7" filter="url(#glow2)"/>
+                        <circle class="node-core" cx="350" cy="75" r="28" fill="url(#nodeGrad2)"/>
+                        <defs><radialGradient id="nodeGrad2"><stop offset="0%" stop-color="#c084fc"/><stop offset="100%" stop-color="#7c3aed"/></radialGradient></defs>
+                        <text class="node-text" x="350" y="71" font-size="18">II</text>
+                        <text class="node-text" x="350" y="85" font-size="8" opacity="0.8">2 stages</text>
+                        <text class="node-label" x="350" y="120" font-size="13" fill="#7c3aed">Validation</text>
+                        <text class="node-sublabel" x="350" y="135" font-size="10">S5 &ndash; S6</text>
+                      </g>
+
+                      <!-- ── Node: Phase III (Communication) ── -->
+                      <g class="node-group" data-phase="2" onclick="togglePhase(2)">
+                        <circle class="node-glow" cx="550" cy="75" r="38" fill="#10b981" filter="url(#glow3)"/>
+                        <circle class="node-core" cx="550" cy="75" r="28" fill="url(#nodeGrad3)"/>
+                        <defs><radialGradient id="nodeGrad3"><stop offset="0%" stop-color="#34d399"/><stop offset="100%" stop-color="#047857"/></radialGradient></defs>
+                        <text class="node-text" x="550" y="71" font-size="18">III</text>
+                        <text class="node-text" x="550" y="85" font-size="8" opacity="0.8">1 stage</text>
+                        <text class="node-label" x="550" y="120" font-size="13" fill="#047857">Communication</text>
+                        <text class="node-sublabel" x="550" y="135" font-size="10">S7</text>
+                      </g>
+
+                      <!-- ── Node: Phase IV (Dissemination) ── -->
+                      <g class="node-group" data-phase="3" onclick="togglePhase(3)">
+                        <circle class="node-glow" cx="770" cy="95" r="38" fill="#f97316" filter="url(#glow4)"/>
+                        <circle class="node-core" cx="770" cy="95" r="28" fill="url(#nodeGrad4)"/>
+                        <defs><radialGradient id="nodeGrad4"><stop offset="0%" stop-color="#fb923c"/><stop offset="100%" stop-color="#c2410c"/></radialGradient></defs>
+                        <text class="node-text" x="770" y="91" font-size="18">IV</text>
+                        <text class="node-text" x="770" y="105" font-size="8" opacity="0.8">1 stage</text>
+                        <text class="node-label" x="770" y="140" font-size="13" fill="#c2410c">Dissemination</text>
+                        <text class="node-sublabel" x="770" y="155" font-size="10">S8</text>
+                      </g>
+
+                    </svg>
+
+                    <!-- Detail panels (same content as before) -->
+                    <div class="itree-panel" id="itreePanel0">
+                      <div class="itree-panel-inner">
+                        <div class="itree-panel-header">
+                          <span class="itree-panel-badge" style="background:#2563eb;">Phase I</span>
+                          <span class="itree-panel-title">Creation</span>
+                        </div>
+                        <div class="itree-stage-list">
+                          <div class="itree-stage-row">
+                            <span class="itree-stage-num" style="background:#2563eb;">S1</span>
+                            <div class="itree-stage-content">
+                              <h4>Idea Generation</h4>
+                              <p class="itree-stage-desc">Generating, refining, and evaluating novel research hypotheses.</p>
+                              <div class="itree-pills">
+                                <span class="tree-pill pill-s1">LLM-based generation</span>
+                                <span class="tree-pill pill-s1">KG-driven</span>
+                                <span class="tree-pill pill-s1">Trend-driven</span>
+                                <span class="tree-pill pill-s1">Multi-agent ideation</span>
+                                <span class="tree-pill pill-s1">Novelty assessment</span>
+                                <span class="tree-pill pill-s1">Human-AI co-ideation</span>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="itree-stage-row">
+                            <span class="itree-stage-num" style="background:#3b82f6;">S2</span>
+                            <div class="itree-stage-content">
+                              <h4>Literature Review</h4>
+                              <p class="itree-stage-desc">Retrieving, synthesizing, and organizing prior work.</p>
+                              <div class="itree-pills">
+                                <span class="tree-pill pill-s2">Semantic retrieval</span>
+                                <span class="tree-pill pill-s2">Survey generation</span>
+                                <span class="tree-pill pill-s2">Deep Research</span>
+                                <span class="tree-pill pill-s2">Citation graph</span>
+                                <span class="tree-pill pill-s2">Hierarchical org.</span>
+                                <span class="tree-pill pill-s2">Related work gen.</span>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="itree-stage-row">
+                            <span class="itree-stage-num" style="background:#60a5fa;">S3</span>
+                            <div class="itree-stage-content">
+                              <h4>Coding &amp; Experiments <span class="itree-new">&#9733; New</span></h4>
+                              <p class="itree-stage-desc">Translating ideas into code, designing experiments, and executing them.</p>
+                              <div class="itree-pills">
+                                <span class="tree-pill pill-s3">Paper-to-Code</span>
+                                <span class="tree-pill pill-s3">Exp. design</span>
+                                <span class="tree-pill pill-s3">Auto execution</span>
+                                <span class="tree-pill pill-s3">Result analysis</span>
+                                <span class="tree-pill pill-s3">Lab automation</span>
+                                <span class="tree-pill pill-s3">Benchmarking</span>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="itree-stage-row">
+                            <span class="itree-stage-num" style="background:#93c5fd; color:#1e3a5f;">S4</span>
+                            <div class="itree-stage-content">
+                              <h4>Tables &amp; Figures <span class="itree-new">&#9733; New</span></h4>
+                              <p class="itree-stage-desc">Creating method diagrams, result plots, and comparison tables.</p>
+                              <div class="itree-pills">
+                                <span class="tree-pill pill-s4">Method diagrams</span>
+                                <span class="tree-pill pill-s4">Result plots</span>
+                                <span class="tree-pill pill-s4">Table generation</span>
+                                <span class="tree-pill pill-s4">LaTeX / TikZ</span>
+                                <span class="tree-pill pill-s4">SVG generation</span>
+                                <span class="tree-pill pill-s4">Visual feedback</span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- ── Panel 1: Validation ── -->
+                    <div class="itree-panel" id="itreePanel1">
+                      <div class="itree-panel-inner">
+                        <div class="itree-panel-header">
+                          <span class="itree-panel-badge" style="background:#9333ea;">Phase II</span>
+                          <span class="itree-panel-title">Validation</span>
+                        </div>
+                        <div class="itree-stage-list">
+                          <div class="itree-stage-row">
+                            <span class="itree-stage-num" style="background:#9333ea;">S5</span>
+                            <div class="itree-stage-content">
+                              <h4>Peer Review</h4>
+                              <p class="itree-stage-desc">Automated review generation, reviewer matching, and quality assessment.</p>
+                              <div class="itree-pills">
+                                <span class="tree-pill pill-s5">Review generation</span>
+                                <span class="tree-pill pill-s5">Meta-review</span>
+                                <span class="tree-pill pill-s5">Reviewer matching</span>
+                                <span class="tree-pill pill-s5">Quality assessment</span>
+                                <span class="tree-pill pill-s5">Bias detection</span>
+                                <span class="tree-pill pill-s5">Review feedback</span>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="itree-stage-row">
+                            <span class="itree-stage-num" style="background:#a855f7;">S6</span>
+                            <div class="itree-stage-content">
+                              <h4>Rebuttal &amp; Revision <span class="itree-new">&#9733; New</span></h4>
+                              <p class="itree-stage-desc">Analyzing reviewer comments and generating evidence-grounded responses.</p>
+                              <div class="itree-pills">
+                                <span class="tree-pill pill-s6">Comment analysis</span>
+                                <span class="tree-pill pill-s6">Response generation</span>
+                                <span class="tree-pill pill-s6">Evidence retrieval</span>
+                                <span class="tree-pill pill-s6">Strategy planning</span>
+                                <span class="tree-pill pill-s6">Effectiveness analysis</span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- ── Panel 2: Communication ── -->
+                    <div class="itree-panel" id="itreePanel2">
+                      <div class="itree-panel-inner">
+                        <div class="itree-panel-header">
+                          <span class="itree-panel-badge" style="background:#059669;">Phase III</span>
+                          <span class="itree-panel-title">Communication</span>
+                        </div>
+                        <div class="itree-stage-list">
+                          <div class="itree-stage-row">
+                            <span class="itree-stage-num" style="background:#059669;">S7</span>
+                            <div class="itree-stage-content">
+                              <h4>Paper Writing</h4>
+                              <p class="itree-stage-desc">Drafting, editing, and polishing manuscripts with AI assistance.</p>
+                              <div class="itree-pills">
+                                <span class="tree-pill pill-s7">Semi-auto assist</span>
+                                <span class="tree-pill pill-s7">Full-auto gen.</span>
+                                <span class="tree-pill pill-s7">Citation insertion</span>
+                                <span class="tree-pill pill-s7">AI text detection</span>
+                                <span class="tree-pill pill-s7">LaTeX generation</span>
+                                <span class="tree-pill pill-s7">Style &amp; polishing</span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- ── Panel 3: Dissemination ── -->
+                    <div class="itree-panel" id="itreePanel3">
+                      <div class="itree-panel-inner">
+                        <div class="itree-panel-header">
+                          <span class="itree-panel-badge" style="background:#ea580c;">Phase IV</span>
+                          <span class="itree-panel-title">Dissemination</span>
+                        </div>
+                        <div class="itree-stage-list">
+                          <div class="itree-stage-row">
+                            <span class="itree-stage-num" style="background:#ea580c;">S8</span>
+                            <div class="itree-stage-content">
+                              <h4>Dissemination / Paper2X <span class="itree-new">&#9733; New</span></h4>
+                              <p class="itree-stage-desc">Converting papers into posters, slides, videos, and social media content.</p>
+                              <div class="itree-pills">
+                                <span class="tree-pill pill-s8">Paper&rarr;Poster</span>
+                                <span class="tree-pill pill-s8">Paper&rarr;Slides</span>
+                                <span class="tree-pill pill-s8">Paper&rarr;Video</span>
+                                <span class="tree-pill pill-s8">Paper&rarr;Social</span>
+                                <span class="tree-pill pill-s8">Template learning</span>
+                                <span class="tree-pill pill-s8">NL editing</span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+
+                  <script>
+                    var activePhase = -1;
+                    function togglePhase(idx) {
+                      var nodes = document.querySelectorAll('.node-group');
+                      var panels = document.querySelectorAll('.itree-panel');
+                      if (activePhase === idx) {
+                        panels[idx].classList.remove('is-open');
+                        nodes[idx].classList.remove('is-active');
+                        activePhase = -1;
+                        return;
+                      }
+                      panels.forEach(function(p, i) {
+                        p.classList.remove('is-open');
+                        nodes[i].classList.remove('is-active');
+                      });
+                      panels[idx].classList.add('is-open');
+                      nodes[idx].classList.add('is-active');
+                      activePhase = idx;
+                      setTimeout(function() {
+                        panels[idx].scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                      }, 100);
+                    }
+                  </script>
+
+                  <br><br>
+                </div>
+              </section>
+
+
+
+              <!-- ==================== Key Insights ==================== -->
+              <section id="insights">
+                <div class="wb-section">
+
+                  <h2>Key Insights</h2>
+
+                  <div class="wb-kicker">
+                    Six Cross-Cutting Findings
+                  </div>
+                  <div class="ar-hr"></div>
+
+                  <p class="wb-lead">
+                    Drawing on over 200 papers, we surface six meta-level insights that emerge across all stages of the AI auto-research pipeline, supported by quantitative evidence from controlled experiments involving hundreds of researchers.
+                  </p>
+
+                  <div class="insight-grid">
+
+                    <article class="insight-card">
+                      <div class="insight-metric">5.38 &rarr; 3.41</div>
+                      <div class="insight-label">The Ideation-Execution Gap</div>
+                      <p class="insight-desc">
+                        LLM-generated ideas appear novel but collapse upon execution. Quality scores drop from 5.38 to 3.41 after implementation by human researchers.
+                      </p>
+                    </article>
+
+                    <article class="insight-card">
+                      <div class="insight-metric">37.3%</div>
+                      <div class="insight-label">The Code Translation Ceiling</div>
+                      <p class="insight-desc">
+                        AI struggles to translate research papers into working code, plateauing near 37% on novel algorithmic tasks despite exceeding 80% on standard benchmarks.
+                      </p>
+                    </article>
+
+                    <article class="insight-card">
+                      <div class="insight-metric">5.36 / 5.39</div>
+                      <div class="insight-label">The Quality Ceiling</div>
+                      <p class="insight-desc">
+                        The best end-to-end systems (CycleResearcher: 5.36) generate papers that fall just below the acceptance threshold (5.39) of major venues.
+                      </p>
+                    </article>
+
+                    <article class="insight-card">
+                      <div class="insight-metric">$15 &ndash; $1K</div>
+                      <div class="insight-label">Cost-Quality Decoupling</div>
+                      <p class="insight-desc">
+                        Cost and quality decouple exponentially beyond a certain compute budget, from $15/paper (AI Scientist) to $1,000/paper (FARS).
+                      </p>
+                    </article>
+
+                    <article class="insight-card">
+                      <div class="insight-metric">&gt;1/5</div>
+                      <div class="insight-label">AI Contamination Rate</div>
+                      <p class="insight-desc">
+                        Over a fifth of CS abstracts already carry detectable AI-modified content, raising integrity concerns across the field.
+                      </p>
+                    </article>
+
+                    <article class="insight-card">
+                      <div class="insight-metric">3-Layer</div>
+                      <div class="insight-label">Convergent Architecture</div>
+                      <p class="insight-desc">
+                        The most successful systems converge on a shared three-layer architecture: planning, execution, and verification.
+                      </p>
+                    </article>
+
+                  </div>
+
+                  <br><br><br>
+                </div>
+              </section>
+
+
+
+              <!-- ==================== Poster Exhibition ==================== -->
+              <section id="exhibition">
+                <div class="gallery-section">
+                  <div class="gallery-inner">
+
+                    <span class="gallery-kicker">AI-Generated Posters</span>
+                    <h2 class="gallery-title">Poster Exhibition</h2>
+                    <div class="gallery-hr"></div>
+                    <p class="gallery-subtitle">
+                      A virtual gallery of research posters generated by frontier AI models for this survey. Each poster is produced end-to-end by a different system, showcasing the current state of automated scientific dissemination.
+                    </p>
+
+                    <div class="poster-grid">
+
+                      <!-- Poster 1 -->
+                      <div class="poster-frame" onclick="openLightbox(this)">
+                        <span class="poster-num">01</span>
+                        <div class="poster-placeholder">
+                          <div class="placeholder-icon"><i class="fas fa-image"></i></div>
+                          <span class="placeholder-text">Poster Coming Soon</span>
+                        </div>
+                        <div class="poster-info">
+                          <span class="poster-title">Full Lifecycle Overview</span>
+                          <span class="poster-tool tool-gpt">GPT-4o</span>
+                        </div>
+                      </div>
+
+                      <!-- Poster 2 -->
+                      <div class="poster-frame" onclick="openLightbox(this)">
+                        <span class="poster-num">02</span>
+                        <div class="poster-placeholder">
+                          <div class="placeholder-icon"><i class="fas fa-image"></i></div>
+                          <span class="placeholder-text">Poster Coming Soon</span>
+                        </div>
+                        <div class="poster-info">
+                          <span class="poster-title">Cross-Cutting Insights</span>
+                          <span class="poster-tool tool-claude">Claude</span>
+                        </div>
+                      </div>
+
+                      <!-- Poster 3 -->
+                      <div class="poster-frame" onclick="openLightbox(this)">
+                        <span class="poster-num">03</span>
+                        <div class="poster-placeholder">
+                          <div class="placeholder-icon"><i class="fas fa-image"></i></div>
+                          <span class="placeholder-text">Poster Coming Soon</span>
+                        </div>
+                        <div class="poster-info">
+                          <span class="poster-title">Creation &amp; Validation Phases</span>
+                          <span class="poster-tool tool-gemini">Gemini</span>
+                        </div>
+                      </div>
+
+                      <!-- Poster 4 -->
+                      <div class="poster-frame" onclick="openLightbox(this)">
+                        <span class="poster-num">04</span>
+                        <div class="poster-placeholder">
+                          <div class="placeholder-icon"><i class="fas fa-image"></i></div>
+                          <span class="placeholder-text">Poster Coming Soon</span>
+                        </div>
+                        <div class="poster-info">
+                          <span class="poster-title">End-to-End Architecture</span>
+                          <span class="poster-tool tool-gpt">GPT-4o</span>
+                        </div>
+                      </div>
+
+                      <!-- Poster 5 -->
+                      <div class="poster-frame" onclick="openLightbox(this)">
+                        <span class="poster-num">05</span>
+                        <div class="poster-placeholder">
+                          <div class="placeholder-icon"><i class="fas fa-image"></i></div>
+                          <span class="placeholder-text">Poster Coming Soon</span>
+                        </div>
+                        <div class="poster-info">
+                          <span class="poster-title">Dissemination Pipeline</span>
+                          <span class="poster-tool tool-claude">Claude</span>
+                        </div>
+                      </div>
+
+                      <!-- Poster 6 -->
+                      <div class="poster-frame" onclick="openLightbox(this)">
+                        <span class="poster-num">06</span>
+                        <div class="poster-placeholder">
+                          <div class="placeholder-icon"><i class="fas fa-image"></i></div>
+                          <span class="placeholder-text">Poster Coming Soon</span>
+                        </div>
+                        <div class="poster-info">
+                          <span class="poster-title">Societal Impact &amp; Ethics</span>
+                          <span class="poster-tool tool-gemini">Gemini</span>
+                        </div>
+                      </div>
+
+                    </div>
+
+                    <!-- Divider: Landscape -->
+                    <div class="gallery-divider">
+                      <span class="divider-line"></span>
+                      <span class="divider-label">Landscape Posters</span>
+                      <span class="divider-line"></span>
+                    </div>
+
+                    <div class="poster-grid-landscape">
+
+                      <!-- Landscape Poster 1 -->
+                      <div class="poster-frame-landscape" onclick="openLightbox(this)">
+                        <span class="poster-num">07</span>
+                        <div class="poster-placeholder">
+                          <div class="placeholder-icon"><i class="fas fa-image"></i></div>
+                          <span class="placeholder-text">Poster Coming Soon</span>
+                        </div>
+                        <div class="poster-info">
+                          <span class="poster-title">Research Lifecycle Timeline</span>
+                          <span class="poster-tool tool-gpt">GPT-4o</span>
+                        </div>
+                      </div>
+
+                      <!-- Landscape Poster 2 -->
+                      <div class="poster-frame-landscape" onclick="openLightbox(this)">
+                        <span class="poster-num">08</span>
+                        <div class="poster-placeholder">
+                          <div class="placeholder-icon"><i class="fas fa-image"></i></div>
+                          <span class="placeholder-text">Poster Coming Soon</span>
+                        </div>
+                        <div class="poster-info">
+                          <span class="poster-title">Benchmark Landscape</span>
+                          <span class="poster-tool tool-claude">Claude</span>
+                        </div>
+                      </div>
+
+                      <!-- Landscape Poster 3 (full-width) -->
+                      <div class="poster-frame-landscape poster-wide" onclick="openLightbox(this)">
+                        <span class="poster-num">09</span>
+                        <div class="poster-placeholder">
+                          <div class="placeholder-icon"><i class="fas fa-image"></i></div>
+                          <span class="placeholder-text">Poster Coming Soon</span>
+                        </div>
+                        <div class="poster-info">
+                          <span class="poster-title">Full Survey Panoramic Poster</span>
+                          <span class="poster-tool tool-gemini">Gemini</span>
+                        </div>
+                      </div>
+
+                    </div>
+
+                  </div>
+                </div>
+              </section>
+
+              <!-- Lightbox overlay -->
+              <div class="poster-lightbox" id="posterLightbox" onclick="closeLightbox()">
+                <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+                <img id="lightboxImg" src="" alt="Poster full view">
+              </div>
+
+              <script>
+                function openLightbox(frame) {
+                  var img = frame.querySelector('.poster-img');
+                  if (!img) return;
+                  document.getElementById('lightboxImg').src = img.src;
+                  document.getElementById('posterLightbox').classList.add('is-open');
+                  document.body.style.overflow = 'hidden';
+                }
+                function closeLightbox() {
+                  document.getElementById('posterLightbox').classList.remove('is-open');
+                  document.body.style.overflow = '';
+                }
+                document.addEventListener('keydown', function(e) {
+                  if (e.key === 'Escape') closeLightbox();
+                });
+              </script>
+
+
+
+              <!-- ==================== Paper Collection ==================== -->
+              <section id="collection">
+                <div class="wb-section">
+
+                  <h2>Paper Collection</h2>
+
+                  <div class="wb-kicker">
+                    250+ Curated Papers Across 12 Categories
+                  </div>
+                  <div class="ar-hr"></div>
+
+                  <p class="wb-lead">
+                    We maintain a continuously updated reading list of papers on AI-assisted and automated scientific research, covering the full research pipeline. Browse the complete collection on our <a href="https://github.com/worldbench/awesome-auto-research" target="_blank" style="color:#92400e; font-weight:600;">GitHub repository</a>.
+                  </p>
+
+                  <div class="cat-grid">
+
+                    <div class="cat-pill">
+                      <span class="cat-dot" style="background:#2563eb;"></span>
+                      <span class="cat-name">Idea Generation</span>
+                      <span class="cat-count">~32</span>
+                    </div>
+
+                    <div class="cat-pill">
+                      <span class="cat-dot" style="background:#3b82f6;"></span>
+                      <span class="cat-name">Literature Review</span>
+                      <span class="cat-count">~33</span>
+                    </div>
+
+                    <div class="cat-pill">
+                      <span class="cat-dot" style="background:#60a5fa;"></span>
+                      <span class="cat-name">Coding &amp; Experimentation</span>
+                      <span class="cat-count">~32</span>
+                    </div>
+
+                    <div class="cat-pill">
+                      <span class="cat-dot" style="background:#93c5fd;"></span>
+                      <span class="cat-name">Tables &amp; Figures</span>
+                      <span class="cat-count">~24</span>
+                    </div>
+
+                    <div class="cat-pill">
+                      <span class="cat-dot" style="background:#9333ea;"></span>
+                      <span class="cat-name">Peer Review</span>
+                      <span class="cat-count">~28</span>
+                    </div>
+
+                    <div class="cat-pill">
+                      <span class="cat-dot" style="background:#a855f7;"></span>
+                      <span class="cat-name">Rebuttal</span>
+                      <span class="cat-count">~7</span>
+                    </div>
+
+                    <div class="cat-pill">
+                      <span class="cat-dot" style="background:#059669;"></span>
+                      <span class="cat-name">Paper Writing</span>
+                      <span class="cat-count">~13</span>
+                    </div>
+
+                    <div class="cat-pill">
+                      <span class="cat-dot" style="background:#ea580c;"></span>
+                      <span class="cat-name">Dissemination (Paper2X)</span>
+                      <span class="cat-count">~23</span>
+                    </div>
+
+                    <div class="cat-pill">
+                      <span class="cat-dot" style="background:#dc2626;"></span>
+                      <span class="cat-name">End-to-End Systems</span>
+                      <span class="cat-count">~22</span>
+                    </div>
+
+                    <div class="cat-pill">
+                      <span class="cat-dot" style="background:#78716c;"></span>
+                      <span class="cat-name">Societal &amp; Critical</span>
+                      <span class="cat-count">~16</span>
+                    </div>
+
+                    <div class="cat-pill">
+                      <span class="cat-dot" style="background:#d97706;"></span>
+                      <span class="cat-name">Surveys &amp; Curated Lists</span>
+                      <span class="cat-count">~8</span>
+                    </div>
+
+                    <div class="cat-pill">
+                      <span class="cat-dot" style="background:#0d9488;"></span>
+                      <span class="cat-name">Tools &amp; GitHub Repos</span>
+                      <span class="cat-count">56+</span>
+                    </div>
+
+                  </div>
+
+                  <br>
+
+                  <div style="text-align:center; margin-top:1rem;">
+                    <a href="https://github.com/worldbench/awesome-auto-research" target="_blank"
+                       style="display:inline-block; padding:0.7rem 1.8rem; background:#92400e; color:#fff; border-radius:12px; font-weight:600; font-size:0.95rem; text-decoration:none; font-family:'Rubik',sans-serif; transition: background .2s ease;">
+                      <i class="fab fa-github" style="margin-right:0.4rem;"></i> Browse Full Collection on GitHub
+                    </a>
+                  </div>
+
+                  <br><br><br>
+                </div>
+              </section>
+
+
+
+              <!-- ==================== Authors ==================== -->
+              <section id="authors">
+                <div class="wb-section">
+
+                  <h2>Authors</h2>
+
+                  <div class="wb-kicker" style="font-size:1.1rem;">Author List</div>
+                  <div class="ar-hr"></div>
+                  <!-- <div class="contributors-name-list">
+                    <span>Lingdong Kong<sup>*</sup></span>
+                    <span>Wei Chow<sup>*</sup></span>
+                    <span>Linfeng Li</span>
+                    <span>Song Wang</span>
+                    <span>Xian Sun</span>
+                    <span>Amber Liu</span>
+                    <span>Rong Li</span>
+                    <span>Leigang Qu</span>
+                    <span>Lai Xing Ng</span>
+                    <span>Beno&icirc;t R. Cottereau</span>
+                    <span>Jianke Zhu</span>
+                    <span>Steven C. H. Hoi</span>
+                    <span>Ziwei Liu</span>
+                    <span>Tat-Seng Chua</span>
+                    <span>Wei Tsang Ooi</span>
+                  </div> -->
+
+                  <br>
+                </div>
+              </section>
+
+
+
+              <!-- ==================== Citation ==================== -->
+              <section id="citation">
+                <div class="wb-section">
+
+                  <h2>Citation</h2>
+
+                  <div class="wb-kicker" style="font-size:1.1rem;">BibTeX</div>
+                  <div class="ar-hr"></div>
+
+                  <p class="wb-lead">
+                    If you find this survey or the reading list useful, please consider citing our work:
+                  </p>
+
+                  <pre class="ar-citation">@article{survey-ai-auto-research,
+  title   = {{AI} for Auto-Research: Roadmap \& User Guide},
+  author  = {},
+  journal = {arXiv preprint arXiv:YOUR\_ARXIV\_ID},
+  year    = {2026}
+}</pre>
+
+                  <br><br>
+                </div>
+              </section>
+
+
+
+            <br><br>
+
+
+            <footer class="wb-footer">
+              <br>
+              <div class="wb-footer-content">
+                <p>
+                  This website is licensed under a
+                  <a href="https://creativecommons.org/licenses/by-sa/4.0/"
+                    target="_blank"
+                    rel="noopener noreferrer">
+                    Creative Commons Attribution-ShareAlike 4.0 International License
+                  </a>
+                </p>
+                <p>
+                  &copy; <b>WorldBench</b> 2026. All Rights Reserved
+                </p>
+              </div>
+              <br>
+            </footer>
+
+
+        </d-article>
+
+        <script>
+          window.addEventListener('scroll', function() {
+            var p = document.getElementById('scrollProgress');
+            var h = document.documentElement.scrollHeight - window.innerHeight;
+            p.style.width = h > 0 ? (window.scrollY / h * 100) + '%' : '0%';
+          }, { passive: true });
+        </script>
+
+    </body>
+</html>
