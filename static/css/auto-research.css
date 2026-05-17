@@ -227,7 +227,23 @@ h1, h2 { font-weight: 500; }
   50%      { opacity: 1; transform: scale(1.2); }
 }
 
-/* ===== Exhibition wrapper (contains Paper2Poster + Paper2Slides + Paper2Social) ===== */
+/* ===== Phase separator (between phase blocks in Lifecycle) ===== */
+
+.phase-separator {
+  width: 30%;
+  max-width: 280px;
+  height: 3px;
+  margin: 2.5rem auto;
+  background: #e5e7eb;
+  border-radius: 999px;
+}
+
+@media (max-width: 640px) {
+  .phase-separator {
+    width: 40%;
+    margin: 2rem auto;
+  }
+}
 
 .exhibition-wrap {
   margin-top: 1.5rem;
