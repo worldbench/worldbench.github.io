@@ -186,258 +186,166 @@
                     We organize the academic research lifecycle as <b>eight interconnected stages</b> grouped into <b>four epistemological phases</b>. Each phase serves a distinct function in producing, scrutinizing, and communicating scientific knowledge.
                   </p>
 
-                  <div class="phase-flow-wrap">
+                  <div class="lifecycle-blocks">
 
-                    <!-- Phase cards row -->
-                    <div class="phase-card-grid">
-
-                      <div class="phase-card-img pc1" onclick="togglePhase(0)">
-                        <div class="pc-image">
-                          <span class="pc-roman">I</span>
-                          <span class="pc-badge">S1 &mdash; S4</span>
-                          <img src="assets/auto-research/figures/phases/phase1_creation.png" alt="Phase I: Creation">
+                    <!-- ====== Phase I: Creation ====== -->
+                    <div class="phase-block pc1">
+                      <div class="phase-header-card">
+                        <div class="phase-hero-image">
+                          <!-- 16:9 phase figure placeholder. Replace src below when ready -->
+                          <div class="phase-hero-placeholder">
+                            <div class="ph-icon"><i class="fas fa-image"></i></div>
+                            <div class="ph-text">Phase I figure (16:9) &mdash; coming soon</div>
+                          </div>
+                          <div class="phase-hero-overlay">
+                            <div class="phase-hero-roman">Phase I &middot; Stages 1&ndash;4</div>
+                            <h3 class="phase-hero-title">Creation</h3>
+                            <p class="phase-hero-subtitle">The stages through which a research contribution is materially produced.</p>
+                          </div>
                         </div>
-                        <div class="pc-body">
-                          <h3 class="pc-name">Creation</h3>
-                          <p class="pc-motivation">Spark research ideas, ground them in prior work, run experiments, and turn results into figures &amp; tables.</p>
+                        <div class="phase-motivation">
+                          <p>From <b>spark to substance</b>: ideation grounded in the literature, executed in code, and rendered as figures and tables. This is where AI's promise &mdash; and its capability boundary &mdash; is most visible.</p>
                         </div>
                       </div>
 
-                      <div class="phase-card-img pc2" onclick="togglePhase(1)">
-                        <div class="pc-image">
-                          <span class="pc-roman">II</span>
-                          <span class="pc-badge">S5</span>
-                          <img src="assets/auto-research/figures/phases/phase2_writing.png" alt="Phase II: Writing">
-                        </div>
-                        <div class="pc-body">
-                          <h3 class="pc-name">Writing</h3>
-                          <p class="pc-motivation">Compose a coherent manuscript &mdash; drafting, structuring, and polishing &mdash; that frames evidence into a publishable argument.</p>
-                        </div>
-                      </div>
-
-                      <div class="phase-card-img pc3" onclick="togglePhase(2)">
-                        <div class="pc-image">
-                          <span class="pc-roman">III</span>
-                          <span class="pc-badge">S6 &mdash; S7</span>
-                          <img src="assets/auto-research/figures/phases/phase3_validation.png" alt="Phase III: Validation">
-                        </div>
-                        <div class="pc-body">
-                          <h3 class="pc-name">Validation</h3>
-                          <p class="pc-motivation">Subject claims to peer scrutiny: structured review, evidence-grounded rebuttal, and revision in light of community feedback.</p>
-                        </div>
-                      </div>
-
-                      <div class="phase-card-img pc4" onclick="togglePhase(3)">
-                        <div class="pc-image">
-                          <span class="pc-roman">IV</span>
-                          <span class="pc-badge">S8</span>
-                          <img src="assets/auto-research/figures/phases/phase4_dissemination.png" alt="Phase IV: Dissemination">
-                        </div>
-                        <div class="pc-body">
-                          <h3 class="pc-name">Dissemination</h3>
-                          <p class="pc-motivation">Translate the paper into posters, slides, video, and social formats that reach researchers and the public.</p>
-                        </div>
-                      </div>
-
-                    </div>
-
-                    <p class="phase-flow-hint">
-                      Click any card to explore its stages
-                    </p>
-
-                    <!-- Detail panels -->
-                    <div class="itree-panel" id="itreePanel0">
-                      <div class="itree-panel-inner">
-                        <div class="itree-panel-header">
-                          <span class="itree-panel-badge" style="background:#2563eb;">Phase I</span>
-                          <span class="itree-panel-title">Creation</span>
-                        </div>
-                        <div class="itree-stage-list">
-                          <div class="itree-stage-row">
-                            <span class="itree-stage-num" style="background:#2563eb;">S1</span>
-                            <div class="itree-stage-content">
-                              <h4>Idea Generation</h4>
-                              <p class="itree-stage-desc">Generating, refining, and evaluating novel research hypotheses.</p>
-                              <div class="itree-pills">
-                                <span class="tree-pill pill-s1">LLM-based generation</span>
-                                <span class="tree-pill pill-s1">KG-driven</span>
-                                <span class="tree-pill pill-s1">Trend-driven</span>
-                                <span class="tree-pill pill-s1">Multi-agent ideation</span>
-                                <span class="tree-pill pill-s1">Novelty assessment</span>
-                                <span class="tree-pill pill-s1">Human-AI co-ideation</span>
-                              </div>
-                            </div>
+                      <div class="stage-card-grid">
+                        <article class="stage-card">
+                          <div class="stage-image"><img src="assets/auto-research/figures/stages/s1.png" alt="S1: Idea Generation"></div>
+                          <div class="stage-body">
+                            <div class="stage-tag">Stage 1</div>
+                            <h4 class="stage-name">Idea Generation</h4>
+                            <p class="stage-desc">Generating, refining, and evaluating novel research hypotheses.</p>
                           </div>
-                          <div class="itree-stage-row">
-                            <span class="itree-stage-num" style="background:#3b82f6;">S2</span>
-                            <div class="itree-stage-content">
-                              <h4>Literature Review</h4>
-                              <p class="itree-stage-desc">Retrieving, synthesizing, and organizing prior work.</p>
-                              <div class="itree-pills">
-                                <span class="tree-pill pill-s2">Semantic retrieval</span>
-                                <span class="tree-pill pill-s2">Survey generation</span>
-                                <span class="tree-pill pill-s2">Deep Research</span>
-                                <span class="tree-pill pill-s2">Citation graph</span>
-                                <span class="tree-pill pill-s2">Hierarchical org.</span>
-                                <span class="tree-pill pill-s2">Related work gen.</span>
-                              </div>
-                            </div>
+                        </article>
+                        <article class="stage-card">
+                          <div class="stage-image"><img src="assets/auto-research/figures/stages/s2.png" alt="S2: Literature Review"></div>
+                          <div class="stage-body">
+                            <div class="stage-tag">Stage 2</div>
+                            <h4 class="stage-name">Literature Review</h4>
+                            <p class="stage-desc">Retrieving, synthesizing, and organizing prior work into coherent contexts.</p>
                           </div>
-                          <div class="itree-stage-row">
-                            <span class="itree-stage-num" style="background:#60a5fa;">S3</span>
-                            <div class="itree-stage-content">
-                              <h4>Coding &amp; Experiments <span class="itree-new">&#9733; New</span></h4>
-                              <p class="itree-stage-desc">Translating ideas into code, designing experiments, and executing them.</p>
-                              <div class="itree-pills">
-                                <span class="tree-pill pill-s3">Paper-to-Code</span>
-                                <span class="tree-pill pill-s3">Exp. design</span>
-                                <span class="tree-pill pill-s3">Auto execution</span>
-                                <span class="tree-pill pill-s3">Result analysis</span>
-                                <span class="tree-pill pill-s3">Lab automation</span>
-                                <span class="tree-pill pill-s3">Benchmarking</span>
-                              </div>
-                            </div>
+                        </article>
+                        <article class="stage-card">
+                          <div class="stage-image"><img src="assets/auto-research/figures/stages/s3.png" alt="S3: Coding & Experiments"></div>
+                          <div class="stage-body">
+                            <div class="stage-tag">Stage 3</div>
+                            <h4 class="stage-name">Coding &amp; Experiments</h4>
+                            <p class="stage-desc">Translating ideas into executable code and running empirical analyses.</p>
                           </div>
-                          <div class="itree-stage-row">
-                            <span class="itree-stage-num" style="background:#93c5fd; color:#1e3a5f;">S4</span>
-                            <div class="itree-stage-content">
-                              <h4>Tables &amp; Figures <span class="itree-new">&#9733; New</span></h4>
-                              <p class="itree-stage-desc">Creating method diagrams, result plots, and comparison tables.</p>
-                              <div class="itree-pills">
-                                <span class="tree-pill pill-s4">Method diagrams</span>
-                                <span class="tree-pill pill-s4">Result plots</span>
-                                <span class="tree-pill pill-s4">Table generation</span>
-                                <span class="tree-pill pill-s4">LaTeX / TikZ</span>
-                                <span class="tree-pill pill-s4">SVG generation</span>
-                                <span class="tree-pill pill-s4">Visual feedback</span>
-                              </div>
-                            </div>
+                        </article>
+                        <article class="stage-card">
+                          <div class="stage-image"><img src="assets/auto-research/figures/stages/s4.png" alt="S4: Tables & Figures"></div>
+                          <div class="stage-body">
+                            <div class="stage-tag">Stage 4</div>
+                            <h4 class="stage-name">Tables &amp; Figures</h4>
+                            <p class="stage-desc">Constructing diagrams, plots, and tables from raw outputs and designs.</p>
                           </div>
-                        </div>
+                        </article>
                       </div>
                     </div>
 
-                    <!-- ── Panel 1: Writing ── -->
-                    <div class="itree-panel" id="itreePanel1">
-                      <div class="itree-panel-inner">
-                        <div class="itree-panel-header">
-                          <span class="itree-panel-badge" style="background:#059669;">Phase II</span>
-                          <span class="itree-panel-title">Writing</span>
-                        </div>
-                        <div class="itree-stage-list">
-                          <div class="itree-stage-row">
-                            <span class="itree-stage-num" style="background:#059669;">S5</span>
-                            <div class="itree-stage-content">
-                              <h4>Paper Writing</h4>
-                              <p class="itree-stage-desc">Drafting, editing, and polishing manuscripts with AI assistance &mdash; from grammar correction and citation support to section-level drafting and full-paper generation.</p>
-                              <div class="itree-pills">
-                                <span class="tree-pill pill-s7">Semi-auto assist</span>
-                                <span class="tree-pill pill-s7">Full-auto gen.</span>
-                                <span class="tree-pill pill-s7">Citation insertion</span>
-                                <span class="tree-pill pill-s7">AI text detection</span>
-                                <span class="tree-pill pill-s7">LaTeX generation</span>
-                                <span class="tree-pill pill-s7">Style &amp; polishing</span>
-                              </div>
-                            </div>
+                    <!-- ====== Phase II: Writing ====== -->
+                    <div class="phase-block pc2">
+                      <div class="phase-header-card">
+                        <div class="phase-hero-image">
+                          <div class="phase-hero-placeholder">
+                            <div class="ph-icon"><i class="fas fa-image"></i></div>
+                            <div class="ph-text">Phase II figure (16:9) &mdash; coming soon</div>
+                          </div>
+                          <div class="phase-hero-overlay">
+                            <div class="phase-hero-roman">Phase II &middot; Stage 5</div>
+                            <h3 class="phase-hero-title">Writing</h3>
+                            <p class="phase-hero-subtitle">Organizing the outputs of Creation into a formal scholarly manuscript.</p>
                           </div>
                         </div>
+                        <div class="phase-motivation">
+                          <p>Writing is not a formatting step &mdash; it is a <b>rhetorical and evidential organization</b> process that requires distinct AI capabilities from those used to produce code, experiments, or figures.</p>
+                        </div>
+                      </div>
+
+                      <div class="stage-card-grid">
+                        <article class="stage-card">
+                          <div class="stage-image"><img src="assets/auto-research/figures/stages/s5.png" alt="S5: Paper Writing"></div>
+                          <div class="stage-body">
+                            <div class="stage-tag">Stage 5</div>
+                            <h4 class="stage-name">Paper Writing</h4>
+                            <p class="stage-desc">Drafting, editing, polishing, and structuring academic manuscripts &mdash; from grammar correction and citation support to section-level drafting and full-paper generation.</p>
+                          </div>
+                        </article>
                       </div>
                     </div>
 
-                    <!-- ── Panel 2: Validation ── -->
-                    <div class="itree-panel" id="itreePanel2">
-                      <div class="itree-panel-inner">
-                        <div class="itree-panel-header">
-                          <span class="itree-panel-badge" style="background:#9333ea;">Phase III</span>
-                          <span class="itree-panel-title">Validation</span>
-                        </div>
-                        <div class="itree-stage-list">
-                          <div class="itree-stage-row">
-                            <span class="itree-stage-num" style="background:#9333ea;">S6</span>
-                            <div class="itree-stage-content">
-                              <h4>Peer Review</h4>
-                              <p class="itree-stage-desc">Automated review generation, reviewer matching, and quality assessment.</p>
-                              <div class="itree-pills">
-                                <span class="tree-pill pill-s5">Review generation</span>
-                                <span class="tree-pill pill-s5">Meta-review</span>
-                                <span class="tree-pill pill-s5">Reviewer matching</span>
-                                <span class="tree-pill pill-s5">Quality assessment</span>
-                                <span class="tree-pill pill-s5">Bias detection</span>
-                                <span class="tree-pill pill-s5">Review feedback</span>
-                              </div>
-                            </div>
+                    <!-- ====== Phase III: Validation ====== -->
+                    <div class="phase-block pc3">
+                      <div class="phase-header-card">
+                        <div class="phase-hero-image">
+                          <div class="phase-hero-placeholder">
+                            <div class="ph-icon"><i class="fas fa-image"></i></div>
+                            <div class="ph-text">Phase III figure (16:9) &mdash; coming soon</div>
                           </div>
-                          <div class="itree-stage-row">
-                            <span class="itree-stage-num" style="background:#a855f7;">S7</span>
-                            <div class="itree-stage-content">
-                              <h4>Rebuttal &amp; Revision <span class="itree-new">&#9733; New</span></h4>
-                              <p class="itree-stage-desc">Analyzing reviewer comments and generating evidence-grounded responses.</p>
-                              <div class="itree-pills">
-                                <span class="tree-pill pill-s6">Comment analysis</span>
-                                <span class="tree-pill pill-s6">Response generation</span>
-                                <span class="tree-pill pill-s6">Evidence retrieval</span>
-                                <span class="tree-pill pill-s6">Strategy planning</span>
-                                <span class="tree-pill pill-s6">Effectiveness analysis</span>
-                              </div>
-                            </div>
+                          <div class="phase-hero-overlay">
+                            <div class="phase-hero-roman">Phase III &middot; Stages 6&ndash;7</div>
+                            <h3 class="phase-hero-title">Validation</h3>
+                            <p class="phase-hero-subtitle">External scrutiny &mdash; how the community challenges and refines a manuscript.</p>
                           </div>
                         </div>
+                        <div class="phase-motivation">
+                          <p>Together, peer review and rebuttal form the <b>community-facing mechanism</b> through which scientific claims are challenged, defended, and revised &mdash; not a bureaucratic afterthought, but the verification layer of research.</p>
+                        </div>
+                      </div>
+
+                      <div class="stage-card-grid">
+                        <article class="stage-card">
+                          <div class="stage-image"><img src="assets/auto-research/figures/stages/s6.png" alt="S6: Peer Review"></div>
+                          <div class="stage-body">
+                            <div class="stage-tag">Stage 6</div>
+                            <h4 class="stage-name">Peer Review</h4>
+                            <p class="stage-desc">Generating structured reviews, matching reviewers, and assessing review quality.</p>
+                          </div>
+                        </article>
+                        <article class="stage-card">
+                          <div class="stage-image"><img src="assets/auto-research/figures/stages/s7.png" alt="S7: Rebuttal & Revision"></div>
+                          <div class="stage-body">
+                            <div class="stage-tag">Stage 7</div>
+                            <h4 class="stage-name">Rebuttal &amp; Revision</h4>
+                            <p class="stage-desc">Analyzing reviewer comments, gathering evidence, and drafting revisions.</p>
+                          </div>
+                        </article>
                       </div>
                     </div>
 
-                    <!-- ── Panel 3: Dissemination ── -->
-                    <div class="itree-panel" id="itreePanel3">
-                      <div class="itree-panel-inner">
-                        <div class="itree-panel-header">
-                          <span class="itree-panel-badge" style="background:#ea580c;">Phase IV</span>
-                          <span class="itree-panel-title">Dissemination</span>
-                        </div>
-                        <div class="itree-stage-list">
-                          <div class="itree-stage-row">
-                            <span class="itree-stage-num" style="background:#ea580c;">S8</span>
-                            <div class="itree-stage-content">
-                              <h4>Dissemination / Paper2X <span class="itree-new">&#9733; New</span></h4>
-                              <p class="itree-stage-desc">Converting papers into posters, slides, videos, and social media content.</p>
-                              <div class="itree-pills">
-                                <span class="tree-pill pill-s8">Paper&rarr;Poster</span>
-                                <span class="tree-pill pill-s8">Paper&rarr;Slides</span>
-                                <span class="tree-pill pill-s8">Paper&rarr;Video</span>
-                                <span class="tree-pill pill-s8">Paper&rarr;Social</span>
-                                <span class="tree-pill pill-s8">Template learning</span>
-                                <span class="tree-pill pill-s8">NL editing</span>
-                              </div>
-                            </div>
+                    <!-- ====== Phase IV: Dissemination ====== -->
+                    <div class="phase-block pc4">
+                      <div class="phase-header-card">
+                        <div class="phase-hero-image">
+                          <div class="phase-hero-placeholder">
+                            <div class="ph-icon"><i class="fas fa-image"></i></div>
+                            <div class="ph-text">Phase IV figure (16:9) &mdash; coming soon</div>
+                          </div>
+                          <div class="phase-hero-overlay">
+                            <div class="phase-hero-roman">Phase IV &middot; Stage 8</div>
+                            <h3 class="phase-hero-title">Dissemination</h3>
+                            <p class="phase-hero-subtitle">Translating the manuscript into formats accessible to broader audiences.</p>
                           </div>
                         </div>
+                        <div class="phase-motivation">
+                          <p>Posters, slides, video, project pages, and social-media summaries are <b>independent knowledge artifacts</b> with their own fidelity and trust requirements &mdash; not appendages to the paper.</p>
+                        </div>
+                      </div>
+
+                      <div class="stage-card-grid">
+                        <article class="stage-card">
+                          <div class="stage-image"><img src="assets/auto-research/figures/stages/s8.png" alt="S8: Paper2X"></div>
+                          <div class="stage-body">
+                            <div class="stage-tag">Stage 8</div>
+                            <h4 class="stage-name">Paper2X</h4>
+                            <p class="stage-desc">Converting papers into posters, slides, videos, project pages, demos, and social media content &mdash; each format with its own audience and design constraints.</p>
+                          </div>
+                        </article>
                       </div>
                     </div>
 
                   </div>
-                  </div>
-
-                  <script>
-                    var activePhase = -1;
-                    function togglePhase(idx) {
-                      var nodes = document.querySelectorAll('.phase-card-img');
-                      var panels = document.querySelectorAll('.itree-panel');
-                      if (activePhase === idx) {
-                        panels[idx].classList.remove('is-open');
-                        nodes[idx].classList.remove('is-active');
-                        activePhase = -1;
-                        return;
-                      }
-                      panels.forEach(function(p, i) {
-                        p.classList.remove('is-open');
-                        nodes[i].classList.remove('is-active');
-                      });
-                      panels[idx].classList.add('is-open');
-                      nodes[idx].classList.add('is-active');
-                      activePhase = idx;
-                      setTimeout(function() {
-                        panels[idx].scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-                      }, 100);
-                    }
-                  </script>
 
                   <br><br>
                 </div>

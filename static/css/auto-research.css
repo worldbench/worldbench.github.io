@@ -195,7 +195,232 @@ body {
   50%      { opacity: 1; transform: scale(1.2); }
 }
 
-/* ===== Lifecycle Phase Cards (image-led) ===== */
+/* ===== Lifecycle: Phase blocks (each phase + its stages) ===== */
+
+.lifecycle-blocks {
+  max-width: 1100px;
+  margin: 2rem auto 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+/* Phase header card (16:9 image + text overlay/below) */
+.phase-block {
+  font-family: "General Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.phase-header-card {
+  position: relative;
+  border-radius: 22px;
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid #f3f4f6;
+  margin-bottom: 1.25rem;
+  transition: transform .25s ease, box-shadow .3s ease;
+  box-shadow: 0 1px 3px rgba(0,0,0,.04);
+}
+.phase-header-card:hover {
+  box-shadow: 0 16px 40px rgba(146, 64, 14, .08);
+}
+
+.phase-hero-image {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: linear-gradient(135deg, #fef3c7 0%, #fde68a 50%, #fbbf24 100%);
+}
+.phase-hero-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Placeholder when no image available */
+.phase-hero-placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.7rem;
+  color: rgba(146, 64, 14, .5);
+  background:
+    repeating-linear-gradient(135deg, transparent 0 12px, rgba(255,255,255,.18) 12px 13px),
+    linear-gradient(135deg, #fef3c7 0%, #fde68a 50%, #fbbf24 100%);
+}
+.phase-hero-placeholder .ph-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  background: rgba(255,255,255,.5);
+  border: 2px dashed rgba(146, 64, 14, .35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+}
+.phase-hero-placeholder .ph-text {
+  font-size: 0.84rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+/* Phase color stripe at top of hero */
+.phase-hero-image::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  z-index: 2;
+}
+.phase-block.pc1 .phase-hero-image::before { background: #2563eb; }
+.phase-block.pc2 .phase-hero-image::before { background: #059669; }
+.phase-block.pc3 .phase-hero-image::before { background: #9333ea; }
+.phase-block.pc4 .phase-hero-image::before { background: #ea580c; }
+
+/* Phase header overlays */
+.phase-hero-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 1.4rem 1.6rem;
+  background: linear-gradient(to top, rgba(0,0,0,.55) 0%, rgba(0,0,0,.15) 50%, transparent 70%);
+  color: #fff;
+  z-index: 3;
+  pointer-events: none;
+}
+.phase-hero-roman {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  opacity: 0.9;
+  margin-bottom: 0.3rem;
+}
+.phase-hero-title {
+  font-size: 2rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  margin: 0 0 0.3rem;
+  line-height: 1.1;
+}
+.phase-hero-subtitle {
+  font-size: 0.95rem;
+  font-weight: 400;
+  opacity: 0.92;
+  max-width: 640px;
+  line-height: 1.45;
+  margin: 0;
+}
+
+/* Phase motivation text below hero */
+.phase-motivation {
+  padding: 1.3rem 1.5rem 1.4rem;
+  border-top: 1px solid #f3f4f6;
+}
+.phase-motivation p {
+  margin: 0;
+  font-size: 0.94rem;
+  line-height: 1.65;
+  color: #4b5563;
+  max-width: 820px;
+}
+.phase-motivation p b {
+  color: #1f2937;
+}
+
+/* Stage cards under each phase */
+.stage-card-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.9rem;
+}
+@media (max-width: 1000px) {
+  .stage-card-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 540px) {
+  .stage-card-grid { grid-template-columns: 1fr; }
+}
+
+/* Single-stage phase (II, IV) gets full width */
+.stage-card-grid.cols-1 { grid-template-columns: 1fr; max-width: 560px; }
+.stage-card-grid.cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 720px; }
+
+.stage-card {
+  position: relative;
+  background: #fff;
+  border: 1px solid #f3f4f6;
+  border-radius: 18px;
+  overflow: hidden;
+  transition: transform .25s cubic-bezier(.22,.68,0,1.1), box-shadow .3s ease, border-color .25s ease;
+  display: flex;
+  flex-direction: column;
+}
+.stage-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 30px rgba(0,0,0,.06);
+  border-color: #e5e7eb;
+}
+
+.stage-image {
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  background: linear-gradient(135deg, #fffbeb, #fef3c7);
+}
+.stage-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform .4s ease;
+}
+.stage-card:hover .stage-image img {
+  transform: scale(1.05);
+}
+
+.stage-body {
+  padding: 0.9rem 1rem 1rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.stage-tag {
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #92400e;
+  margin-bottom: 0.35rem;
+}
+.stage-name {
+  font-size: 0.98rem;
+  font-weight: 600;
+  color: #111827;
+  margin: 0 0 0.35rem;
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+}
+.stage-desc {
+  font-size: 0.82rem;
+  color: #6b7280;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Phase color tints for stage tags */
+.phase-block.pc1 .stage-tag { color: #2563eb; }
+.phase-block.pc2 .stage-tag { color: #059669; }
+.phase-block.pc3 .stage-tag { color: #9333ea; }
+.phase-block.pc4 .stage-tag { color: #ea580c; }
+
+/* ===== Lifecycle Phase Cards (legacy, unused) ===== */
 
 .phase-card-grid {
   display: grid;
