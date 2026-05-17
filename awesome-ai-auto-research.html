@@ -209,39 +209,144 @@
                       </div>
 
                       <div class="stage-card-grid">
-                        <article class="stage-card">
+                        <article class="stage-card" data-stage="s1" onclick="toggleStage(this)">
                           <div class="stage-image"><img src="assets/auto-research/figures/stages/s1.png" alt="S1: Idea Generation"></div>
                           <div class="stage-body">
                             <div class="stage-tag">Stage 1</div>
                             <h4 class="stage-name">Idea Generation</h4>
-                            <p class="stage-desc">Generating, refining, and evaluating novel research hypotheses.</p>
+                            <span class="stage-more">Know more</span>
+                          </div>
+                          <div class="stage-detail-content">
+                            <p class="stage-detail-desc">Generating, refining, and evaluating <b>research hypotheses</b>. AI systems span direct LLM prompting, retrieval-augmented generation, knowledge-graph reasoning, and multi-agent collaboration for structured hypothesis formation. The <i>ideation-execution gap</i> looms large here: novel-sounding ideas often collapse to a quality score of 3.41 from 5.38 once humans actually implement them.</p>
+                            <div class="stage-detail-section">
+                              <div class="stage-detail-section-label">Sub-topics</div>
+                              <div class="stage-detail-pills">
+                                <span class="stage-detail-pill">LLM-based generation</span>
+                                <span class="stage-detail-pill">KG-driven</span>
+                                <span class="stage-detail-pill">Trend-driven</span>
+                                <span class="stage-detail-pill">Multi-agent ideation</span>
+                                <span class="stage-detail-pill">Novelty assessment</span>
+                                <span class="stage-detail-pill">Human-AI co-ideation</span>
+                              </div>
+                            </div>
+                            <div class="stage-detail-section">
+                              <div class="stage-detail-section-label">Representative methods</div>
+                              <div class="stage-detail-methods">
+                                <span class="stage-detail-method">AI Scientist</span>
+                                <span class="stage-detail-method">ResearchAgent</span>
+                                <span class="stage-detail-method">SciMON</span>
+                                <span class="stage-detail-method">VirSci</span>
+                                <span class="stage-detail-method">SciAgents</span>
+                                <span class="stage-detail-method">IdeaSynth</span>
+                                <span class="stage-detail-method">MOOSE-Chem</span>
+                              </div>
+                            </div>
                           </div>
                         </article>
-                        <article class="stage-card">
+
+                        <article class="stage-card" data-stage="s2" onclick="toggleStage(this)">
                           <div class="stage-image"><img src="assets/auto-research/figures/stages/s2.png" alt="S2: Literature Review"></div>
                           <div class="stage-body">
                             <div class="stage-tag">Stage 2</div>
                             <h4 class="stage-name">Literature Review</h4>
-                            <p class="stage-desc">Retrieving, synthesizing, and organizing prior work into coherent contexts.</p>
+                            <span class="stage-more">Know more</span>
+                          </div>
+                          <div class="stage-detail-content">
+                            <p class="stage-detail-desc">Retrieving, synthesizing, and organizing prior work into <b>coherent research contexts</b>. Modern systems span semantic retrieval, citation-graph traversal, survey generation, and deep research agents that iteratively explore the literature &mdash; arguably the stage where AI is most reliably useful today.</p>
+                            <div class="stage-detail-section">
+                              <div class="stage-detail-section-label">Sub-topics</div>
+                              <div class="stage-detail-pills">
+                                <span class="stage-detail-pill">Semantic retrieval</span>
+                                <span class="stage-detail-pill">Survey generation</span>
+                                <span class="stage-detail-pill">Deep Research</span>
+                                <span class="stage-detail-pill">Citation graph</span>
+                                <span class="stage-detail-pill">Hierarchical org.</span>
+                                <span class="stage-detail-pill">Related work gen.</span>
+                              </div>
+                            </div>
+                            <div class="stage-detail-section">
+                              <div class="stage-detail-section-label">Representative methods</div>
+                              <div class="stage-detail-methods">
+                                <span class="stage-detail-method">PaperQA2</span>
+                                <span class="stage-detail-method">AutoSurvey</span>
+                                <span class="stage-detail-method">STORM</span>
+                                <span class="stage-detail-method">SurveyX</span>
+                                <span class="stage-detail-method">SurveyForge</span>
+                                <span class="stage-detail-method">OpenScholar</span>
+                              </div>
+                            </div>
                           </div>
                         </article>
-                        <article class="stage-card">
+
+                        <article class="stage-card" data-stage="s3" onclick="toggleStage(this)">
                           <div class="stage-image"><img src="assets/auto-research/figures/stages/s3.png" alt="S3: Coding & Experiments"></div>
                           <div class="stage-body">
                             <div class="stage-tag">Stage 3</div>
                             <h4 class="stage-name">Coding &amp; Experiments</h4>
-                            <p class="stage-desc">Translating ideas into executable code and running empirical analyses.</p>
+                            <span class="stage-more">Know more</span>
+                          </div>
+                          <div class="stage-detail-content">
+                            <p class="stage-detail-desc">Translating ideas into executable code, running experiments, and analyzing results. AI systems include code generation, paper-to-code translation, autonomous experiment orchestration, and result interpretation &mdash; but research-level code <b>plateaus near 37%</b> success despite approaching 80% on pattern-matching benchmarks.</p>
+                            <div class="stage-detail-section">
+                              <div class="stage-detail-section-label">Sub-topics</div>
+                              <div class="stage-detail-pills">
+                                <span class="stage-detail-pill">Paper-to-Code</span>
+                                <span class="stage-detail-pill">Experiment design</span>
+                                <span class="stage-detail-pill">Auto execution</span>
+                                <span class="stage-detail-pill">Result analysis</span>
+                                <span class="stage-detail-pill">Lab automation</span>
+                                <span class="stage-detail-pill">Benchmarking</span>
+                              </div>
+                            </div>
+                            <div class="stage-detail-section">
+                              <div class="stage-detail-section-label">Representative methods</div>
+                              <div class="stage-detail-methods">
+                                <span class="stage-detail-method">PaperCoder</span>
+                                <span class="stage-detail-method">MLAgentBench</span>
+                                <span class="stage-detail-method">AIDE</span>
+                                <span class="stage-detail-method">R&amp;D-Agent</span>
+                                <span class="stage-detail-method">ChemCrow</span>
+                                <span class="stage-detail-method">Coscientist</span>
+                              </div>
+                            </div>
                           </div>
                         </article>
-                        <article class="stage-card">
+
+                        <article class="stage-card" data-stage="s4" onclick="toggleStage(this)">
                           <div class="stage-image"><img src="assets/auto-research/figures/stages/s4.png" alt="S4: Tables & Figures"></div>
                           <div class="stage-body">
                             <div class="stage-tag">Stage 4</div>
                             <h4 class="stage-name">Tables &amp; Figures</h4>
-                            <p class="stage-desc">Constructing diagrams, plots, and tables from raw outputs and designs.</p>
+                            <span class="stage-more">Know more</span>
+                          </div>
+                          <div class="stage-detail-content">
+                            <p class="stage-detail-desc">Constructing <b>method diagrams, result plots, comparison tables</b>, mathematical formulas, and algorithmic illustrations. These artifacts transform raw outputs and conceptual designs into structured scientific representations &mdash; a stage often overlooked in prior surveys.</p>
+                            <div class="stage-detail-section">
+                              <div class="stage-detail-section-label">Sub-topics</div>
+                              <div class="stage-detail-pills">
+                                <span class="stage-detail-pill">Method diagrams</span>
+                                <span class="stage-detail-pill">Result plots</span>
+                                <span class="stage-detail-pill">Table generation</span>
+                                <span class="stage-detail-pill">LaTeX / TikZ</span>
+                                <span class="stage-detail-pill">SVG generation</span>
+                                <span class="stage-detail-pill">Visual feedback</span>
+                              </div>
+                            </div>
+                            <div class="stage-detail-section">
+                              <div class="stage-detail-section-label">Representative methods</div>
+                              <div class="stage-detail-methods">
+                                <span class="stage-detail-method">AutoFigure</span>
+                                <span class="stage-detail-method">MatPlotAgent</span>
+                                <span class="stage-detail-method">PlotGen</span>
+                                <span class="stage-detail-method">ChartGPT</span>
+                                <span class="stage-detail-method">AutomaTikZ</span>
+                                <span class="stage-detail-method">DeTikZify</span>
+                              </div>
+                            </div>
                           </div>
                         </article>
                       </div>
+                      <div class="stage-detail-panel"><div class="stage-detail-inner"></div></div>
                     </div>
 
                     <!-- ====== Phase II: Writing ====== -->
@@ -264,15 +369,41 @@
                       </div>
 
                       <div class="stage-card-grid">
-                        <article class="stage-card">
+                        <article class="stage-card" data-stage="s5" onclick="toggleStage(this)">
                           <div class="stage-image"><img src="assets/auto-research/figures/stages/s5.png" alt="S5: Paper Writing"></div>
                           <div class="stage-body">
                             <div class="stage-tag">Stage 5</div>
                             <h4 class="stage-name">Paper Writing</h4>
-                            <p class="stage-desc">Drafting, editing, polishing, and structuring academic manuscripts &mdash; from grammar correction and citation support to section-level drafting and full-paper generation.</p>
+                            <span class="stage-more">Know more</span>
+                          </div>
+                          <div class="stage-detail-content">
+                            <p class="stage-detail-desc">Drafting, editing, polishing, and structuring academic manuscripts. AI assistance ranges from <b>grammar correction</b> and citation support to section-level drafting and full-paper generation. The best end-to-end systems (e.g., CycleResearcher) approach but have not yet crossed the acceptance threshold of major venues.</p>
+                            <div class="stage-detail-section">
+                              <div class="stage-detail-section-label">Sub-topics</div>
+                              <div class="stage-detail-pills">
+                                <span class="stage-detail-pill">Semi-auto assist</span>
+                                <span class="stage-detail-pill">Full-auto generation</span>
+                                <span class="stage-detail-pill">Citation insertion</span>
+                                <span class="stage-detail-pill">AI text detection</span>
+                                <span class="stage-detail-pill">LaTeX generation</span>
+                                <span class="stage-detail-pill">Style &amp; polishing</span>
+                              </div>
+                            </div>
+                            <div class="stage-detail-section">
+                              <div class="stage-detail-section-label">Representative methods</div>
+                              <div class="stage-detail-methods">
+                                <span class="stage-detail-method">CycleResearcher</span>
+                                <span class="stage-detail-method">ScholarCopilot</span>
+                                <span class="stage-detail-method">CoAuthor</span>
+                                <span class="stage-detail-method">TeXpert</span>
+                                <span class="stage-detail-method">FutureGen</span>
+                                <span class="stage-detail-method">FARS</span>
+                              </div>
+                            </div>
                           </div>
                         </article>
                       </div>
+                      <div class="stage-detail-panel"><div class="stage-detail-inner"></div></div>
                     </div>
 
                     <!-- ====== Phase III: Validation ====== -->
@@ -295,23 +426,73 @@
                       </div>
 
                       <div class="stage-card-grid">
-                        <article class="stage-card">
+                        <article class="stage-card" data-stage="s6" onclick="toggleStage(this)">
                           <div class="stage-image"><img src="assets/auto-research/figures/stages/s6.png" alt="S6: Peer Review"></div>
                           <div class="stage-body">
                             <div class="stage-tag">Stage 6</div>
                             <h4 class="stage-name">Peer Review</h4>
-                            <p class="stage-desc">Generating structured reviews, matching reviewers, and assessing review quality.</p>
+                            <span class="stage-more">Know more</span>
+                          </div>
+                          <div class="stage-detail-content">
+                            <p class="stage-detail-desc">Generating <b>structured reviews</b>, matching reviewers to manuscripts, assessing review quality, and supporting meta-review decisions. These systems aim to <i>assist</i>, not replace, the community's evaluative process &mdash; especially since LLM reviewers misclassify 95.8% of rejected papers as acceptable.</p>
+                            <div class="stage-detail-section">
+                              <div class="stage-detail-section-label">Sub-topics</div>
+                              <div class="stage-detail-pills">
+                                <span class="stage-detail-pill">Review generation</span>
+                                <span class="stage-detail-pill">Meta-review</span>
+                                <span class="stage-detail-pill">Reviewer matching</span>
+                                <span class="stage-detail-pill">Quality assessment</span>
+                                <span class="stage-detail-pill">Bias detection</span>
+                                <span class="stage-detail-pill">Review feedback</span>
+                              </div>
+                            </div>
+                            <div class="stage-detail-section">
+                              <div class="stage-detail-section-label">Representative methods</div>
+                              <div class="stage-detail-methods">
+                                <span class="stage-detail-method">DeepReviewer</span>
+                                <span class="stage-detail-method">MARG</span>
+                                <span class="stage-detail-method">REMOR</span>
+                                <span class="stage-detail-method">AgentReview</span>
+                                <span class="stage-detail-method">OpenReviewer</span>
+                              </div>
+                            </div>
                           </div>
                         </article>
-                        <article class="stage-card">
+
+                        <article class="stage-card" data-stage="s7" onclick="toggleStage(this)">
                           <div class="stage-image"><img src="assets/auto-research/figures/stages/s7.png" alt="S7: Rebuttal & Revision"></div>
                           <div class="stage-body">
                             <div class="stage-tag">Stage 7</div>
                             <h4 class="stage-name">Rebuttal &amp; Revision</h4>
-                            <p class="stage-desc">Analyzing reviewer comments, gathering evidence, and drafting revisions.</p>
+                            <span class="stage-more">Know more</span>
+                          </div>
+                          <div class="stage-detail-content">
+                            <p class="stage-detail-desc">Analyzing reviewer comments, identifying required evidence, drafting <b>evidence-grounded responses</b>, and supporting manuscript revision. This stage connects external critique with additional analysis, clarification, and follow-up experiments &mdash; a phase covered for the first time in this survey.</p>
+                            <div class="stage-detail-section">
+                              <div class="stage-detail-section-label">Sub-topics</div>
+                              <div class="stage-detail-pills">
+                                <span class="stage-detail-pill">Comment analysis</span>
+                                <span class="stage-detail-pill">Response generation</span>
+                                <span class="stage-detail-pill">Evidence retrieval</span>
+                                <span class="stage-detail-pill">Strategy planning</span>
+                                <span class="stage-detail-pill">Effectiveness analysis</span>
+                              </div>
+                            </div>
+                            <div class="stage-detail-section">
+                              <div class="stage-detail-section-label">Representative methods</div>
+                              <div class="stage-detail-methods">
+                                <span class="stage-detail-method">RebuttalAgent</span>
+                                <span class="stage-detail-method">Paper2Rebuttal</span>
+                                <span class="stage-detail-method">ReviewerToo</span>
+                                <span class="stage-detail-method">ReviewMT</span>
+                                <span class="stage-detail-method">Re²</span>
+                                <span class="stage-detail-method">Author-in-Loop</span>
+                              </div>
+                            </div>
                           </div>
                         </article>
                       </div>
+                      <div class="stage-detail-panel"><div class="stage-detail-inner"></div></div>
                     </div>
 
                     <!-- ====== Phase IV: Dissemination ====== -->
@@ -334,18 +515,97 @@
                       </div>
 
                       <div class="stage-card-grid">
-                        <article class="stage-card">
+                        <article class="stage-card" data-stage="s8" onclick="toggleStage(this)">
                           <div class="stage-image"><img src="assets/auto-research/figures/stages/s8.png" alt="S8: Paper2X"></div>
                           <div class="stage-body">
                             <div class="stage-tag">Stage 8</div>
                             <h4 class="stage-name">Paper2X</h4>
-                            <p class="stage-desc">Converting papers into posters, slides, videos, project pages, demos, and social media content &mdash; each format with its own audience and design constraints.</p>
+                            <span class="stage-more">Know more</span>
+                          </div>
+                          <div class="stage-detail-content">
+                            <p class="stage-detail-desc">Converting papers into <b>posters, slides, videos, project pages, demos</b>, and social-media content. Each output format targets a different audience and requires distinct design choices, fidelity constraints, and communication strategies. Often overlooked in prior surveys but increasingly important.</p>
+                            <div class="stage-detail-section">
+                              <div class="stage-detail-section-label">Sub-topics</div>
+                              <div class="stage-detail-pills">
+                                <span class="stage-detail-pill">Paper&rarr;Poster</span>
+                                <span class="stage-detail-pill">Paper&rarr;Slides</span>
+                                <span class="stage-detail-pill">Paper&rarr;Video</span>
+                                <span class="stage-detail-pill">Paper&rarr;Social</span>
+                                <span class="stage-detail-pill">Template learning</span>
+                                <span class="stage-detail-pill">NL editing</span>
+                              </div>
+                            </div>
+                            <div class="stage-detail-section">
+                              <div class="stage-detail-section-label">Representative methods</div>
+                              <div class="stage-detail-methods">
+                                <span class="stage-detail-method">Paper2Poster</span>
+                                <span class="stage-detail-method">PPTAgent</span>
+                                <span class="stage-detail-method">DeepPresenter</span>
+                                <span class="stage-detail-method">PASS</span>
+                                <span class="stage-detail-method">PosterGen</span>
+                                <span class="stage-detail-method">DOC2PPT</span>
+                              </div>
+                            </div>
                           </div>
                         </article>
                       </div>
+                      <div class="stage-detail-panel"><div class="stage-detail-inner"></div></div>
                     </div>
 
                   </div>
+
+                  <script>
+                    function toggleStage(card) {
+                      var phase = card.closest('.phase-block');
+                      var panel = phase.querySelector('.stage-detail-panel');
+                      var inner = panel.querySelector('.stage-detail-inner');
+
+                      // Click on already-active card -> close
+                      if (card.classList.contains('is-active')) {
+                        panel.classList.remove('is-open');
+                        card.classList.remove('is-active');
+                        return;
+                      }
+
+                      // Deactivate any active card in this phase
+                      phase.querySelectorAll('.stage-card.is-active').forEach(function(c) {
+                        c.classList.remove('is-active');
+                      });
+
+                      // Activate this card
+                      card.classList.add('is-active');
+
+                      // Render detail content from card's hidden block
+                      var content = card.querySelector('.stage-detail-content');
+                      var stageNum = card.querySelector('.stage-tag').textContent;
+                      var stageName = card.querySelector('.stage-name').innerHTML;
+                      inner.innerHTML =
+                        '<button class="stage-detail-close" onclick="closeStage(this)" aria-label="Close">&times;</button>' +
+                        '<div class="stage-detail-header">' +
+                          '<span class="stage-detail-num">' + stageNum + '</span>' +
+                          '<span class="stage-detail-title">' + stageName + '</span>' +
+                        '</div>' +
+                        content.innerHTML;
+
+                      panel.classList.add('is-open');
+
+                      // Smooth scroll to keep panel in view
+                      setTimeout(function() {
+                        var rect = panel.getBoundingClientRect();
+                        if (rect.bottom > window.innerHeight) {
+                          panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                        }
+                      }, 200);
+                    }
+
+                    function closeStage(btn) {
+                      var phase = btn.closest('.phase-block');
+                      phase.querySelectorAll('.stage-card.is-active').forEach(function(c) {
+                        c.classList.remove('is-active');
+                      });
+                      phase.querySelector('.stage-detail-panel').classList.remove('is-open');
+                    }
+                  </script>
 
                   <br><br>
                 </div>
