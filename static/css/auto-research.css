@@ -1,11 +1,33 @@
 /* ===== AI Auto-Research Project Page ===== */
 
-/* Apply General Sans (close to Söhne) as the default font for this page */
+/* Apply Satoshi (body) + Fraunces (display) typography */
 body {
-  font-family: "General Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
+  font-family: "Satoshi", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+/* Display font for headings, hero, titles, big metrics, Roman numerals */
+.ar-hero-quote,
+h1, h2,
+.phase-hero-title,
+.phase-hero-roman,
+.insight-card .insight-metric,
+.ar-stat .ar-stat-num,
+.gallery-section .gallery-title,
+.itree-svg .root-node,
+.itree-svg .node-text {
+  font-family: "Fraunces", Georgia, "Times New Roman", serif;
+  font-feature-settings: "ss01", "ss02";
+  letter-spacing: -0.015em;
+}
+
+/* Subtle weight tuning for serif headings */
+h1, h2 { font-weight: 500; }
+.phase-hero-title { font-weight: 500; }
+.ar-hero-quote { font-weight: 400; }
+.insight-card .insight-metric,
+.ar-stat .ar-stat-num { font-weight: 600; }
 
 /* Header gradient override: warm gold/amber tone */
 .ar-header .header-wrapper {
@@ -31,7 +53,7 @@ body {
   border: 1px solid #fde68a;
   border-radius: 18px;
   box-shadow: 0 6px 22px rgba(146, 64, 14, .07);
-  font-family: "General Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: "Satoshi", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 .ar-hero::before {
   content: "";
@@ -94,7 +116,7 @@ body {
   background: #fff;
   border: 1px solid #e5e7eb;
   transition: transform .15s ease, box-shadow .2s ease, border-color .2s ease;
-  font-family: "General Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: "Satoshi", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 .ar-phase-chip:hover {
   transform: translateY(-2px);
@@ -140,7 +162,7 @@ body {
   color: #374151;
   max-width: 920px;
   margin: 0 0 1rem;
-  font-family: "General Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: "Satoshi", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 .ar-lead b { color: #1f2937; }
 
@@ -177,7 +199,7 @@ body {
   color: #92400e;
   font-size: 0.82rem;
   font-weight: 600;
-  font-family: "General Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: "Satoshi", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   margin-bottom: 0.5rem;
 }
 .itree-hint::before {
@@ -195,7 +217,236 @@ body {
   50%      { opacity: 1; transform: scale(1.2); }
 }
 
-/* ===== Lifecycle: Phase blocks (each phase + its stages) ===== */
+/* ===== Practitioner Playbook ===== */
+
+.playbook-intro {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  align-items: center;
+  justify-content: flex-start;
+  margin-bottom: 2rem;
+  padding: 1.2rem 1.4rem;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #fffbeb, #fef9e7);
+  border: 1px solid #fde68a;
+}
+.playbook-principle {
+  font-size: 1rem;
+  color: #1f2937;
+  line-height: 1.55;
+  margin: 0;
+  flex: 1;
+  min-width: 280px;
+}
+.playbook-principle b {
+  color: #92400e;
+}
+
+.playbook-legend {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: #6b7280;
+  font-family: "Satoshi", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+.playbook-legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.playbook-legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  flex-shrink: 0;
+}
+.playbook-legend-dot.delegate { background: #10b981; }
+.playbook-legend-dot.retain   { background: #f59e0b; }
+.playbook-legend-dot.risk     { background: #ef4444; }
+
+/* Playbook table-card hybrid */
+.playbook-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.playbook-row {
+  display: grid;
+  grid-template-columns: 200px 1fr 1fr 240px;
+  gap: 1rem;
+  padding: 1.2rem 1.3rem;
+  border-radius: 16px;
+  background: #fff;
+  border: 1px solid #f3f4f6;
+  transition: border-color .2s ease, box-shadow .25s ease;
+  font-family: "Satoshi", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+.playbook-row:hover {
+  border-color: #e5e7eb;
+  box-shadow: 0 6px 22px rgba(0,0,0,.04);
+}
+
+@media (max-width: 980px) {
+  .playbook-row {
+    grid-template-columns: 1fr;
+    gap: 0.7rem;
+  }
+}
+
+/* Stage label column */
+.pb-stage {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding-right: 1rem;
+  border-right: 1px solid #f3f4f6;
+}
+@media (max-width: 980px) {
+  .pb-stage {
+    flex-direction: row;
+    align-items: center;
+    gap: 0.6rem;
+    padding-right: 0;
+    border-right: 0;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #f3f4f6;
+  }
+}
+.pb-phase-tag {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  display: inline-flex;
+  width: fit-content;
+  padding: 0.18rem 0.5rem;
+  border-radius: 5px;
+  color: #fff;
+}
+.pb-phase-tag.pc1 { background: #2563eb; }
+.pb-phase-tag.pc2 { background: #059669; }
+.pb-phase-tag.pc3 { background: #9333ea; }
+.pb-phase-tag.pc4 { background: #ea580c; }
+.pb-stage-name {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #111827;
+  letter-spacing: -0.01em;
+}
+.pb-stage-num {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #9ca3af;
+  letter-spacing: 0.04em;
+}
+
+/* Delegate / Retain columns */
+.pb-col {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+.pb-col-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #6b7280;
+}
+.pb-col-label::before {
+  content: "";
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+}
+.pb-col.delegate .pb-col-label { color: #047857; }
+.pb-col.delegate .pb-col-label::before { background: #10b981; }
+.pb-col.retain .pb-col-label { color: #b45309; }
+.pb-col.retain .pb-col-label::before { background: #f59e0b; }
+
+.pb-col p {
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: #374151;
+  margin: 0;
+}
+
+/* Risk column */
+.pb-risk {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding-left: 1rem;
+  border-left: 1px solid #f3f4f6;
+}
+@media (max-width: 980px) {
+  .pb-risk {
+    padding-left: 0;
+    border-left: 0;
+    padding-top: 0.5rem;
+    border-top: 1px solid #f3f4f6;
+  }
+}
+.pb-risk-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #b91c1c;
+}
+.pb-risk-label::before {
+  content: "";
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: #ef4444;
+}
+.pb-risk-text {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #1f2937;
+  font-style: italic;
+  margin: 0;
+}
+
+/* Phase divider rows */
+.playbook-phase-divider {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-top: 0.5rem;
+  padding: 0 0.3rem;
+  font-family: "Satoshi", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+.playbook-phase-divider:first-child { margin-top: 0; }
+.playbook-phase-divider .pd-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.playbook-phase-divider .pd-line {
+  flex: 1;
+  height: 1px;
+  background: #e5e7eb;
+}
+.playbook-phase-divider.pc1 .pd-label { color: #2563eb; }
+.playbook-phase-divider.pc2 .pd-label { color: #059669; }
+.playbook-phase-divider.pc3 .pd-label { color: #9333ea; }
+.playbook-phase-divider.pc4 .pd-label { color: #ea580c; }
 
 .lifecycle-blocks {
   max-width: 1100px;
@@ -207,7 +458,7 @@ body {
 
 /* Phase header card (16:9 image + text overlay/below) */
 .phase-block {
-  font-family: "General Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: "Satoshi", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
 .phase-header-card {
@@ -470,7 +721,7 @@ body {
   border-radius: 20px;
   padding: 1.7rem 1.9rem 1.6rem;
   box-shadow: 0 8px 28px rgba(146, 64, 14, .07);
-  font-family: "General Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: "Satoshi", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
 /* Close button (top-right of panel) */
@@ -628,7 +879,7 @@ body {
   overflow: hidden;
   cursor: pointer;
   transition: transform .35s cubic-bezier(.22,.68,0,1.1), box-shadow .35s ease, border-color .25s ease;
-  font-family: "General Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: "Satoshi", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   display: flex;
   flex-direction: column;
   -webkit-tap-highlight-color: transparent;
@@ -737,7 +988,7 @@ body {
   margin-top: 1.5rem;
   font-size: 0.82rem;
   color: #9ca3af;
-  font-family: "General Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: "Satoshi", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
 /* ===== Lifecycle Phase Flow (legacy) ===== */
@@ -774,7 +1025,7 @@ body {
   text-align: center;
   padding: 0.5rem 0.75rem 1rem;
   cursor: pointer;
-  font-family: "General Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: "Satoshi", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   transition: transform .25s cubic-bezier(.22,.68,0,1.1);
   -webkit-tap-highlight-color: transparent;
 }
@@ -868,7 +1119,7 @@ body {
   position: relative;
   max-width: 960px;
   margin: 2rem auto 0;
-  font-family: "General Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: "Satoshi", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
 /* ── SVG canvas ── */
@@ -940,20 +1191,20 @@ body {
   r: 46;
 }
 .itree-svg .node-text {
-  font-family: "General Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: "Satoshi", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   font-weight: 700;
   fill: #fff;
   text-anchor: middle;
   pointer-events: none;
 }
 .itree-svg .node-label {
-  font-family: "General Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: "Satoshi", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   font-weight: 700;
   text-anchor: middle;
   pointer-events: none;
 }
 .itree-svg .node-sublabel {
-  font-family: "General Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: "Satoshi", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   font-weight: 400;
   fill: #9ca3af;
   text-anchor: middle;
@@ -962,7 +1213,7 @@ body {
 
 /* Root label */
 .itree-svg .root-node {
-  font-family: "General Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: "Satoshi", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   font-weight: 700;
   fill: #fff;
   text-anchor: middle;
@@ -1123,7 +1374,7 @@ body {
   gap: 0.9rem;
   max-width: 920px;
   margin: 2.5rem 0 1.4rem;
-  font-family: "General Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: "Satoshi", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 .insight-divider .divider-label {
   font-size: 0.72rem;
@@ -1146,7 +1397,7 @@ body {
   border-radius: 18px;
   padding: 2rem 1.6rem 1.6rem;
   transition: transform .25s cubic-bezier(.22,.68,0,1.1), box-shadow .3s ease, border-color .25s ease;
-  font-family: "General Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: "Satoshi", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   display: flex;
   flex-direction: column;
   gap: 0.65rem;
@@ -1216,7 +1467,7 @@ body {
   border-radius: 12px;
   background: #f9fafb;
   border: 1px solid #e5e7eb;
-  font-family: "General Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: "Satoshi", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   transition: transform .15s ease, box-shadow .15s ease;
 }
 .cat-pill:hover {
@@ -1246,7 +1497,7 @@ body {
   flex-wrap: wrap;
   gap: 0.35rem 0.6rem;
   margin-top: 0.5rem;
-  font-family: "General Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: "Satoshi", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 .ar-authors-list span {
   font-size: 0.92rem;
@@ -1356,7 +1607,7 @@ body {
   font-weight: 800;
   color: #fff;
   margin: 0.2rem 0 0.5rem;
-  font-family: "General Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: "Satoshi", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   line-height: 1.2;
 }
 
@@ -1366,7 +1617,7 @@ body {
   max-width: 700px;
   line-height: 1.6;
   margin-bottom: 2rem;
-  font-family: "General Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: "Satoshi", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
 .gallery-hr {
@@ -1456,7 +1707,7 @@ body {
 .poster-placeholder .placeholder-text {
   font-size: 0.78rem;
   color: rgba(255,255,255,.2);
-  font-family: "General Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: "Satoshi", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
 /* Poster info bar */
@@ -1471,7 +1722,7 @@ body {
   font-size: 0.85rem;
   font-weight: 600;
   color: rgba(255,255,255,.85);
-  font-family: "General Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: "Satoshi", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   line-height: 1.35;
   flex: 1;
 }
@@ -1573,7 +1824,7 @@ body {
   font-size: 0.72rem;
   font-weight: 700;
   color: rgba(255,255,255,.7);
-  font-family: "General Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: "Satoshi", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   z-index: 2;
 }
 
@@ -1607,7 +1858,7 @@ body {
   align-items: center;
   gap: 1rem;
   margin: 2.2rem 0 0.6rem;
-  font-family: "General Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: "Satoshi", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 .gallery-divider .divider-line {
   flex: 1;
@@ -1641,7 +1892,7 @@ body {
   font-size: 0.72rem;
   font-weight: 700;
   color: rgba(255,255,255,.7);
-  font-family: "General Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: "Satoshi", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   z-index: 2;
 }
 
@@ -1696,7 +1947,7 @@ body {
   flex-wrap: wrap;
   gap: 0.3rem 0.5rem;
   margin-top: 0.5rem;
-  font-family: "General Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: "Satoshi", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 .contributors-name-list span {
   font-size: 0.92rem;

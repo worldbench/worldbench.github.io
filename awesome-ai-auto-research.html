@@ -7,7 +7,10 @@
 
         <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
         <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
-        <link href="https://api.fontshare.com/v2/css?f[]=general-sans@200,300,400,500,600,700&display=swap" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,600,700,800&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700&display=swap" rel="stylesheet">
 
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -81,6 +84,7 @@
                     <div><a href="#abstract">Abstract</a></div>
                     <div><a href="#lifecycle">Research Lifecycle</a></div>
                     <div><a href="#insights">Key Insights</a></div>
+                    <div><a href="#playbook">Practitioner Playbook</a></div>
                     <div><a href="#exhibition">Poster Exhibition</a></div>
                     <div><a href="#collection">Paper Collection</a></div>
                     <div><a href="#authors">Authors</a></div>
@@ -686,6 +690,234 @@
 
 
 
+              <!-- ==================== Practitioner Playbook ==================== -->
+              <section id="playbook">
+                <div class="wb-section">
+
+                  <h2>Practitioner's Playbook</h2>
+
+                  <div class="wb-kicker">
+                    What to Delegate, What to Keep
+                  </div>
+                  <div class="ar-hr"></div>
+
+                  <p class="ar-lead">
+                    Stage-by-stage guidance for AI-augmented research workflows. The guiding principle: <b>concentrate human effort on sub-tasks where AI confidence is lowest</b>.
+                  </p>
+
+                  <div class="playbook-intro">
+                    <p class="playbook-principle">
+                      Each row maps a research stage to (i) what current AI can <b>reliably</b> do for you, (ii) what should remain under <b>human ownership</b>, and (iii) the <b>key risk</b> if you over-delegate.
+                    </p>
+                    <div class="playbook-legend">
+                      <span class="playbook-legend-item"><span class="playbook-legend-dot delegate"></span>Delegate to AI</span>
+                      <span class="playbook-legend-item"><span class="playbook-legend-dot retain"></span>Retain human</span>
+                      <span class="playbook-legend-item"><span class="playbook-legend-dot risk"></span>Key risk</span>
+                    </div>
+                  </div>
+
+                  <div class="playbook-grid">
+
+                    <!-- Phase I divider -->
+                    <div class="playbook-phase-divider pc1">
+                      <span class="pd-label">Phase I &middot; Creation</span>
+                      <span class="pd-line"></span>
+                    </div>
+
+                    <!-- S1 -->
+                    <div class="playbook-row">
+                      <div class="pb-stage">
+                        <span class="pb-phase-tag pc1">Phase I</span>
+                        <span class="pb-stage-name">Idea Generation</span>
+                        <span class="pb-stage-num">Stage 1</span>
+                      </div>
+                      <div class="pb-col delegate">
+                        <span class="pb-col-label">Delegate to AI</span>
+                        <p>Brainstorming, novelty search, literature-grounded idea variants.</p>
+                      </div>
+                      <div class="pb-col retain">
+                        <span class="pb-col-label">Retain human</span>
+                        <p>Feasibility judgment, execution planning, idea selection.</p>
+                      </div>
+                      <div class="pb-risk">
+                        <span class="pb-risk-label">Key risk</span>
+                        <p class="pb-risk-text">Ideation&ndash;execution gap</p>
+                      </div>
+                    </div>
+
+                    <!-- S2 -->
+                    <div class="playbook-row">
+                      <div class="pb-stage">
+                        <span class="pb-phase-tag pc1">Phase I</span>
+                        <span class="pb-stage-name">Literature Review</span>
+                        <span class="pb-stage-num">Stage 2</span>
+                      </div>
+                      <div class="pb-col delegate">
+                        <span class="pb-col-label">Delegate to AI</span>
+                        <p>Paper retrieval, summarization, citation verification.</p>
+                      </div>
+                      <div class="pb-col retain">
+                        <span class="pb-col-label">Retain human</span>
+                        <p>Synthesis narrative, gap identification, cross-disciplinary insight.</p>
+                      </div>
+                      <div class="pb-risk">
+                        <span class="pb-risk-label">Key risk</span>
+                        <p class="pb-risk-text">Relational reasoning gap</p>
+                      </div>
+                    </div>
+
+                    <!-- S3 -->
+                    <div class="playbook-row">
+                      <div class="pb-stage">
+                        <span class="pb-phase-tag pc1">Phase I</span>
+                        <span class="pb-stage-name">Coding &amp; Experiments</span>
+                        <span class="pb-stage-num">Stage 3</span>
+                      </div>
+                      <div class="pb-col delegate">
+                        <span class="pb-col-label">Delegate to AI</span>
+                        <p>Code scaffolding, standard benchmarks, debugging, boilerplate.</p>
+                      </div>
+                      <div class="pb-col retain">
+                        <span class="pb-col-label">Retain human</span>
+                        <p>Novel algorithms, experiment design, result interpretation.</p>
+                      </div>
+                      <div class="pb-risk">
+                        <span class="pb-risk-label">Key risk</span>
+                        <p class="pb-risk-text">37% research-code ceiling</p>
+                      </div>
+                    </div>
+
+                    <!-- S4 -->
+                    <div class="playbook-row">
+                      <div class="pb-stage">
+                        <span class="pb-phase-tag pc1">Phase I</span>
+                        <span class="pb-stage-name">Tables &amp; Figures</span>
+                        <span class="pb-stage-num">Stage 4</span>
+                      </div>
+                      <div class="pb-col delegate">
+                        <span class="pb-col-label">Delegate to AI</span>
+                        <p>Standard chart types, LaTeX formatting, initial layout.</p>
+                      </div>
+                      <div class="pb-col retain">
+                        <span class="pb-col-label">Retain human</span>
+                        <p>Domain-specific diagrams, data accuracy, visual narrative.</p>
+                      </div>
+                      <div class="pb-risk">
+                        <span class="pb-risk-label">Key risk</span>
+                        <p class="pb-risk-text">Plausibility &ne; correctness</p>
+                      </div>
+                    </div>
+
+                    <!-- Phase II divider -->
+                    <div class="playbook-phase-divider pc2">
+                      <span class="pd-label">Phase II &middot; Writing</span>
+                      <span class="pd-line"></span>
+                    </div>
+
+                    <!-- S5 -->
+                    <div class="playbook-row">
+                      <div class="pb-stage">
+                        <span class="pb-phase-tag pc2">Phase II</span>
+                        <span class="pb-stage-name">Paper Writing</span>
+                        <span class="pb-stage-num">Stage 5</span>
+                      </div>
+                      <div class="pb-col delegate">
+                        <span class="pb-col-label">Delegate to AI</span>
+                        <p>Grammar, citation formatting, section drafting, LaTeX rendering.</p>
+                      </div>
+                      <div class="pb-col retain">
+                        <span class="pb-col-label">Retain human</span>
+                        <p>Argumentation, novelty claims, positioning, rhetorical structure.</p>
+                      </div>
+                      <div class="pb-risk">
+                        <span class="pb-risk-label">Key risk</span>
+                        <p class="pb-risk-text">Deskilling risk</p>
+                      </div>
+                    </div>
+
+                    <!-- Phase III divider -->
+                    <div class="playbook-phase-divider pc3">
+                      <span class="pd-label">Phase III &middot; Validation</span>
+                      <span class="pd-line"></span>
+                    </div>
+
+                    <!-- S6 -->
+                    <div class="playbook-row">
+                      <div class="pb-stage">
+                        <span class="pb-phase-tag pc3">Phase III</span>
+                        <span class="pb-stage-name">Peer Review</span>
+                        <span class="pb-stage-num">Stage 6</span>
+                      </div>
+                      <div class="pb-col delegate">
+                        <span class="pb-col-label">Delegate to AI</span>
+                        <p>Draft review summaries, cross-reference checks.</p>
+                      </div>
+                      <div class="pb-col retain">
+                        <span class="pb-col-label">Retain human</span>
+                        <p>Accept/reject judgment, methodological assessment.</p>
+                      </div>
+                      <div class="pb-risk">
+                        <span class="pb-risk-label">Key risk</span>
+                        <p class="pb-risk-text">Leniency bias</p>
+                      </div>
+                    </div>
+
+                    <!-- S7 -->
+                    <div class="playbook-row">
+                      <div class="pb-stage">
+                        <span class="pb-phase-tag pc3">Phase III</span>
+                        <span class="pb-stage-name">Rebuttal &amp; Revision</span>
+                        <span class="pb-stage-num">Stage 7</span>
+                      </div>
+                      <div class="pb-col delegate">
+                        <span class="pb-col-label">Delegate to AI</span>
+                        <p>Evidence retrieval, point-by-point response drafting.</p>
+                      </div>
+                      <div class="pb-col retain">
+                        <span class="pb-col-label">Retain human</span>
+                        <p>Strategic prioritization, decisions on new experiments.</p>
+                      </div>
+                      <div class="pb-risk">
+                        <span class="pb-risk-label">Key risk</span>
+                        <p class="pb-risk-text">Newest frontier</p>
+                      </div>
+                    </div>
+
+                    <!-- Phase IV divider -->
+                    <div class="playbook-phase-divider pc4">
+                      <span class="pd-label">Phase IV &middot; Dissemination</span>
+                      <span class="pd-line"></span>
+                    </div>
+
+                    <!-- S8 -->
+                    <div class="playbook-row">
+                      <div class="pb-stage">
+                        <span class="pb-phase-tag pc4">Phase IV</span>
+                        <span class="pb-stage-name">Paper2X</span>
+                        <span class="pb-stage-num">Stage 8</span>
+                      </div>
+                      <div class="pb-col delegate">
+                        <span class="pb-col-label">Delegate to AI</span>
+                        <p>Poster/slide layout, format conversion, template generation.</p>
+                      </div>
+                      <div class="pb-col retain">
+                        <span class="pb-col-label">Retain human</span>
+                        <p>Accuracy verification, audience adaptation, emphasis selection.</p>
+                      </div>
+                      <div class="pb-risk">
+                        <span class="pb-risk-label">Key risk</span>
+                        <p class="pb-risk-text">Trust bottleneck</p>
+                      </div>
+                    </div>
+
+                  </div>
+
+                  <br><br><br>
+                </div>
+              </section>
+
+
+
               <!-- ==================== Poster Exhibition ==================== -->
               <section id="exhibition">
                 <div class="gallery-section">
@@ -954,7 +1186,7 @@
 
                   <div style="text-align:center; margin-top:1rem;">
                     <a href="https://github.com/worldbench/awesome-auto-research" target="_blank"
-                       style="display:inline-block; padding:0.7rem 1.8rem; background:#92400e; color:#fff; border-radius:12px; font-weight:600; font-size:0.95rem; text-decoration:none; font-family:'General Sans',sans-serif; transition: background .2s ease;">
+                       style="display:inline-block; padding:0.7rem 1.8rem; background:#92400e; color:#fff; border-radius:12px; font-weight:600; font-size:0.95rem; text-decoration:none; font-family:'Satoshi',sans-serif; transition: background .2s ease;">
                       <i class="fab fa-github" style="margin-right:0.4rem;"></i> Browse Full Collection on GitHub
                     </a>
                   </div>
@@ -973,7 +1205,7 @@
 
                   <div class="wb-kicker" style="font-size:1.1rem;">Author List</div>
                   <div class="ar-hr"></div>
-                  <p style="font-size:0.95rem; color:#9ca3af; font-style:italic; font-family:'General Sans',sans-serif;">
+                  <p style="font-size:0.95rem; color:#9ca3af; font-style:italic; font-family:'Satoshi',sans-serif;">
                     Author list to be announced.
                   </p>
 
@@ -981,7 +1213,7 @@
 
                   <div class="wb-kicker" style="font-size:1.1rem;">Affiliations</div>
                   <div class="ar-hr"></div>
-                  <p style="font-size:0.95rem; color:#9ca3af; font-style:italic; font-family:'General Sans',sans-serif;">
+                  <p style="font-size:0.95rem; color:#9ca3af; font-style:italic; font-family:'Satoshi',sans-serif;">
                     Affiliations to be announced.
                   </p>
 
