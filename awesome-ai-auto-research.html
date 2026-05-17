@@ -5,9 +5,9 @@
 
         <link rel="icon" href="assets/auto-research/figures/teaser.png" type="image/png">
 
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet">
+        <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
+        <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
+        <link href="https://api.fontshare.com/v2/css?f[]=general-sans@200,300,400,500,600,700&display=swap" rel="stylesheet">
 
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -38,10 +38,11 @@
                   AI for Auto-Research: Roadmap &amp; User Guide
                 </h1>
 
-                <h2 style="margin:1.2rem 0 1.6rem; font-size:1.15rem; line-height:1.5; color:#FFF7D4; font-weight:400; max-width:520px;">
-                  <span style="display:flex; align-items:center; gap:0.4rem; margin-bottom:0.6rem; font-weight:600; font-size:1.05rem; color:#fff;">
+                <h2 style="margin:1.2rem 0 1.6rem; font-size:1.05rem; line-height:1.55; color:#FFF7D4; font-weight:400; max-width:540px;">
+                  <span style="display:flex; align-items:center; gap:0.4rem; margin-bottom:0.7rem; font-weight:600; font-size:1.05rem; color:#fff;">
                     <img src="assets_common/icons/worldbench.png" style="height:1.6em; vertical-align:text-bottom;" onerror="this.style.display='none'">&nbsp;Awesome AI Auto-Research Team
                   </span>
+                  <span style="opacity:0.92;">A practitioner's guide to AI across the <b style="color:#ffe8b8;">complete academic research lifecycle</b> &mdash; from idea generation to dissemination.</span>
                 </h2>
 
                 <div class="button-container">
@@ -97,18 +98,52 @@
                   </div>
                   <div class="ar-hr"></div>
 
-                  <p class="wb-lead">
-                    A fully automated AI system today can generate a research paper every <b>2.3 hours</b> at <b>$15</b>, yet every leading LLM will fabricate academic results under pressure. This <i>capability-vs-integrity</i> tension defines the current moment in AI-assisted research.
+                  <!-- Hero pull-quote: capability vs integrity tension -->
+                  <div class="ar-hero">
+                    <div class="ar-hero-tag">The defining tension</div>
+                    <p class="ar-hero-quote">
+                      A fully automated AI system as of today can generate a research paper for as little as <b>$15</b> &mdash; yet, under scientific pressure, even frontier LLMs still <b>fabricate results</b>, miss hidden errors, and fail to judge novelty reliably. This <i>capability-vs-integrity</i> tension defines the current moment in AI-assisted research.
+                    </p>
+                  </div>
+
+                  <p class="ar-lead">
+                    Surveying developments through <b>April 2026</b>, we present an end-to-end analysis of AI across the <b>complete</b> research lifecycle, organizing eight stages into four epistemological phases:
                   </p>
-                  <p class="wb-lead">
-                    We present the <b>first end-to-end analysis</b> of AI across the <b>complete</b> research lifecycle, organizing eight stages into four epistemological phases:
-                    <b>Creation</b> (idea generation, literature review, coding &amp; experiments, figures &amp; tables),
-                    <b>Validation</b> (peer review, rebuttal &amp; revision),
-                    <b>Communication</b> (paper writing), and
-                    <b>Dissemination</b> (posters, slides, video, social media) &mdash; three stages of which are entirely absent from all prior work.
-                  </p>
-                  <p class="wb-lead">
-                    Drawing on over <b>200 papers</b> published since 2023, we surface <b>six cross-cutting insights</b> from current AI auto-research systems and identify a shared <b>three-layer architecture</b> that the most successful systems converge on.
+
+                  <!-- Phase chip row: visual breakdown of the 4 phases -->
+                  <div class="ar-phase-row">
+                    <div class="ar-phase-chip ar-phase-c1">
+                      <div class="ar-phase-chip-head">
+                        <span class="ar-phase-roman">I</span>
+                        <span class="ar-phase-name">Creation</span>
+                      </div>
+                      <p class="ar-phase-stages">Ideation, literature, code &amp; experiments, figures &amp; tables</p>
+                    </div>
+                    <div class="ar-phase-chip ar-phase-c2">
+                      <div class="ar-phase-chip-head">
+                        <span class="ar-phase-roman">II</span>
+                        <span class="ar-phase-name">Writing</span>
+                      </div>
+                      <p class="ar-phase-stages">Manuscript drafting, editing, and polishing</p>
+                    </div>
+                    <div class="ar-phase-chip ar-phase-c3">
+                      <div class="ar-phase-chip-head">
+                        <span class="ar-phase-roman">III</span>
+                        <span class="ar-phase-name">Validation</span>
+                      </div>
+                      <p class="ar-phase-stages">Peer review, rebuttal &amp; revision</p>
+                    </div>
+                    <div class="ar-phase-chip ar-phase-c4">
+                      <div class="ar-phase-chip-head">
+                        <span class="ar-phase-roman">IV</span>
+                        <span class="ar-phase-name">Dissemination</span>
+                      </div>
+                      <p class="ar-phase-stages">Posters, slides, video, social media</p>
+                    </div>
+                  </div>
+
+                  <p class="ar-lead">
+                    Across this lifecycle we identify a <b>sharp but stage-dependent boundary</b> between reliable assistance and unreliable autonomy. AI is increasingly effective for structured, retrieval-grounded, and tool-mediated tasks, but remains fragile when asked to produce genuinely novel ideas, execute research-level experiments, or replace scientific judgment &mdash; making <b>human-governed collaboration</b> the most credible deployment paradigm today. Effective auto-research pipelines converge toward layered designs that combine <b>exploration, execution, and verification</b>.
                   </p>
 
                   <div class="ar-stats">
@@ -125,7 +160,7 @@
                       <div class="ar-stat-label">Lifecycle Phases</div>
                     </div>
                     <div class="ar-stat">
-                      <div class="ar-stat-num">6</div>
+                      <div class="ar-stat-num">3</div>
                       <div class="ar-stat-label">Cross-Cutting Insights</div>
                     </div>
                   </div>
@@ -147,120 +182,70 @@
                   </div>
                   <div class="ar-hr"></div>
 
-                  <p class="wb-lead">
-                    We define the academic research lifecycle as eight interconnected stages organized into four epistemological phases. Click the glowing nodes on the tree to explore each phase.
+                  <p class="ar-lead">
+                    We organize the academic research lifecycle as <b>eight interconnected stages</b> grouped into <b>four epistemological phases</b>. Each phase serves a distinct function in producing, scrutinizing, and communicating scientific knowledge.
                   </p>
 
-                  <div class="itree">
+                  <div class="phase-flow-wrap">
 
-                    <!-- ── Illustrated SVG Tree ── -->
-                    <svg class="itree-svg" viewBox="0 0 900 520" xmlns="http://www.w3.org/2000/svg">
-                      <defs>
-                        <filter id="glow1" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="6" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-                        <filter id="glow2" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="6" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-                        <filter id="glow3" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="6" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-                        <filter id="glow4" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="6" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-                        <radialGradient id="trunkGrad" cx="50%" cy="0%" r="80%"><stop offset="0%" stop-color="#a0785c"/><stop offset="100%" stop-color="#5c3d2e"/></radialGradient>
-                        <linearGradient id="groundGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#4a7c59" stop-opacity="0.12"/><stop offset="100%" stop-color="#4a7c59" stop-opacity="0"/></linearGradient>
-                      </defs>
+                    <!-- Phase cards row -->
+                    <div class="phase-card-grid">
 
-                      <!-- Ground -->
-                      <ellipse cx="450" cy="498" rx="320" ry="22" fill="url(#groundGrad)"/>
+                      <div class="phase-card-img pc1" onclick="togglePhase(0)">
+                        <div class="pc-image">
+                          <span class="pc-roman">I</span>
+                          <span class="pc-badge">S1 &mdash; S4</span>
+                          <img src="assets/auto-research/figures/phases/phase1_creation.png" alt="Phase I: Creation">
+                        </div>
+                        <div class="pc-body">
+                          <h3 class="pc-name">Creation</h3>
+                          <p class="pc-motivation">Spark research ideas, ground them in prior work, run experiments, and turn results into figures &amp; tables.</p>
+                        </div>
+                      </div>
 
-                      <!-- Trunk -->
-                      <path class="trunk" d="M450,495 C448,440 445,380 448,310 C450,280 450,260 450,240" stroke="url(#trunkGrad)"/>
-                      <path class="trunk-inner" d="M450,490 C449,435 447,375 449,308 C450,278 450,258 450,240"/>
+                      <div class="phase-card-img pc2" onclick="togglePhase(1)">
+                        <div class="pc-image">
+                          <span class="pc-roman">II</span>
+                          <span class="pc-badge">S5</span>
+                          <img src="assets/auto-research/figures/phases/phase2_writing.png" alt="Phase II: Writing">
+                        </div>
+                        <div class="pc-body">
+                          <h3 class="pc-name">Writing</h3>
+                          <p class="pc-motivation">Compose a coherent manuscript &mdash; drafting, structuring, and polishing &mdash; that frames evidence into a publishable argument.</p>
+                        </div>
+                      </div>
 
-                      <!-- Main left branch -->
-                      <path class="branch" d="M450,280 C420,250 360,220 280,200" stroke="#6b4c38"/>
-                      <!-- Main right branch -->
-                      <path class="branch" d="M450,280 C480,250 540,220 620,200" stroke="#6b4c38"/>
+                      <div class="phase-card-img pc3" onclick="togglePhase(2)">
+                        <div class="pc-image">
+                          <span class="pc-roman">III</span>
+                          <span class="pc-badge">S6 &mdash; S7</span>
+                          <img src="assets/auto-research/figures/phases/phase3_validation.png" alt="Phase III: Validation">
+                        </div>
+                        <div class="pc-body">
+                          <h3 class="pc-name">Validation</h3>
+                          <p class="pc-motivation">Subject claims to peer scrutiny: structured review, evidence-grounded rebuttal, and revision in light of community feedback.</p>
+                        </div>
+                      </div>
 
-                      <!-- Sub-branches (twigs to nodes) -->
-                      <!-- Phase I: far left -->
-                      <path class="twig twig-c1" d="M280,200 C240,170 190,130 130,95"/>
-                      <!-- Phase II: center-left -->
-                      <path class="twig twig-c2" d="M280,200 C300,160 330,120 350,75"/>
-                      <!-- Phase III: center-right -->
-                      <path class="twig twig-c3" d="M620,200 C600,160 570,120 550,75"/>
-                      <!-- Phase IV: far right -->
-                      <path class="twig twig-c4" d="M620,200 C660,170 710,130 770,95"/>
+                      <div class="phase-card-img pc4" onclick="togglePhase(3)">
+                        <div class="pc-image">
+                          <span class="pc-roman">IV</span>
+                          <span class="pc-badge">S8</span>
+                          <img src="assets/auto-research/figures/phases/phase4_dissemination.png" alt="Phase IV: Dissemination">
+                        </div>
+                        <div class="pc-body">
+                          <h3 class="pc-name">Dissemination</h3>
+                          <p class="pc-motivation">Translate the paper into posters, slides, video, and social formats that reach researchers and the public.</p>
+                        </div>
+                      </div>
 
-                      <!-- Leaf clusters (decorative ellipses) -->
-                      <g class="leaves">
-                        <!-- Around Phase I -->
-                        <ellipse class="leaf-c1" cx="100" cy="70" rx="40" ry="22" opacity="0.12"/>
-                        <ellipse class="leaf-c1" cx="155" cy="55" rx="30" ry="18" opacity="0.10"/>
-                        <ellipse class="leaf-c1" cx="115" cy="110" rx="28" ry="16" opacity="0.08"/>
-                        <!-- Around Phase II -->
-                        <ellipse class="leaf-c2" cx="330" cy="48" rx="38" ry="20" opacity="0.12"/>
-                        <ellipse class="leaf-c2" cx="375" cy="65" rx="25" ry="15" opacity="0.09"/>
-                        <ellipse class="leaf-c2" cx="320" cy="90" rx="22" ry="14" opacity="0.08"/>
-                        <!-- Around Phase III -->
-                        <ellipse class="leaf-c3" cx="570" cy="48" rx="38" ry="20" opacity="0.12"/>
-                        <ellipse class="leaf-c3" cx="525" cy="65" rx="25" ry="15" opacity="0.09"/>
-                        <ellipse class="leaf-c3" cx="580" cy="90" rx="22" ry="14" opacity="0.08"/>
-                        <!-- Around Phase IV -->
-                        <ellipse class="leaf-c4" cx="800" cy="70" rx="40" ry="22" opacity="0.12"/>
-                        <ellipse class="leaf-c4" cx="745" cy="55" rx="30" ry="18" opacity="0.10"/>
-                        <ellipse class="leaf-c4" cx="785" cy="110" rx="28" ry="16" opacity="0.08"/>
-                        <!-- Canopy fill -->
-                        <ellipse cx="450" cy="45" rx="120" ry="35" fill="#4a7c59" opacity="0.05"/>
-                        <ellipse cx="300" cy="60" rx="80" ry="25" fill="#4a7c59" opacity="0.04"/>
-                        <ellipse cx="600" cy="60" rx="80" ry="25" fill="#4a7c59" opacity="0.04"/>
-                      </g>
+                    </div>
 
-                      <!-- Root node -->
-                      <rect x="355" y="468" width="190" height="36" rx="10" fill="#374151"/>
-                      <text class="root-node" x="450" y="491" font-size="13">AI-Assisted Research</text>
+                    <p class="phase-flow-hint">
+                      Click any card to explore its stages
+                    </p>
 
-                      <!-- ── Node: Phase I (Creation) ── -->
-                      <g class="node-group" data-phase="0" onclick="togglePhase(0)">
-                        <circle class="node-glow" cx="130" cy="95" r="38" fill="#3b82f6" filter="url(#glow1)"/>
-                        <circle class="node-core" cx="130" cy="95" r="28" fill="url(#nodeGrad1)"/>
-                        <defs><radialGradient id="nodeGrad1"><stop offset="0%" stop-color="#60a5fa"/><stop offset="100%" stop-color="#2563eb"/></radialGradient></defs>
-                        <text class="node-text" x="130" y="91" font-size="18">I</text>
-                        <text class="node-text" x="130" y="105" font-size="8" opacity="0.8">4 stages</text>
-                        <text class="node-label" x="130" y="140" font-size="13" fill="#1d4ed8">Creation</text>
-                        <text class="node-sublabel" x="130" y="155" font-size="10">S1 &ndash; S4</text>
-                      </g>
-
-                      <!-- ── Node: Phase II (Validation) ── -->
-                      <g class="node-group" data-phase="1" onclick="togglePhase(1)">
-                        <circle class="node-glow" cx="350" cy="75" r="38" fill="#a855f7" filter="url(#glow2)"/>
-                        <circle class="node-core" cx="350" cy="75" r="28" fill="url(#nodeGrad2)"/>
-                        <defs><radialGradient id="nodeGrad2"><stop offset="0%" stop-color="#c084fc"/><stop offset="100%" stop-color="#7c3aed"/></radialGradient></defs>
-                        <text class="node-text" x="350" y="71" font-size="18">II</text>
-                        <text class="node-text" x="350" y="85" font-size="8" opacity="0.8">2 stages</text>
-                        <text class="node-label" x="350" y="120" font-size="13" fill="#7c3aed">Validation</text>
-                        <text class="node-sublabel" x="350" y="135" font-size="10">S5 &ndash; S6</text>
-                      </g>
-
-                      <!-- ── Node: Phase III (Communication) ── -->
-                      <g class="node-group" data-phase="2" onclick="togglePhase(2)">
-                        <circle class="node-glow" cx="550" cy="75" r="38" fill="#10b981" filter="url(#glow3)"/>
-                        <circle class="node-core" cx="550" cy="75" r="28" fill="url(#nodeGrad3)"/>
-                        <defs><radialGradient id="nodeGrad3"><stop offset="0%" stop-color="#34d399"/><stop offset="100%" stop-color="#047857"/></radialGradient></defs>
-                        <text class="node-text" x="550" y="71" font-size="18">III</text>
-                        <text class="node-text" x="550" y="85" font-size="8" opacity="0.8">1 stage</text>
-                        <text class="node-label" x="550" y="120" font-size="13" fill="#047857">Communication</text>
-                        <text class="node-sublabel" x="550" y="135" font-size="10">S7</text>
-                      </g>
-
-                      <!-- ── Node: Phase IV (Dissemination) ── -->
-                      <g class="node-group" data-phase="3" onclick="togglePhase(3)">
-                        <circle class="node-glow" cx="770" cy="95" r="38" fill="#f97316" filter="url(#glow4)"/>
-                        <circle class="node-core" cx="770" cy="95" r="28" fill="url(#nodeGrad4)"/>
-                        <defs><radialGradient id="nodeGrad4"><stop offset="0%" stop-color="#fb923c"/><stop offset="100%" stop-color="#c2410c"/></radialGradient></defs>
-                        <text class="node-text" x="770" y="91" font-size="18">IV</text>
-                        <text class="node-text" x="770" y="105" font-size="8" opacity="0.8">1 stage</text>
-                        <text class="node-label" x="770" y="140" font-size="13" fill="#c2410c">Dissemination</text>
-                        <text class="node-sublabel" x="770" y="155" font-size="10">S8</text>
-                      </g>
-
-                    </svg>
-
-                    <!-- Detail panels (same content as before) -->
+                    <!-- Detail panels -->
                     <div class="itree-panel" id="itreePanel0">
                       <div class="itree-panel-inner">
                         <div class="itree-panel-header">
@@ -332,16 +317,43 @@
                       </div>
                     </div>
 
-                    <!-- ── Panel 1: Validation ── -->
+                    <!-- ── Panel 1: Writing ── -->
                     <div class="itree-panel" id="itreePanel1">
                       <div class="itree-panel-inner">
                         <div class="itree-panel-header">
-                          <span class="itree-panel-badge" style="background:#9333ea;">Phase II</span>
+                          <span class="itree-panel-badge" style="background:#059669;">Phase II</span>
+                          <span class="itree-panel-title">Writing</span>
+                        </div>
+                        <div class="itree-stage-list">
+                          <div class="itree-stage-row">
+                            <span class="itree-stage-num" style="background:#059669;">S5</span>
+                            <div class="itree-stage-content">
+                              <h4>Paper Writing</h4>
+                              <p class="itree-stage-desc">Drafting, editing, and polishing manuscripts with AI assistance &mdash; from grammar correction and citation support to section-level drafting and full-paper generation.</p>
+                              <div class="itree-pills">
+                                <span class="tree-pill pill-s7">Semi-auto assist</span>
+                                <span class="tree-pill pill-s7">Full-auto gen.</span>
+                                <span class="tree-pill pill-s7">Citation insertion</span>
+                                <span class="tree-pill pill-s7">AI text detection</span>
+                                <span class="tree-pill pill-s7">LaTeX generation</span>
+                                <span class="tree-pill pill-s7">Style &amp; polishing</span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- ── Panel 2: Validation ── -->
+                    <div class="itree-panel" id="itreePanel2">
+                      <div class="itree-panel-inner">
+                        <div class="itree-panel-header">
+                          <span class="itree-panel-badge" style="background:#9333ea;">Phase III</span>
                           <span class="itree-panel-title">Validation</span>
                         </div>
                         <div class="itree-stage-list">
                           <div class="itree-stage-row">
-                            <span class="itree-stage-num" style="background:#9333ea;">S5</span>
+                            <span class="itree-stage-num" style="background:#9333ea;">S6</span>
                             <div class="itree-stage-content">
                               <h4>Peer Review</h4>
                               <p class="itree-stage-desc">Automated review generation, reviewer matching, and quality assessment.</p>
@@ -356,7 +368,7 @@
                             </div>
                           </div>
                           <div class="itree-stage-row">
-                            <span class="itree-stage-num" style="background:#a855f7;">S6</span>
+                            <span class="itree-stage-num" style="background:#a855f7;">S7</span>
                             <div class="itree-stage-content">
                               <h4>Rebuttal &amp; Revision <span class="itree-new">&#9733; New</span></h4>
                               <p class="itree-stage-desc">Analyzing reviewer comments and generating evidence-grounded responses.</p>
@@ -366,33 +378,6 @@
                                 <span class="tree-pill pill-s6">Evidence retrieval</span>
                                 <span class="tree-pill pill-s6">Strategy planning</span>
                                 <span class="tree-pill pill-s6">Effectiveness analysis</span>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <!-- ── Panel 2: Communication ── -->
-                    <div class="itree-panel" id="itreePanel2">
-                      <div class="itree-panel-inner">
-                        <div class="itree-panel-header">
-                          <span class="itree-panel-badge" style="background:#059669;">Phase III</span>
-                          <span class="itree-panel-title">Communication</span>
-                        </div>
-                        <div class="itree-stage-list">
-                          <div class="itree-stage-row">
-                            <span class="itree-stage-num" style="background:#059669;">S7</span>
-                            <div class="itree-stage-content">
-                              <h4>Paper Writing</h4>
-                              <p class="itree-stage-desc">Drafting, editing, and polishing manuscripts with AI assistance.</p>
-                              <div class="itree-pills">
-                                <span class="tree-pill pill-s7">Semi-auto assist</span>
-                                <span class="tree-pill pill-s7">Full-auto gen.</span>
-                                <span class="tree-pill pill-s7">Citation insertion</span>
-                                <span class="tree-pill pill-s7">AI text detection</span>
-                                <span class="tree-pill pill-s7">LaTeX generation</span>
-                                <span class="tree-pill pill-s7">Style &amp; polishing</span>
                               </div>
                             </div>
                           </div>
@@ -428,11 +413,12 @@
                     </div>
 
                   </div>
+                  </div>
 
                   <script>
                     var activePhase = -1;
                     function togglePhase(idx) {
-                      var nodes = document.querySelectorAll('.node-group');
+                      var nodes = document.querySelectorAll('.phase-card-img');
                       var panels = document.querySelectorAll('.itree-panel');
                       if (activePhase === idx) {
                         panels[idx].classList.remove('is-open');
@@ -466,62 +452,62 @@
                   <h2>Key Insights</h2>
 
                   <div class="wb-kicker">
-                    Six Cross-Cutting Findings
+                    Three Cross-Cutting Findings
                   </div>
                   <div class="ar-hr"></div>
 
-                  <p class="wb-lead">
-                    Drawing on over 200 papers, we surface six meta-level insights that emerge across all stages of the AI auto-research pipeline, supported by quantitative evidence from controlled experiments involving hundreds of researchers.
+                  <p class="ar-lead">
+                    Three meta-level findings emerge across all stages of the AI auto-research pipeline.
                   </p>
+
+                  <!-- ── Featured: Three main insights ── -->
+                  <div class="insight-grid">
+
+                    <article class="insight-card is-featured">
+                      <div class="insight-metric">37%</div>
+                      <p class="insight-headline">The capability boundary is sharp.</p>
+                      <p class="insight-tag">Research-level code success ceiling, vs. <b>80%</b> on pattern-matching benchmarks.</p>
+                    </article>
+
+                    <article class="insight-card is-featured">
+                      <div class="insight-metric">95.8%</div>
+                      <p class="insight-headline">More automation hides more failure.</p>
+                      <p class="insight-tag">LLM reviewers misclassify rejected papers as acceptable. Human-governed collaboration wins.</p>
+                    </article>
+
+                    <article class="insight-card is-featured">
+                      <div class="insight-metric">3</div>
+                      <p class="insight-headline">Architecture beats scale.</p>
+                      <p class="insight-tag">Layered designs &mdash; <b>exploration, execution, verification</b> &mdash; with 3-4 agent teams.</p>
+                    </article>
+
+                  </div>
+
+                  <!-- ── Supporting evidence row ── -->
+                  <div class="insight-divider">
+                    <span class="divider-line"></span>
+                    <span class="divider-label">Supporting Evidence</span>
+                    <span class="divider-line"></span>
+                  </div>
 
                   <div class="insight-grid">
 
                     <article class="insight-card">
                       <div class="insight-metric">5.38 &rarr; 3.41</div>
-                      <div class="insight-label">The Ideation-Execution Gap</div>
-                      <p class="insight-desc">
-                        LLM-generated ideas appear novel but collapse upon execution. Quality scores drop from 5.38 to 3.41 after implementation by human researchers.
-                      </p>
+                      <p class="insight-headline">Ideas collapse on execution.</p>
+                      <p class="insight-tag">Quality scores drop after human implementation.</p>
                     </article>
 
                     <article class="insight-card">
-                      <div class="insight-metric">37.3%</div>
-                      <div class="insight-label">The Code Translation Ceiling</div>
-                      <p class="insight-desc">
-                        AI struggles to translate research papers into working code, plateauing near 37% on novel algorithmic tasks despite exceeding 80% on standard benchmarks.
-                      </p>
+                      <div class="insight-metric">40&times;</div>
+                      <p class="insight-headline">Cost decouples from quality.</p>
+                      <p class="insight-tag">Higher compute budget no longer guarantees better papers.</p>
                     </article>
 
                     <article class="insight-card">
-                      <div class="insight-metric">5.36 / 5.39</div>
-                      <div class="insight-label">The Quality Ceiling</div>
-                      <p class="insight-desc">
-                        The best end-to-end systems (CycleResearcher: 5.36) generate papers that fall just below the acceptance threshold (5.39) of major venues.
-                      </p>
-                    </article>
-
-                    <article class="insight-card">
-                      <div class="insight-metric">$15 &ndash; $1K</div>
-                      <div class="insight-label">Cost-Quality Decoupling</div>
-                      <p class="insight-desc">
-                        Cost and quality decouple exponentially beyond a certain compute budget, from $15/paper (AI Scientist) to $1,000/paper (FARS).
-                      </p>
-                    </article>
-
-                    <article class="insight-card">
-                      <div class="insight-metric">&gt;1/5</div>
-                      <div class="insight-label">AI Contamination Rate</div>
-                      <p class="insight-desc">
-                        Over a fifth of CS abstracts already carry detectable AI-modified content, raising integrity concerns across the field.
-                      </p>
-                    </article>
-
-                    <article class="insight-card">
-                      <div class="insight-metric">3-Layer</div>
-                      <div class="insight-label">Convergent Architecture</div>
-                      <p class="insight-desc">
-                        The most successful systems converge on a shared three-layer architecture: planning, execution, and verification.
-                      </p>
+                      <div class="insight-metric">17.5%</div>
+                      <p class="insight-headline">AI contamination is pervasive.</p>
+                      <p class="insight-tag">CS papers with detectable AI modification &mdash; time to declare, not just detect.</p>
                     </article>
 
                   </div>
@@ -800,7 +786,7 @@
 
                   <div style="text-align:center; margin-top:1rem;">
                     <a href="https://github.com/worldbench/awesome-auto-research" target="_blank"
-                       style="display:inline-block; padding:0.7rem 1.8rem; background:#92400e; color:#fff; border-radius:12px; font-weight:600; font-size:0.95rem; text-decoration:none; font-family:'Rubik',sans-serif; transition: background .2s ease;">
+                       style="display:inline-block; padding:0.7rem 1.8rem; background:#92400e; color:#fff; border-radius:12px; font-weight:600; font-size:0.95rem; text-decoration:none; font-family:'General Sans',sans-serif; transition: background .2s ease;">
                       <i class="fab fa-github" style="margin-right:0.4rem;"></i> Browse Full Collection on GitHub
                     </a>
                   </div>
@@ -819,23 +805,17 @@
 
                   <div class="wb-kicker" style="font-size:1.1rem;">Author List</div>
                   <div class="ar-hr"></div>
-                  <!-- <div class="contributors-name-list">
-                    <span>Lingdong Kong<sup>*</sup></span>
-                    <span>Wei Chow<sup>*</sup></span>
-                    <span>Linfeng Li</span>
-                    <span>Song Wang</span>
-                    <span>Xian Sun</span>
-                    <span>Amber Liu</span>
-                    <span>Rong Li</span>
-                    <span>Leigang Qu</span>
-                    <span>Lai Xing Ng</span>
-                    <span>Beno&icirc;t R. Cottereau</span>
-                    <span>Jianke Zhu</span>
-                    <span>Steven C. H. Hoi</span>
-                    <span>Ziwei Liu</span>
-                    <span>Tat-Seng Chua</span>
-                    <span>Wei Tsang Ooi</span>
-                  </div> -->
+                  <p style="font-size:0.95rem; color:#9ca3af; font-style:italic; font-family:'General Sans',sans-serif;">
+                    Author list to be announced.
+                  </p>
+
+                  <br>
+
+                  <div class="wb-kicker" style="font-size:1.1rem;">Affiliations</div>
+                  <div class="ar-hr"></div>
+                  <p style="font-size:0.95rem; color:#9ca3af; font-style:italic; font-family:'General Sans',sans-serif;">
+                    Affiliations to be announced.
+                  </p>
 
                   <br>
                 </div>

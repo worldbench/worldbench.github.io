@@ -1,5 +1,12 @@
 /* ===== AI Auto-Research Project Page ===== */
 
+/* Apply General Sans (close to Söhne) as the default font for this page */
+body {
+  font-family: "General Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 /* Header gradient override: warm gold/amber tone */
 .ar-header .header-wrapper {
   background: linear-gradient(220deg, #fde68a 0%, #92400ec0 40%, #1c1917 100%);
@@ -14,7 +21,130 @@
   margin: .75rem 0 1.25rem;
 }
 
-/* Phase badge colors */
+/* ===== Hero / Pull-quote callout (Abstract) ===== */
+.ar-hero {
+  position: relative;
+  max-width: 920px;
+  margin: 1rem 0 2rem;
+  padding: 2rem 2.2rem 1.8rem;
+  background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 50%, #fef9e7 100%);
+  border: 1px solid #fde68a;
+  border-radius: 18px;
+  box-shadow: 0 6px 22px rgba(146, 64, 14, .07);
+  font-family: "General Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+.ar-hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 5px;
+  height: 100%;
+  background: linear-gradient(180deg, #92400e, #d97706, #f59e0b, #fbbf24);
+  border-radius: 18px 0 0 18px;
+}
+.ar-hero-quote {
+  font-size: 1.18rem;
+  font-weight: 500;
+  line-height: 1.55;
+  color: #1f2937;
+  margin: 0 0 0.7rem;
+  font-style: normal;
+}
+.ar-hero-quote b {
+  color: #92400e;
+}
+.ar-hero-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #b45309;
+  margin-top: 0.4rem;
+}
+.ar-hero-tag::before {
+  content: "";
+  display: inline-block;
+  width: 18px;
+  height: 2px;
+  background: #b45309;
+  border-radius: 999px;
+}
+
+/* ===== Phase chip row (Abstract) ===== */
+.ar-phase-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.75rem;
+  margin: 1.5rem 0 1.8rem;
+  max-width: 920px;
+}
+@media (max-width: 720px) {
+  .ar-phase-row { grid-template-columns: repeat(2, 1fr); }
+}
+.ar-phase-chip {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  padding: 0.85rem 1rem;
+  border-radius: 14px;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  transition: transform .15s ease, box-shadow .2s ease, border-color .2s ease;
+  font-family: "General Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+.ar-phase-chip:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0,0,0,.06);
+}
+.ar-phase-chip-head {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.ar-phase-roman {
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #fff;
+  padding: 0.18rem 0.5rem;
+  border-radius: 6px;
+}
+.ar-phase-name {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #111827;
+}
+.ar-phase-stages {
+  font-size: 0.78rem;
+  color: #6b7280;
+  margin: 0;
+}
+.ar-phase-c1 { border-top: 3px solid #2563eb; }
+.ar-phase-c1 .ar-phase-roman { background: #2563eb; }
+.ar-phase-c2 { border-top: 3px solid #059669; }
+.ar-phase-c2 .ar-phase-roman { background: #059669; }
+.ar-phase-c3 { border-top: 3px solid #9333ea; }
+.ar-phase-c3 .ar-phase-roman { background: #9333ea; }
+.ar-phase-c4 { border-top: 3px solid #ea580c; }
+.ar-phase-c4 .ar-phase-roman { background: #ea580c; }
+
+/* ===== Section intro lead text (replaces wb-lead default) ===== */
+.ar-lead {
+  font-size: 1.05rem;
+  line-height: 1.65;
+  color: #374151;
+  max-width: 920px;
+  margin: 0 0 1rem;
+  font-family: "General Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+.ar-lead b { color: #1f2937; }
+
+/* ===== Phase badge colors ===== */
 .phase-badge {
   display: inline-block;
   font-size: 0.72rem;
@@ -31,13 +161,305 @@
 .phase-communication { background: #059669; }
 .phase-dissemination { background: #ea580c; }
 
-/* ===== Interactive Illustrated Tree ===== */
+/* ===== Lifecycle tree backdrop (legacy) ===== */
+.itree-stage-wrap {
+  position: relative;
+  padding: 0.5rem 0;
+  margin-top: 0.5rem;
+}
+.itree-hint {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.9rem;
+  border-radius: 999px;
+  background: rgba(251, 191, 36, 0.15);
+  color: #92400e;
+  font-size: 0.82rem;
+  font-weight: 600;
+  font-family: "General Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  margin-bottom: 0.5rem;
+}
+.itree-hint::before {
+  content: "";
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: #f59e0b;
+  box-shadow: 0 0 10px #fbbf24;
+  animation: hintPulse 2s ease-in-out infinite;
+}
+@keyframes hintPulse {
+  0%, 100% { opacity: 0.7; transform: scale(1); }
+  50%      { opacity: 1; transform: scale(1.2); }
+}
+
+/* ===== Lifecycle Phase Cards (image-led) ===== */
+
+.phase-card-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1.1rem;
+  max-width: 1100px;
+  margin: 2rem auto 0.5rem;
+}
+@media (max-width: 1000px) {
+  .phase-card-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 540px) {
+  .phase-card-grid { grid-template-columns: 1fr; }
+}
+
+.phase-card-img {
+  position: relative;
+  background: #fff;
+  border: 1px solid #f3f4f6;
+  border-radius: 22px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform .35s cubic-bezier(.22,.68,0,1.1), box-shadow .35s ease, border-color .25s ease;
+  font-family: "General Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  display: flex;
+  flex-direction: column;
+  -webkit-tap-highlight-color: transparent;
+}
+.phase-card-img:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 22px 44px rgba(146, 64, 14, .10);
+  border-color: #fde68a;
+}
+.phase-card-img.is-active {
+  border-color: #fbbf24;
+  box-shadow: 0 22px 44px rgba(146, 64, 14, .12);
+}
+
+/* Image area */
+.phase-card-img .pc-image {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  background: linear-gradient(135deg, #fffbeb, #fef3c7);
+}
+.phase-card-img .pc-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform .5s cubic-bezier(.22,.68,0,1.1);
+}
+.phase-card-img:hover .pc-image img {
+  transform: scale(1.04);
+}
+
+/* Roman numeral overlay (top-left of image) */
+.phase-card-img .pc-roman {
+  position: absolute;
+  top: 0.9rem;
+  left: 1rem;
+  font-size: 1.4rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: #fff;
+  text-shadow: 0 2px 8px rgba(0,0,0,.25);
+  z-index: 2;
+  font-feature-settings: 'lnum';
+}
+
+/* Stage badge (bottom-right of image) */
+.phase-card-img .pc-badge {
+  position: absolute;
+  bottom: 0.8rem;
+  right: 0.9rem;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.28rem 0.6rem;
+  border-radius: 999px;
+  background: rgba(255,255,255,.92);
+  color: #6b7280;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  z-index: 2;
+}
+
+/* Body / motivation text */
+.phase-card-img .pc-body {
+  padding: 1.1rem 1.1rem 1.2rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.phase-card-img .pc-name {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #111827;
+  margin: 0 0 0.4rem;
+  letter-spacing: -0.01em;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+.phase-card-img .pc-name::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  flex-shrink: 0;
+}
+.phase-card-img .pc-motivation {
+  font-size: 0.86rem;
+  color: #6b7280;
+  line-height: 1.55;
+  margin: 0;
+  flex: 1;
+}
+
+/* Phase color accents */
+.phase-card-img.pc1 .pc-name::before { background: #2563eb; }
+.phase-card-img.pc2 .pc-name::before { background: #059669; }
+.phase-card-img.pc3 .pc-name::before { background: #9333ea; }
+.phase-card-img.pc4 .pc-name::before { background: #ea580c; }
+
+/* Lifecycle hint */
+.phase-flow-hint {
+  text-align: center;
+  margin-top: 1.5rem;
+  font-size: 0.82rem;
+  color: #9ca3af;
+  font-family: "General Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+/* ===== Lifecycle Phase Flow (legacy) ===== */
+
+.phase-flow-wrap {
+  margin: 2.5rem 0 0.5rem;
+}
+
+.phase-flow {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 1rem 0 0;
+}
+
+/* Connecting hairline through dots */
+.phase-flow::before {
+  content: "";
+  position: absolute;
+  top: 92px;
+  left: 12.5%;
+  right: 12.5%;
+  height: 1px;
+  background: linear-gradient(90deg, #2563eb 0%, #059669 33%, #9333ea 66%, #ea580c 100%);
+  opacity: 0.35;
+  z-index: 0;
+}
+
+.phase-card {
+  position: relative;
+  text-align: center;
+  padding: 0.5rem 0.75rem 1rem;
+  cursor: pointer;
+  font-family: "General Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  transition: transform .25s cubic-bezier(.22,.68,0,1.1);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.phase-card:hover {
+  transform: translateY(-3px);
+}
+
+.phase-card .phase-roman-big {
+  font-size: 4.5rem;
+  font-weight: 200;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  margin-bottom: 1rem;
+  color: #111827;
+  transition: color .3s ease;
+  font-feature-settings: 'lnum';
+}
+
+.phase-card .phase-dot {
+  position: relative;
+  z-index: 2;
+  width: 14px;
+  height: 14px;
+  border-radius: 999px;
+  margin: 0 auto 1.1rem;
+  background: #fff;
+  border: 2px solid #d1d5db;
+  box-shadow: 0 0 0 5px #fff;
+  transition: border-color .3s ease, transform .3s ease;
+}
+
+.phase-card .phase-name-big {
+  font-size: 1.18rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: #111827;
+  margin-bottom: 0.3rem;
+  line-height: 1.25;
+}
+
+.phase-card .phase-meta-small {
+  font-size: 0.72rem;
+  color: #9ca3af;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* Hover & active color states */
+.phase-card.pc1:hover .phase-roman-big,
+.phase-card.pc1.is-active .phase-roman-big { color: #2563eb; }
+.phase-card.pc2:hover .phase-roman-big,
+.phase-card.pc2.is-active .phase-roman-big { color: #059669; }
+.phase-card.pc3:hover .phase-roman-big,
+.phase-card.pc3.is-active .phase-roman-big { color: #9333ea; }
+.phase-card.pc4:hover .phase-roman-big,
+.phase-card.pc4.is-active .phase-roman-big { color: #ea580c; }
+
+.phase-card.pc1:hover .phase-dot,
+.phase-card.pc1.is-active .phase-dot { border-color: #2563eb; transform: scale(1.25); }
+.phase-card.pc2:hover .phase-dot,
+.phase-card.pc2.is-active .phase-dot { border-color: #059669; transform: scale(1.25); }
+.phase-card.pc3:hover .phase-dot,
+.phase-card.pc3.is-active .phase-dot { border-color: #9333ea; transform: scale(1.25); }
+.phase-card.pc4:hover .phase-dot,
+.phase-card.pc4.is-active .phase-dot { border-color: #ea580c; transform: scale(1.25); }
+
+/* Active card subtle highlight */
+.phase-card.is-active {
+  transform: translateY(-3px);
+}
+
+/* Mobile */
+@media (max-width: 720px) {
+  .phase-flow {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem 0;
+  }
+  .phase-flow::before {
+    display: none;
+  }
+  .phase-card .phase-roman-big {
+    font-size: 3.5rem;
+  }
+}
+
+/* ===== Interactive Illustrated Tree (legacy, unused) ===== */
 
 .itree {
   position: relative;
   max-width: 960px;
   margin: 2rem auto 0;
-  font-family: "Rubik", sans-serif;
+  font-family: "General Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
 /* ── SVG canvas ── */
@@ -109,20 +531,20 @@
   r: 46;
 }
 .itree-svg .node-text {
-  font-family: "Rubik", sans-serif;
+  font-family: "General Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   font-weight: 700;
   fill: #fff;
   text-anchor: middle;
   pointer-events: none;
 }
 .itree-svg .node-label {
-  font-family: "Rubik", sans-serif;
+  font-family: "General Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   font-weight: 700;
   text-anchor: middle;
   pointer-events: none;
 }
 .itree-svg .node-sublabel {
-  font-family: "Rubik", sans-serif;
+  font-family: "General Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   font-weight: 400;
   fill: #9ca3af;
   text-anchor: middle;
@@ -131,7 +553,7 @@
 
 /* Root label */
 .itree-svg .root-node {
-  font-family: "Rubik", sans-serif;
+  font-family: "General Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   font-weight: 700;
   fill: #fff;
   text-anchor: middle;
@@ -271,58 +693,103 @@
   .itree-svg { max-width: 100%; }
 }
 
-/* Insight cards */
+/* ===== Insight cards (Apple/Claude-style minimalist) ===== */
+
 .insight-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1.25rem;
-  margin-top: 1rem;
+  gap: 1rem;
+  margin-top: 1.75rem;
 }
 @media (max-width: 900px) {
-  .insight-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
+  .insight-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (max-width: 560px) {
-  .insight-grid {
-    grid-template-columns: 1fr;
-  }
+  .insight-grid { grid-template-columns: 1fr; }
+}
+
+.insight-divider {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  max-width: 920px;
+  margin: 2.5rem 0 1.4rem;
+  font-family: "General Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+.insight-divider .divider-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #9ca3af;
+  white-space: nowrap;
+}
+.insight-divider .divider-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #e5e7eb, transparent);
 }
 
 .insight-card {
-  background: white;
-  border: 1px solid #e5e7eb;
-  border-radius: 14px;
-  padding: 1.1rem;
-  box-shadow: 0 1px 2px rgba(0,0,0,.04);
-  transition: transform .2s ease, box-shadow .2s ease;
-  font-family: "Rubik", sans-serif;
+  position: relative;
+  background: #fff;
+  border: 1px solid #f3f4f6;
+  border-radius: 18px;
+  padding: 2rem 1.6rem 1.6rem;
+  transition: transform .25s cubic-bezier(.22,.68,0,1.1), box-shadow .3s ease, border-color .25s ease;
+  font-family: "General Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
 }
 .insight-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(0,0,0,.06);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(146, 64, 14, .08);
+  border-color: #fde68a;
 }
+
 .insight-card .insight-metric {
-  font-size: 2rem;
-  font-weight: 800;
+  font-size: 3.2rem;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.035em;
+  color: #92400e;
+  font-feature-settings: 'lnum', 'tnum';
+}
+
+.insight-card .insight-headline {
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: #111827;
+  line-height: 1.35;
+  margin: 0;
+}
+
+.insight-card .insight-tag {
+  font-size: 0.85rem;
+  color: #6b7280;
+  margin: 0;
+  line-height: 1.5;
+  font-weight: 400;
+}
+.insight-card .insight-tag b {
+  color: #374151;
+  font-weight: 600;
+}
+
+/* Featured = larger metric only; rest stays clean */
+.insight-card.is-featured {
+  background: linear-gradient(180deg, #fffbeb 0%, #fff 60%);
+  border-color: #fde68a;
+}
+.insight-card.is-featured .insight-metric {
+  font-size: 3.6rem;
   background: linear-gradient(135deg, #92400e, #f59e0b);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  line-height: 1.1;
-  margin-bottom: 0.3rem;
-}
-.insight-card .insight-label {
-  font-size: 0.82rem;
-  font-weight: 600;
-  color: #374151;
-  margin-bottom: 0.3rem;
-}
-.insight-card .insight-desc {
-  font-size: 0.85rem;
-  color: #6b7280;
-  line-height: 1.55;
-  margin: 0;
+  color: transparent;
 }
 
 /* Category pills for paper collection */
@@ -340,7 +807,7 @@
   border-radius: 12px;
   background: #f9fafb;
   border: 1px solid #e5e7eb;
-  font-family: "Rubik", sans-serif;
+  font-family: "General Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   transition: transform .15s ease, box-shadow .15s ease;
 }
 .cat-pill:hover {
@@ -370,7 +837,7 @@
   flex-wrap: wrap;
   gap: 0.35rem 0.6rem;
   margin-top: 0.5rem;
-  font-family: "Rubik", sans-serif;
+  font-family: "General Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 .ar-authors-list span {
   font-size: 0.92rem;
@@ -399,8 +866,8 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 1rem;
-  margin: 1.5rem 0;
-  max-width: 900px;
+  margin: 1.8rem 0 1rem;
+  max-width: 920px;
 }
 @media (max-width: 640px) {
   .ar-stats {
@@ -408,26 +875,34 @@
   }
 }
 .ar-stat {
+  position: relative;
   text-align: center;
-  padding: 0.8rem 0.5rem;
-  border-radius: 12px;
-  background: #fffbeb;
+  padding: 1.1rem 0.6rem 1rem;
+  border-radius: 14px;
+  background: linear-gradient(180deg, #fffbeb 0%, #fff 100%);
   border: 1px solid #fde68a;
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.ar-stat:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(146, 64, 14, .08);
 }
 .ar-stat .ar-stat-num {
-  font-size: 1.8rem;
+  font-size: 2.2rem;
   font-weight: 800;
   background: linear-gradient(135deg, #92400e, #d97706);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   line-height: 1.2;
+  letter-spacing: -0.02em;
 }
 .ar-stat .ar-stat-label {
   font-size: 0.78rem;
   color: #6b7280;
-  font-weight: 500;
-  margin-top: 0.15rem;
+  font-weight: 600;
+  margin-top: 0.25rem;
+  letter-spacing: 0.02em;
 }
 
 /* ===== Exhibition / Poster Gallery ===== */
@@ -472,7 +947,7 @@
   font-weight: 800;
   color: #fff;
   margin: 0.2rem 0 0.5rem;
-  font-family: "Rubik", sans-serif;
+  font-family: "General Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   line-height: 1.2;
 }
 
@@ -482,7 +957,7 @@
   max-width: 700px;
   line-height: 1.6;
   margin-bottom: 2rem;
-  font-family: "Rubik", sans-serif;
+  font-family: "General Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
 .gallery-hr {
@@ -572,7 +1047,7 @@
 .poster-placeholder .placeholder-text {
   font-size: 0.78rem;
   color: rgba(255,255,255,.2);
-  font-family: "Rubik", sans-serif;
+  font-family: "General Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
 /* Poster info bar */
@@ -587,7 +1062,7 @@
   font-size: 0.85rem;
   font-weight: 600;
   color: rgba(255,255,255,.85);
-  font-family: "Rubik", sans-serif;
+  font-family: "General Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   line-height: 1.35;
   flex: 1;
 }
@@ -689,7 +1164,7 @@
   font-size: 0.72rem;
   font-weight: 700;
   color: rgba(255,255,255,.7);
-  font-family: "Rubik", sans-serif;
+  font-family: "General Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   z-index: 2;
 }
 
@@ -723,7 +1198,7 @@
   align-items: center;
   gap: 1rem;
   margin: 2.2rem 0 0.6rem;
-  font-family: "Rubik", sans-serif;
+  font-family: "General Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 .gallery-divider .divider-line {
   flex: 1;
@@ -757,7 +1232,7 @@
   font-size: 0.72rem;
   font-weight: 700;
   color: rgba(255,255,255,.7);
-  font-family: "Rubik", sans-serif;
+  font-family: "General Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   z-index: 2;
 }
 
@@ -812,7 +1287,7 @@
   flex-wrap: wrap;
   gap: 0.3rem 0.5rem;
   margin-top: 0.5rem;
-  font-family: "Rubik", sans-serif;
+  font-family: "General Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 .contributors-name-list span {
   font-size: 0.92rem;
