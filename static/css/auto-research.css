@@ -2920,6 +2920,43 @@ h1, h2 { font-weight: 500; }
   border-color: rgba(146, 64, 14, 0.35);
 }
 
+/* ===== Responsible Use & Limitations ===== */
+.ar-responsible {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 2rem;
+  align-items: start;
+  max-width: 920px;
+  margin: 1.2rem 0 0.5rem;
+}
+.ar-responsible-fig {
+  margin: 0;
+  position: sticky;
+  top: 2rem;
+}
+.ar-responsible-fig img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  display: block;
+  border: 1px solid #f3f4f6;
+}
+.ar-responsible-text {
+  font-size: 1.02rem;
+  line-height: 1.72;
+  color: #374151;
+  margin: 0;
+  font-family: "Satoshi", -apple-system, sans-serif;
+}
+@media (max-width: 640px) {
+  .ar-responsible {
+    grid-template-columns: 1fr;
+  }
+  .ar-responsible-fig {
+    position: static;
+  }
+}
+
 /* Citation block */
 .ar-citation {
   font-family: 'Courier New', Courier, monospace;
