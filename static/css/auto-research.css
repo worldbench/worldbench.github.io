@@ -2926,12 +2926,14 @@ h1, h2 { font-weight: 500; }
   display: grid;
   grid-template-columns: var(--responsible-fig-width) 1fr;
   gap: 2rem;
+  column-gap: 2.5rem;
   align-items: start;
   max-width: 920px;
   margin: 1.2rem 0 0.5rem;
 }
 .ar-responsible-fig {
   margin: 0;
+  padding-right: 0.5rem;
 }
 .ar-responsible-fig img {
   width: 100%;
@@ -2945,6 +2947,7 @@ h1, h2 { font-weight: 500; }
   line-height: 1.72;
   color: #374151;
   margin: 0;
+  min-width: 0;
   font-family: "Satoshi", -apple-system, sans-serif;
 }
 @media (max-width: 640px) {
