@@ -3195,7 +3195,7 @@
 
 
 
-              <!-- ==================== Exhibition (Paper2Poster + Paper2Slides + Paper2Social) ==================== -->
+              <!-- ==================== Exhibition (Paper2Video + Paper2Slides + Paper2Poster + Paper2Social + Paper2Agent) ==================== -->
               <section id="exhibition">
                 <div class="wb-section exhibition-intro">
 
@@ -3210,11 +3210,184 @@
 
                 <div class="exhibition-wrap">
 
+                <!-- ──── Paper2Video ──── -->
+                <div id="video" class="gallery-section is-video">
+                  <div class="gallery-inner">
+
+                    <span class="gallery-subsection-tag">Subsection &middot; 01</span>
+                    <span class="gallery-kicker">AI-Generated Videos &amp; Talks</span>
+                    <h2 class="gallery-title">Paper2Video</h2>
+                    <div class="gallery-hr"></div>
+                    <p class="gallery-subtitle">
+                      Multimodal explanations that synchronize slides, narration, subtitles, and pacing. Video is the hardest Paper2X format &mdash; it requires coordinating at least four channels while staying faithful to the paper.
+                    </p>
+
+                    <div class="video-grid">
+
+                      <div class="video-frame" onclick="openLightbox(this)">
+                        <div class="video-thumbnail">
+                          <span class="video-num">01</span>
+                          <div class="video-play"></div>
+                          <span class="video-duration">8:42</span>
+                        </div>
+                        <div class="video-info">
+                          <span class="video-title">Conference Talk &mdash; Capability vs. Integrity</span>
+                          <span class="video-tool tool-claude">Claude</span>
+                        </div>
+                      </div>
+
+                      <div class="video-frame" onclick="openLightbox(this)">
+                        <div class="video-thumbnail">
+                          <span class="video-num">02</span>
+                          <div class="video-play"></div>
+                          <span class="video-duration">5:18</span>
+                        </div>
+                        <div class="video-info">
+                          <span class="video-title">Lifecycle Walk-through with Narration</span>
+                          <span class="video-tool tool-gpt">GPT-4o</span>
+                        </div>
+                      </div>
+
+                      <div class="video-frame" onclick="openLightbox(this)">
+                        <div class="video-thumbnail">
+                          <span class="video-num">03</span>
+                          <div class="video-play"></div>
+                          <span class="video-duration">3:01</span>
+                        </div>
+                        <div class="video-info">
+                          <span class="video-title">90-second Lay Summary for Twitter</span>
+                          <span class="video-tool tool-gemini">Gemini</span>
+                        </div>
+                      </div>
+
+                      <div class="video-frame" onclick="openLightbox(this)">
+                        <div class="video-thumbnail">
+                          <span class="video-num">04</span>
+                          <div class="video-play"></div>
+                          <span class="video-duration">12:30</span>
+                        </div>
+                        <div class="video-info">
+                          <span class="video-title">Deep Dive on the 5 Findings</span>
+                          <span class="video-tool tool-gpt">GPT-4o</span>
+                        </div>
+                      </div>
+
+                    </div>
+
+                  </div>
+                </div>
+                <!-- /Paper2Video -->
+
+
+
+              <!-- Lightbox overlay -->
+              <div class="poster-lightbox" id="posterLightbox" onclick="closeLightbox()">
+                <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+                <img id="lightboxImg" src="" alt="Poster full view">
+              </div>
+
+              <script>
+                function openLightbox(frame) {
+                  var img = frame.querySelector('.poster-img');
+                  if (!img) return;
+                  document.getElementById('lightboxImg').src = img.src;
+                  document.getElementById('posterLightbox').classList.add('is-open');
+                  document.body.style.overflow = 'hidden';
+                }
+                function closeLightbox() {
+                  document.getElementById('posterLightbox').classList.remove('is-open');
+                  document.body.style.overflow = '';
+                }
+                document.addEventListener('keydown', function(e) {
+                  if (e.key === 'Escape') closeLightbox();
+                });
+              </script>
+
+
+
+                <!-- ──── Paper2Slides ──── -->
+                <div id="slides" class="gallery-section is-slides">
+                  <div class="gallery-inner">
+
+                    <span class="gallery-subsection-tag">Subsection &middot; 02</span>
+                    <span class="gallery-kicker">AI-Generated Slide Decks</span>
+                    <h2 class="gallery-title">Paper2Slides</h2>
+                    <div class="gallery-hr"></div>
+                    <p class="gallery-subtitle">
+                      Conference-style slide decks generated end-to-end from the survey paper. Each deck condenses our findings into a different presentation arc &mdash; technical talk, executive summary, or community keynote.
+                    </p>
+
+                    <div class="slides-grid">
+
+                      <!-- Slide deck 1 -->
+                      <div class="slide-deck-frame" onclick="openLightbox(this)">
+                        <span class="slide-num">01</span>
+                        <span class="slide-pages"><i class="fas fa-layer-group"></i>&nbsp;~24 slides</span>
+                        <div class="slide-placeholder">
+                          <div class="placeholder-icon"><i class="fas fa-rectangle-list"></i></div>
+                          <span class="placeholder-text">Slide deck coming soon</span>
+                        </div>
+                        <div class="slide-info">
+                          <span class="slide-title">Technical Conference Talk &mdash; Full Lifecycle</span>
+                          <span class="slide-tool tool-gpt">GPT-4o</span>
+                        </div>
+                      </div>
+
+                      <!-- Slide deck 2 -->
+                      <div class="slide-deck-frame" onclick="openLightbox(this)">
+                        <span class="slide-num">02</span>
+                        <span class="slide-pages"><i class="fas fa-layer-group"></i>&nbsp;~18 slides</span>
+                        <div class="slide-placeholder">
+                          <div class="placeholder-icon"><i class="fas fa-rectangle-list"></i></div>
+                          <span class="placeholder-text">Slide deck coming soon</span>
+                        </div>
+                        <div class="slide-info">
+                          <span class="slide-title">Executive Summary &mdash; Capability vs. Integrity</span>
+                          <span class="slide-tool tool-claude">Claude</span>
+                        </div>
+                      </div>
+
+                      <!-- Slide deck 3 -->
+                      <div class="slide-deck-frame" onclick="openLightbox(this)">
+                        <span class="slide-num">03</span>
+                        <span class="slide-pages"><i class="fas fa-layer-group"></i>&nbsp;~30 slides</span>
+                        <div class="slide-placeholder">
+                          <div class="placeholder-icon"><i class="fas fa-rectangle-list"></i></div>
+                          <span class="placeholder-text">Slide deck coming soon</span>
+                        </div>
+                        <div class="slide-info">
+                          <span class="slide-title">Practitioner Workshop &mdash; What to Use Today</span>
+                          <span class="slide-tool tool-gemini">Gemini</span>
+                        </div>
+                      </div>
+
+                      <!-- Slide deck 4 -->
+                      <div class="slide-deck-frame" onclick="openLightbox(this)">
+                        <span class="slide-num">04</span>
+                        <span class="slide-pages"><i class="fas fa-layer-group"></i>&nbsp;~20 slides</span>
+                        <div class="slide-placeholder">
+                          <div class="placeholder-icon"><i class="fas fa-rectangle-list"></i></div>
+                          <span class="placeholder-text">Slide deck coming soon</span>
+                        </div>
+                        <div class="slide-info">
+                          <span class="slide-title">Three-Layer Architecture Deep Dive</span>
+                          <span class="slide-tool tool-gpt">GPT-4o</span>
+                        </div>
+                      </div>
+
+                    </div>
+
+                  </div>
+                </div>
+                <!-- /Paper2Slides -->
+
+
+
                 <!-- ──── Paper2Poster ──── -->
                 <div class="gallery-section">
                   <div class="gallery-inner">
 
-                    <span class="gallery-subsection-tag">Subsection &middot; 01</span>
+                    <span class="gallery-subsection-tag">Subsection &middot; 03</span>
                     <span class="gallery-kicker">AI-Generated Posters</span>
                     <h2 class="gallery-title">Paper2Poster</h2>
                     <div class="gallery-hr"></div>
@@ -3357,179 +3530,6 @@
                   </div>
                 </div>
                 <!-- /Paper2Poster -->
-
-              <!-- Lightbox overlay -->
-              <div class="poster-lightbox" id="posterLightbox" onclick="closeLightbox()">
-                <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
-                <img id="lightboxImg" src="" alt="Poster full view">
-              </div>
-
-              <script>
-                function openLightbox(frame) {
-                  var img = frame.querySelector('.poster-img');
-                  if (!img) return;
-                  document.getElementById('lightboxImg').src = img.src;
-                  document.getElementById('posterLightbox').classList.add('is-open');
-                  document.body.style.overflow = 'hidden';
-                }
-                function closeLightbox() {
-                  document.getElementById('posterLightbox').classList.remove('is-open');
-                  document.body.style.overflow = '';
-                }
-                document.addEventListener('keydown', function(e) {
-                  if (e.key === 'Escape') closeLightbox();
-                });
-              </script>
-
-
-
-                <!-- ──── Paper2Slides ──── -->
-                <div id="slides" class="gallery-section is-slides">
-                  <div class="gallery-inner">
-
-                    <span class="gallery-subsection-tag">Subsection &middot; 02</span>
-                    <span class="gallery-kicker">AI-Generated Slide Decks</span>
-                    <h2 class="gallery-title">Paper2Slides</h2>
-                    <div class="gallery-hr"></div>
-                    <p class="gallery-subtitle">
-                      Conference-style slide decks generated end-to-end from the survey paper. Each deck condenses our findings into a different presentation arc &mdash; technical talk, executive summary, or community keynote.
-                    </p>
-
-                    <div class="slides-grid">
-
-                      <!-- Slide deck 1 -->
-                      <div class="slide-deck-frame" onclick="openLightbox(this)">
-                        <span class="slide-num">01</span>
-                        <span class="slide-pages"><i class="fas fa-layer-group"></i>&nbsp;~24 slides</span>
-                        <div class="slide-placeholder">
-                          <div class="placeholder-icon"><i class="fas fa-rectangle-list"></i></div>
-                          <span class="placeholder-text">Slide deck coming soon</span>
-                        </div>
-                        <div class="slide-info">
-                          <span class="slide-title">Technical Conference Talk &mdash; Full Lifecycle</span>
-                          <span class="slide-tool tool-gpt">GPT-4o</span>
-                        </div>
-                      </div>
-
-                      <!-- Slide deck 2 -->
-                      <div class="slide-deck-frame" onclick="openLightbox(this)">
-                        <span class="slide-num">02</span>
-                        <span class="slide-pages"><i class="fas fa-layer-group"></i>&nbsp;~18 slides</span>
-                        <div class="slide-placeholder">
-                          <div class="placeholder-icon"><i class="fas fa-rectangle-list"></i></div>
-                          <span class="placeholder-text">Slide deck coming soon</span>
-                        </div>
-                        <div class="slide-info">
-                          <span class="slide-title">Executive Summary &mdash; Capability vs. Integrity</span>
-                          <span class="slide-tool tool-claude">Claude</span>
-                        </div>
-                      </div>
-
-                      <!-- Slide deck 3 -->
-                      <div class="slide-deck-frame" onclick="openLightbox(this)">
-                        <span class="slide-num">03</span>
-                        <span class="slide-pages"><i class="fas fa-layer-group"></i>&nbsp;~30 slides</span>
-                        <div class="slide-placeholder">
-                          <div class="placeholder-icon"><i class="fas fa-rectangle-list"></i></div>
-                          <span class="placeholder-text">Slide deck coming soon</span>
-                        </div>
-                        <div class="slide-info">
-                          <span class="slide-title">Practitioner Workshop &mdash; What to Use Today</span>
-                          <span class="slide-tool tool-gemini">Gemini</span>
-                        </div>
-                      </div>
-
-                      <!-- Slide deck 4 -->
-                      <div class="slide-deck-frame" onclick="openLightbox(this)">
-                        <span class="slide-num">04</span>
-                        <span class="slide-pages"><i class="fas fa-layer-group"></i>&nbsp;~20 slides</span>
-                        <div class="slide-placeholder">
-                          <div class="placeholder-icon"><i class="fas fa-rectangle-list"></i></div>
-                          <span class="placeholder-text">Slide deck coming soon</span>
-                        </div>
-                        <div class="slide-info">
-                          <span class="slide-title">Three-Layer Architecture Deep Dive</span>
-                          <span class="slide-tool tool-gpt">GPT-4o</span>
-                        </div>
-                      </div>
-
-                    </div>
-
-                  </div>
-                </div>
-                <!-- /Paper2Slides -->
-
-
-
-                <!-- ──── Paper2Video ──── -->
-                <div id="video" class="gallery-section is-video">
-                  <div class="gallery-inner">
-
-                    <span class="gallery-subsection-tag">Subsection &middot; 03</span>
-                    <span class="gallery-kicker">AI-Generated Videos &amp; Talks</span>
-                    <h2 class="gallery-title">Paper2Video</h2>
-                    <div class="gallery-hr"></div>
-                    <p class="gallery-subtitle">
-                      Multimodal explanations that synchronize slides, narration, subtitles, and pacing. Video is the hardest Paper2X format &mdash; it requires coordinating at least four channels while staying faithful to the paper.
-                    </p>
-
-                    <div class="video-grid">
-
-                      <div class="video-frame" onclick="openLightbox(this)">
-                        <div class="video-thumbnail">
-                          <span class="video-num">01</span>
-                          <div class="video-play"></div>
-                          <span class="video-duration">8:42</span>
-                        </div>
-                        <div class="video-info">
-                          <span class="video-title">Conference Talk &mdash; Capability vs. Integrity</span>
-                          <span class="video-tool tool-claude">Claude</span>
-                        </div>
-                      </div>
-
-                      <div class="video-frame" onclick="openLightbox(this)">
-                        <div class="video-thumbnail">
-                          <span class="video-num">02</span>
-                          <div class="video-play"></div>
-                          <span class="video-duration">5:18</span>
-                        </div>
-                        <div class="video-info">
-                          <span class="video-title">Lifecycle Walk-through with Narration</span>
-                          <span class="video-tool tool-gpt">GPT-4o</span>
-                        </div>
-                      </div>
-
-                      <div class="video-frame" onclick="openLightbox(this)">
-                        <div class="video-thumbnail">
-                          <span class="video-num">03</span>
-                          <div class="video-play"></div>
-                          <span class="video-duration">3:01</span>
-                        </div>
-                        <div class="video-info">
-                          <span class="video-title">90-second Lay Summary for Twitter</span>
-                          <span class="video-tool tool-gemini">Gemini</span>
-                        </div>
-                      </div>
-
-                      <div class="video-frame" onclick="openLightbox(this)">
-                        <div class="video-thumbnail">
-                          <span class="video-num">04</span>
-                          <div class="video-play"></div>
-                          <span class="video-duration">12:30</span>
-                        </div>
-                        <div class="video-info">
-                          <span class="video-title">Deep Dive on the 5 Findings</span>
-                          <span class="video-tool tool-gpt">GPT-4o</span>
-                        </div>
-                      </div>
-
-                    </div>
-
-                  </div>
-                </div>
-                <!-- /Paper2Video -->
-
-
 
                 <!-- ──── Paper2Social ──── -->
                 <div id="social" class="social-section">
