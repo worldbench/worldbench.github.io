@@ -2934,6 +2934,8 @@ h1, h2 { font-weight: 500; }
 .ar-responsible-fig {
   margin: 0;
   padding-right: 0.5rem;
+  width: 100% !important;
+  margin-left: 0 !important;
 }
 .ar-responsible-fig img {
   width: 100%;
