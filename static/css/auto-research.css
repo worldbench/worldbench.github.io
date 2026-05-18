@@ -2927,6 +2927,7 @@ h1, h2 { font-weight: 500; }
   grid-template-columns: var(--responsible-fig-width) 1fr;
   gap: 2rem;
   column-gap: 2.5rem;
+  row-gap: 0.6rem;
   align-items: start;
   max-width: 920px;
   margin: 1.2rem 0 0.5rem;
