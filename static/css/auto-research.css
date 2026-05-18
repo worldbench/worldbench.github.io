@@ -3020,25 +3020,29 @@ h1, h2 { font-weight: 500; }
 /* ===== Call for Contributions ===== */
 .ar-contribute {
   --contribute-fig-width: 160px;   /* ← adjust figure width here */
+  position: relative;
   max-width: 920px;
   margin: 2.5rem 0 0.5rem;
-  padding: 1.6rem 1.8rem;
+  padding: 1.6rem calc(var(--contribute-fig-width) + 2.8rem) 1.6rem 1.8rem;
   background: linear-gradient(135deg, #fffbeb 0%, #fef9e7 100%);
   border: 1px solid #fde68a;
   border-radius: 18px;
-  overflow: hidden;
   font-family: "Satoshi", -apple-system, sans-serif;
+  min-height: calc(var(--contribute-fig-width) + 3.2rem);
 }
 .ar-contribute-fig {
-  float: right;
+  position: absolute !important;
+  bottom: 1.4rem !important;
+  right: 1.6rem !important;
   width: var(--contribute-fig-width) !important;
-  margin: 0.4rem 0 0.8rem 1.4rem !important;
+  margin: 0 !important;
 }
 .ar-contribute-fig img {
   width: 100%;
   height: auto;
   border-radius: 10px;
   display: block;
+  border: 1px solid #e5e7eb;
 }
 .ar-contribute p {
   font-size: 0.96rem;
@@ -3068,10 +3072,17 @@ h1, h2 { font-weight: 500; }
   border-color: rgba(146,64,14,.35);
 }
 @media (max-width: 640px) {
-  .ar-contribute { padding: 1.4rem; }
-  .ar-contribute-fig { float: none; width: 100% !important; margin: 0 0 1rem 0 !important; }
+  .ar-contribute {
+    padding: 1.4rem;
+    min-height: unset;
+  }
+  .ar-contribute-fig {
+    position: static !important;
+    width: 100px !important;
+    margin: 1rem auto 0 !important;
+    display: block;
+  }
 }
-
 /* Citation block */
 .ar-citation {
   font-family: 'Courier New', Courier, monospace;
