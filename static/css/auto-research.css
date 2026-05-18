@@ -1922,7 +1922,7 @@ h1, h2 { font-weight: 500; }
   flex-direction: column;
   justify-content: flex-end;
   padding: 1.4rem 1.6rem;
-  background: linear-gradient(to top, rgba(0,0,0,.90) 0%, rgba(0,0,0,.68) 30%, rgba(0,0,0,.22) 60%, transparent 80%);
+  background: linear-gradient(to top, rgba(0,0,0,.84) 0%, rgba(0,0,0,.60) 30%, rgba(0,0,0,.20) 60%, transparent 80%);
   color: #fff;
   z-index: 3;
   pointer-events: none;
