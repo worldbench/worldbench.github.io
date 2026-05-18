@@ -3019,10 +3019,10 @@ h1, h2 { font-weight: 500; }
 
 /* ===== Call for Contributions ===== */
 .ar-contribute {
-  --contribute-fig-width: 240px;   /* ← adjust figure width here */
+  --contribute-fig-width: 235px;   /* ← adjust figure width here */
   position: relative;
   max-width: 920px;
-  margin: 2.5rem 0 0.5rem;
+  margin: 2.5rem 0 0.2rem;
   padding: 1.6rem calc(var(--contribute-fig-width) + 2.8rem) 1.6rem 1.8rem;
   background: linear-gradient(135deg, #fffbeb 0%, #fef9e7 100%);
   border: 1px solid #fde68a;
