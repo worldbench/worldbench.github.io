@@ -1988,7 +1988,7 @@ h1, h2 { font-weight: 500; }
   border-radius: 18px;
   overflow: hidden;
   cursor: pointer;
-  transition: transform .25s cubic-bezier(.22,.68,0,1.1), box-shadow .3s ease, border-color .25s ease;
+  transition: transform .25s cubic-bezier(.22,.68,0,1.1), box-shadow .3s ease, border-color .25s ease, background .25s ease;
   display: flex;
   flex-direction: column;
   -webkit-tap-highlight-color: transparent;
@@ -1999,9 +1999,16 @@ h1, h2 { font-weight: 500; }
   border-color: #e5e7eb;
 }
 .stage-card.is-active {
-  border-color: #fbbf24;
-  box-shadow: 0 14px 30px rgba(146, 64, 14, .12);
+  background: #1f2937;
+  border-color: rgba(255,255,255,.10);
+  box-shadow: 0 14px 36px rgba(0,0,0,.32);
   transform: translateY(-3px);
+}
+.stage-card.is-active .stage-image img {
+  opacity: 0.82;
+}
+.stage-card.is-active .stage-name {
+  color: #fff;
 }
 
 .stage-image {
@@ -2236,10 +2243,21 @@ h1, h2 { font-weight: 500; }
 .phase-block.pc4 .stage-card:hover .stage-more { filter: brightness(0.9); }
 .phase-block.pc4 .stage-card.is-active .stage-more { background: rgba(232,179,65,.12); border-color: rgba(232,179,65,.35); color: #e8b341; filter: none; }
 
-.phase-block.pc1 .stage-card.is-active { border-color: #b8d9a0; }
-.phase-block.pc2 .stage-card.is-active { border-color: #a2d0e8; }
-.phase-block.pc3 .stage-card.is-active { border-color: #c0aed4; }
-.phase-block.pc4 .stage-card.is-active { border-color: #f5d99e; }
+.phase-block.pc1 .stage-card.is-active { border-color: rgba(119,171,86,.35); }
+.phase-block.pc2 .stage-card.is-active { border-color: rgba(79,149,195,.35); }
+.phase-block.pc3 .stage-card.is-active { border-color: rgba(114,84,141,.35); }
+.phase-block.pc4 .stage-card.is-active { border-color: rgba(232,179,65,.35); }
+
+/* Know more button: glass style on dark active card */
+.phase-block.pc1 .stage-card.is-active .stage-more,
+.phase-block.pc2 .stage-card.is-active .stage-more,
+.phase-block.pc3 .stage-card.is-active .stage-more,
+.phase-block.pc4 .stage-card.is-active .stage-more {
+  background: rgba(255,255,255,.12);
+  border-color: rgba(255,255,255,.25);
+  color: #fff;
+  filter: none;
+}
 
 .phase-block.pc1 .stage-detail-method { color: #77ab56; border-color: #b8d9a0; }
 .phase-block.pc2 .stage-detail-method { color: #4f95c3; border-color: #a2d0e8; }
