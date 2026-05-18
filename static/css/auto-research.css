@@ -3453,3 +3453,94 @@ h1, h2 { font-weight: 500; }
     gap: 0.25rem;
   }
 }
+
+/* ===== Copy BibTeX button ===== */
+.ar-citation-wrap {
+  position: relative;
+  max-width: 900px;
+}
+.ar-copy-btn {
+  position: absolute;
+  top: 0.65rem;
+  right: 0.65rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.25rem 0.7rem;
+  border-radius: 999px;
+  border: 1px solid #e5e7eb;
+  background: #fff;
+  color: #6b7280;
+  font-size: 0.74rem;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: "Satoshi", -apple-system, sans-serif;
+  transition: background .15s ease, color .15s ease, border-color .15s ease;
+  z-index: 2;
+}
+.ar-copy-btn:hover {
+  background: #92400e;
+  color: #fff;
+  border-color: #92400e;
+}
+.ar-copy-btn.is-copied {
+  background: #059669;
+  color: #fff;
+  border-color: #059669;
+}
+
+/* ===== Phase filter bar ===== */
+.collection-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin: 0 0 1.1rem;
+  max-width: 920px;
+}
+.cf-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.38rem;
+  padding: 0.28rem 0.8rem;
+  border-radius: 999px;
+  border: 1px solid #e5e7eb;
+  background: #fff;
+  color: #6b7280;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: "Satoshi", -apple-system, sans-serif;
+  transition: background .15s ease, color .15s ease, border-color .15s ease;
+}
+.cf-btn:hover {
+  border-color: #d1d5db;
+  background: #f9fafb;
+  color: #111827;
+}
+.cf-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  flex-shrink: 0;
+}
+.cf-p1 .cf-dot { background: #77ab56; }
+.cf-p2 .cf-dot { background: #4f95c3; }
+.cf-p3 .cf-dot { background: #72548d; }
+.cf-p4 .cf-dot { background: #e8b341; }
+
+/* Active states */
+.cf-btn.is-active { border-color: #9ca3af; background: #f3f4f6; color: #111827; }
+.cf-p1.is-active { background: #77ab56; border-color: #77ab56; color: #fff; }
+.cf-p2.is-active { background: #4f95c3; border-color: #4f95c3; color: #fff; }
+.cf-p3.is-active { background: #72548d; border-color: #72548d; color: #fff; }
+.cf-p4.is-active { background: #e8b341; border-color: #e8b341; color: #4d2d00; }
+.cf-p1.is-active .cf-dot,
+.cf-p2.is-active .cf-dot,
+.cf-p3.is-active .cf-dot,
+.cf-p4.is-active .cf-dot { background: rgba(255,255,255,.75); }
+
+/* ===== Active TOC highlight ===== */
+d-contents nav a.toc-active {
+  color: #92400e !important;
+  font-weight: 700;
+}

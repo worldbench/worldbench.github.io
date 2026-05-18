@@ -146,7 +146,7 @@
               <section id="lifecycle">
                 <div class="wb-section">
 
-                  <h2>The Academic Research Full Lifecycle</h2>
+                  <h2>The Academic Research Lifecycle</h2>
 
                   <div class="wb-kicker">
                     Four Phases, Eight Stages
@@ -763,6 +763,15 @@
                     <i class="fas fa-search"></i>
                     <input type="text" id="collection-search-input" placeholder="Search methods, venues, or categories…" oninput="filterCollection(this.value)">
                   </label>
+
+                  <!-- Phase filter -->
+                  <div class="collection-filter">
+                    <button class="cf-btn is-active" onclick="filterPhase(this,'all')">All Stages</button>
+                    <button class="cf-btn cf-p1" onclick="filterPhase(this,'p1')"><span class="cf-dot"></span>P1 · Creation</button>
+                    <button class="cf-btn cf-p2" onclick="filterPhase(this,'p2')"><span class="cf-dot"></span>P2 · Writing</button>
+                    <button class="cf-btn cf-p3" onclick="filterPhase(this,'p3')"><span class="cf-dot"></span>P3 · Validation</button>
+                    <button class="cf-btn cf-p4" onclick="filterPhase(this,'p4')"><span class="cf-dot"></span>P4 · Dissemination</button>
+                  </div>
 
                   <div class="collection-stages">
 
@@ -4011,7 +4020,11 @@ Built from controlled experiments and 250+ papers. Free + open. <span class="men
                     If you find this survey or the reading list useful, please consider citing our paper:
                   </p>
 
-                  <pre class="ar-citation">@article{survey-ai-auto-research,
+                  <div class="ar-citation-wrap">
+                    <button class="ar-copy-btn" onclick="copyBibTeX(this)" aria-label="Copy BibTeX">
+                      <i class="fas fa-copy"></i> Copy
+                    </button>
+                    <pre class="ar-citation" id="bibtex-block">@article{survey-ai-auto-research,
   title   = {{AI} for {Auto-Research}: Roadmap \& User Guide},
   author  = {Kong, Lingdong and Sun, Xian and Chow, Wei
              and Li, Linfeng and Lin, Kevin Qinghong and Zhang, Xuan Billy
@@ -4023,6 +4036,7 @@ Built from controlled experiments and 250+ papers. Free + open. <span class="men
   journal = {arXiv preprint arXiv:2605.xxxxx},
   year    = {2026}
 }</pre>
+                  </div>
 
                   <br><br>
                 </div>
@@ -4408,6 +4422,59 @@ Built from controlled experiments and 250+ papers. Free + open. <span class="men
             var h = document.documentElement.scrollHeight - window.innerHeight;
             p.style.width = h > 0 ? (window.scrollY / h * 100) + '%' : '0%';
           }, { passive: true });
+        </script>
+
+        <script>
+          /* ── Copy BibTeX ── */
+          function copyBibTeX(btn) {
+            var text = document.getElementById('bibtex-block').textContent;
+            navigator.clipboard.writeText(text).then(function() {
+              btn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+              btn.classList.add('is-copied');
+              setTimeout(function() {
+                btn.innerHTML = '<i class="fas fa-copy"></i> Copy';
+                btn.classList.remove('is-copied');
+              }, 2000);
+            });
+          }
+
+          /* ── Phase filter for Paper Collection ── */
+          var stagePhaseMap = {
+            's1':'p1','s2':'p1','s3':'p1','s4':'p1',
+            's5':'p2',
+            's6':'p3','s7':'p3',
+            's8':'p4'
+          };
+          function filterPhase(btn, phase) {
+            document.querySelectorAll('.cf-btn').forEach(function(b) { b.classList.remove('is-active'); });
+            btn.classList.add('is-active');
+            document.querySelectorAll('.cstage').forEach(function(stage) {
+              var sc = Array.from(stage.classList).find(function(c){ return /^s\d/.test(c); });
+              var show = phase === 'all' || stagePhaseMap[sc] === phase;
+              stage.style.display = show ? '' : 'none';
+              if (!show) stage.classList.remove('is-open');
+            });
+            /* reset search */
+            var inp = document.getElementById('collection-search-input');
+            if (inp) inp.value = '';
+          }
+
+          /* ── Active TOC highlight ── */
+          (function() {
+            var tocLinks = document.querySelectorAll('d-contents nav a');
+            if (!tocLinks.length || !window.IntersectionObserver) return;
+            var observer = new IntersectionObserver(function(entries) {
+              entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                  var id = entry.target.id;
+                  tocLinks.forEach(function(link) {
+                    link.classList.toggle('toc-active', link.getAttribute('href') === '#' + id);
+                  });
+                }
+              });
+            }, { rootMargin: '-15% 0px -75% 0px', threshold: 0 });
+            document.querySelectorAll('section[id]').forEach(function(s) { observer.observe(s); });
+          })();
         </script>
 
     </body>
