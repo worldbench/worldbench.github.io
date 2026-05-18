@@ -3019,7 +3019,7 @@ h1, h2 { font-weight: 500; }
 
 /* ===== Call for Contributions ===== */
 .ar-contribute {
-  --contribute-fig-width: 160px;   /* ← adjust figure width here */
+  --contribute-fig-width: 250px;   /* ← adjust figure width here */
   position: relative;
   max-width: 920px;
   margin: 2.5rem 0 0.5rem;
