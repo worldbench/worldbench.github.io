@@ -2059,6 +2059,7 @@ h1, h2 { font-weight: 500; }
   border-radius: 999px;
   border: 1px solid transparent;
   background: transparent;
+  white-space: nowrap;
   transition: gap .2s ease, background .2s ease, border-color .2s ease, color .2s ease;
   user-select: none;
 }
