@@ -2873,6 +2873,26 @@ h1, h2 { font-weight: 500; }
   background: #f3f4f6;
 }
 
+/* GitHub collection button */
+.ar-github-btn {
+  display: inline-block;
+  padding: 0.7rem 1.8rem;
+  background: #92400e;
+  color: #fff;
+  border: 1px solid #92400e;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  font-family: "Satoshi", -apple-system, sans-serif;
+  transition: background .2s ease, color .2s ease, border-color .2s ease;
+}
+.ar-github-btn:hover {
+  background: rgba(146, 64, 14, 0.08);
+  color: #92400e;
+  border-color: rgba(146, 64, 14, 0.35);
+}
+
 /* Citation block */
 .ar-citation {
   font-family: 'Courier New', Courier, monospace;
