@@ -248,17 +248,17 @@ h1, h2 { font-weight: 500; }
   pointer-events: none;
 }
 .cstage.is-open .cstage-expand-btn {
-  background: rgba(146,64,14,.08);
-  color: #92400e;
-  border-color: rgba(146,64,14,.30);
+  background: rgba(255,255,255,.12);
+  color: #fff;
+  border-color: rgba(255,255,255,.25);
 }
 .cstage-header:hover .cstage-expand-btn {
   filter: brightness(0.9);
 }
 .cstage.is-open .cstage-header:hover .cstage-expand-btn {
   filter: none;
-  background: rgba(146,64,14,.15);
-  border-color: rgba(146,64,14,.45);
+  background: rgba(255,255,255,.2);
+  border-color: rgba(255,255,255,.35);
 }
 
 .cstage.s1 .cstage-num { background: #77ab56; }
