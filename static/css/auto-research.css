@@ -841,7 +841,7 @@ h1, h2 { font-weight: 500; }
 }
 
 .social-section .social-kicker { color: #6b7280; }
-.social-section .social-title { color: #374151; }
+.social-section .social-title { color: #4b5563; }
 .social-section .social-subtitle { color: #4b5563; }
 .social-section .social-hr {
   background: linear-gradient(90deg, #6b7280, #9ca3af 60%, #d1d5db);
@@ -1112,7 +1112,7 @@ h1, h2 { font-weight: 500; }
 .social-section .social-title {
   font-size: 2.2rem;
   font-weight: 500;
-  color: #fff;
+  color: #4b5563;
   margin: 0.2rem 0 0.5rem;
   font-family: "Fraunces", Georgia, serif;
   letter-spacing: -0.02em;
@@ -1757,12 +1757,13 @@ h1, h2 { font-weight: 500; }
   margin-bottom: 0.3rem;
 }
 .stage-name {
-  font-size: 0.98rem;
-  font-weight: 600;
+  font-family: "Fraunces", Georgia, serif;
+  font-size: 1.08rem;
+  font-weight: 500;
   color: #111827;
   margin: 0 0 0.55rem;
-  letter-spacing: -0.01em;
-  line-height: 1.25;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
   flex: 1;
 }
 
