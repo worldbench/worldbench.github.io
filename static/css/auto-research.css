@@ -2207,7 +2207,7 @@ h1, h2 { font-weight: 500; }
 
 .phase-block.pc4 .stage-detail-section-label,
 .phase-block.pc4 .stage-tag { color: #e8b341; }
-.phase-block.pc4 .stage-more { color: #4d2d00; background: #e8b341; border-color: #e8b341; }
+.phase-block.pc4 .stage-more { color: #fff; background: #e8b341; border-color: #e8b341; }
 .phase-block.pc4 .stage-card:hover .stage-more { filter: brightness(0.9); }
 .phase-block.pc4 .stage-card.is-active .stage-more { background: rgba(232,179,65,.12); border-color: rgba(232,179,65,.35); color: #e8b341; filter: none; }
 
