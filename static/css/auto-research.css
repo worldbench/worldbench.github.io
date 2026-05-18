@@ -2922,17 +2922,15 @@ h1, h2 { font-weight: 500; }
 
 /* ===== Responsible Use & Limitations ===== */
 .ar-responsible {
-  display: grid;
-  grid-template-columns: 260px 1fr;
-  gap: 2rem;
-  align-items: start;
+  --responsible-fig-width: 130px;   /* ← adjust figure width here */
   max-width: 920px;
   margin: 1.2rem 0 0.5rem;
+  overflow: hidden;
 }
 .ar-responsible-fig {
-  margin: 0;
-  position: sticky;
-  top: 2rem;
+  float: left;
+  width: var(--responsible-fig-width);
+  margin: 0.25rem 1.6rem 0.5rem 0;
 }
 .ar-responsible-fig img {
   width: 100%;
@@ -2949,11 +2947,10 @@ h1, h2 { font-weight: 500; }
   font-family: "Satoshi", -apple-system, sans-serif;
 }
 @media (max-width: 640px) {
-  .ar-responsible {
-    grid-template-columns: 1fr;
-  }
   .ar-responsible-fig {
-    position: static;
+    float: none;
+    width: 100%;
+    margin: 0 0 1.2rem 0;
   }
 }
 
