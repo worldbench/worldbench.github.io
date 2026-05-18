@@ -2922,7 +2922,7 @@ h1, h2 { font-weight: 500; }
 
 /* ===== Responsible Use & Limitations ===== */
 .ar-responsible {
-  --responsible-fig-width: 130px;   /* ← adjust figure width here */
+  --responsible-fig-width: 160px;   /* ← adjust figure width here */
   display: grid;
   grid-template-columns: var(--responsible-fig-width) 1fr;
   gap: 2rem;
@@ -2951,6 +2951,12 @@ h1, h2 { font-weight: 500; }
   margin: 0;
   min-width: 0;
   font-family: "Satoshi", -apple-system, sans-serif;
+}
+.ar-responsible-text p {
+  margin: 0 0 0.9rem;
+}
+.ar-responsible-text p:last-child {
+  margin-bottom: 0;
 }
 @media (max-width: 640px) {
   .ar-responsible {
