@@ -772,7 +772,7 @@
                         <span class="cstage-num">S1</span>
                         <span class="cstage-title">Idea Generation</span>
                         <span class="cstage-meta">26 methods</span>
-                        <i class="cstage-chevron fas fa-chevron-down"></i>
+                        Expand <i class="cstage-chevron fas fa-chevron-down"></i>
                       </div>
                       <div class="cstage-body">
                         <div class="cstage-body-inner">
@@ -1108,6 +1108,7 @@
                         <span class="cstage-num">S2</span>
                         <span class="cstage-title">Literature Review</span>
                         <span class="cstage-meta">35 methods</span>
+                        <span class="cstage-expand-btn">Expand</span>
                         <i class="cstage-chevron fas fa-chevron-down"></i>
                       </div>
                       <div class="cstage-body">
@@ -1517,6 +1518,7 @@
                         <span class="cstage-num">S3</span>
                         <span class="cstage-title">Coding &amp; Experiments</span>
                         <span class="cstage-meta">38 methods</span>
+                        <span class="cstage-expand-btn">Expand</span>
                         <i class="cstage-chevron fas fa-chevron-down"></i>
                       </div>
                       <div class="cstage-body">
@@ -1960,6 +1962,7 @@
                         <span class="cstage-num">S4</span>
                         <span class="cstage-title">Tables &amp; Figures</span>
                         <span class="cstage-meta">26 methods</span>
+                        <span class="cstage-expand-btn">Expand</span>
                         <i class="cstage-chevron fas fa-chevron-down"></i>
                       </div>
                       <div class="cstage-body">
@@ -2264,6 +2267,7 @@
                         <span class="cstage-num">S5</span>
                         <span class="cstage-title">Paper Writing</span>
                         <span class="cstage-meta">22 methods</span>
+                        <span class="cstage-expand-btn">Expand</span>
                         <i class="cstage-chevron fas fa-chevron-down"></i>
                       </div>
                       <div class="cstage-body">
@@ -2528,6 +2532,7 @@
                         <span class="cstage-num">S6</span>
                         <span class="cstage-title">Peer Review</span>
                         <span class="cstage-meta">31 methods</span>
+                        <span class="cstage-expand-btn">Expand</span>
                         <i class="cstage-chevron fas fa-chevron-down"></i>
                       </div>
                       <div class="cstage-body">
@@ -2884,6 +2889,7 @@
                         <span class="cstage-num">S7</span>
                         <span class="cstage-title">Rebuttal &amp; Revision</span>
                         <span class="cstage-meta">10 methods</span>
+                        <span class="cstage-expand-btn">Expand</span>
                         <i class="cstage-chevron fas fa-chevron-down"></i>
                       </div>
                       <div class="cstage-body">
@@ -3024,6 +3030,7 @@
                         <span class="cstage-num">S8</span>
                         <span class="cstage-title">Paper2X (Dissemination)</span>
                         <span class="cstage-meta">24 methods</span>
+                        <span class="cstage-expand-btn">Expand</span>
                         <i class="cstage-chevron fas fa-chevron-down"></i>
                       </div>
                       <div class="cstage-body">
@@ -3327,7 +3334,10 @@
 
                   <script>
                     function toggleCStage(header) {
-                      header.parentElement.classList.toggle('is-open');
+                      var stage = header.parentElement;
+                      stage.classList.toggle('is-open');
+                      var btn = header.querySelector('.cstage-expand-btn');
+                      if (btn) btn.textContent = stage.classList.contains('is-open') ? 'Collapse' : 'Expand';
                     }
                     function filterCollection(query) {
                       var q = query.trim().toLowerCase();

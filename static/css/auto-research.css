@@ -206,6 +206,33 @@ h1, h2 { font-weight: 500; }
   transform: rotate(180deg);
 }
 
+.cstage-expand-btn {
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  padding: 0.22rem 0.7rem;
+  border-radius: 999px;
+  border: 1px solid #92400e;
+  background: #92400e;
+  color: #fff;
+  white-space: nowrap;
+  transition: background .2s ease, color .2s ease, border-color .2s ease;
+  pointer-events: none;
+}
+.cstage.is-open .cstage-expand-btn {
+  background: rgba(146,64,14,.08);
+  color: #92400e;
+  border-color: rgba(146,64,14,.30);
+}
+.cstage-header:hover .cstage-expand-btn {
+  filter: brightness(0.9);
+}
+.cstage.is-open .cstage-header:hover .cstage-expand-btn {
+  filter: none;
+  background: rgba(146,64,14,.15);
+  border-color: rgba(146,64,14,.45);
+}
+
 .cstage.s1 .cstage-num { background: #77ab56; }
 .cstage.s2 .cstage-num { background: #8fbc6e; }
 .cstage.s3 .cstage-num { background: #aace90; }
