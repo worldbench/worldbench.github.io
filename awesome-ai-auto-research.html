@@ -615,6 +615,11 @@
                           </div>
                         </article>
 
+                      </div>
+                      <div class="stage-detail-panel"><div class="stage-detail-inner"></div></div>
+
+                      <div class="stage-card-grid" style="margin-top:0.9rem;">
+
                         <article class="stage-card" data-stage="s8-4" onclick="toggleStage(this)">
                           <div class="stage-image"><img src="assets/auto-research/figures/stages/paper2social.png" alt="S8.4: Paper2Social"></div>
                           <div class="stage-body">
@@ -686,8 +691,8 @@
 
                   <script>
                     function toggleStage(card) {
-                      var phase = card.closest('.phase-block');
-                      var panel = phase.querySelector('.stage-detail-panel');
+                      var grid = card.closest('.stage-card-grid');
+                      var panel = grid.nextElementSibling; // .stage-detail-panel immediately after this grid
                       var inner = panel.querySelector('.stage-detail-inner');
 
                       // Click on already-active card -> close
@@ -697,7 +702,11 @@
                         return;
                       }
 
-                      // Deactivate any active card in this phase
+                      // Close all panels + deactivate all cards in this phase-block
+                      var phase = card.closest('.phase-block');
+                      phase.querySelectorAll('.stage-detail-panel.is-open').forEach(function(p) {
+                        p.classList.remove('is-open');
+                      });
                       phase.querySelectorAll('.stage-card.is-active').forEach(function(c) {
                         c.classList.remove('is-active');
                       });
@@ -729,11 +738,14 @@
                     }
 
                     function closeStage(btn) {
-                      var phase = btn.closest('.phase-block');
-                      phase.querySelectorAll('.stage-card.is-active').forEach(function(c) {
-                        c.classList.remove('is-active');
-                      });
-                      phase.querySelector('.stage-detail-panel').classList.remove('is-open');
+                      var panel = btn.closest('.stage-detail-panel');
+                      panel.classList.remove('is-open');
+                      var phase = panel.closest('.phase-block');
+                      if (phase) {
+                        phase.querySelectorAll('.stage-card.is-active').forEach(function(c) {
+                          c.classList.remove('is-active');
+                        });
+                      }
                     }
                   </script>
 
