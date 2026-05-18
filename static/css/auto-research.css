@@ -3444,3 +3444,12 @@ h1, h2 { font-weight: 500; }
   .phase-hero-subtitle { font-size: 0.85rem; }
   .phase-hero-overlay { padding: 1rem 1.1rem; }
 }
+
+/* Stage card Know more button: compact on phones so it fits in narrow 3-col cards */
+@media (max-width: 640px) {
+  .stage-more {
+    font-size: 0.68rem;
+    padding: 0.16rem 0.45rem;
+    gap: 0.25rem;
+  }
+}
