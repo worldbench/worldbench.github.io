@@ -106,12 +106,59 @@ h1, h2 { font-weight: 500; }
   letter-spacing: 0.02em;
 }
 
+/* ===== Contributor row typography (override style.css Rubik) ===== */
+.contributor-row {
+  font-family: "Satoshi", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: #fafaf6;
+  border: 1px solid #f3f4f6;
+  padding: 0.7rem 0.95rem;
+  transition: border-color .2s ease, box-shadow .25s ease, transform .2s ease;
+}
+.contributor-row:hover {
+  border-color: #e5e7eb;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, .04);
+  transform: translateY(-1px);
+}
+
+.contributor-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.contributor-row .contributor-name {
+  font-family: "Fraunces", Georgia, serif !important;
+  font-weight: 500 !important;
+  font-size: 1.05rem !important;
+  letter-spacing: -0.015em;
+  color: #111827 !important;
+  line-height: 1.2;
+}
+
+.contributor-row .contributor-note {
+  font-family: "Satoshi", -apple-system, sans-serif !important;
+  font-size: 0.78rem !important;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: #9ca3af !important;
+}
+
 /* Author note: equal contribution marker */
 .contributor-row .contributor-name sup {
   color: #92400e;
   font-weight: 700;
-  font-size: 0.8em;
+  font-size: 0.7em;
   margin-left: 1px;
+  font-family: "Satoshi", -apple-system, sans-serif;
+}
+
+/* Social link icons: tone down to match page palette */
+.contributor-row .contributor-links a {
+  color: #6b7280;
+}
+.contributor-row .contributor-links a:hover {
+  background: #fef3c7;
+  color: #92400e;
 }
 
 /* ===== Teaser figure (Abstract section) ===== */
@@ -354,6 +401,13 @@ h1, h2 { font-weight: 500; }
   padding: 0.28rem 0.7rem;
   border-radius: 999px;
   margin-bottom: 0.7rem;
+}
+
+/* Default subsection tag (Paper2Poster, dark grey background) -- white text */
+.gallery-section:not(.is-slides):not(.is-video):not(.is-agent) .gallery-subsection-tag {
+  background: rgba(255, 255, 255, 0.10);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.20);
 }
 
 /* ===== Paper2Video Gallery (dark grey, like a video player wall) ===== */
@@ -780,36 +834,88 @@ h1, h2 { font-weight: 500; }
   margin: 0 -9999px;
   padding: 4.5rem 9999px 4rem;
   background:
-    radial-gradient(ellipse 60% 50% at 30% 30%, rgba(96,165,250,.10) 0%, transparent 70%),
-    radial-gradient(ellipse 50% 60% at 80% 70%, rgba(244,114,182,.07) 0%, transparent 70%),
-    linear-gradient(180deg, #1e293b 0%, #1c2a3e 100%);
+    radial-gradient(ellipse 60% 50% at 30% 30%, rgba(0,0,0,.025) 0%, transparent 70%),
+    linear-gradient(180deg, #f3f4f6 0%, #e5e7eb 100%);
   overflow: hidden;
-  color: #e5e7eb;
+  color: #1f2937;
 }
 
-.social-section .social-kicker { color: #93c5fd; }
-.social-section .social-title { color: #fff; }
-.social-section .social-subtitle { color: rgba(255,255,255,.65); }
+.social-section .social-kicker { color: #6b7280; }
+.social-section .social-title { color: #374151; }
+.social-section .social-subtitle { color: #4b5563; }
 .social-section .social-hr {
-  background: linear-gradient(90deg, #60a5fa, #34d399 60%, #fbbf24);
+  background: linear-gradient(90deg, #6b7280, #9ca3af 60%, #d1d5db);
 }
 
 .social-section .gallery-subsection-tag {
-  background: rgba(96, 165, 250, 0.12);
-  color: #93c5fd;
-  border: 1px solid rgba(96, 165, 250, 0.25);
+  background: rgba(107, 114, 128, 0.12);
+  color: #4b5563;
+  border: 1px solid rgba(107, 114, 128, 0.25);
 }
 
-/* Social posts: keep white-ish cards but tune borders for dark bg */
+/* Social posts: dark-mode cards on light grey bg */
 .social-section .social-post {
-  background: #fff;
-  border: 1px solid rgba(255, 255, 255, .12);
-  box-shadow: 0 4px 18px rgba(0, 0, 0, .25);
+  background: #1f2937;
+  border: 1px solid rgba(255, 255, 255, .08);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, .12);
+  color: #e5e7eb;
 }
 .social-section .social-post:hover {
-  box-shadow: 0 16px 36px rgba(0, 0, 0, .35);
-  border-color: rgba(255, 255, 255, .25);
+  box-shadow: 0 18px 38px rgba(0, 0, 0, .20);
+  border-color: rgba(255, 255, 255, .16);
   transform: translateY(-3px);
+}
+
+/* Dark-mode tweaks for post internals */
+.social-section .social-handle .name { color: #f3f4f6; }
+.social-section .social-handle .username { color: #9ca3af; }
+.social-section .social-body { color: #e5e7eb; }
+.social-section .social-body b { color: #fff; }
+.social-section .social-body .hashtag,
+.social-section .social-body .mention { color: #60a5fa; }
+
+.social-section .social-avatar {
+  background: linear-gradient(135deg, #374151, #4b5563);
+  border: 1px solid rgba(255,255,255,.10);
+}
+
+.social-section .social-platform.platform-x { color: #fff; }
+.social-section .social-platform.platform-linkedin { color: #60a5fa; }
+.social-section .social-platform.platform-reddit { color: #fb923c; }
+.social-section .social-platform.platform-mastodon { color: #a5b4fc; }
+
+.social-section .social-footer {
+  border-top-color: rgba(255,255,255,.08);
+  color: #9ca3af;
+}
+
+.social-section .social-media {
+  border-color: rgba(255,255,255,.10);
+  background: linear-gradient(135deg, #374151, #1f2937);
+}
+.social-section .social-media-placeholder {
+  color: rgba(255,255,255,.45);
+}
+.social-section .social-media-placeholder .placeholder-icon {
+  background: rgba(255,255,255,.05);
+  border-color: rgba(255,255,255,.20);
+}
+
+/* Tool badges: tune for dark cards */
+.social-section .social-tool-badge.tool-gpt {
+  background: rgba(52, 211, 153, .12);
+  color: #6ee7b7;
+  border-color: rgba(52, 211, 153, .25);
+}
+.social-section .social-tool-badge.tool-claude {
+  background: rgba(251, 146, 60, .12);
+  color: #fdba74;
+  border-color: rgba(251, 146, 60, .28);
+}
+.social-section .social-tool-badge.tool-gemini {
+  background: rgba(96, 165, 250, .12);
+  color: #93c5fd;
+  border-color: rgba(96, 165, 250, .28);
 }
 
 /* ===== Removed: gallery-section / social-section spacing now zero between sub-galleries ===== */
