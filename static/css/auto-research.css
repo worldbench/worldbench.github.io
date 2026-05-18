@@ -87,6 +87,248 @@ h1, h2 { font-weight: 500; }
   margin: .75rem 0 1.25rem;
 }
 
+/* ===== Paper Collection: Per-stage accordion tables ===== */
+
+.collection-search {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.7rem 1rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  background: #fff;
+  margin: 1.5rem 0 1.5rem;
+  max-width: 920px;
+  font-family: "Satoshi", -apple-system, sans-serif;
+  transition: border-color .2s ease, box-shadow .2s ease;
+}
+.collection-search:focus-within {
+  border-color: #fbbf24;
+  box-shadow: 0 0 0 3px rgba(251, 191, 36, 0.15);
+}
+.collection-search i {
+  color: #9ca3af;
+  font-size: 0.95rem;
+}
+.collection-search input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 0.92rem;
+  color: #111827;
+  background: transparent;
+  font-family: inherit;
+}
+.collection-search input::placeholder {
+  color: #9ca3af;
+}
+
+.collection-stages {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  max-width: 920px;
+}
+
+.cstage {
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  background: #fff;
+  overflow: hidden;
+  transition: border-color .2s ease, box-shadow .2s ease;
+}
+.cstage:hover { border-color: #d1d5db; }
+.cstage.is-open {
+  border-color: #fde68a;
+  box-shadow: 0 8px 26px rgba(146, 64, 14, .06);
+}
+
+.cstage-header {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 0.95rem 1.1rem;
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  font-family: "Satoshi", -apple-system, sans-serif;
+}
+.cstage-header:hover { background: #fffbeb; }
+
+.cstage-num {
+  flex-shrink: 0;
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.02em;
+}
+
+.cstage-title {
+  flex: 1;
+  font-family: "Fraunces", Georgia, serif;
+  font-size: 1.12rem;
+  font-weight: 500;
+  letter-spacing: -0.015em;
+  color: #111827;
+}
+
+.cstage-meta {
+  font-size: 0.78rem;
+  color: #6b7280;
+  font-weight: 500;
+}
+
+.cstage-chevron {
+  font-size: 0.85rem;
+  color: #9ca3af;
+  transition: transform .25s ease;
+}
+.cstage.is-open .cstage-chevron {
+  transform: rotate(180deg);
+}
+
+.cstage.s1 .cstage-num { background: #2563eb; }
+.cstage.s2 .cstage-num { background: #3b82f6; }
+.cstage.s3 .cstage-num { background: #60a5fa; }
+.cstage.s4 .cstage-num { background: #93c5fd; color: #1e3a5f; }
+.cstage.s5 .cstage-num { background: #059669; }
+.cstage.s6 .cstage-num { background: #9333ea; }
+.cstage.s7 .cstage-num { background: #a855f7; }
+.cstage.s8 .cstage-num { background: #ea580c; }
+
+.cstage-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height .55s cubic-bezier(.4,0,.2,1);
+}
+.cstage.is-open .cstage-body {
+  max-height: 5000px;
+}
+
+.cstage-body-inner {
+  padding: 0.5rem 0.5rem 1rem;
+  border-top: 1px solid #f3f4f6;
+  overflow-x: auto;
+}
+
+.ctable {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: "Satoshi", -apple-system, sans-serif;
+  font-size: 0.84rem;
+  color: #374151;
+}
+
+.ctable thead th {
+  text-align: left;
+  padding: 0.65rem 0.6rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #9ca3af;
+  border-bottom: 1px solid #f3f4f6;
+  background: #fafaf6;
+}
+
+.ctable tbody tr {
+  border-bottom: 1px solid #f9fafb;
+  transition: background .12s ease;
+}
+.ctable tbody tr:hover {
+  background: #fffbeb;
+}
+.ctable tbody tr.is-hidden {
+  display: none;
+}
+
+.ctable td {
+  padding: 0.6rem;
+  vertical-align: middle;
+  line-height: 1.45;
+}
+
+.ctable .ct-group td {
+  padding: 0.45rem 0.7rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #fff;
+}
+/* Per-stage sub-category band color (uses parent .cstage class) */
+.cstage.s1 .ct-group td { background: #2563eb; }
+.cstage.s2 .ct-group td { background: #3b82f6; }
+.cstage.s3 .ct-group td { background: #60a5fa; }
+.cstage.s4 .ct-group td { background: #93c5fd; color: #1e3a5f; }
+.cstage.s5 .ct-group td { background: #059669; }
+.cstage.s6 .ct-group td { background: #9333ea; }
+.cstage.s7 .ct-group td { background: #a855f7; }
+.cstage.s8 .ct-group td { background: #ea580c; }
+/* Legacy ct-g1..g4 (Stage 1 gradient) — superseded by .cstage.s1 above */
+.ctable .ct-group.ct-g1 td { background: #2563eb; }
+.ctable .ct-group.ct-g2 td { background: #3b82f6; }
+.ctable .ct-group.ct-g3 td { background: #60a5fa; }
+.ctable .ct-group.ct-g4 td { background: #93c5fd; color: #1e3a5f; }
+
+.ctable .col-num { width: 32px; text-align: right; color: #9ca3af; font-size: 0.78rem; padding-right: 0.5rem; }
+.ctable .col-method { font-weight: 600; color: #111827; min-width: 130px; }
+.ctable .col-method a { color: inherit; text-decoration: none; }
+.ctable .col-method a:hover { color: #92400e; }
+.ctable .col-venue { width: 90px; }
+.ctable .col-cat { width: 150px; }
+.ctable .col-note { color: #6b7280; }
+.ctable .col-links { width: 70px; text-align: right; white-space: nowrap; }
+
+.venue-pill {
+  display: inline-block;
+  padding: 0.18rem 0.5rem;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  background: #f3f4f6;
+  color: #4b5563;
+  white-space: nowrap;
+}
+.venue-pill.v-arxiv { background: #fee2e2; color: #b91c1c; }
+.venue-pill.v-top   { background: #ddd6fe; color: #5b21b6; }
+.venue-pill.v-conf  { background: #d1fae5; color: #047857; }
+
+.cat-text {
+  font-size: 0.78rem;
+  color: #4b5563;
+  font-weight: 500;
+}
+
+.ctable .col-links a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  color: #6b7280;
+  font-size: 0.85rem;
+  text-decoration: none;
+  transition: background .15s, color .15s;
+  margin-left: 0.25rem;
+}
+.ctable .col-links a:hover {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+@media (max-width: 720px) {
+  .ctable .col-cat { display: none; }
+  .ctable .col-venue { width: 70px; }
+}
+
 /* ===== Author photo placeholder (initials avatar) ===== */
 .contributor-photo.placeholder {
   width: 56px;
@@ -1764,6 +2006,7 @@ h1, h2 { font-weight: 500; }
   letter-spacing: -0.02em;
   line-height: 1.2;
   flex: 1;
+  text-transform: capitalize;
 }
 
 /* "Know more" link at the bottom of card */
