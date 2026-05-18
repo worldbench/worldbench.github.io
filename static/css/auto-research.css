@@ -139,8 +139,35 @@ h1, h2 { font-weight: 500; }
 }
 .cstage:hover { border-color: #d1d5db; }
 .cstage.is-open {
-  border-color: #fde68a;
-  box-shadow: 0 8px 26px rgba(146, 64, 14, .06);
+  border-color: rgba(146,64,14,.25);
+  box-shadow: 0 8px 26px rgba(0,0,0,.15);
+}
+.cstage.is-open .cstage-header {
+  background: #1f2937;
+}
+.cstage.is-open .cstage-header:hover {
+  background: #253144;
+}
+.cstage.is-open .cstage-title {
+  color: #fff;
+}
+.cstage.is-open .cstage-meta {
+  color: rgba(255,255,255,.45);
+}
+.cstage.is-open .cstage-chevron {
+  color: rgba(255,255,255,.5);
+}
+.cstage.is-open .cstage-thumb {
+  opacity: 0.85;
+}
+.cstage.is-open .cstage-expand-btn {
+  background: rgba(255,255,255,.12);
+  border-color: rgba(255,255,255,.25);
+  color: #fff;
+}
+.cstage.is-open .cstage-header:hover .cstage-expand-btn {
+  background: rgba(255,255,255,.2);
+  filter: none;
 }
 
 .cstage-header {
@@ -152,6 +179,7 @@ h1, h2 { font-weight: 500; }
   user-select: none;
   -webkit-tap-highlight-color: transparent;
   font-family: "Satoshi", -apple-system, sans-serif;
+  transition: background .25s ease;
 }
 .cstage-header:hover { background: #fffbeb; }
 
