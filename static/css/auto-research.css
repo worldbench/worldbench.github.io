@@ -3872,3 +3872,41 @@ d-contents nav a.toc-active {
   .slide-modal { padding: 0.8rem; }
   .slide-modal-window { height: 90vh; border-radius: 12px; }
 }
+
+/* ===== Paper2Poster: per-model tool badges + download button ===== */
+.tool-p-gemini { background: #1a73e8; color: #fff; border-color: #1a73e8; }
+.tool-p-qwen   { background: #f97316; color: #fff; border-color: #f97316; }
+.tool-p-claude { background: #d97706; color: #fff; border-color: #d97706; }
+
+.poster-info {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.poster-pages {
+  flex: 1;
+  font-size: 0.74rem;
+  font-weight: 500;
+  color: rgba(255,255,255,.5);
+  font-family: "Satoshi", -apple-system, sans-serif;
+}
+.poster-dl-btn {
+  flex-shrink: 0;
+  width: 26px;
+  height: 26px;
+  border-radius: 6px;
+  background: rgba(255,255,255,.1);
+  border: 1px solid rgba(255,255,255,.18);
+  color: rgba(255,255,255,.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.74rem;
+  text-decoration: none;
+  transition: background .15s, color .15s;
+}
+.poster-dl-btn:hover {
+  background: #fff;
+  color: #1f2937;
+  border-color: #fff;
+}
