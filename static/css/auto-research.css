@@ -3353,7 +3353,7 @@ h1, h2 { font-weight: 500; }
 /* Poster image area */
 .poster-frame .poster-img {
   width: 100%;
-  aspect-ratio: 3 / 4;
+  aspect-ratio: 9 / 16;
   display: block;
   object-fit: cover;
   border-bottom: 1px solid rgba(255,255,255,.06);
@@ -3362,7 +3362,7 @@ h1, h2 { font-weight: 500; }
 /* Placeholder for missing posters */
 .poster-placeholder {
   width: 100%;
-  aspect-ratio: 3 / 4;
+  aspect-ratio: 9 / 16;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -3874,9 +3874,11 @@ d-contents nav a.toc-active {
 }
 
 /* ===== Paper2Poster: per-model tool badges + download button ===== */
-.tool-p-gemini { background: #1a73e8; color: #fff; border-color: #1a73e8; }
-.tool-p-qwen   { background: #7c3aed; color: #fff; border-color: #7c3aed; }
-.tool-p-claude { background: #d97706; color: #fff; border-color: #d97706; }
+.tool-p-gemini    { background: #1a73e8; color: #fff; border-color: #1a73e8; }
+.tool-p-qwen      { background: #7c3aed; color: #fff; border-color: #7c3aed; }
+.tool-p-claude    { background: #d97706; color: #fff; border-color: #d97706; }
+.tool-p-seedream  { background: #0ea5e9; color: #fff; border-color: #0ea5e9; }
+.tool-p-sensenovа { background: #16a34a; color: #fff; border-color: #16a34a; }
 
 .poster-info {
   display: flex;
