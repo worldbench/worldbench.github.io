@@ -1149,7 +1149,7 @@ h1, h2 { font-weight: 500; }
 .tool-s-gpt         { background: #10a37f; color: #fff; border-color: #10a37f; }
 .tool-s-notebooklm  { background: #1a73e8; color: #fff; border-color: #1a73e8; }
 .tool-s-claude      { background: #d97706; color: #fff; border-color: #d97706; }
-.tool-s-manus       { background: #6366f1; color: #fff; border-color: #6366f1; }
+.tool-s-manus       { background: #b91c1c; color: #fff; border-color: #b91c1c; }
 
 /* Per-model top accent line */
 .gallery-section.is-slides .slide-deck-frame::before {
@@ -3875,7 +3875,7 @@ d-contents nav a.toc-active {
 
 /* ===== Paper2Poster: per-model tool badges + download button ===== */
 .tool-p-gemini { background: #1a73e8; color: #fff; border-color: #1a73e8; }
-.tool-p-qwen   { background: #f97316; color: #fff; border-color: #f97316; }
+.tool-p-qwen   { background: #7c3aed; color: #fff; border-color: #7c3aed; }
 .tool-p-claude { background: #d97706; color: #fff; border-color: #d97706; }
 
 .poster-info {
