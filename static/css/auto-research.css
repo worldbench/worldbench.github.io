@@ -3878,12 +3878,13 @@ d-contents nav a.toc-active {
 .tool-p-qwen      { background: #7c3aed; color: #fff; border-color: #7c3aed; }
 .tool-p-claude    { background: #d97706; color: #fff; border-color: #d97706; }
 .tool-p-seedream  { background: #ec4899; color: #fff; border-color: #ec4899; }
-.tool-p-sensenovа { background: #9ca3af; color: #1f2937; border-color: #9ca3af; }
+.tool-p-sensenovа { background: #cbd5e1; color: #1e293b; border-color: #cbd5e1; }
 
 .poster-info {
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  justify-content: flex-end;
 }
 .poster-pages {
   flex: 1;
