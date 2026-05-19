@@ -1126,6 +1126,44 @@ h1, h2 { font-weight: 500; }
   border-color: transparent !important;
 }
 
+/* Info bar overrides for .is-slides: slide-count left, dark tool badge, inline download */
+.gallery-section.is-slides .slide-info {
+  padding: 0.7rem 1rem;
+  gap: 0.5rem;
+}
+.gallery-section.is-slides .slide-info .slide-pages {
+  position: static;
+  background: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border: none;
+  border-radius: 0;
+  color: #6b7280;
+  padding: 0;
+  flex: 1;
+  font-size: 0.76rem;
+}
+.gallery-section.is-slides .slide-tool {
+  background: #1f2937;
+  color: #f3f4f6;
+  border-color: #1f2937;
+}
+.gallery-section.is-slides .slide-info .slide-download {
+  position: static;
+  width: 26px;
+  height: 26px;
+  border-radius: 6px;
+  background: #f3f4f6;
+  color: #374151;
+  border: 1px solid #e5e7eb;
+  flex-shrink: 0;
+}
+.gallery-section.is-slides .slide-info .slide-download:hover {
+  background: #92400e !important;
+  color: #fff !important;
+  border-color: #92400e !important;
+}
+
 /* Slide deck card on light bg: white card, slim border, soft shadow */
 .gallery-section.is-slides .slide-deck-frame {
   background: #fff;
