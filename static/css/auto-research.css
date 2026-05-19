@@ -1089,6 +1089,43 @@ h1, h2 { font-weight: 500; }
   border: 1px solid rgba(245, 158, 11, 0.25);
 }
 
+/* Override aspect ratio to 4:3 for real slide teasers */
+.gallery-section.is-slides .slide-deck-frame .slide-preview {
+  aspect-ratio: 4 / 3;
+}
+
+/* Download PPTX button on slide cards */
+.slide-download {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 3;
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  background: rgba(0,0,0,.45);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border: 1px solid rgba(255,255,255,.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255,255,255,.85);
+  font-size: 0.75rem;
+  text-decoration: none;
+  transition: background .2s ease;
+}
+.gallery-section.is-slides .slide-download {
+  background: rgba(146,64,14,.12);
+  border-color: rgba(146,64,14,.25);
+  color: #92400e;
+}
+.slide-download:hover {
+  background: rgba(146,64,14,.85) !important;
+  color: #fff !important;
+  border-color: transparent !important;
+}
+
 /* Slide deck card on light bg: white card, slim border, soft shadow */
 .gallery-section.is-slides .slide-deck-frame {
   background: #fff;
