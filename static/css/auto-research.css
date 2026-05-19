@@ -3877,8 +3877,8 @@ d-contents nav a.toc-active {
 .tool-p-gemini    { background: #1a73e8; color: #fff; border-color: #1a73e8; }
 .tool-p-qwen      { background: #7c3aed; color: #fff; border-color: #7c3aed; }
 .tool-p-claude    { background: #d97706; color: #fff; border-color: #d97706; }
-.tool-p-seedream  { background: #0ea5e9; color: #fff; border-color: #0ea5e9; }
-.tool-p-sensenovа { background: #16a34a; color: #fff; border-color: #16a34a; }
+.tool-p-seedream  { background: #ec4899; color: #fff; border-color: #ec4899; }
+.tool-p-sensenovа { background: #9ca3af; color: #1f2937; border-color: #9ca3af; }
 
 .poster-info {
   display: flex;
