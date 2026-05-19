@@ -3530,52 +3530,52 @@
                       <!-- Slide deck 1: GPT-5.5 -->
                       <div class="slide-deck-frame slide-model-gpt">
                         <span class="slide-num">01</span>
-                        <a href="assets/auto-research/slides/slides-GPT5.5.pptx" download>
+                        <a href="#" onclick="openSlideModal('assets/auto-research/slides/slides-GPT5.5.pptx','GPT-5.5'); return false;">
                           <img class="slide-preview" src="assets/auto-research/slides/slides-teaser-GPT5.5.png" alt="GPT-5.5 Slides">
                         </a>
                         <div class="slide-info">
-                          <span class="slide-pages"><i class="fas fa-layer-group"></i>&nbsp;~20 slides</span>
+                          <span class="slide-pages"><i class="fas fa-layer-group"></i>&nbsp;28 slides</span>
                           <span class="slide-tool tool-s-gpt">GPT-5.5</span>
-                          <a href="assets/auto-research/slides/slides-GPT5.5.pptx" download class="slide-download" title="Download PPTX"><i class="fas fa-download"></i></a>
+                          <a href="#" onclick="openSlideModal('assets/auto-research/slides/slides-GPT5.5.pptx','GPT-5.5'); return false;" class="slide-download" title="Preview & Download"><i class="fas fa-expand"></i></a>
                         </div>
                       </div>
 
                       <!-- Slide deck 2: NotebookLM -->
                       <div class="slide-deck-frame slide-model-notebooklm">
                         <span class="slide-num">02</span>
-                        <a href="assets/auto-research/slides/slides-NotebookLM.pptx" download>
+                        <a href="#" onclick="openSlideModal('assets/auto-research/slides/slides-NotebookLM.pptx','NotebookLM'); return false;">
                           <img class="slide-preview" src="assets/auto-research/slides/slides-teaser-NotebookLM.png" alt="NotebookLM Slides">
                         </a>
                         <div class="slide-info">
-                          <span class="slide-pages"><i class="fas fa-layer-group"></i>&nbsp;~15 slides</span>
+                          <span class="slide-pages"><i class="fas fa-layer-group"></i>&nbsp;11 slides</span>
                           <span class="slide-tool tool-s-notebooklm">NotebookLM</span>
-                          <a href="assets/auto-research/slides/slides-NotebookLM.pptx" download class="slide-download" title="Download PPTX"><i class="fas fa-download"></i></a>
+                          <a href="#" onclick="openSlideModal('assets/auto-research/slides/slides-NotebookLM.pptx','NotebookLM'); return false;" class="slide-download" title="Preview & Download"><i class="fas fa-expand"></i></a>
                         </div>
                       </div>
 
                       <!-- Slide deck 3: Claude Opus 4.7 -->
                       <div class="slide-deck-frame slide-model-claude">
                         <span class="slide-num">03</span>
-                        <a href="assets/auto-research/slides/slides-Opus4.7.pptx" download>
+                        <a href="#" onclick="openSlideModal('assets/auto-research/slides/slides-Opus4.7.pptx','Claude Opus 4.7'); return false;">
                           <img class="slide-preview" src="assets/auto-research/slides/slides-teaser-Opus4.7.png" alt="Claude Opus 4.7 Slides">
                         </a>
                         <div class="slide-info">
-                          <span class="slide-pages"><i class="fas fa-layer-group"></i>&nbsp;~22 slides</span>
+                          <span class="slide-pages"><i class="fas fa-layer-group"></i>&nbsp;27 slides</span>
                           <span class="slide-tool tool-s-claude">Opus 4.7</span>
-                          <a href="assets/auto-research/slides/slides-Opus4.7.pptx" download class="slide-download" title="Download PPTX"><i class="fas fa-download"></i></a>
+                          <a href="#" onclick="openSlideModal('assets/auto-research/slides/slides-Opus4.7.pptx','Claude Opus 4.7'); return false;" class="slide-download" title="Preview & Download"><i class="fas fa-expand"></i></a>
                         </div>
                       </div>
 
                       <!-- Slide deck 4: Manus 1.6 -->
                       <div class="slide-deck-frame slide-model-manus">
                         <span class="slide-num">04</span>
-                        <a href="assets/auto-research/slides/slides-Manus-1.6.pptx" download>
+                        <a href="#" onclick="openSlideModal('assets/auto-research/slides/slides-Manus-1.6.pptx','Manus 1.6'); return false;">
                           <img class="slide-preview" src="assets/auto-research/slides/slides-teaser-Manus-1.6.png" alt="Manus 1.6 Slides">
                         </a>
                         <div class="slide-info">
-                          <span class="slide-pages"><i class="fas fa-layer-group"></i>&nbsp;~18 slides</span>
+                          <span class="slide-pages"><i class="fas fa-layer-group"></i>&nbsp;12 slides</span>
                           <span class="slide-tool tool-s-manus">Manus 1.6</span>
-                          <a href="assets/auto-research/slides/slides-Manus-1.6.pptx" download class="slide-download" title="Download PPTX"><i class="fas fa-download"></i></a>
+                          <a href="#" onclick="openSlideModal('assets/auto-research/slides/slides-Manus-1.6.pptx','Manus 1.6'); return false;" class="slide-download" title="Preview & Download"><i class="fas fa-expand"></i></a>
                         </div>
                       </div>
 
@@ -4479,7 +4479,46 @@ Built from controlled experiments and 250+ papers. Free + open. <span class="men
             }, { rootMargin: '-15% 0px -75% 0px', threshold: 0 });
             document.querySelectorAll('section[id]').forEach(function(s) { observer.observe(s); });
           })();
+
+          /* ── Slide Preview Modal ── */
+          function openSlideModal(pptxPath, title) {
+            var base = 'https://worldbench.github.io/';
+            var fullUrl = base + pptxPath;
+            var viewerUrl = 'https://view.officeapps.live.com/op/embed.aspx?src=' + encodeURIComponent(fullUrl);
+            document.getElementById('slideModalFrame').src = viewerUrl;
+            document.getElementById('slideModalDl').href = pptxPath;
+            document.getElementById('slideModalDl').download = pptxPath.split('/').pop();
+            document.querySelector('.slide-modal-title').textContent = 'AI for Auto-Research — ' + title;
+            document.getElementById('slideModal').classList.add('is-open');
+            document.body.style.overflow = 'hidden';
+          }
+          function closeSlideModal() {
+            document.getElementById('slideModal').classList.remove('is-open');
+            document.getElementById('slideModalFrame').src = '';
+            document.body.style.overflow = '';
+          }
+          document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeSlideModal();
+          });
         </script>
+
+
+        <!-- ── Slide Preview Modal ── -->
+        <div class="slide-modal" id="slideModal">
+          <div class="slide-modal-backdrop" onclick="closeSlideModal()"></div>
+          <div class="slide-modal-window">
+            <div class="slide-modal-header">
+              <span class="slide-modal-title"></span>
+              <div class="slide-modal-actions">
+                <a class="slide-modal-dl" id="slideModalDl" href="#" download>
+                  <i class="fas fa-download"></i> Download PPTX
+                </a>
+                <button class="slide-modal-close" onclick="closeSlideModal()" aria-label="Close">&times;</button>
+              </div>
+            </div>
+            <iframe class="slide-modal-frame" id="slideModalFrame" src="" allowfullscreen></iframe>
+          </div>
+        </div>
 
     </body>
 </html>
