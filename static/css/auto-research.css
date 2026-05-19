@@ -3529,7 +3529,7 @@ h1, h2 { font-weight: 500; }
 }
 .poster-frame-landscape.poster-wide .poster-img,
 .poster-frame-landscape.poster-wide .poster-placeholder {
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 4 / 3;
 }
 
 /* Section divider label inside gallery */
