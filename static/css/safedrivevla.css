@@ -1,0 +1,463 @@
+/* ===== SafeDriveVLA Project Page ===== */
+/* Typography: Satoshi (body) + Fraunces (display), matching awesome-ai-auto-research */
+
+body {
+  font-family: "Satoshi", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.header-content,
+.header-content h1,
+.header-content h2,
+.button-container a.button {
+  font-family: "Satoshi", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+.header-content h1 {
+  font-family: "Fraunces", Georgia, serif;
+  font-feature-settings: "ss01", "ss02";
+  letter-spacing: -0.02em;
+  font-weight: 500;
+}
+.button-container a.button {
+  font-weight: 600;
+  letter-spacing: 0.005em;
+}
+.icon.is-small {
+  font-family: "Satoshi", -apple-system, sans-serif;
+}
+
+h1, h2,
+.sdv-section-title,
+.sdv-stat .sdv-stat-num,
+.sdv-table-caption b {
+  font-family: "Fraunces", Georgia, "Times New Roman", serif;
+  font-feature-settings: "ss01", "ss02";
+  letter-spacing: -0.015em;
+}
+h1, h2 { font-weight: 500; }
+
+/* Editorial-style kicker (eyebrow above section titles) — matches auto-research */
+.wb-kicker {
+  display: inline-block !important;
+  font-size: 0.74rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.14em !important;
+  text-transform: uppercase !important;
+  color: #b91c1c !important;
+  margin: 0.4rem 0 0.4rem !important;
+  font-family: "Satoshi", -apple-system, sans-serif !important;
+}
+
+/* Section spacing */
+d-article > section + section,
+d-article > section + br + br + section {
+  margin-top: 1.5rem;
+}
+d-article section .wb-section {
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+
+/* SafeDriveVLA name — amber→red gradient signalling conflict/safety */
+.sdv-name { font-weight: 600; }
+.sdv-name .s1 { color: #f59e0b; }
+.sdv-name .a1 { color: #f97316; }
+.sdv-name .f  { color: #ef4444; }
+.sdv-name .e1 { color: #dc2626; }
+.sdv-name .d  { color: #b91c1c; }
+.sdv-name .r  { color: #991b1b; }
+.sdv-name .i  { color: #7f1d1d; }
+.sdv-name .v1 { color: #92400e; }
+.sdv-name .e2 { color: #b45309; }
+.sdv-name .v2 { color: #d97706; }
+.sdv-name .l  { color: #f59e0b; }
+.sdv-name .a2 { color: #fbbf24; }
+
+/* Accent rule under kickers */
+.sdv-hr {
+  height: 3px;
+  width: 72px;
+  background: linear-gradient(90deg, #b91c1c, #dc2626 60%, #f59e0b);
+  border-radius: 999px;
+  margin: .75rem 0 1.25rem;
+}
+
+/* Benchmark cards — three axes */
+#benchmark .wb-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.25rem;
+  margin-top: 1rem;
+}
+@media (max-width: 1024px) {
+  #benchmark .wb-grid { grid-template-columns: 1fr; }
+}
+.sdv-axis-card {
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  padding: 1.1rem 1.2rem;
+  background: #fff;
+  transition: border-color .2s ease, box-shadow .2s ease;
+}
+.sdv-axis-card:hover {
+  border-color: #fca5a5;
+  box-shadow: 0 8px 20px rgba(220, 38, 38, 0.08);
+}
+.sdv-axis-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px; height: 28px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #f59e0b, #b91c1c);
+  color: #fff;
+  font-size: 0.82rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+.sdv-axis-card h3 {
+  font-family: "Fraunces", Georgia, serif;
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin: 0.2rem 0 0.5rem;
+  color: #111827;
+}
+.sdv-axis-card p {
+  font-size: 0.92rem;
+  color: #4b5563;
+  line-height: 1.6;
+  margin: 0 0 0.6rem;
+}
+.sdv-axis-chip {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  background: #fef3c7;
+  color: #92400e;
+  margin-right: 0.3rem;
+}
+
+/* Method sub-blocks */
+#method .wb-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.25rem;
+  margin-top: 1rem;
+}
+@media (max-width: 1024px) {
+  #method .wb-grid { grid-template-columns: 1fr; }
+}
+.sdv-method-card {
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  padding: 1.1rem 1.2rem;
+  background: #fff;
+}
+.sdv-method-card h3 {
+  font-family: "Fraunces", Georgia, serif;
+  font-size: 1.05rem;
+  font-weight: 500;
+  margin: 0 0 0.4rem;
+}
+.sdv-method-card p {
+  font-size: 0.92rem;
+  color: #4b5563;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Driving-mode pills inside Method */
+.sdv-mode-pill {
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 0.2rem 0.65rem;
+  border-radius: 999px;
+  margin: 0.2rem 0.3rem 0.2rem 0;
+}
+.sdv-mode-pill.strict   { background: #fee2e2; color: #991b1b; }
+.sdv-mode-pill.cautious { background: #fef3c7; color: #92400e; }
+.sdv-mode-pill.fallback { background: #d1fae5; color: #065f46; }
+
+/* ===== Video gallery (WorldLens-style split comparator) ===== */
+/* Re-export the comparator styles from worldlens.css (file is otherwise loaded only by worldlens.html) */
+
+.videogen { margin: 1rem auto 0; max-width: 960px; }
+.video-hero {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #111827;
+  box-shadow: 0 12px 28px rgba(0,0,0,0.18);
+}
+.video-compare-split {
+  position: relative;
+  width: 100%; height: 100%;
+  border-radius: inherit;
+  overflow: hidden;
+  --split: 50%;
+}
+.video-compare-split .video-wrapper {
+  position: absolute; inset: 0;
+  pointer-events: none;
+}
+.video-compare-split .video-el {
+  width: 100%; height: 100%;
+  object-fit: cover;
+}
+.video-compare-split .gt-layer {
+  clip-path: polygon(0 0, var(--split) 0, var(--split) 100%, 0 100%);
+}
+.video-compare-split .gen-layer {
+  clip-path: polygon(var(--split) 0, 100% 0, 100% 100%, var(--split) 100%);
+}
+.video-compare-split .video-label {
+  position: absolute;
+  bottom: 10px;
+  padding: 4px 12px;
+  font-size: 0.82rem;
+  font-family: "Satoshi", -apple-system, sans-serif;
+  font-weight: 600;
+  border-radius: 999px;
+  background: rgba(0,0,0,.6);
+  color: #fff;
+  backdrop-filter: blur(4px);
+  letter-spacing: .3px;
+}
+.video-compare-split .label-left  { left: 10px; }
+.video-compare-split .label-right { right: 10px; }
+.video-compare-split .split-handle {
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 28px;
+  left: var(--split);
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: ew-resize;
+  z-index: 5;
+  pointer-events: auto;
+}
+.video-compare-split .handle-line {
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 2px;
+  background: rgba(255,255,255,.9);
+  box-shadow: 0 0 8px rgba(0,0,0,.35);
+}
+.video-compare-split .handle-arrows {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 6px;
+  border-radius: 999px;
+  background: rgba(0,0,0,.6);
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(0,0,0,.35);
+}
+
+/* Caption under the comparator describing the instruction */
+.sdv-scene-caption {
+  max-width: 960px;
+  margin: 0.75rem auto 0;
+  padding: 0.7rem 1rem;
+  border-left: 3px solid #dc2626;
+  background: #fef2f2;
+  border-radius: 0 8px 8px 0;
+  font-size: 0.88rem;
+  color: #374151;
+  line-height: 1.55;
+  font-family: "Satoshi", -apple-system, sans-serif;
+}
+.sdv-scene-caption b {
+  color: #991b1b;
+  font-weight: 600;
+}
+
+/* Thumbnail strip — scene picker */
+.thumb-bar {
+  display: flex;
+  gap: 0.55rem;
+  margin: 0.85rem auto 0;
+  max-width: 960px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.thumb {
+  position: relative;
+  border: 2px solid #e5e7eb;
+  background: #f9fafb;
+  border-radius: 10px;
+  padding: 0;
+  overflow: hidden;
+  cursor: pointer;
+  width: 132px;
+  transition: border-color .2s ease, transform .2s ease;
+}
+.thumb:hover { border-color: #fca5a5; transform: translateY(-2px); }
+.thumb.is-active { border-color: #dc2626; box-shadow: 0 0 0 3px rgba(220,38,38,0.15); }
+.thumb img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  display: block;
+}
+.thumb span {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #374151;
+  padding: 0.32rem 0.4rem;
+  font-family: "Satoshi", -apple-system, sans-serif;
+}
+
+/* Placeholder thumbnail (no image yet) */
+.thumb-placeholder {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: repeating-linear-gradient(
+    45deg,
+    #f3f4f6,
+    #f3f4f6 6px,
+    #e5e7eb 6px,
+    #e5e7eb 12px
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #9ca3af;
+  font-size: 0.72rem;
+  font-family: "Satoshi", -apple-system, sans-serif;
+}
+
+/* Placeholder video panel (full hero, used until clips are dropped in) */
+.video-placeholder {
+  width: 100%;
+  height: 100%;
+  background:
+    linear-gradient(135deg, rgba(220,38,38,0.05), rgba(245,158,11,0.05)),
+    repeating-linear-gradient(
+      45deg,
+      #1f2937,
+      #1f2937 12px,
+      #374151 12px,
+      #374151 24px
+    );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #e5e7eb;
+  font-family: "Satoshi", -apple-system, sans-serif;
+  font-size: 0.95rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+.video-placeholder .ph-label {
+  background: rgba(0,0,0,0.55);
+  padding: 0.55rem 1.2rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.15);
+}
+
+/* ===== Results tables (adapted from onevl-table) ===== */
+.sdv-table-wrap {
+  margin: 1rem auto 1.5rem;
+  max-width: 960px;
+  overflow-x: auto;
+}
+.sdv-table-caption {
+  font-size: 0.88rem;
+  color: #374151;
+  margin-bottom: 0.4rem;
+  font-family: "Satoshi", -apple-system, sans-serif;
+}
+.sdv-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+  font-family: "Satoshi", -apple-system, sans-serif;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.sdv-table th {
+  background: #fef3c7;
+  color: #111827;
+  font-weight: 600;
+  text-align: center;
+  padding: 0.55rem 0.7rem;
+  font-size: 0.85rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+.sdv-table td {
+  padding: 0.5rem 0.7rem;
+  text-align: center;
+  border-bottom: 1px solid #f3f4f6;
+  color: #374151;
+}
+.sdv-table tr:last-child td { border-bottom: none; }
+.sdv-table .group-header td {
+  background: #f9fafb;
+  font-weight: 600;
+  color: #6b7280;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  text-align: left;
+  padding: 0.4rem 0.7rem;
+}
+.sdv-table .row-ours { background: #fff7ed; }
+.sdv-table .row-ours td { color: #111827; font-weight: 500; }
+.sdv-table .best { font-weight: 700; color: #b91c1c; }
+.sdv-table .underline { text-decoration: underline; text-decoration-color: #f59e0b; }
+.sdv-table .pending { color: #9ca3af; font-style: italic; }
+
+/* Contributors name list (matches OneVL) */
+.contributors-name-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem 0.6rem;
+  margin-top: 0.6rem;
+  font-size: 0.92rem;
+  color: #374151;
+  line-height: 1.8;
+  font-family: "Satoshi", -apple-system, sans-serif;
+}
+.contributors-name-list span { white-space: nowrap; }
+.contributors-name-list span::after { content: ","; color: #9ca3af; }
+.contributors-name-list span:last-child::after { content: ""; }
+
+/* Generic placeholder box */
+.placeholder-box {
+  border: 2px dashed #d1d5db;
+  border-radius: 14px;
+  padding: 1.5rem;
+  text-align: center;
+  color: #9ca3af;
+  font-size: 0.92rem;
+  background: #fafafa;
+  margin: 1rem 0;
+  font-family: "Satoshi", -apple-system, sans-serif;
+}
+
+/* Footer */
+.wb-footer {
+  text-align: center;
+  font-family: "Satoshi", -apple-system, sans-serif;
+  font-size: 0.85rem;
+  color: #6b7280;
+}
+.wb-footer a { color: #b91c1c; text-decoration: none; }
+.wb-footer a:hover { text-decoration: underline; }
