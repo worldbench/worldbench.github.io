@@ -36,7 +36,35 @@
         <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>  <!-- jquery -->
         <script defer src="./static/js/medium-zoom.min.js"></script>
         <script defer src="./static/js/zoom.js"></script>
-    </head>
+    <style>
+/* === auto-research-style paper tables (scoped) === */
+.papers-section .ctable-wrap{overflow-x:auto;}
+.papers-section .ctable{width:100%;border-collapse:collapse;font-size:0.9rem;}
+.papers-section .ctable td{padding:0.55rem 0.6rem;vertical-align:top;border-bottom:1px solid #f0f0f0;}
+.papers-section .ctable tbody tr:hover{background:#fffbeb;}
+.papers-section .ctable .col-num{width:34px;text-align:right;color:#9ca3af;font-size:0.78rem;padding-right:0.5rem;}
+.papers-section .ctable .col-method{font-weight:600;color:#111827;}
+.papers-section .ctable .col-method a{color:inherit;text-decoration:none;}
+.papers-section .ctable .col-method a:hover{color:#92400e;text-decoration:underline;}
+.papers-section .ctable .col-venue{width:96px;white-space:nowrap;}
+.papers-section .ctable .col-links{width:80px;text-align:right;white-space:nowrap;}
+.papers-section .ctable .col-links a{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:6px;color:#374151;text-decoration:none;}
+.papers-section .ctable .col-links a:hover{background:#fef3c7;color:#92400e;}
+.papers-section .ctable .ct-group td{padding:0.4rem 0.7rem;font-weight:700;color:#fff;font-size:0.82rem;letter-spacing:.02em;}
+.papers-section .ctable .ct-group.ct-g1 td{background:#5b8def;}
+.papers-section .ctable .ct-group.ct-g2 td{background:#7a6fd0;}
+.papers-section .ctable .ct-group.ct-g3 td{background:#3fae8e;}
+.papers-section .ctable .ct-group.ct-g4 td{background:#d98a3d;}
+.papers-section .ctable .ct-group.ct-g5 td{background:#c2557a;}
+.papers-section .venue-pill{display:inline-block;padding:0.1rem 0.45rem;border-radius:999px;font-size:0.72rem;font-weight:600;white-space:nowrap;}
+.papers-section .venue-pill.v-arxiv{background:#fee2e2;color:#b91c1c;}
+.papers-section .venue-pill.v-top{background:#ddd6fe;color:#5b21b6;}
+.papers-section .venue-pill.v-conf{background:#d1fae5;color:#047857;}
+.papers-section .showmore-wrap{margin-top:0.6rem;text-align:center;}
+.papers-section .showmore-btn{cursor:pointer;border:1px solid #e5e7eb;background:#fff;border-radius:8px;padding:0.35rem 0.9rem;font-size:0.85rem;color:#374151;}
+.papers-section .showmore-btn:hover{background:#f9fafb;border-color:#d1d5db;}
+</style>
+</head>
 
 
     <body>
@@ -643,32 +671,19 @@
 
             <section id="video-papers" class="papers-section" data-section-key="video" data-initial="3">
                 <h2>Video Generation</h2>
-                <div class="bar" aria-live="polite">
-                  <div class="tabs" role="tablist" aria-label="Video Generation Categories">
-                    <button class="tab-btn tab-1" role="tab" aria-selected="true" aria-controls="video-panel-a" id="video-tab-a">Data Engines</button>
-                    <button class="tab-btn tab-2" role="tab" aria-selected="false" aria-controls="video-panel-b" id="video-tab-b">Action Interpreters</button>
-                    <button class="tab-btn tab-3" role="tab" aria-selected="false" aria-controls="video-panel-c" id="video-tab-c">Neural Simulators</button>
-                    <button class="tab-btn tab-4" role="tab" aria-selected="false" aria-controls="video-panel-d" id="video-tab-d">Scene Reconstructors</button>
-  
+              <div class="bar" aria-live="polite">
+                <div class="search">
+                  🔎 <input class="paper-search" type="search" placeholder="Search: Title / Venue" />
                 </div>
-                  <div class="search" title="输入关键词过滤（标题、作者、出处）">
-                    🔎 <input class="paper-search" type="search" placeholder="Search: Title / Author / Source" />
-                  </div>
-                  <span class="count">0 items</span>
-                </div>
-                <section id="video-panel-a" class="panel" role="tabpanel" aria-labelledby="video-tab-a" aria-hidden="false">
-                  <div class="list"></div>
-                </section>
-                <section id="video-panel-b" class="panel" role="tabpanel" aria-labelledby="video-tab-b" aria-hidden="true">
-                  <div class="list"></div>
-                </section>
-                <section id="video-panel-c" class="panel" role="tabpanel" aria-labelledby="video-tab-c" aria-hidden="true">
-                  <div class="list"></div>
-                </section>
-                <section id="video-panel-d" class="panel" role="tabpanel" aria-labelledby="video-tab-d" aria-hidden="true">
-                  <div class="list"></div>
-                </section>
-              </section>
+                <span class="count">0 items</span>
+              </div>
+              <div class="ctable-wrap">
+                <table class="ctable">
+                  <tbody class="list"></tbody>
+                </table>
+              </div>
+              <div class="showmore-wrap"></div>
+            </section>
 
               
               <section id="projects">
@@ -678,42 +693,19 @@
 
             <section id="occupancy-papers" class="papers-section" data-section-key="occupancy">
                 <h2>Occupancy Generation</h2>
-                <div class="bar" aria-live="polite">
-                  <div class="tabs" role="tablist" aria-label="Occupancy Generation Categories">
-                    <button class="tab-btn tab-1" role="tab" aria-selected="true" aria-controls="occupancy-panel-a" id="occupancy-tab-a">Scene Representors</button>
-                    <button class="tab-btn tab-2" role="tab" aria-selected="false" aria-controls="occupancy-panel-b" id="occupancy-tab-b">Occupancy Forecasters</button>
-                    <button class="tab-btn tab-3" role="tab" aria-selected="false" aria-controls="occupancy-panel-c" id="occupancy-tab-c">Autoregressive Simulators</button>
-                    <!-- <button class="tab-btn tab-4" role="tab" aria-selected="false" aria-controls="video-panel-d" id="video-tab-d">Scene Reconstructors</button>   -->
+              <div class="bar" aria-live="polite">
+                <div class="search">
+                  🔎 <input class="paper-search" type="search" placeholder="Search: Title / Venue" />
                 </div>
-                  <div class="search" title="输入关键词过滤（标题、作者、出处）">
-                    🔎 <input class="paper-search" type="search" placeholder="Search: Title / Author / Source" />
-                  </div>
-                  <span class="count">0 items</span>
-                </div>
-                <section id="occupancy-panel-a" class="panel" role="tabpanel" aria-labelledby="occupancy-tab-a" aria-hidden="false">
-                  <div class="list"></div>
-                </section>
-                <section id="occupancy-panel-b" class="panel" role="tabpanel" aria-labelledby="occupancy-tab-b" aria-hidden="true">
-                  <div class="list"></div>
-                </section>
-                <section id="occupancy-panel-c" class="panel" role="tabpanel" aria-labelledby="occupancy-tab-c" aria-hidden="true">
-                  <div class="list"></div>.grid-2x2{
-                    display: grid;
-                    grid-template-columns: repeat(2, minmax(0, 1fr));
-                    align-items: start;
-                    gap: 12px;
-                  }
-                  .viseriframe{
-                    width: 100%;
-                    height: auto; 
-                    border: 0;
-                    border-radius: 8px;
-                  }
-                </section>
-                <section id="video-panel-d" class="panel" role="tabpanel" aria-labelledby="video-tab-d" aria-hidden="true">
-                    <div class="list"></div>
-                </section>
-              </section>
+                <span class="count">0 items</span>
+              </div>
+              <div class="ctable-wrap">
+                <table class="ctable">
+                  <tbody class="list"></tbody>
+                </table>
+              </div>
+              <div class="showmore-wrap"></div>
+            </section>
 
 
               <section id="projects">
@@ -724,30 +716,19 @@
 
               <section id="lidar-papers" class="papers-section" data-section-key="lidar">
                 <h2>LiDAR Generation</h2>
-                <div class="bar" aria-live="polite">
-                  <div class="tabs" role="tablist" aria-label="LiDAR Generation Categories">
-                    <button class="tab-btn tab-1" role="tab" aria-selected="true" aria-controls="lidar-panel-a" id="lidar-tab-a">Data Engines</button>
-                    <button class="tab-btn tab-2" role="tab" aria-selected="false" aria-controls="lidar-panel-b" id="lidar-tab-b">Action Interpreters</button>
-                    <button class="tab-btn tab-3" role="tab" aria-selected="false" aria-controls="lidar-panel-c" id="lidar-tab-c">Autoregressive Simulators</button>
-                  </div>
-                  <div class="search" title="输入关键词过滤（标题、作者、出处）">
-                    🔎 <input class="paper-search" type="search" placeholder="Search: Title / Author / Source" />
-                  </div>
-                  <span class="count">0 items</span>
+              <div class="bar" aria-live="polite">
+                <div class="search">
+                  🔎 <input class="paper-search" type="search" placeholder="Search: Title / Venue" />
                 </div>
-                <section id="lidar-panel-a" class="panel" role="tabpanel" aria-labelledby="lidar-tab-a" aria-hidden="false">
-                  <div class="list"></div>
-                </section>
-                <section id="lidar-panel-b" class="panel" role="tabpanel" aria-labelledby="lidar-tab-b" aria-hidden="true">
-                  <div class="list"></div>
-                </section>
-                <section id="lidar-panel-c" class="panel" role="tabpanel" aria-labelledby="lidar-tab-c" aria-hidden="true">
-                  <div class="list"></div>
-                </section>
-                <section id="video-panel-d" class="panel" role="tabpanel" aria-labelledby="video-tab-d" aria-hidden="true">
-                    <div class="list"></div>
-                </section>
-              </section>
+                <span class="count">0 items</span>
+              </div>
+              <div class="ctable-wrap">
+                <table class="ctable">
+                  <tbody class="list"></tbody>
+                </table>
+              </div>
+              <div class="showmore-wrap"></div>
+            </section>
 
 
 
@@ -1809,175 +1790,65 @@
             }
           };
     
+
+          window.SECTION_CATS = {
+            video: [['A','Data Engines'],['B','Action Interpreters'],['C','Neural Simulators'],['D','Scene Reconstructors']],
+            occupancy: [['A','Scene Representors'],['B','Occupancy Forecasters'],['C','Autoregressive Simulators']],
+            lidar: [['A','Data Engines'],['B','Action Forecasters'],['C','Autoregressive Simulators']]
+          };
+
           (function initAllPapersSections(){
             document.querySelectorAll('.papers-section').forEach(section => initPapersSection(section));
           })();
     
           function initPapersSection(root){
-            const sectionKey = root.getAttribute('data-section-key'); // video / occupancy / lidar
-            const tabs = Array.from(root.querySelectorAll('.tab-btn'));
-            const panels = {
-              A: root.querySelector(`[id$="panel-a"]`),
-              B: root.querySelector(`[id$="panel-b"]`),
-              C: root.querySelector(`[id$="panel-c"]`),
-              D: root.querySelector(`[id$="panel-d"]`),
-            };
-            const lists = {
-              A: panels.A.querySelector('.list'),
-              B: panels.B.querySelector('.list'),
-              C: panels.C.querySelector('.list'),
-              D: panels.D.querySelector('.list')
-            };
+            const sectionKey = root.getAttribute('data-section-key');
+            const INITIAL = Number(root.dataset.initial || 10) > 6 ? Number(root.dataset.initial) : 12;
+            const tbody = root.querySelector('tbody.list');
             const countEl = root.querySelector('.count');
             const searchInput = root.querySelector('.paper-search');
-    
-            let activeKey = 'A';
-            let keyword = '';
-    
-            function makeLink(label, href){
-              const a = document.createElement('a');
-              a.className = 'link';
-              a.textContent = label;
-              a.href = href || '#';
-              a.target = '_blank';
-              a.rel = 'noopener noreferrer';
-              return a;
+            const ctrlEl = root.querySelector('.showmore-wrap');
+            const cats = (window.SECTION_CATS && window.SECTION_CATS[sectionKey]) || [];
+            let keyword=''; let expanded=false;
+            const esc = v => String(v==null?'':v).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+            function pill(v){ v=(v||'').toLowerCase(); if(v.indexOf('arxiv')>=0) return 'v-arxiv'; if(['iclr','neurips','icml','nature','nmi'].some(t=>v.indexOf(t)>=0)) return 'v-top'; return 'v-conf'; }
+            function venueLabel(it){ const y=it.year?(" '"+String(it.year).slice(-2)):''; return esc((it.venue||'')+y); }
+            function match(it,kw){ if(!kw) return true; return [it.title,it.authors,it.venue,it.year].map(x=>String(x==null?'':x)).join(' ').toLowerCase().indexOf(kw)>=0; }
+            function linkIcons(it){
+              const defs=[['paper',it.paper,'fas fa-external-link-alt','Paper'],['code',it.code,'fab fa-github','Code'],['project',it.project,'fas fa-globe','Project']];
+              return defs.filter(d=>d[1]&&d[1]!=='#').map(d=>'<a href="'+d[1]+'" target="_blank" rel="noopener noreferrer" aria-label="'+d[3]+'" title="'+d[3]+'"><i class="'+d[2]+'"></i></a>').join('');
             }
-            function makeCard(item, badgeIdx=1){
-              const wrap = document.createElement('article');
-              wrap.className = 'card';
-    
-              const dot = document.createElement('span');
-              dot.className = 'badge' + (badgeIdx===2?' badge-2': (badgeIdx===3?' badge-3':(badgeIdx===4?' badge-4':'')));
-              wrap.appendChild(dot);
-    
-              const box = document.createElement('div');
-              const h3 = document.createElement('h3');
-              h3.textContent = item.title || 'Untitled';
-              const meta = document.createElement('div');
-              meta.className = 'meta';
-              meta.textContent = [
-                item.authors || '',
-                item.venue ? `${item.venue}${item.year?` · ${item.year}`:''}` : (item.year||'')
-              ].filter(Boolean).join(' | ');
-    
-              const links = document.createElement('div');
-              links.className = 'links';
-              links.appendChild(makeLink('Paper', item.paper));
-              links.appendChild(makeLink('Code', item.code));
-              links.appendChild(makeLink('Project', item.project));
-    
-              box.appendChild(h3);
-              box.appendChild(meta);
-              box.appendChild(links);
-              wrap.appendChild(box);
-              return wrap;
-            }
-    
-            const normalize = s => (s||'').toLowerCase();
-            function match(item, kw){
-              if(!kw) return true;
-              const bag = [item.title, item.authors, item.venue, item.year]
-                .map(x=>String(x??'')).join(' ').toLowerCase();
-              return bag.includes(kw);
-            }
-    
-            function renderList(subKey){
-                const INITIAL = Number(root.dataset.initial || 3); // 默认 3
-                const data = (paperStore[sectionKey] && paperStore[sectionKey][subKey]) || [];
-                const items = data.filter(it=>match(it, keyword));
-
-                const panelEl = panels[subKey];
-                const listEl  = lists[subKey];
-
-                let ctrlEl = panelEl.querySelector('.showmore-wrap');
-                if(!ctrlEl){
-                    ctrlEl = document.createElement('div');
-                    ctrlEl.className = 'showmore-wrap';
-                    panelEl.appendChild(ctrlEl);
+            function render(){
+              tbody.innerHTML='';
+              const groups = cats.map(function(c){ const sk=c[0],label=c[1]; const arr=((paperStore[sectionKey]||{})[sk]||[]).filter(it=>match(it,keyword)); return {label:label, arr:arr}; }).filter(g=>g.arr.length>0);
+              const grand = groups.reduce((a,g)=>a+g.arr.length,0);
+              let budget = expanded ? Infinity : INITIAL;
+              let num=0;
+              groups.forEach(function(g,ci){
+                if(budget<=0) return;
+                const tr=document.createElement('tr'); tr.className='ct-group ct-g'+((ci%5)+1);
+                tr.innerHTML='<td colspan="4">'+esc(g.label)+'</td>';
+                tbody.appendChild(tr);
+                for(let i=0;i<g.arr.length;i++){
+                  if(budget<=0) break;
+                  const it=g.arr[i]; num++; budget--;
+                  const title=(it.paper&&it.paper!=='#') ? '<a href="'+it.paper+'" target="_blank" rel="noopener noreferrer">'+esc(it.title)+'</a>' : esc(it.title);
+                  const r=document.createElement('tr');
+                  r.innerHTML='<td class="col-num">'+num+'</td><td class="col-method">'+title+'</td><td class="col-venue"><span class="venue-pill '+pill(it.venue)+'">'+venueLabel(it)+'</span></td><td class="col-links">'+linkIcons(it)+'</td>';
+                  tbody.appendChild(r);
                 }
-
-                if(panelEl.dataset.expanded === undefined){
-                    panelEl.dataset.expanded = "false";
-                }
-                const expanded = panelEl.dataset.expanded === "true";
-
-                const shown = expanded ? items : items.slice(0, INITIAL);
-
-                listEl.innerHTML = '';
-                if(items.length===0){
-                    const empty = document.createElement('div');
-                    empty.className = 'empty';
-                    empty.textContent = 'No data or no match.';
-                    listEl.appendChild(empty);
-                    ctrlEl.innerHTML = '';
-                    countEl.textContent = `0 items`;
-                    return;
-                }
-                shown.forEach(it => listEl.appendChild(makeCard(
-                    it, subKey==='A'?1: subKey==='B'?2: subKey==='C'?3:4
-                )));
-
-                countEl.textContent = `${shown.length}/${items.length} items`;
-
-                if(items.length > INITIAL){
-                    ctrlEl.innerHTML = `
-                    <button class="showmore-btn" type="button">
-                        ${expanded ? "Collapse" : `Expand (${items.length - INITIAL})`}
-                    </button>`;
-                    const btn = ctrlEl.querySelector('button');
-                    btn.onclick = () => {
-                    panelEl.dataset.expanded = expanded ? "false" : "true";
-                    renderList(subKey);
-                    };
-                }else{
-                    ctrlEl.innerHTML = '';
-                }
-                }
-
-    
-            function switchTo(subKey){
-              activeKey = subKey;
-              panels[activeKey].dataset.expanded = "false";
-              tabs.forEach(btn=>{
-                const isSelected = btn.id.endsWith(subKey.toLowerCase());
-                btn.setAttribute('aria-selected', String(isSelected));
               });
-              Object.entries(panels).forEach(([k,el])=>{
-                el.setAttribute('aria-hidden', String(k!==subKey));
-              });
-              renderList(subKey);
+              countEl.textContent = num+'/'+grand+' items';
+              if(ctrlEl){
+                if(grand>INITIAL){
+                  ctrlEl.innerHTML='<button class="showmore-btn" type="button">'+(expanded?'Collapse':('Expand ('+(grand-INITIAL)+' more)'))+'</button>';
+                  ctrlEl.querySelector('button').onclick=function(){ expanded=!expanded; render(); };
+                } else { ctrlEl.innerHTML=''; }
+              }
             }
-    
-            // events
-            tabs.forEach(btn=>{
-              btn.addEventListener('click', ()=>{
-                const subKey = btn.id.split('-').pop().toUpperCase(); // a/b/c
-                switchTo(subKey);
-              });
-            });
-            root.addEventListener('keydown', (e)=>{
-            if(e.key==='ArrowRight' || e.key==='ArrowLeft'){
-                e.preventDefault();
-                const order = ['A','B','C','D'].filter(k => panels[k]);
-                const idx = order.indexOf(activeKey);
-                const len = order.length;
-                const next = e.key==='ArrowRight' ? (idx+1)%len : (idx-1+len)%len;
-                switchTo(order[next]);
-                root.querySelector(`[id$="tab-${order[next].toLowerCase()}"]`)?.focus();
-            }
-            });
-            searchInput.addEventListener('input', ()=>{
-              keyword = normalize(searchInput.value);
-              renderList(activeKey);
-            });
-            searchInput.addEventListener('search', ()=>{
-              keyword = normalize(searchInput.value);
-              renderList(activeKey);
-            });
-    
-            // init
-            switchTo('A');
+            searchInput.addEventListener('input', function(){ keyword=(searchInput.value||'').toLowerCase(); expanded = keyword.length>0; render(); });
+            searchInput.addEventListener('search', function(){ keyword=(searchInput.value||'').toLowerCase(); render(); });
+            render();
           }
         </script>
 
