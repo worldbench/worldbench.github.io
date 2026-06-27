@@ -39,7 +39,10 @@
     <style>
 /* === auto-research-style paper tables (scoped) === */
 .papers-section .ctable-wrap{overflow-x:auto;}
-.papers-section .ctable{width:100%;border-collapse:collapse;font-size:0.9rem;}
+.papers-section .ctable{display:table;width:100%;border-collapse:collapse;font-size:0.9rem;}
+.papers-section .ctable tbody.list{display:table-row-group;grid-template-columns:none;gap:0;margin:0;}
+.papers-section .ctable tr{display:table-row;}
+.papers-section .ctable td{display:table-cell;}
 .papers-section .ctable td{padding:0.55rem 0.6rem;vertical-align:top;border-bottom:1px solid #f0f0f0;}
 .papers-section .ctable tbody tr:hover{background:#fffbeb;}
 .papers-section .ctable .col-num{width:34px;text-align:right;color:#9ca3af;font-size:0.78rem;padding-right:0.5rem;}
