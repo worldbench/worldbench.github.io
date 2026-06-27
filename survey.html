@@ -1828,10 +1828,12 @@
               const title=(it.paper&&it.paper!=='#') ? '<a href="'+it.paper+'" target="_blank" rel="noopener noreferrer">'+esc(it.title)+'</a>' : esc(it.title);
               return '<td class="col-num">'+n+'</td><td class="col-method">'+title+'</td><td class="col-venue"><span class="venue-pill '+pill(it.venue)+'">'+venueLabel(it)+'</span></td><td class="col-links">'+linkIcons(it)+'</td>';
             }
+            function isArxiv(it){ return ((it.venue||'').toLowerCase().indexOf('arxiv')>=0) || !it.venue; }
+            function cmp(a,b){ var ya=Number(a.year)||0, yb=Number(b.year)||0; if(yb!==ya) return yb-ya; return (isArxiv(a)?1:0)-(isArxiv(b)?1:0); }
             function render(){
               tbody.innerHTML='';
               const filtering = keyword.length>0;
-              const groups = cats.map(function(c,idx){ const arr=((paperStore[sectionKey]||{})[c[0]]||[]).filter(it=>match(it,keyword)); return {label:c[1], arr:arr, ci:idx}; }).filter(g=>g.arr.length>0);
+              const groups = cats.map(function(c,idx){ const arr=((paperStore[sectionKey]||{})[c[0]]||[]).filter(it=>match(it,keyword)).sort(cmp); return {label:c[1], arr:arr, ci:idx}; }).filter(g=>g.arr.length>0);
               const grand = groups.reduce((a,g)=>a+g.arr.length,0);
               let shown=0;
               groups.forEach(function(g){
