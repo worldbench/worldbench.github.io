@@ -66,9 +66,9 @@
 .papers-section .showmore-wrap{margin-top:0.6rem;text-align:center;}
 .papers-section .showmore-btn{cursor:pointer;border:1px solid #e5e7eb;background:#fff;border-radius:8px;padding:0.35rem 0.9rem;font-size:0.85rem;color:#374151;}
 .papers-section .showmore-btn:hover{background:#f9fafb;border-color:#d1d5db;}
-.papers-section .ctable .cat-more-row td{border-bottom:none;padding-top:2px;padding-bottom:10px;}
-.papers-section .ctable .cat-more-btn{cursor:pointer;border:1px solid #e5e7eb;background:#fff;border-radius:8px;padding:0.2rem 0.7rem;font-size:0.8rem;color:#374151;}
-.papers-section .ctable .cat-more-btn:hover{background:#f9fafb;border-color:#d1d5db;color:#92400e;}
+.papers-section .ctable .cat-more-row td{border-bottom:none;text-align:center;padding-top:10px;padding-bottom:16px;}
+.papers-section .ctable .cat-more-btn{cursor:pointer;display:inline-flex;align-items:center;gap:0.45rem;border:1.5px solid #f59e0b;background:#fff7ed;border-radius:999px;padding:0.5rem 1.5rem;font-size:0.95rem;font-weight:700;color:#92400e;transition:all .15s ease;box-shadow:0 1px 3px rgba(0,0,0,.06);}
+.papers-section .ctable .cat-more-btn:hover{background:#fde68a;border-color:#d97706;color:#7c2d12;box-shadow:0 2px 8px rgba(217,119,6,.25);}
 </style>
 </head>
 
@@ -1261,7 +1261,7 @@
                 for(let i=0;i<limit;i++){ const r=document.createElement('tr'); r.innerHTML=rowHTML(g.arr[i], i+1); tbody.appendChild(r); shown++; }
                 if(!filtering && g.arr.length>PER_CAT){
                   const br=document.createElement('tr'); br.className='cat-more-row';
-                  br.innerHTML='<td></td><td colspan="3"><button class="cat-more-btn" type="button">'+(open?'Show less':('Show '+(g.arr.length-PER_CAT)+' more'))+'</button></td>';
+                  br.innerHTML='<td colspan="4"><button class="cat-more-btn" type="button">'+(open?'Show less <i class="fas fa-chevron-up"></i>':('Show '+(g.arr.length-PER_CAT)+' more <i class="fas fa-chevron-down"></i>'))+'</button></td>';
                   tbody.appendChild(br);
                   br.querySelector('button').onclick=function(){ catOpen[g.ci]=!open; render(); };
                 }
