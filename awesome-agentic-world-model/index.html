@@ -113,7 +113,7 @@ blockquote{margin:1.4rem 0;padding:.4rem 0 .4rem 1.1rem;border-left:3px solid va
 .seg button{border:0;background:transparent;color:var(--muted);padding:.45rem 1rem;cursor:pointer;font:inherit;font-size:.9rem;font-weight:500}
 .seg button.on{background:var(--accent);color:#fff}
 .toggle-body{margin-top:1rem;display:grid;grid-template-columns:1fr 1fr;gap:1rem}
-.toggle-body .pane{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:.9rem}
+.toggle-body .pane{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:.9rem;transition:opacity .4s ease}
 .toggle-body .pane.dim{opacity:.4}
 .toggle-body .pane h4{margin:.1rem 0 .4rem;font-size:.95rem}
 .toggle-body .pane.dim h4{}
@@ -589,13 +589,21 @@ function selFn(i){curFn=i;fwheel.querySelectorAll('.wnode').forEach(g=>g.classLi
 (function(){const BARS=[["Dynamics",40],["Spatial",49],["Execution",29],["Memory / Skill",5],["Reward / Verification",74]],bmax=74,el=document.getElementById('bars');
   if(el)el.innerHTML=BARS.map(([n,c])=>`<div class="bar"><div class="blabel">${n}</div><div class="btrack"><div class="barfill" style="--w:${(c/bmax*100).toFixed(1)}%"></div></div><div class="bnum">${c}</div></div>`).join('');})();
 
-// ---- toggle ----
-document.querySelectorAll('#w-toggle .seg button').forEach(b=>b.onclick=()=>{
-  document.querySelectorAll('#w-toggle .seg button').forEach(x=>x.classList.toggle('on',x===b));
-  const wp=b.dataset.view==='wp';
-  document.getElementById('pane-wm').classList.toggle('dim',wp);
-  document.getElementById('pane-wp').classList.toggle('dim',!wp);
-});
+// ---- toggle (auto-switch between the two views) ----
+(function(){const seg=document.querySelectorAll('#w-toggle .seg button'),
+  wm=document.getElementById('pane-wm'),wp=document.getElementById('pane-wp');
+  function setView(v){seg.forEach(x=>x.classList.toggle('on',x.dataset.view===v));
+    const isWp=v==='wp';wm.classList.toggle('dim',isWp);wp.classList.toggle('dim',!isWp);}
+  seg.forEach(b=>b.addEventListener('click',()=>setView(b.dataset.view)));
+  const reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const w=document.getElementById('w-toggle');let t=null;
+  function tick(){const cur=document.querySelector('#w-toggle .seg button.on');setView(cur&&cur.dataset.view==='wm'?'wp':'wm');}
+  function start(){if(reduce||t)return;t=setInterval(tick,3200);}
+  function stop(){if(t){clearInterval(t);t=null;}}
+  w.addEventListener('mouseenter',stop);w.addEventListener('mouseleave',start);
+  const sec=document.getElementById('shift');
+  if('IntersectionObserver' in window && sec){new IntersectionObserver(es=>es.forEach(e=>e.isIntersecting?start():stop()),{threshold:.25}).observe(sec);}
+  else start();})();
 
 // ---- stepper ----
 function selLv(n){[1,2,3].forEach(i=>document.getElementById('lv'+i).classList.toggle('on',i===n));
