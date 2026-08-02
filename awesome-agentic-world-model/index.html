@@ -251,6 +251,21 @@ a.anchor:hover{opacity:1;color:var(--accent);text-decoration:none}
 .rlinks a:hover{color:var(--accent)}
 .rlinks .sep{color:var(--border)}
 
+/* mini card grid (why-a-proxy / criteria) */
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(215px,1fr));gap:.85rem;margin:1.2rem 0}
+.mcard{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:.95rem;box-shadow:var(--shadow)}
+.mcard .ic{color:var(--accent);font-size:1.25rem}
+.mcard h4{margin:.45rem 0 .3rem;font-size:1.05rem}
+.mcard p{margin:0;font-size:.92rem;color:var(--muted);line-height:1.5}
+
+/* levels comparison table */
+.ltable{width:100%;border-collapse:collapse;margin:1.3rem 0 .3rem;font-size:.95rem}
+.ltable th,.ltable td{text-align:left;padding:.55rem .6rem;border-bottom:1px solid var(--hair);vertical-align:top}
+.ltable thead th{color:var(--accent);font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;border-bottom:1px solid var(--border)}
+.ltable tbody tr:last-child td{border-bottom:none}
+.ltable .lcell{font-weight:700;white-space:nowrap}
+@media(max-width:640px){.ltable,.ltable thead,.ltable tbody,.ltable th,.ltable td,.ltable tr{display:block}.ltable thead{display:none}.ltable td{border:none;padding:.15rem .1rem}.ltable tr{border:1px solid var(--border);border-radius:12px;padding:.6rem;margin-bottom:.7rem;background:var(--card)}.ltable .lcell{margin-bottom:.3rem}}
+
 /* formula reveal */
 .reveal .formula{opacity:0;transform:translateY(10px)}
 .reveal.in .formula{opacity:1;transform:none;transition:opacity .6s ease,transform .6s ease;transition-delay:.15s}
@@ -305,6 +320,7 @@ a.anchor:hover{opacity:1;color:var(--accent);text-decoration:none}
   <a href="#question">The Question</a>
   <a href="#shift">The Shift</a>
   <a href="#formalism">Formalism</a>
+  <a href="#criteria">Good Proxy</a>
   <a href="#functions">Six Functions</a>
   <a href="#levels">Three Levels</a>
   <a href="#example">A Worked Example</a>
@@ -322,6 +338,12 @@ a.anchor:hover{opacity:1;color:var(--accent);text-decoration:none}
   <h2>Where should world modeling go next?</h2>
   <p class="lead">Traditionally, a <b>world model</b> is a passive predictor of environment dynamics: given a state and an action, it forecasts what comes next. Useful, but too narrow once the goal is an agent that continually improves through interaction.</p>
   <p>Real environments are expensive to access, slow to run, hard to parallelize, and sometimes unsafe. Yet agents need rich, iterative feedback to refine plans, learn from mistakes, and weigh risky actions without paying the full cost of real-world trial and error. So what, exactly, should such an agent learn from?</p>
+  <div class="mgrid why">
+    <div class="mcard"><div class="ic"><i class="fas fa-hourglass-half"></i></div><h4>Costly &amp; slow</h4><p>Agents need vast trial and error, but real interactions are expensive and slow to run.</p></div>
+    <div class="mcard"><div class="ic"><i class="fas fa-triangle-exclamation"></i></div><h4>Risky &amp; non-rollbackable</h4><p>Wrong actions in the real world are hard to undo and can cause irreversible harm.</p></div>
+    <div class="mcard"><div class="ic"><i class="fas fa-eye-slash"></i></div><h4>Feedback comes too late</h4><p>Real feedback is passive and after-the-fact &mdash; it only reveals what already happened.</p></div>
+    <div class="mcard"><div class="ic"><i class="fas fa-clone"></i></div><h4>Hard to parallelize</h4><p>Real environments are limited and can't be replicated at scale like simulators.</p></div>
+  </div>
   <blockquote>Rather than asking what the environment will look like next, we ask what information an agent will receive after an interaction.</blockquote>
 </section>
 
@@ -359,6 +381,19 @@ a.anchor:hover{opacity:1;color:var(--accent);text-decoration:none}
   <p>An agent interaction does not always advance physical time — it may query a viewpoint, simulate an execution, retrieve an experience, or verify a plan. We index each interaction by a step $\ell$, and treat the proxy's output as agent-usable feedback selected by a proxy function $\mathcal{F}$:</p>
   <div class="formula">$\hat{s}_{\ell+1}=\mathcal{WP}\!\left(s_\ell,\,u_\ell^{\mathcal{F}}\right),\qquad s_\ell\in\mathcal{S}$</div>
   <div class="callout"><div class="t">The unifying criterion</div>Whatever the function, the output should be <b>actionable</b>: it should help the agent plan, decide, learn, verify, or continually improve. Not visual realism for its own sake — <b>actionable information gain</b>.</div>
+</section>
+
+<section id="criteria" class="reveal">
+  <div class="kicker">Definition</div>
+  <h2>What makes a good proxy?</h2>
+  <p>Not every intermediate module is an effective World Proxy. Within the agent's closed loop, a good proxy should be <b>grounded, controllable, actionable, scalable, and forward-looking</b>.</p>
+  <div class="mgrid">
+    <div class="mcard"><div class="ic"><i class="fas fa-anchor"></i></div><h4>Groundedness</h4><p>Relies on real environment data, rules, trajectories, or interaction evidence &mdash; not detached generation.</p></div>
+    <div class="mcard"><div class="ic"><i class="fas fa-sliders"></i></div><h4>Controllability</h4><p>Supports agent-initiated queries, actions, or interventions and returns corresponding feedback.</p></div>
+    <div class="mcard"><div class="ic"><i class="fas fa-bullseye"></i></div><h4>Feedback usefulness</h4><p>Improves planning, decision making, policy learning, or continual improvement.</p></div>
+    <div class="mcard"><div class="ic"><i class="fas fa-arrow-up-right-dots"></i></div><h4>Cost &amp; scalability</h4><p>Reduces real-world interaction cost while scaling safely across tasks and settings.</p></div>
+    <div class="mcard"><div class="ic"><i class="fas fa-binoculars"></i></div><h4>Forward-looking ability</h4><p>Anticipates outcomes, counterfactuals, or risks before real execution.</p></div>
+  </div>
 </section>
 
 <section id="functions" class="reveal">
@@ -401,6 +436,14 @@ a.anchor:hover{opacity:1;color:var(--accent);text-decoration:none}
     </svg>
     <figcaption>L3 co-evolution: the agent and proxy improve each other in a continual loop.</figcaption>
   </figure>
+  <table class="ltable">
+    <thead><tr><th>Level</th><th>What it does</th><th>Retained across episodes</th><th>Representative example</th></tr></thead>
+    <tbody>
+      <tr><td class="lcell" style="color:var(--l1)">L1 &middot; Guidance</td><td>Advises a frozen agent at decision time.</td><td>No &mdash; within-episode only.</td><td>Plan via imagined rollouts; critique a plan.</td></tr>
+      <tr><td class="lcell" style="color:var(--l2)">L2 &middot; Training</td><td>Generates experience or supervision that updates the agent's parameters.</td><td>Yes &mdash; in the policy.</td><td>Learn a policy in imagination; reward signals for RL.</td></tr>
+      <tr><td class="lcell" style="color:var(--l3)">L3 &middot; Co-Evolution</td><td>Agent and proxy improve each other in a continual loop.</td><td>Yes &mdash; both improve.</td><td>Online model learning on a robot; a co-evolving proxy.</td></tr>
+    </tbody>
+  </table>
 </section>
 
 <section id="example" class="reveal">
