@@ -253,6 +253,8 @@ a.anchor:hover{opacity:1;color:var(--accent);text-decoration:none}
 
 /* mini card grid (why-a-proxy / criteria) */
 .mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(215px,1fr));gap:.85rem;margin:1.2rem 0}
+.mgrid.why{grid-template-columns:repeat(4,minmax(0,1fr))}
+@media(max-width:600px){.mgrid.why{grid-template-columns:1fr 1fr}}
 .mcard{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:.95rem;box-shadow:var(--shadow)}
 .mcard .ic{color:var(--accent);font-size:1.25rem}
 .mcard h4{margin:.45rem 0 .3rem;font-size:1.05rem}
