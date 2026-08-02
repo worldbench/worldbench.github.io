@@ -554,6 +554,7 @@ const ICONS={
 // ---- functions explorer (radial wheel) ----
 const fwheel=document.getElementById('fwheel'), fpanel=document.getElementById('fpanel');
 const SHORT=["Dynamics","Spatial","Execution","Memory","Skill","Reward"];
+let curFn=0;
 (function(){const cx=220,cy=210,R=142,NR=38;let s='';
   FUNCTIONS.forEach((fn,i)=>{const a=-Math.PI/2+i*(Math.PI/3),x=cx+R*Math.cos(a),y=cy+R*Math.sin(a);
     s+=`<line class="spoke" x1="${cx}" y1="${cy}" x2="${x.toFixed(1)}" y2="${y.toFixed(1)}"></line>`;});
@@ -563,13 +564,23 @@ const SHORT=["Dynamics","Spatial","Execution","Memory","Skill","Reward"];
     s+=`<g class="wnode" data-i="${i}" transform="translate(${x.toFixed(1)},${y.toFixed(1)})"><circle r="${NR}"></circle>${ic}<text y="${NR+20}">${SHORT[i]}</text></g>`;});
   fwheel.innerHTML=s;
   fwheel.querySelectorAll('.wnode').forEach(g=>g.addEventListener('click',()=>selFn(+g.dataset.i)));})();
-function selFn(i){fwheel.querySelectorAll('.wnode').forEach(g=>g.classList.toggle('on',+g.dataset.i===i));const fn=FUNCTIONS[i];
+function selFn(i){curFn=i;fwheel.querySelectorAll('.wnode').forEach(g=>g.classList.toggle('on',+g.dataset.i===i));const fn=FUNCTIONS[i];
   fpanel.innerHTML=`<div class="fhead">${ICONS[fn.k]||''}<span>${fn.k} Proxy</span></div>
    <div class="q">${fn.q}</div>
    <div class="formula">$$${fn.f}$$</div>
    <div class="tags">${fn.ex.map(e=>`<span>${e}</span>`).join('')}</div>`;
   fpanel.style.animation='none';void fpanel.offsetWidth;fpanel.style.animation='';
   if(window.renderMathInElement)renderMathInElement(fpanel,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]});}
+// auto-rotate the wheel clockwise; pause on hover, off-screen, or reduced-motion
+(function(){const reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let t=null;
+  function start(){if(reduce||t)return;t=setInterval(()=>selFn((curFn+1)%FUNCTIONS.length),3500);}
+  function stop(){if(t){clearInterval(t);t=null;}}
+  fwheel.addEventListener('mouseenter',stop);
+  fwheel.addEventListener('mouseleave',start);
+  const sec=document.getElementById('functions');
+  if('IntersectionObserver' in window && sec){new IntersectionObserver(es=>es.forEach(e=>e.isIntersecting?start():stop()),{threshold:.25}).observe(sec);}
+  else start();})();
 
 // ---- reading-list bars ----
 (function(){const BARS=[["Dynamics",40],["Spatial",49],["Execution",29],["Memory / Skill",5],["Reward / Verification",74]],bmax=74,el=document.getElementById('bars');
