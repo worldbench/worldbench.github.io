@@ -18,7 +18,7 @@
 :root{
   --accent:#395FCF; --accent2:#1F6BFF; --link:#0064E0;
   --l1:#43A047; --l2:#2F6BFF; --l3:#D34A4A;
-  --bg:#fcf8ec; --panel:#f7f1e0; --panel2:#f2ecd8; --card:#fefcf5;
+  --bg:#fdfbf2; --panel:#f7f1e0; --panel2:#f2ecd8; --card:#fefcf5;
   --text:#403829; --muted:#7c7360; --border:#ebe2cd; --hair:#f2ecda;
   --shadow:0 1px 2px rgba(16,24,40,.04),0 8px 24px rgba(16,24,40,.06);
   --measure:720px; --radius:16px;
@@ -414,7 +414,7 @@ document.getElementById('copybib').onclick=function(){navigator.clipboard.writeT
 const root=document.documentElement,tb=document.getElementById('themebtn');
 function setTheme(t){root.setAttribute('data-theme',t);tb.textContent=t==='dark'?'☀️':'🌙';try{localStorage.setItem('wb-theme',t)}catch(e){}}
 (function(){let t;try{t=localStorage.getItem('wb-theme')}catch(e){}
- if(!t)t=matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';setTheme(t);})();
+ if(!t)t='light';setTheme(t);})();
 tb.onclick=()=>setTheme(root.getAttribute('data-theme')==='dark'?'light':'dark');
 
 // ---- progress + toc active ----
