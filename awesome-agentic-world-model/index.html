@@ -22,15 +22,17 @@
   --text:#403829; --muted:#7c7360; --border:#ebe2cd; --hair:#f2ecda;
   --shadow:0 1px 2px rgba(16,24,40,.04),0 8px 24px rgba(16,24,40,.06);
   --measure:720px; --radius:16px;
+  --grain:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.09 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 html[data-theme="dark"]{
   --bg:#0e1117; --panel:#151a22; --panel2:#1a212b; --card:#161b23;
   --text:#e6edf3; --muted:#9aa7b4; --border:#232b36; --hair:#1c232d;
   --link:#6ea8ff; --shadow:0 1px 2px rgba(0,0,0,.3),0 10px 30px rgba(0,0,0,.35);
+  --grain:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.06 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--text);
+body{margin:0;background:var(--grain),var(--bg);background-attachment:fixed,fixed;color:var(--text);
   font-family:"Rubik",system-ui,sans-serif;line-height:1.72;font-size:18px;
   -webkit-font-smoothing:antialiased;transition:background .3s,color .3s}
 a{color:var(--link);text-decoration:none}
@@ -70,7 +72,18 @@ code,.mono{font-family:"SFMono-Regular",ui-monospace,Menlo,Consolas,monospace;fo
 .motif .node{background:var(--panel);border:1px solid var(--border);border-radius:14px;padding:.7rem 1.05rem;font-weight:600;box-shadow:var(--shadow)}
 .motif .node small{display:block;color:var(--muted);font-weight:400;font-size:.72rem}
 .motif .arrow{color:var(--accent);font-size:1.5rem;font-weight:700}
-.motif .proxy{border-color:var(--accent);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 14%,transparent)}
+.motif .flow{position:relative;width:66px;height:2px;border-radius:2px;
+  background:linear-gradient(90deg,var(--border),var(--accent))}
+.motif .flow::after{content:"";position:absolute;right:-2px;top:50%;transform:translateY(-50%) rotate(45deg);
+  width:7px;height:7px;border-top:2px solid var(--accent);border-right:2px solid var(--accent)}
+.motif .dot{position:absolute;top:50%;left:0;width:8px;height:8px;margin-top:-4px;border-radius:50%;
+  background:var(--accent);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 22%,transparent);
+  animation:flow 2.6s cubic-bezier(.6,0,.4,1) infinite}
+@keyframes flow{0%{left:0;opacity:0}12%{opacity:1}80%{opacity:1}100%{left:100%;opacity:0}}
+.motif .proxy{border-color:var(--accent);animation:proxyPulse 2.6s ease-in-out infinite}
+@keyframes proxyPulse{0%,62%{box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 14%,transparent)}
+  82%{box-shadow:0 0 0 7px color-mix(in srgb,var(--accent) 22%,transparent)}
+  100%{box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 14%,transparent)}}
 
 /* layout */
 .wrap{max-width:1180px;margin:0 auto;padding:0 1.2rem;display:grid;grid-template-columns:230px minmax(0,1fr);gap:2.4rem}
@@ -123,10 +136,15 @@ blockquote{margin:1.4rem 0;padding:.4rem 0 .4rem 1.1rem;border-left:3px solid va
 /* matrix */
 /* functions grid */
 .fgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:.5rem;margin:.4rem 0 1rem}
-.fpill{border:1px solid var(--border);background:var(--panel);border-radius:10px;padding:.55rem .7rem;cursor:pointer;font-size:.86rem;font-weight:600;text-align:center;transition:.12s}
+.fpill{display:flex;align-items:center;justify-content:center;gap:.42rem;border:1px solid var(--border);background:var(--panel);border-radius:10px;padding:.55rem .7rem;cursor:pointer;font-size:.86rem;font-weight:600;text-align:center;transition:background .12s,border-color .12s,color .12s,opacity .5s ease,transform .5s ease}
+.fpill svg{width:17px;height:17px;flex:0 0 auto;opacity:.85}
 .fpill.on{background:var(--accent);color:#fff;border-color:var(--accent)}
 .fpanel{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:1rem}
+.fpanel .fhead{display:flex;align-items:center;gap:.5rem;font-weight:600;font-size:1.05rem}
+.fpanel .fhead svg{width:20px;height:20px;color:var(--accent)}
 .fpanel .q{font-style:italic;color:var(--accent);margin:.1rem 0 .5rem}
+.fpanel,.step-panel{animation:panelIn .18s ease}
+@keyframes panelIn{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
 .tags{display:flex;gap:.35rem;flex-wrap:wrap;margin-top:.5rem}
 .tags span{font-size:.74rem;background:var(--panel2);border:1px solid var(--border);border-radius:999px;padding:.15rem .55rem;color:var(--muted)}
 
@@ -146,6 +164,24 @@ footer.wb-footer{border-top:1px solid var(--hair);margin-top:2rem;text-align:cen
 
 .reveal{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease}
 .reveal.in{opacity:1;transform:none}
+.reveal .fpill,.reveal .chal .c{opacity:0;transform:translateY(9px)}
+.reveal.in .fpill,.reveal.in .chal .c{opacity:1;transform:none}
+.reveal.in .fpill:nth-child(1){transition-delay:.04s}
+.reveal.in .fpill:nth-child(2){transition-delay:.09s}
+.reveal.in .fpill:nth-child(3){transition-delay:.14s}
+.reveal.in .fpill:nth-child(4){transition-delay:.19s}
+.reveal.in .fpill:nth-child(5){transition-delay:.24s}
+.reveal.in .fpill:nth-child(6){transition-delay:.29s}
+.reveal.in .chal .c{transition:opacity .5s ease,transform .5s ease}
+.reveal.in .chal .c:nth-child(1){transition-delay:.05s}
+.reveal.in .chal .c:nth-child(2){transition-delay:.12s}
+.reveal.in .chal .c:nth-child(3){transition-delay:.19s}
+.reveal.in .chal .c:nth-child(4){transition-delay:.26s}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important}
+  .reveal,.reveal .fpill,.reveal .chal .c{transition:none!important;opacity:1!important;transform:none!important}
+  .motif .dot{display:none}
+}
 
 @media(max-width:900px){
   .wrap{grid-template-columns:1fr;gap:0}
@@ -178,7 +214,7 @@ footer.wb-footer{border-top:1px solid var(--hair);margin-top:2rem;text-align:cen
   </div>
   <div class="motif" aria-hidden="true">
     <div class="node">World Model<small>predict next state</small></div>
-    <div class="arrow">→</div>
+    <div class="flow"><span class="dot"></span></div>
     <div class="node proxy">World Proxy<small>return the information transition</small></div>
   </div>
 </header>
@@ -339,16 +375,25 @@ const LEVELS={
  2:{nm:"Training-Time Optimization",col:"var(--l2)",d:"The proxy generates experience or supervision that updates the agent's parameters or policy — synthetic trajectories, reward/verifier signals, or distilled memory and skills.",ex:"e.g. learn a policy in imagination, synthesize experience for RL, reward signals for RL."},
  3:{nm:"Agent-Proxy Co-Evolution",col:"var(--l3)",d:"Agent and proxy improve each other in a continual loop: real trajectories update the proxy, and the sharpened proxy guides, verifies, and trains the agent. This closes the loop with reality and keeps the proxy honest.",ex:"e.g. online model learning on a real robot, self-improvement via a co-evolving world model."}
 };
-const MATRIX_REMOVED=true;
+const svg=p=>`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">${p}</svg>`;
+const ICONS={
+ "Dynamics":svg('<rect x="4" y="4" width="16" height="16" rx="2.5"/><path d="M10 9l5 3-5 3z"/>'),
+ "Spatial":svg('<path d="M12 3l8 4.5v9L12 21l-8-4.5v-9z"/><path d="M4 7.5l8 4.5 8-4.5"/><path d="M12 12v9"/>'),
+ "Execution":svg('<rect x="3" y="4.5" width="18" height="15" rx="2"/><path d="M7 10l3 2.5-3 2.5"/><path d="M13 15h4"/>'),
+ "Memory":svg('<ellipse cx="12" cy="6" rx="7" ry="3"/><path d="M5 6v6c0 1.66 3.13 3 7 3s7-1.34 7-3V6"/><path d="M5 12v6c0 1.66 3.13 3 7 3s7-1.34 7-3v-6"/>'),
+ "Skill":svg('<path d="M14.6 6.4a4 4 0 0 0-5.6 5.6L3 18v3h3l6-6a4 4 0 0 0 5.6-5.6l-2.7 2.7-2.1-.6-.6-2.1z"/>'),
+ "Reward / Verification":svg('<path d="M12 3l7 3v5.5c0 4.2-2.9 7-7 8.5-4.1-1.5-7-4.3-7-8.5V6z"/><path d="M9 11.5l2 2 4-4"/>'),
+};
 
 // ---- functions explorer ----
 const fgrid=document.getElementById('fgrid'), fpanel=document.getElementById('fpanel');
-FUNCTIONS.forEach((fn,i)=>{const b=document.createElement('button');b.className='fpill'+(i===0?' on':'');b.textContent=fn.k;b.onclick=()=>selFn(i);fgrid.appendChild(b);});
+FUNCTIONS.forEach((fn,i)=>{const b=document.createElement('button');b.className='fpill'+(i===0?' on':'');b.innerHTML=(ICONS[fn.k]||'')+'<span>'+fn.k+'</span>';b.onclick=()=>selFn(i);fgrid.appendChild(b);});
 function selFn(i){[...fgrid.children].forEach((c,j)=>c.classList.toggle('on',j===i));const fn=FUNCTIONS[i];
-  fpanel.innerHTML=`<div style="font-weight:600;font-size:1.05rem">${fn.k} Proxy</div>
+  fpanel.innerHTML=`<div class="fhead">${ICONS[fn.k]||''}<span>${fn.k} Proxy</span></div>
    <div class="q">${fn.q}</div>
    <div class="formula">$$${fn.f}$$</div>
    <div class="tags">${fn.ex.map(e=>`<span>${e}</span>`).join('')}</div>`;
+  fpanel.style.animation='none';void fpanel.offsetWidth;fpanel.style.animation='';
   if(window.renderMathInElement)renderMathInElement(fpanel,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]});}
 
 // ---- toggle ----
@@ -361,8 +406,9 @@ document.querySelectorAll('#w-toggle .seg button').forEach(b=>b.onclick=()=>{
 
 // ---- stepper ----
 function selLv(n){[1,2,3].forEach(i=>document.getElementById('lv'+i).classList.toggle('on',i===n));
-  const L=LEVELS[n];document.getElementById('steppanel').innerHTML=
-   `<span class="badge" style="background:${L.col}">L${n}</span> <b>${L.nm}</b><p style="margin:.5rem 0">${L.d}</p><p class="muted" style="margin:0">${L.ex}</p>`;}
+  const L=LEVELS[n],sp=document.getElementById('steppanel');sp.innerHTML=
+   `<span class="badge" style="background:${L.col}">L${n}</span> <b>${L.nm}</b><p style="margin:.5rem 0">${L.d}</p><p class="muted" style="margin:0">${L.ex}</p>`;
+  sp.style.animation='none';void sp.offsetWidth;sp.style.animation='';}
 document.querySelectorAll('.step-btn').forEach(b=>b.onclick=()=>selLv(+b.dataset.lv));
 
 // ---- (Functions × Levels matrix removed) ----
