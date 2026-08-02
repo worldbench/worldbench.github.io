@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -24,17 +24,11 @@
   --measure:720px; --radius:16px;
   --grain:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.09 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
-html[data-theme="dark"]{
-  --bg:#0e1117; --panel:#151a22; --panel2:#1a212b; --card:#161b23;
-  --text:#e6edf3; --muted:#9aa7b4; --border:#232b36; --hair:#1c232d;
-  --link:#6ea8ff; --shadow:0 1px 2px rgba(0,0,0,.3),0 10px 30px rgba(0,0,0,.35);
-  --grain:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.06 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{margin:0;background:var(--grain),var(--bg);background-attachment:fixed,fixed;color:var(--text);
   font-family:"Rubik",system-ui,sans-serif;line-height:1.72;font-size:18px;
-  -webkit-font-smoothing:antialiased;transition:background .3s,color .3s}
+  -webkit-font-smoothing:antialiased}
 a{color:var(--link);text-decoration:none}
 a:hover{text-decoration:underline}
 h1,h2,h3{font-family:"Newsreader","Iowan Old Style",Georgia,serif;line-height:1.22;letter-spacing:-.005em}
@@ -50,11 +44,9 @@ code,.mono{font-family:"SFMono-Regular",ui-monospace,Menlo,Consolas,monospace;fo
 #topbar .brand{font-weight:600;font-size:.95rem}
 #topbar .spacer{flex:1}
 #topbar a.mini{color:var(--muted);font-size:.85rem;margin-left:.9rem}
-#themebtn{cursor:pointer;border:1px solid var(--border);background:var(--card);color:var(--text);
-  border-radius:10px;padding:.3rem .55rem;font-size:.95rem;line-height:1}
 
 /* hero */
-.hero{max-width:900px;margin:0 auto;padding:3.4rem 1.3rem 1.4rem;text-align:center}
+.hero{max-width:1080px;margin:0 auto;padding:3.4rem 1.3rem 1.4rem;padding-left:calc(210px + 1.6rem + 1.3rem);text-align:center}
 .hero .eyebrow{color:var(--accent);font-weight:600;letter-spacing:.14em;text-transform:uppercase;font-size:.72rem}
 .hero h1{font-size:clamp(1.7rem,4.6vw,2.9rem);margin:.6rem 0 .3rem}
 .hero .sub{font-family:"Newsreader","Iowan Old Style",Georgia,serif;font-style:italic;font-size:clamp(1.05rem,2.4vw,1.35rem);color:var(--muted);font-weight:400;margin:.2rem 0 1.1rem}
@@ -86,12 +78,12 @@ code,.mono{font-family:"SFMono-Regular",ui-monospace,Menlo,Consolas,monospace;fo
   100%{box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 14%,transparent)}}
 
 /* layout */
-.wrap{max-width:1180px;margin:0 auto;padding:0 1.2rem;display:grid;grid-template-columns:230px minmax(0,1fr);gap:2.4rem}
+.wrap{max-width:1080px;margin:0 auto;padding:0 1.3rem;display:grid;grid-template-columns:210px minmax(0,1fr);gap:1.6rem}
 nav.toc{position:sticky;top:64px;align-self:start;height:max-content;font-size:.86rem;padding-top:2rem}
 nav.toc .lab{color:var(--muted);text-transform:uppercase;letter-spacing:.12em;font-size:.68rem;margin-bottom:.6rem}
 nav.toc a{display:block;color:var(--muted);padding:.28rem 0;border-left:2px solid transparent;padding-left:.7rem}
 nav.toc a.active{color:var(--accent);border-left-color:var(--accent);font-weight:600}
-article{max-width:var(--measure);width:100%;margin:0 auto;padding:1.4rem 0 3rem}
+article{max-width:var(--measure);width:100%;margin:0;padding:1.4rem 0 3rem}
 section{padding:2rem 0;border-top:1px solid var(--hair)}
 section:first-of-type{border-top:none}
 .kicker{color:var(--accent);font-weight:600;letter-spacing:.12em;text-transform:uppercase;font-size:.72rem;margin-bottom:.35rem}
@@ -186,6 +178,7 @@ footer.wb-footer{border-top:1px solid var(--hair);margin-top:2rem;text-align:cen
 @media(max-width:900px){
   .wrap{grid-template-columns:1fr;gap:0}
   nav.toc{display:none}
+  .hero{padding-left:1.3rem}
   .toggle-body,.chal{grid-template-columns:1fr}
   body{font-size:17px}
 }
@@ -201,7 +194,6 @@ footer.wb-footer{border-top:1px solid var(--hair);margin-top:2rem;text-align:cen
   <a class="mini" href="#functions">Functions</a>
   <a class="mini" href="#levels">Levels</a>
   <a class="mini" href="https://github.com/worldbench/awesome-agentic-world-model" target="_blank" rel="noopener">Reading&nbsp;List</a>
-  <button id="themebtn" aria-label="Toggle dark mode" title="Toggle theme">🌙</button>
 </div>
 
 <header class="hero">
@@ -415,13 +407,6 @@ document.querySelectorAll('.step-btn').forEach(b=>b.onclick=()=>selLv(+b.dataset
 
 // ---- copy bibtex ----
 document.getElementById('copybib').onclick=function(){navigator.clipboard.writeText(document.getElementById('bibtext').textContent).then(()=>{this.textContent='Copied!';setTimeout(()=>this.textContent='Copy',1400);});};
-
-// ---- theme ----
-const root=document.documentElement,tb=document.getElementById('themebtn');
-function setTheme(t){root.setAttribute('data-theme',t);tb.textContent=t==='dark'?'☀️':'🌙';try{localStorage.setItem('wb-theme',t)}catch(e){}}
-(function(){let t;try{t=localStorage.getItem('wb-theme')}catch(e){}
- if(!t)t='light';setTheme(t);})();
-tb.onclick=()=>setTheme(root.getAttribute('data-theme')==='dark'?'light':'dark');
 
 // ---- progress + toc active ----
 const prog=document.getElementById('progress'),secs=[...document.querySelectorAll('article section')],links=[...document.querySelectorAll('#toc a')];
