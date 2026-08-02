@@ -120,12 +120,12 @@ blockquote{margin:1.4rem 0;padding:.4rem 0 .4rem 1.1rem;border-left:3px solid va
 /* stepper */
 .steps{display:flex;gap:.5rem;flex-wrap:wrap}
 .step-btn{flex:1;min-width:150px;text-align:left;border:1px solid var(--border);border-radius:12px;background:var(--panel);
-  padding:.7rem .8rem;cursor:pointer;font:inherit;transition:.15s}
+  padding:.7rem .8rem;cursor:pointer;font:inherit;font-family:"Newsreader","Iowan Old Style",Georgia,serif;transition:.15s}
 .step-btn .lv{font-weight:700;font-size:.78rem;letter-spacing:.06em}
 .step-btn .nm{display:block;font-size:.95rem;font-weight:600;margin-top:.15rem}
 .step-btn.on{color:#fff}
 #lv1.on{background:var(--l1);border-color:var(--l1)} #lv2.on{background:var(--l2);border-color:var(--l2)} #lv3.on{background:var(--l3);border-color:var(--l3)}
-.step-panel{margin-top:1rem;background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:1rem}
+.step-panel{margin-top:1rem;background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:1rem;font-family:"Newsreader","Iowan Old Style",Georgia,serif}
 .step-panel .badge{display:inline-block;color:#fff;border-radius:6px;padding:.1rem .5rem;font-size:.74rem;font-weight:700;letter-spacing:.05em}
 
 /* matrix */
@@ -166,11 +166,11 @@ dl.gloss dd b{color:var(--text);font-weight:600}
 /* co-evolution loop */
 .loopfig{margin:1.6rem 0 .4rem;text-align:center}
 .loopfig svg{width:100%;max-width:480px;height:auto}
-.loopfig figcaption{color:var(--muted);font-size:.85rem;margin-top:.5rem;font-family:"Newsreader",Georgia,serif;font-style:italic}
+.loopfig figcaption{color:var(--muted);font-size:1.02rem;margin-top:.6rem;font-family:"Newsreader",Georgia,serif;font-style:italic}
 .lnode{fill:var(--panel);stroke:var(--border);stroke-width:1.5}
 .lnode.proxy{stroke:var(--accent);stroke-width:2}
-.ltext{fill:var(--text);font-family:"Newsreader",Georgia,serif;font-weight:600;font-size:17px;text-anchor:middle}
-.llabel{fill:var(--muted);font-size:11.5px;text-anchor:middle}
+.ltext{fill:var(--text);font-family:"Newsreader",Georgia,serif;font-weight:600;font-size:22px;text-anchor:middle}
+.llabel{fill:var(--muted);font-size:15px;text-anchor:middle}
 .larrow{fill:none;stroke:var(--accent);stroke-width:2;stroke-dasharray:6 5;animation:march 1.1s linear infinite}
 @keyframes march{to{stroke-dashoffset:-22}}
 
@@ -187,6 +187,13 @@ a.anchor:hover{opacity:1;color:var(--accent);text-decoration:none}
   box-shadow:var(--shadow);opacity:0;pointer-events:none;transform:translateY(8px);transition:opacity .2s,transform .2s,color .15s,border-color .15s}
 #totop.show{opacity:1;pointer-events:auto;transform:none}
 #totop:hover{border-color:var(--accent);color:var(--accent)}
+
+/* contributor roles */
+.roles{margin:1.1rem 0 .6rem;display:grid;gap:.85rem}
+.role{display:grid;grid-template-columns:190px 1fr;gap:1rem;align-items:baseline}
+.role .rh{color:var(--accent);font-weight:700;font-size:.9rem;letter-spacing:.01em}
+.role .rp{font-family:"Newsreader","Iowan Old Style",Georgia,serif;font-size:1.12rem;line-height:1.55;color:var(--text)}
+@media(max-width:600px){.role{grid-template-columns:1fr;gap:.15rem}}
 
 .reveal{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease}
 .reveal.in{opacity:1;transform:none}
@@ -329,16 +336,16 @@ a.anchor:hover{opacity:1;color:var(--accent);text-decoration:none}
     <div class="step-panel" id="steppanel"></div>
   </div>
   <figure class="loopfig">
-    <svg viewBox="0 0 480 200" role="img" aria-label="Agent and World Proxy co-evolution loop">
+    <svg viewBox="0 0 480 210" role="img" aria-label="Agent and World Proxy co-evolution loop">
       <defs><marker id="ah" markerWidth="8" markerHeight="8" refX="5.5" refY="3" orient="auto"><path d="M0 0 L6 3 L0 6 z" fill="#395FCF"/></marker></defs>
-      <rect class="lnode" x="24" y="74" width="150" height="52" rx="14"/>
-      <text class="ltext" x="99" y="106">Agent</text>
-      <rect class="lnode proxy" x="306" y="74" width="150" height="52" rx="14"/>
-      <text class="ltext" x="381" y="106">World Proxy</text>
-      <path class="larrow" d="M174 88 C 232 54, 248 54, 306 88" marker-end="url(#ah)"/>
-      <text class="llabel" x="240" y="44">real trajectories sharpen the proxy</text>
-      <path class="larrow" d="M306 112 C 248 146, 232 146, 174 112" marker-end="url(#ah)"/>
-      <text class="llabel" x="240" y="166">guidance &amp; training signals</text>
+      <rect class="lnode" x="16" y="76" width="170" height="58" rx="15"/>
+      <text class="ltext" x="101" y="112">Agent</text>
+      <rect class="lnode proxy" x="294" y="76" width="170" height="58" rx="15"/>
+      <text class="ltext" x="379" y="112">World Proxy</text>
+      <path class="larrow" d="M186 97 C 232 58, 248 58, 294 97" marker-end="url(#ah)"/>
+      <text class="llabel" x="240" y="46">real trajectories sharpen the proxy</text>
+      <path class="larrow" d="M294 113 C 248 152, 232 152, 186 113" marker-end="url(#ah)"/>
+      <text class="llabel" x="240" y="180">guidance &amp; training signals</text>
     </svg>
     <figcaption>L3 co-evolution: the agent and proxy improve each other in a continual loop.</figcaption>
   </figure>
@@ -406,11 +413,15 @@ a.anchor:hover{opacity:1;color:var(--accent);text-decoration:none}
 <section id="contributors" class="reveal">
   <div class="kicker">Community</div>
   <h2>Contributors</h2>
-  <p>This reading list is a living, community-maintained resource — it grows with every contribution of new papers, corrections, and better organization.</p>
-  <a class="contriblink" href="https://github.com/worldbench/awesome-agentic-world-model/graphs/contributors" target="_blank" rel="noopener">
-    <img src="https://contrib.rocks/image?repo=worldbench/awesome-agentic-world-model" alt="Contributors to the awesome-agentic-world-model reading list" loading="lazy" style="max-width:100%;border-radius:10px;margin:.7rem 0">
-  </a>
-  <p class="muted">Want to see your name here? Open a pull request on <a href="https://github.com/worldbench/awesome-agentic-world-model" target="_blank" rel="noopener">GitHub</a>.</p>
+  <p>This work is a collaboration across <b>KnowledgeX Lab</b> (Shanghai AI Laboratory), <b>APRIL Lab</b> (Zhejiang University), and <b>LV-Lab</b> (National University of Singapore).</p>
+  <div class="roles">
+    <div class="role"><div class="rh">Concept &amp; Design</div><div class="rp">Yu Yang, Xuemeng Yang, Licheng Wen</div></div>
+    <div class="role"><div class="rh">Writing &amp; Editing</div><div class="rp">Yu Yang, Xuemeng Yang, Licheng Wen, <a href="https://ldkong.com" target="_blank" rel="noopener">Lingdong Kong</a>, Jiangning Zhang, Xiaobin Hu, Dongyue Lu, Wei Chow</div></div>
+    <div class="role"><div class="rh">Figures &amp; Visual Design</div><div class="rp">Xiyan Huang, Yuxiang Feng</div></div>
+    <div class="role"><div class="rh">Discussion &amp; Insights</div><div class="rp">Yue Liao, <a href="https://jianbiaomei.github.io/" target="_blank" rel="noopener">Jianbiao Mei</a>, Daocheng Fu, Rong Wu, Pinlong Cai</div></div>
+    <div class="role"><div class="rh">Advising</div><div class="rp">Botian Shi, <a href="https://april.zju.edu.cn/team/dr-yong-liu/" target="_blank" rel="noopener">Yong Liu</a>, Shuicheng Yan</div></div>
+  </div>
+  <p class="muted">The reading list is community-maintained — open a pull request on <a href="https://github.com/worldbench/awesome-agentic-world-model" target="_blank" rel="noopener">GitHub</a> to contribute new papers or corrections.</p>
 </section>
 
 </article>
