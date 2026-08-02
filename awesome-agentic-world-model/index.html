@@ -8,7 +8,7 @@
 <link rel="icon" href="../assets_common/icons/worldbench-circle.png" type="image/png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&family=Newsreader:ital,opsz@0,6..72;1,6..72&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz@0,6..72;1,6..72&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
@@ -28,12 +28,12 @@
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{margin:0;background:var(--grain),var(--bg);background-attachment:fixed,fixed;color:var(--text);
-  font-family:"Rubik",system-ui,sans-serif;line-height:1.72;font-size:18px;
+  font-family:"Newsreader","Iowan Old Style",Georgia,serif;line-height:1.72;font-size:18px;
   -webkit-font-smoothing:antialiased}
 a{color:var(--link);text-decoration:none}
 a:hover{text-decoration:underline}
 h1,h2,h3{font-family:"Newsreader","Iowan Old Style",Georgia,serif;line-height:1.22;letter-spacing:-.005em}
-code,.mono{font-family:"SFMono-Regular",ui-monospace,Menlo,Consolas,monospace;font-size:.92em}
+code,.mono{font-size:.92em}
 
 /* reading progress */
 #progress{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--l1),var(--l2),var(--l3));z-index:200}
@@ -56,10 +56,10 @@ code,.mono{font-family:"SFMono-Regular",ui-monospace,Menlo,Consolas,monospace;fo
 .hero .labs{color:var(--muted);font-size:.82rem;margin-top:.2rem}
 .btns{display:flex;flex-wrap:wrap;gap:.9rem;justify-content:flex-start;margin:1.3rem 0 4.2rem}
 .btn{display:inline-flex;align-items:center;gap:.45rem;padding:.5rem .95rem;border-radius:999px;
-  background:var(--text);color:var(--bg);font-weight:500;font-size:.9rem;border:1px solid var(--text);
+  background:#3a3322;color:var(--bg);font-weight:500;font-size:.9rem;border:1px solid #3a3322;
   transition:transform .15s ease,box-shadow .15s ease,opacity .15s ease,color .15s ease,border-color .15s ease}
 .btn:hover{text-decoration:none;transform:translateY(-2px);box-shadow:var(--shadow);opacity:.95}
-.btn.ghost{background:transparent;color:var(--text);border-color:var(--border)}
+.btn.ghost{background:transparent;color:#3a3322;border-color:#d8ccab}
 .btn.ghost:hover{border-color:var(--accent);color:var(--accent);opacity:1}
 .btn[aria-disabled="true"]{opacity:.5;pointer-events:none}
 
@@ -406,7 +406,7 @@ a.anchor:hover{opacity:1;color:var(--accent);text-decoration:none}
   <div class="bibwrap">
     <button id="copybib">Copy</button>
     <pre class="bib" id="bibtext">@article{yang2026worldproxy,
-  title   = {Quo Vadis, World Modeling? Towards Interactive World Proxies for Continually Improving Agents},
+  title   = {Quo Vadis, World Modeling?},
   author  = {Yang, Yu and Yang, Xuemeng and Wen, Licheng and Kong, Lingdong and others},
   journal = {arXiv preprint arXiv:XXXX.XXXXX},
   year    = {2026}
