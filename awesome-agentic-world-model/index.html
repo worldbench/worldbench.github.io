@@ -18,8 +18,8 @@
 :root{
   --accent:#395FCF; --accent2:#1F6BFF; --link:#0064E0;
   --l1:#43A047; --l2:#2F6BFF; --l3:#D34A4A;
-  --bg:#f7f0dd; --panel:#f2ead2; --panel2:#ede1c5; --card:#fbf6e8;
-  --text:#332f27; --muted:#6f6555; --border:#e6dabd; --hair:#ece1c8;
+  --bg:#fcf8ec; --panel:#f7f1e0; --panel2:#f2ecd8; --card:#fefcf5;
+  --text:#403829; --muted:#7c7360; --border:#ebe2cd; --hair:#f2ecda;
   --shadow:0 1px 2px rgba(16,24,40,.04),0 8px 24px rgba(16,24,40,.06);
   --measure:720px; --radius:16px;
 }
@@ -35,7 +35,7 @@ body{margin:0;background:var(--bg);color:var(--text);
   -webkit-font-smoothing:antialiased;transition:background .3s,color .3s}
 a{color:var(--link);text-decoration:none}
 a:hover{text-decoration:underline}
-h1,h2,h3{font-family:"Rubik",sans-serif;line-height:1.2;letter-spacing:-.01em}
+h1,h2,h3{font-family:"Newsreader","Iowan Old Style",Georgia,serif;line-height:1.22;letter-spacing:-.005em}
 code,.mono{font-family:"SFMono-Regular",ui-monospace,Menlo,Consolas,monospace;font-size:.92em}
 
 /* reading progress */
@@ -55,7 +55,7 @@ code,.mono{font-family:"SFMono-Regular",ui-monospace,Menlo,Consolas,monospace;fo
 .hero{max-width:900px;margin:0 auto;padding:3.4rem 1.3rem 1.4rem;text-align:center}
 .hero .eyebrow{color:var(--accent);font-weight:600;letter-spacing:.14em;text-transform:uppercase;font-size:.72rem}
 .hero h1{font-size:clamp(1.7rem,4.6vw,2.9rem);margin:.6rem 0 .3rem}
-.hero .sub{font-size:clamp(1rem,2.4vw,1.3rem);color:var(--muted);font-weight:500;margin:.2rem 0 1.1rem}
+.hero .sub{font-family:"Newsreader","Iowan Old Style",Georgia,serif;font-style:italic;font-size:clamp(1.05rem,2.4vw,1.35rem);color:var(--muted);font-weight:400;margin:.2rem 0 1.1rem}
 .hero .authors{color:var(--muted);font-size:.9rem;margin:.4rem auto;max-width:640px}
 .hero .labs{color:var(--muted);font-size:.82rem;margin-top:.2rem}
 .btns{display:flex;flex-wrap:wrap;gap:.55rem;justify-content:center;margin:1.3rem 0 .4rem}
@@ -85,7 +85,8 @@ section:first-of-type{border-top:none}
 h2{font-size:clamp(1.4rem,3.4vw,1.9rem);margin:.1rem 0 .7rem}
 h3{font-size:1.15rem;margin:1.4rem 0 .3rem}
 p{margin:.7rem 0}
-.lead{font-size:1.12rem}
+article > section > p, article > section > ol > li{font-family:"Newsreader","Iowan Old Style",Georgia,serif;font-size:1.16rem;line-height:1.82}
+.lead{font-size:1.3rem;line-height:1.62}
 .muted{color:var(--muted)}
 
 /* callouts + quotes */
