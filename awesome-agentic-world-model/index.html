@@ -51,7 +51,7 @@ code,.mono{font-family:"SFMono-Regular",ui-monospace,Menlo,Consolas,monospace;fo
 .hero{max-width:1080px;margin:0 auto;padding:3.4rem 1.3rem 1.4rem;padding-left:calc(210px + 1.6rem + 1.3rem);text-align:left}
 .hero .eyebrow{color:var(--accent);font-weight:600;letter-spacing:.14em;text-transform:uppercase;font-size:.72rem}
 .hero h1{font-size:clamp(1.7rem,4.6vw,2.9rem);margin:.6rem 0 .3rem}
-.hero .sub{font-family:"Newsreader","Iowan Old Style",Georgia,serif;font-style:italic;font-size:clamp(1.05rem,2.4vw,1.35rem);color:var(--muted);font-weight:400;margin:.2rem 0 1.1rem}
+.hero .sub{font-family:"Newsreader","Iowan Old Style",Georgia,serif;font-size:clamp(1.05rem,2.4vw,1.35rem);color:var(--muted);font-weight:400;margin:.2rem 0 1.1rem}
 .hero .authors{color:var(--muted);font-size:.9rem;margin:.4rem auto;max-width:640px}
 .hero .labs{color:var(--muted);font-size:.82rem;margin-top:.2rem}
 .btns{display:flex;flex-wrap:wrap;gap:.9rem;justify-content:flex-start;margin:1.3rem 0 4.2rem}
@@ -103,7 +103,7 @@ article > section > p, article > section > ol > li{font-family:"Newsreader","Iow
   border-radius:12px;padding:.9rem 1.1rem;margin:1.2rem 0;box-shadow:var(--shadow)}
 .callout .t{font-weight:600;color:var(--accent);font-size:.8rem;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.3rem}
 blockquote{margin:1.4rem 0;padding:.4rem 0 .4rem 1.1rem;border-left:3px solid var(--accent);
-  font-family:"Newsreader",Georgia,serif;font-style:italic;font-size:1.28rem;line-height:1.5;color:var(--text)}
+  font-family:"Newsreader",Georgia,serif;font-size:1.28rem;line-height:1.5;color:var(--text)}
 .formula{background:var(--panel2);border:1px solid var(--border);border-radius:12px;padding:.7rem 1rem;margin:1rem 0;text-align:center;overflow-x:auto}
 
 /* widgets */
@@ -138,7 +138,7 @@ blockquote{margin:1.4rem 0;padding:.4rem 0 .4rem 1.1rem;border-left:3px solid va
 .fpanel{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:1rem}
 .fpanel .fhead{display:flex;align-items:center;gap:.5rem;font-weight:600;font-size:1.05rem}
 .fpanel .fhead svg{width:20px;height:20px;color:var(--accent)}
-.fpanel .q{font-style:italic;color:var(--accent);margin:.1rem 0 .5rem}
+.fpanel .q{color:var(--accent);margin:.1rem 0 .5rem}
 .fpanel,.step-panel{animation:panelIn .18s ease}
 @keyframes panelIn{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
 .tags{display:flex;gap:.35rem;flex-wrap:wrap;margin-top:.5rem}
@@ -167,7 +167,7 @@ dl.gloss dd b{color:var(--text);font-weight:600}
 /* co-evolution loop */
 .loopfig{margin:1.6rem 0 .4rem;text-align:center}
 .loopfig svg{width:100%;max-width:480px;height:auto}
-.loopfig figcaption{color:var(--muted);font-size:1.02rem;margin-top:.6rem;font-family:"Newsreader",Georgia,serif;font-style:italic}
+.loopfig figcaption{color:var(--muted);font-size:1.02rem;margin-top:.6rem;font-family:"Newsreader",Georgia,serif}
 .lnode{fill:var(--panel);stroke:var(--border);stroke-width:1.5}
 .lnode.proxy{stroke:var(--accent);stroke-width:2}
 .ltext{fill:var(--text);font-family:"Newsreader",Georgia,serif;font-weight:600;font-size:22px;text-anchor:middle}
@@ -278,7 +278,7 @@ a.anchor:hover{opacity:1;color:var(--accent);text-decoration:none}
 <section id="question" class="reveal">
   <div class="kicker">The Question</div>
   <h2>Where should world modeling go next?</h2>
-  <p class="lead">Traditionally, a <b>world model</b> is a passive predictor of environment dynamics: given a state and an action, it forecasts what comes next. Useful, but too narrow once the goal is an agent that <i>continually improves</i> through interaction.</p>
+  <p class="lead">Traditionally, a <b>world model</b> is a passive predictor of environment dynamics: given a state and an action, it forecasts what comes next. Useful, but too narrow once the goal is an agent that continually improves through interaction.</p>
   <p>Real environments are expensive to access, slow to run, hard to parallelize, and sometimes unsafe. Yet agents need rich, iterative feedback to refine plans, learn from mistakes, and weigh risky actions without paying the full cost of real-world trial and error. So what, exactly, should such an agent learn from?</p>
   <blockquote>Rather than asking what the environment will look like next, we ask what information an agent will receive after an interaction.</blockquote>
 </section>
@@ -330,7 +330,7 @@ a.anchor:hover{opacity:1;color:var(--accent);text-decoration:none}
 <section id="levels" class="reveal">
   <div class="kicker">Axis 2 · How</div>
   <h2>Three Empowerment Levels</h2>
-  <p>Orthogonal to <i>what</i> a proxy returns is <i>how</i> it improves the agent. The same function can graduate from advisor to teacher to partner.</p>
+  <p>Orthogonal to what a proxy returns is how it improves the agent. The same function can graduate from advisor to teacher to partner.</p>
   <div class="widget" id="w-steps">
     <div class="whead">Step through L1 → L3</div>
     <div class="steps">
@@ -392,7 +392,7 @@ a.anchor:hover{opacity:1;color:var(--accent);text-decoration:none}
     <dt>Interaction step (ℓ)</dt>
     <dd>The index of an agent query. Unlike physical time, a step need not advance the world: it may imagine a viewpoint, simulate an execution, or verify a plan.</dd>
     <dt>Proxy function</dt>
-    <dd>The <i>type</i> of feedback a proxy returns: <b>Dynamics</b>, <b>Spatial</b>, <b>Execution</b>, <b>Memory</b>, <b>Skill</b>, or <b>Reward / Verification</b>.</dd>
+    <dd>The type of feedback a proxy returns: <b>Dynamics</b>, <b>Spatial</b>, <b>Execution</b>, <b>Memory</b>, <b>Skill</b>, or <b>Reward / Verification</b>.</dd>
     <dt>Empowerment level</dt>
     <dd>How a proxy improves the agent: <b>L1</b> inference-time guidance, <b>L2</b> training-time optimization, <b>L3</b> agent–proxy co-evolution.</dd>
     <dt>Actionable information gain</dt>
