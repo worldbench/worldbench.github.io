@@ -564,7 +564,7 @@ let curFn=0;
   s+=`<circle class="hub" cx="${cx}" cy="${cy}" r="60"></circle><text class="hubt" x="${cx}" y="${cy-6}">World</text><text class="hubt" x="${cx}" y="${cy+18}">Proxy</text>`;
   FUNCTIONS.forEach((fn,i)=>{const a=-Math.PI/2+i*(Math.PI/3),x=cx+R*Math.cos(a),y=cy+R*Math.sin(a);
     const ic=(ICONS[fn.k]||'').replace('<svg ','<svg x="-14" y="-14" width="28" height="28" ');
-    s+=`<g class="wnode" data-i="${i}" transform="translate(${x.toFixed(1)},${y.toFixed(1)})"><circle r="${NR}" style="animation-delay:${(i*0.4).toFixed(1)}s"></circle>${ic}<text y="${NR+20}">${SHORT[i]}</text></g>`;});
+    s+=`<g class="wnode" data-i="${i}" transform="translate(${x.toFixed(1)},${y.toFixed(1)})"><circle r="${NR}" style="animation-delay:${(i*0.4).toFixed(1)}s"></circle>${ic}<text y="${i===0?-(NR+10):NR+20}">${SHORT[i]}</text></g>`;});
   fwheel.innerHTML=s;
   fwheel.querySelectorAll('.wnode').forEach(g=>g.addEventListener('click',()=>selFn(+g.dataset.i)));})();
 function selFn(i){curFn=i;fwheel.querySelectorAll('.wnode').forEach(g=>g.classList.toggle('on',+g.dataset.i===i));const fn=FUNCTIONS[i];
