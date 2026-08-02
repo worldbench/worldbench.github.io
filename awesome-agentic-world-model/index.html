@@ -157,12 +157,6 @@ pre.bib{background:var(--panel2);border:1px solid var(--border);border-radius:12
 
 footer.wb-footer{border-top:1px solid var(--hair);margin-top:2rem;text-align:center;color:var(--muted);font-size:.85rem;padding:1.6rem 1rem}
 
-/* tl;dr box */
-.tldr{background:var(--panel);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:14px;padding:1.1rem 1.3rem;box-shadow:var(--shadow)}
-.tldr .t{font-weight:700;color:var(--accent);font-size:.74rem;text-transform:uppercase;letter-spacing:.1em;margin-bottom:.5rem}
-.tldr ul{margin:.2rem 0 0;padding-left:1.15rem}
-.tldr li{margin:.45rem 0;font-family:"Newsreader","Iowan Old Style",Georgia,serif;font-size:1.12rem;line-height:1.62}
-
 /* glossary */
 dl.gloss{margin:1rem 0 0}
 dl.gloss dt{font-weight:700;color:var(--text);margin-top:1rem}
@@ -268,18 +262,6 @@ a.anchor:hover{opacity:1;color:var(--accent);text-decoration:none}
 </nav>
 
 <article>
-
-<section id="tldr" class="reveal">
-  <div class="tldr">
-    <div class="t">The argument in brief</div>
-    <ul>
-      <li>A <b>world model</b> is usually a passive next-state predictor — too narrow for an agent that must <i>continually improve</i> through interaction.</li>
-      <li>We generalize it into an <b>Agent-Centric World Proxy</b>: a queryable interface that returns an <i>information transition</i> — a view, an execution result, a memory, a skill, or a verdict — as agent-usable feedback.</li>
-      <li>The design space has two axes: <b>six proxy functions</b> (what feedback) × <b>three empowerment levels</b> (how it helps: inference-time guidance → training-time optimization → agent–proxy co-evolution).</li>
-      <li>The metric that matters is not visual realism but <b>actionable information gain</b> — did the feedback help the agent plan, learn, verify, or improve?</li>
-    </ul>
-  </div>
-</section>
 
 <section id="question" class="reveal">
   <div class="kicker">The Question</div>
