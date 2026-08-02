@@ -121,14 +121,13 @@ blockquote{margin:1.4rem 0;padding:.4rem 0 .4rem 1.1rem;border-left:3px solid va
 .step-panel .badge{display:inline-block;color:#fff;border-radius:6px;padding:.1rem .5rem;font-size:.74rem;font-weight:700;letter-spacing:.05em}
 
 /* matrix */
-.matrix{width:100%;border-collapse:separate;border-spacing:5px;font-size:.82rem}
-.matrix th{color:var(--muted);font-weight:600;padding:.3rem;text-align:center;font-size:.78rem}
-.matrix th.rowh{text-align:left;white-space:nowrap}
-.matrix td{background:var(--panel);border:1px solid var(--border);border-radius:9px;padding:.5rem;cursor:pointer;text-align:center;color:var(--muted);transition:.12s;vertical-align:middle}
-.matrix td:hover,.matrix td.sel{color:var(--text);border-color:var(--accent);box-shadow:0 0 0 2px color-mix(in srgb,var(--accent) 16%,transparent)}
-.matrix td.open{font-style:italic;color:var(--muted);background:repeating-linear-gradient(45deg,var(--panel),var(--panel) 6px,var(--panel2) 6px,var(--panel2) 12px)}
-.mx-detail{margin-top:.9rem;background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:.9rem;min-height:64px}
-.mx-detail .tag{font-size:.72rem;font-weight:700;letter-spacing:.05em}
+.mtxwrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.mtx{display:grid;grid-template-columns:minmax(96px,.85fr) repeat(3,1.4fr);gap:6px;min-width:540px;font-size:.82rem}
+.mtx .h{font-weight:700;text-align:center;padding:.3rem;font-size:.74rem;letter-spacing:.02em}
+.mtx .fn{display:flex;align-items:center;font-weight:600;color:var(--text);padding-right:.4rem}
+.mtx .cell{background:var(--panel);border:1px solid var(--border);border-radius:9px;padding:.5rem .55rem;color:var(--muted);line-height:1.35;transition:.12s;cursor:default}
+.mtx .cell:hover{color:var(--text);border-color:var(--accent);box-shadow:0 0 0 2px color-mix(in srgb,var(--accent) 15%,transparent)}
+.mtx .cell.open{font-style:italic;background:repeating-linear-gradient(45deg,var(--panel),var(--panel) 6px,var(--panel2) 6px,var(--panel2) 12px)}
 
 /* functions grid */
 .fgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:.5rem;margin:.4rem 0 1rem}
@@ -281,8 +280,7 @@ footer.wb-footer{border-top:1px solid var(--hair);margin-top:2rem;text-align:cen
   <h2>Functions × Levels</h2>
   <p>Reading the six functions against L1-L3 turns the design space into a map. Hover or tap a cell for representative systems; the blank corners mark territory that is still largely open.</p>
   <div class="widget">
-    <table class="matrix" id="matrix"></table>
-    <div class="mx-detail" id="mxdetail"><span class="muted">Select a cell above.</span></div>
+    <div class="mtxwrap"><div class="mtx" id="matrix"></div></div>
   </div>
 </section>
 
@@ -322,7 +320,7 @@ footer.wb-footer{border-top:1px solid var(--hair);margin-top:2rem;text-align:cen
   year    = {2026}
 }</pre>
   </div>
-  <p class="muted">Curated reading list: <a href="https://github.com/worldbench/awesome-agentic-world-model" target="_blank" rel="noopener">worldbench/awesome-agentic-world-model</a>. The arXiv link will be added once the paper is posted.</p>
+  <p class="muted">Curated reading list: <a href="https://github.com/worldbench/awesome-agentic-world-model" target="_blank" rel="noopener">worldbench/awesome-agentic-world-model</a>.</p>
 </section>
 
 </article>
@@ -393,19 +391,15 @@ function selLv(n){[1,2,3].forEach(i=>document.getElementById('lv'+i).classList.t
    `<span class="badge" style="background:${L.col}">L${n}</span> <b>${L.nm}</b><p style="margin:.5rem 0">${L.d}</p><p class="muted" style="margin:0">${L.ex}</p>`;}
 document.querySelectorAll('.step-btn').forEach(b=>b.onclick=()=>selLv(+b.dataset.lv));
 
-// ---- matrix ----
-const mtable=document.getElementById('matrix'),mxd=document.getElementById('mxdetail');
+// ---- matrix (grid) ----
+const mgrid=document.getElementById('matrix');
 const LCOLS=["L1 · Guidance","L2 · Training","L3 · Co-Evolution"],LCOL=["var(--l1)","var(--l2)","var(--l3)"];
-let html="<tr><th></th>"+LCOLS.map((c,i)=>`<th style="color:${LCOL[i]}">${c}</th>`).join('')+"</tr>";
-Object.keys(MATRIX).forEach(fk=>{html+=`<tr><th class="rowh">${fk}</th>`+MATRIX[fk].map((t,li)=>{
-  const open=(t==='underexplored'||t==='emerging');
-  return `<td class="${open?'open':''}" data-f="${fk}" data-l="${li}">${open?t:'●'}</td>`;}).join('')+"</tr>";});
-mtable.innerHTML=html;
-mtable.querySelectorAll('td').forEach(td=>{
-  const act=()=>{mtable.querySelectorAll('td').forEach(x=>x.classList.remove('sel'));td.classList.add('sel');
-    const f=td.dataset.f,l=+td.dataset.l,t=MATRIX[f][l];
-    mxd.innerHTML=`<span class="tag" style="color:${LCOL[l]}">${f} · L${l+1}</span><div style="margin-top:.3rem">${t==='underexplored'||t==='emerging'?'<i>'+t+' — an open direction.</i>':t}</div>`;};
-  td.onmouseenter=act;td.onclick=act;});
+let mh='<div class="h"></div>'+LCOLS.map((c,i)=>`<div class="h" style="color:${LCOL[i]}">${c}</div>`).join('');
+Object.keys(MATRIX).forEach(fk=>{
+  mh+=`<div class="fn">${fk}</div>`+MATRIX[fk].map(t=>{
+    const open=(t==='underexplored'||t==='emerging');
+    return `<div class="cell${open?' open':''}">${t}</div>`;}).join('');});
+mgrid.innerHTML=mh;
 
 // ---- copy bibtex ----
 document.getElementById('copybib').onclick=function(){navigator.clipboard.writeText(document.getElementById('bibtext').textContent).then(()=>{this.textContent='Copied!';setTimeout(()=>this.textContent='Copy',1400);});};
