@@ -52,11 +52,13 @@ code,.mono{font-family:"SFMono-Regular",ui-monospace,Menlo,Consolas,monospace;fo
 .hero .sub{font-family:"Newsreader","Iowan Old Style",Georgia,serif;font-style:italic;font-size:clamp(1.05rem,2.4vw,1.35rem);color:var(--muted);font-weight:400;margin:.2rem 0 1.1rem}
 .hero .authors{color:var(--muted);font-size:.9rem;margin:.4rem auto;max-width:640px}
 .hero .labs{color:var(--muted);font-size:.82rem;margin-top:.2rem}
-.btns{display:flex;flex-wrap:wrap;gap:.55rem;justify-content:center;margin:1.3rem 0 2rem;max-width:var(--measure)}
+.btns{display:flex;flex-wrap:wrap;gap:.9rem;justify-content:flex-start;margin:1.3rem 0 2rem}
 .btn{display:inline-flex;align-items:center;gap:.45rem;padding:.5rem .95rem;border-radius:999px;
-  background:var(--text);color:var(--bg);font-weight:500;font-size:.9rem;border:1px solid var(--text)}
-.btn:hover{text-decoration:none;opacity:.9}
+  background:var(--text);color:var(--bg);font-weight:500;font-size:.9rem;border:1px solid var(--text);
+  transition:transform .15s ease,box-shadow .15s ease,opacity .15s ease,color .15s ease,border-color .15s ease}
+.btn:hover{text-decoration:none;transform:translateY(-2px);box-shadow:var(--shadow);opacity:.95}
 .btn.ghost{background:transparent;color:var(--text);border-color:var(--border)}
+.btn.ghost:hover{border-color:var(--accent);color:var(--accent);opacity:1}
 .btn[aria-disabled="true"]{opacity:.5;pointer-events:none}
 
 /* hero motif */
