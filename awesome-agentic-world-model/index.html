@@ -122,10 +122,11 @@ blockquote{margin:1.4rem 0;padding:.4rem 0 .4rem 1.1rem;border-left:3px solid va
 
 /* matrix */
 .mtxwrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
-.mtx{display:grid;grid-template-columns:minmax(96px,.85fr) repeat(3,1.4fr);gap:6px;min-width:540px;font-size:.82rem}
-.mtx .h{font-weight:700;text-align:center;padding:.3rem;font-size:.74rem;letter-spacing:.02em}
-.mtx .fn{display:flex;align-items:center;font-weight:600;color:var(--text);padding-right:.4rem}
-.mtx .cell{background:var(--panel);border:1px solid var(--border);border-radius:9px;padding:.5rem .55rem;color:var(--muted);line-height:1.35;transition:.12s;cursor:default}
+.mtx{min-width:520px;font-size:.82rem}
+.mtx .row{display:flex;gap:6px;margin-bottom:6px}
+.mtx .lab{flex:0 0 106px;display:flex;align-items:center;font-weight:600;color:var(--text)}
+.mtx .h{flex:1 1 0;text-align:center;font-weight:700;font-size:.74rem;padding:.3rem;letter-spacing:.02em}
+.mtx .cell{flex:1 1 0;background:var(--panel);border:1px solid var(--border);border-radius:9px;padding:.5rem .55rem;color:var(--muted);line-height:1.35;transition:.12s}
 .mtx .cell:hover{color:var(--text);border-color:var(--accent);box-shadow:0 0 0 2px color-mix(in srgb,var(--accent) 15%,transparent)}
 .mtx .cell.open{font-style:italic;background:repeating-linear-gradient(45deg,var(--panel),var(--panel) 6px,var(--panel2) 6px,var(--panel2) 12px)}
 
@@ -391,14 +392,14 @@ function selLv(n){[1,2,3].forEach(i=>document.getElementById('lv'+i).classList.t
    `<span class="badge" style="background:${L.col}">L${n}</span> <b>${L.nm}</b><p style="margin:.5rem 0">${L.d}</p><p class="muted" style="margin:0">${L.ex}</p>`;}
 document.querySelectorAll('.step-btn').forEach(b=>b.onclick=()=>selLv(+b.dataset.lv));
 
-// ---- matrix (grid) ----
+// ---- matrix (flex rows) ----
 const mgrid=document.getElementById('matrix');
 const LCOLS=["L1 · Guidance","L2 · Training","L3 · Co-Evolution"],LCOL=["var(--l1)","var(--l2)","var(--l3)"];
-let mh='<div class="h"></div>'+LCOLS.map((c,i)=>`<div class="h" style="color:${LCOL[i]}">${c}</div>`).join('');
+let mh=`<div class="row"><div class="lab"></div>${LCOLS.map((c,i)=>`<div class="h" style="color:${LCOL[i]}">${c}</div>`).join('')}</div>`;
 Object.keys(MATRIX).forEach(fk=>{
-  mh+=`<div class="fn">${fk}</div>`+MATRIX[fk].map(t=>{
+  mh+=`<div class="row"><div class="lab">${fk}</div>${MATRIX[fk].map(t=>{
     const open=(t==='underexplored'||t==='emerging');
-    return `<div class="cell${open?' open':''}">${t}</div>`;}).join('');});
+    return `<div class="cell${open?' open':''}">${t}</div>`;}).join('')}</div>`;});
 mgrid.innerHTML=mh;
 
 // ---- copy bibtex ----
