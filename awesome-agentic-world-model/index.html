@@ -10,6 +10,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&family=Newsreader:ital,opsz@0,6..72;1,6..72&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
@@ -188,12 +189,17 @@ a.anchor:hover{opacity:1;color:var(--accent);text-decoration:none}
 #totop.show{opacity:1;pointer-events:auto;transform:none}
 #totop:hover{border-color:var(--accent);color:var(--accent)}
 
-/* contributor roles */
-.roles{margin:1.1rem 0 .6rem;display:grid;gap:.85rem}
-.role{display:grid;grid-template-columns:190px 1fr;gap:1rem;align-items:baseline}
-.role .rh{color:var(--accent);font-weight:700;font-size:.9rem;letter-spacing:.01em}
-.role .rp{font-family:"Newsreader","Iowan Old Style",Georgia,serif;font-size:1.12rem;line-height:1.55;color:var(--text)}
-@media(max-width:600px){.role{grid-template-columns:1fr;gap:.15rem}}
+/* contributor cards */
+.contribs{display:grid;grid-template-columns:repeat(auto-fill,minmax(234px,1fr));gap:.8rem;margin:1.15rem 0 .7rem}
+.cyc{display:flex;align-items:center;gap:.75rem;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:.7rem .8rem;box-shadow:var(--shadow);transition:transform .15s ease,box-shadow .15s ease,border-color .15s ease}
+.cyc:hover{transform:translateY(-2px);border-color:var(--accent)}
+.cphoto{width:54px;height:54px;border-radius:50%;object-fit:cover;flex:0 0 auto;border:1px solid var(--border);background:var(--panel)}
+.cinfo{min-width:0}
+.cname{font-family:"Newsreader","Iowan Old Style",Georgia,serif;font-weight:600;font-size:1.06rem;line-height:1.2;color:var(--text)}
+.crole{color:var(--muted);font-size:.8rem;margin-top:.12rem}
+.clinks{display:flex;flex-wrap:wrap;gap:.55rem;margin-top:.4rem;font-size:.92rem}
+.clinks a{color:var(--muted);line-height:1}
+.clinks a:hover{color:var(--accent)}
 
 .reveal{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease}
 .reveal.in{opacity:1;transform:none}
@@ -414,12 +420,25 @@ a.anchor:hover{opacity:1;color:var(--accent);text-decoration:none}
   <div class="kicker">Community</div>
   <h2>Contributors</h2>
   <p>This work is a collaboration across <b>KnowledgeX Lab</b> (Shanghai AI Laboratory), <b>APRIL Lab</b> (Zhejiang University), and <b>LV-Lab</b> (National University of Singapore).</p>
-  <div class="roles">
-    <div class="role"><div class="rh">Concept &amp; Design</div><div class="rp">Yu Yang, Xuemeng Yang, Licheng Wen</div></div>
-    <div class="role"><div class="rh">Writing &amp; Editing</div><div class="rp">Yu Yang, Xuemeng Yang, Licheng Wen, <a href="https://ldkong.com" target="_blank" rel="noopener">Lingdong Kong</a>, Jiangning Zhang, Xiaobin Hu, Dongyue Lu, Wei Chow</div></div>
-    <div class="role"><div class="rh">Figures &amp; Visual Design</div><div class="rp">Xiyan Huang, Yuxiang Feng</div></div>
-    <div class="role"><div class="rh">Discussion &amp; Insights</div><div class="rp">Yue Liao, <a href="https://jianbiaomei.github.io/" target="_blank" rel="noopener">Jianbiao Mei</a>, Daocheng Fu, Rong Wu, Pinlong Cai</div></div>
-    <div class="role"><div class="rh">Advising</div><div class="rp">Botian Shi, <a href="https://april.zju.edu.cn/team/dr-yong-liu/" target="_blank" rel="noopener">Yong Liu</a>, Shuicheng Yan</div></div>
+  <div class="contribs">
+    <div class="cyc"><img class="cphoto" src="../assets_common/photos/yu_yang.jpg" alt="Yu Yang" loading="lazy" width="54" height="54"><div class="cinfo"><div class="cname">Yu Yang</div><div class="crole">Concept &amp; Design</div></div></div>
+    <div class="cyc"><img class="cphoto" src="../assets_common/icons/worldbench-circle.png" alt="Xuemeng Yang" loading="lazy" width="54" height="54"><div class="cinfo"><div class="cname">Xuemeng Yang</div><div class="crole">Concept &amp; Design</div></div></div>
+    <div class="cyc"><img class="cphoto" src="../assets_common/icons/worldbench-circle.png" alt="Licheng Wen" loading="lazy" width="54" height="54"><div class="cinfo"><div class="cname">Licheng Wen</div><div class="crole">Concept &amp; Design</div></div></div>
+    <div class="cyc"><img class="cphoto" src="../assets_common/photos/lingdong_kong.jpg" alt="Lingdong Kong" loading="lazy" width="54" height="54"><div class="cinfo"><div class="cname">Lingdong Kong</div><div class="crole">Writing &amp; Editing</div><div class="clinks"><a href="mailto:lingdong.kong@u.nus.edu" aria-label="Email"><i class="fas fa-envelope"></i></a><a href="https://ldkong.com" target="_blank" rel="noopener" aria-label="Homepage"><i class="fas fa-globe"></i></a><a href="https://scholar.google.com/citations?user=-j1j7TkAAAAJ&amp;hl=en" target="_blank" rel="noopener" aria-label="Google Scholar"><i class="ai ai-google-scholar"></i></a><a href="https://github.com/ldkong1205/" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a><a href="https://www.linkedin.com/in/ldkong/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a><a href="https://twitter.com/ldkong1205" target="_blank" rel="noopener" aria-label="X"><i class="fab fa-x-twitter"></i></a></div></div></div>
+    <div class="cyc"><img class="cphoto" src="../assets_common/icons/worldbench-circle.png" alt="Jiangning Zhang" loading="lazy" width="54" height="54"><div class="cinfo"><div class="cname">Jiangning Zhang</div><div class="crole">Writing &amp; Editing</div></div></div>
+    <div class="cyc"><img class="cphoto" src="../assets_common/icons/worldbench-circle.png" alt="Xiaobin Hu" loading="lazy" width="54" height="54"><div class="cinfo"><div class="cname">Xiaobin Hu</div><div class="crole">Writing &amp; Editing</div></div></div>
+    <div class="cyc"><img class="cphoto" src="../assets_common/photos/dongyue_lu.jpg" alt="Dongyue Lu" loading="lazy" width="54" height="54"><div class="cinfo"><div class="cname">Dongyue Lu</div><div class="crole">Writing &amp; Editing</div></div></div>
+    <div class="cyc"><img class="cphoto" src="../assets_common/photos/wei_chow.jpg" alt="Wei Chow" loading="lazy" width="54" height="54"><div class="cinfo"><div class="cname">Wei Chow</div><div class="crole">Writing &amp; Editing</div></div></div>
+    <div class="cyc"><img class="cphoto" src="../assets_common/icons/worldbench-circle.png" alt="Xiyan Huang" loading="lazy" width="54" height="54"><div class="cinfo"><div class="cname">Xiyan Huang</div><div class="crole">Figures &amp; Visual Design</div></div></div>
+    <div class="cyc"><img class="cphoto" src="../assets_common/icons/worldbench-circle.png" alt="Yuxiang Feng" loading="lazy" width="54" height="54"><div class="cinfo"><div class="cname">Yuxiang Feng</div><div class="crole">Figures &amp; Visual Design</div></div></div>
+    <div class="cyc"><img class="cphoto" src="../assets_common/icons/worldbench-circle.png" alt="Yue Liao" loading="lazy" width="54" height="54"><div class="cinfo"><div class="cname">Yue Liao</div><div class="crole">Discussion &amp; Insights</div></div></div>
+    <div class="cyc"><img class="cphoto" src="../assets_common/photos/jianbiao_mei.jpg" alt="Jianbiao Mei" loading="lazy" width="54" height="54"><div class="cinfo"><div class="cname">Jianbiao Mei</div><div class="crole">Discussion &amp; Insights</div><div class="clinks"><a href="https://jianbiaomei.github.io/" target="_blank" rel="noopener" aria-label="Homepage"><i class="fas fa-globe"></i></a><a href="https://scholar.google.com/citations?user=OUtPkg0AAAAJ&amp;hl=en" target="_blank" rel="noopener" aria-label="Google Scholar"><i class="ai ai-google-scholar"></i></a><a href="https://github.com/Jieqianyu" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a></div></div></div>
+    <div class="cyc"><img class="cphoto" src="../assets_common/icons/worldbench-circle.png" alt="Daocheng Fu" loading="lazy" width="54" height="54"><div class="cinfo"><div class="cname">Daocheng Fu</div><div class="crole">Discussion &amp; Insights</div></div></div>
+    <div class="cyc"><img class="cphoto" src="../assets_common/icons/worldbench-circle.png" alt="Rong Wu" loading="lazy" width="54" height="54"><div class="cinfo"><div class="cname">Rong Wu</div><div class="crole">Discussion &amp; Insights</div></div></div>
+    <div class="cyc"><img class="cphoto" src="../assets_common/icons/worldbench-circle.png" alt="Pinlong Cai" loading="lazy" width="54" height="54"><div class="cinfo"><div class="cname">Pinlong Cai</div><div class="crole">Discussion &amp; Insights</div></div></div>
+    <div class="cyc"><img class="cphoto" src="../assets_common/icons/worldbench-circle.png" alt="Botian Shi" loading="lazy" width="54" height="54"><div class="cinfo"><div class="cname">Botian Shi</div><div class="crole">Advising</div></div></div>
+    <div class="cyc"><img class="cphoto" src="../assets_common/photos/yong_liu.png" alt="Yong Liu" loading="lazy" width="54" height="54"><div class="cinfo"><div class="cname">Yong Liu</div><div class="crole">Advising</div><div class="clinks"><a href="https://april.zju.edu.cn/team/dr-yong-liu/" target="_blank" rel="noopener" aria-label="Homepage"><i class="fas fa-globe"></i></a><a href="https://scholar.google.com/citations?user=qYcgBbEAAAAJ&amp;hl=en" target="_blank" rel="noopener" aria-label="Google Scholar"><i class="ai ai-google-scholar"></i></a><a href="https://github.com/APRIL-ZJU" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a></div></div></div>
+    <div class="cyc"><img class="cphoto" src="../assets_common/icons/worldbench-circle.png" alt="Shuicheng Yan" loading="lazy" width="54" height="54"><div class="cinfo"><div class="cname">Shuicheng Yan</div><div class="crole">Advising</div></div></div>
   </div>
   <p class="muted">The reading list is community-maintained — open a pull request on <a href="https://github.com/worldbench/awesome-agentic-world-model" target="_blank" rel="noopener">GitHub</a> to contribute new papers or corrections.</p>
 </section>
