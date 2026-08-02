@@ -215,9 +215,47 @@ a.anchor:hover{opacity:1;color:var(--accent);text-decoration:none}
 .reveal.in .chal .c:nth-child(2){transition-delay:.12s}
 .reveal.in .chal .c:nth-child(3){transition-delay:.19s}
 .reveal.in .chal .c:nth-child(4){transition-delay:.26s}
+/* radial function wheel */
+.fwheel-wrap{display:flex;justify-content:center;margin:.4rem 0 1.1rem}
+#fwheel{width:100%;max-width:430px;height:auto;font-family:"Newsreader","Iowan Old Style",Georgia,serif}
+#fwheel .spoke{stroke:var(--border);stroke-width:1.5}
+#fwheel .hub{fill:var(--panel2);stroke:var(--accent);stroke-width:2}
+#fwheel .hubt{fill:var(--text);text-anchor:middle;font-weight:600;font-size:15px}
+#fwheel .wnode{cursor:pointer;color:var(--muted)}
+#fwheel .wnode circle{fill:var(--card);stroke:var(--border);stroke-width:1.5;transition:fill .15s,stroke .15s}
+#fwheel .wnode text{fill:var(--text);text-anchor:middle;font-size:13.5px;font-weight:600}
+#fwheel .wnode:hover circle{stroke:var(--accent)}
+#fwheel .wnode.on{color:#fff}
+#fwheel .wnode.on circle{fill:var(--accent);stroke:var(--accent)}
+#fwheel .wnode.on text{fill:var(--accent)}
+
+/* reading-list distribution */
+.dist{margin-top:1.5rem}
+.dist .cap{font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:.7rem}
+.bars{display:grid;gap:.5rem}
+.bar{display:grid;grid-template-columns:150px 1fr 34px;align-items:center;gap:.6rem;font-size:.95rem}
+.bar .blabel{color:var(--text)}
+.bar .btrack{background:var(--panel2);border:1px solid var(--border);border-radius:8px;height:16px;overflow:hidden}
+.bar .barfill{height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:8px;transition:width 1.1s cubic-bezier(.2,.7,.2,1)}
+.bar .bnum{color:var(--muted);text-align:right;font-size:.86rem}
+.reveal.in .bar .barfill{width:var(--w)}
+@media(max-width:600px){.bar{grid-template-columns:104px 1fr 28px;font-size:.86rem}}
+
+/* related surveys */
+.rel{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:.8rem;margin:1.1rem 0 .4rem}
+.relc{display:block;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:.9rem 1rem;box-shadow:var(--shadow);transition:transform .15s ease,border-color .15s ease}
+.relc:hover{transform:translateY(-2px);border-color:var(--accent);text-decoration:none}
+.relc .rt{font-weight:600;color:var(--text);font-size:1.02rem;line-height:1.25}
+.relc .rd{color:var(--muted);font-size:.88rem;margin-top:.3rem}
+
+/* formula reveal */
+.reveal .formula{opacity:0;transform:translateY(10px)}
+.reveal.in .formula{opacity:1;transform:none;transition:opacity .6s ease,transform .6s ease;transition-delay:.15s}
+
 @media (prefers-reduced-motion:reduce){
   *{animation:none!important}
-  .reveal,.reveal .fpill,.reveal .chal .c{transition:none!important;opacity:1!important;transform:none!important}
+  .reveal,.reveal .fpill,.reveal .chal .c,.reveal .formula{transition:none!important;opacity:1!important;transform:none!important}
+  .bar .barfill{transition:none!important}
   .motif .dot{display:none}
 }
 
@@ -269,6 +307,7 @@ a.anchor:hover{opacity:1;color:var(--accent);text-decoration:none}
   <a href="#example">A Worked Example</a>
   <a href="#challenges">Open Challenges</a>
   <a href="#glossary">Glossary</a>
+  <a href="#related">Related</a>
   <a href="#cite">Citation</a>
   <a href="#contributors">Contributors</a>
 </nav>
@@ -322,9 +361,14 @@ a.anchor:hover{opacity:1;color:var(--accent);text-decoration:none}
 <section id="functions" class="reveal">
   <div class="kicker">Axis 1 · What</div>
   <h2>Six Proxy Functions</h2>
-  <p>Each function answers a different question for the agent, but all return agent-usable feedback. Pick one:</p>
-  <div class="fgrid" id="fgrid"></div>
+  <p>Each function answers a different question for the agent, but all return agent-usable feedback. Select one on the wheel:</p>
+  <div class="fwheel-wrap"><svg id="fwheel" viewBox="0 0 440 460" role="img" aria-label="Six proxy functions around the World Proxy hub"></svg></div>
   <div class="fpanel" id="fpanel"></div>
+  <div class="dist">
+    <div class="cap">Reading list &mdash; 197 works across the proxy functions</div>
+    <div class="bars" id="bars"></div>
+    <p class="muted" style="font-size:.9rem;margin-top:.6rem">Browse the full curated list on <a href="https://github.com/worldbench/awesome-agentic-world-model" target="_blank" rel="noopener">GitHub</a>.</p>
+  </div>
 </section>
 
 <section id="levels" class="reveal">
@@ -398,6 +442,26 @@ a.anchor:hover{opacity:1;color:var(--accent);text-decoration:none}
     <dt>Actionable information gain</dt>
     <dd>The proposed evaluation criterion — how much the feedback helps the agent plan, decide, learn, verify, or improve, rather than how visually realistic it is.</dd>
   </dl>
+</section>
+
+<section id="related" class="reveal">
+  <div class="kicker">Explore</div>
+  <h2>Related WorldBench surveys</h2>
+  <p>Part of the WorldBench effort to map world modeling across domains.</p>
+  <div class="rel">
+    <a class="relc" href="../survey.html">
+      <div class="rt">3D and 4D World Modeling: A Survey</div>
+      <div class="rd">Native video, occupancy, and LiDAR generation for dynamic scenes.</div>
+    </a>
+    <a class="relc" href="../vla4ad.html">
+      <div class="rt">Vision-Language-Action Models for Autonomous Driving</div>
+      <div class="rd">From Vision-Action to VLA models: past, present, and future.</div>
+    </a>
+    <a class="relc" href="../awesome-ai-auto-research.html">
+      <div class="rt">AI for Auto-Research: A Survey</div>
+      <div class="rd">AI across the research lifecycle, from ideation to dissemination.</div>
+    </a>
+  </div>
 </section>
 
 <section id="cite" class="reveal">
@@ -487,16 +551,29 @@ const ICONS={
  "Reward / Verification":svg('<path d="M12 3l7 3v5.5c0 4.2-2.9 7-7 8.5-4.1-1.5-7-4.3-7-8.5V6z"/><path d="M9 11.5l2 2 4-4"/>'),
 };
 
-// ---- functions explorer ----
-const fgrid=document.getElementById('fgrid'), fpanel=document.getElementById('fpanel');
-FUNCTIONS.forEach((fn,i)=>{const b=document.createElement('button');b.className='fpill'+(i===0?' on':'');b.innerHTML=(ICONS[fn.k]||'')+'<span>'+fn.k+'</span>';b.onclick=()=>selFn(i);fgrid.appendChild(b);});
-function selFn(i){[...fgrid.children].forEach((c,j)=>c.classList.toggle('on',j===i));const fn=FUNCTIONS[i];
+// ---- functions explorer (radial wheel) ----
+const fwheel=document.getElementById('fwheel'), fpanel=document.getElementById('fpanel');
+const SHORT=["Dynamics","Spatial","Execution","Memory","Skill","Reward"];
+(function(){const cx=220,cy=210,R=142,NR=38;let s='';
+  FUNCTIONS.forEach((fn,i)=>{const a=-Math.PI/2+i*(Math.PI/3),x=cx+R*Math.cos(a),y=cy+R*Math.sin(a);
+    s+=`<line class="spoke" x1="${cx}" y1="${cy}" x2="${x.toFixed(1)}" y2="${y.toFixed(1)}"></line>`;});
+  s+=`<circle class="hub" cx="${cx}" cy="${cy}" r="48"></circle><text class="hubt" x="${cx}" y="${cy-4}">World</text><text class="hubt" x="${cx}" y="${cy+15}">Proxy</text>`;
+  FUNCTIONS.forEach((fn,i)=>{const a=-Math.PI/2+i*(Math.PI/3),x=cx+R*Math.cos(a),y=cy+R*Math.sin(a);
+    const ic=(ICONS[fn.k]||'').replace('<svg ','<svg x="-14" y="-14" width="28" height="28" ');
+    s+=`<g class="wnode" data-i="${i}" transform="translate(${x.toFixed(1)},${y.toFixed(1)})"><circle r="${NR}"></circle>${ic}<text y="${NR+20}">${SHORT[i]}</text></g>`;});
+  fwheel.innerHTML=s;
+  fwheel.querySelectorAll('.wnode').forEach(g=>g.addEventListener('click',()=>selFn(+g.dataset.i)));})();
+function selFn(i){fwheel.querySelectorAll('.wnode').forEach(g=>g.classList.toggle('on',+g.dataset.i===i));const fn=FUNCTIONS[i];
   fpanel.innerHTML=`<div class="fhead">${ICONS[fn.k]||''}<span>${fn.k} Proxy</span></div>
    <div class="q">${fn.q}</div>
    <div class="formula">$$${fn.f}$$</div>
    <div class="tags">${fn.ex.map(e=>`<span>${e}</span>`).join('')}</div>`;
   fpanel.style.animation='none';void fpanel.offsetWidth;fpanel.style.animation='';
   if(window.renderMathInElement)renderMathInElement(fpanel,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]});}
+
+// ---- reading-list bars ----
+(function(){const BARS=[["Dynamics",40],["Spatial",49],["Execution",29],["Memory / Skill",5],["Reward / Verification",74]],bmax=74,el=document.getElementById('bars');
+  if(el)el.innerHTML=BARS.map(([n,c])=>`<div class="bar"><div class="blabel">${n}</div><div class="btrack"><div class="barfill" style="--w:${(c/bmax*100).toFixed(1)}%"></div></div><div class="bnum">${c}</div></div>`).join('');})();
 
 // ---- toggle ----
 document.querySelectorAll('#w-toggle .seg button').forEach(b=>b.onclick=()=>{
