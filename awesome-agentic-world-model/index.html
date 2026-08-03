@@ -158,11 +158,12 @@ pre.bib{background:var(--panel2);border:1px solid var(--border);border-radius:12
 
 footer.wb-footer{border-top:1px solid var(--hair);margin-top:2rem;text-align:center;color:var(--muted);font-size:.85rem;padding:1.6rem 1rem}
 
-/* glossary */
-dl.gloss{margin:1rem 0 0}
-dl.gloss dt{font-weight:700;color:var(--text);margin-top:1rem}
-dl.gloss dd{margin:.2rem 0 0;color:var(--muted);font-family:"Newsreader","Iowan Old Style",Georgia,serif;font-size:1.08rem;line-height:1.62}
-dl.gloss dd b{color:var(--text);font-weight:600}
+/* glossary term cards */
+.glossg{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:.85rem;margin:1.1rem 0 .3rem}
+.gcard{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:12px;padding:.9rem 1rem;box-shadow:var(--shadow)}
+.gcard .gt{font-weight:700;color:var(--accent);font-size:1.05rem;margin-bottom:.32rem}
+.gcard p{margin:0;color:var(--muted);font-family:"Newsreader","Iowan Old Style",Georgia,serif;font-size:1.05rem;line-height:1.55}
+.gcard p b{color:var(--text);font-weight:600}
 
 /* co-evolution loop */
 .loopfig{margin:1.6rem 0 .4rem;text-align:center}
@@ -477,20 +478,14 @@ a.anchor:hover{opacity:1;color:var(--accent);text-decoration:none}
   <div class="kicker">Reference</div>
   <h2>Key terms</h2>
   <p>A compact glossary of the vocabulary this position paper introduces.</p>
-  <dl class="gloss">
-    <dt>World Proxy</dt>
-    <dd>An environment-grounded interface an agent can query before acting, training, or updating. It returns <b>agent-usable feedback</b> rather than only the next physical state.</dd>
-    <dt>Information transition</dt>
-    <dd>The proxy's output at an interaction step — a rendered view, an execution result, a retrieved memory or skill, or a verdict on a plan — not necessarily the next physical state.</dd>
-    <dt>Interaction step (ℓ)</dt>
-    <dd>The index of an agent query. Unlike physical time, a step need not advance the world: it may imagine a viewpoint, simulate an execution, or verify a plan.</dd>
-    <dt>Proxy function</dt>
-    <dd>The type of feedback a proxy returns: <b>Dynamics</b>, <b>Spatial</b>, <b>Execution</b>, <b>Memory</b>, <b>Skill</b>, or <b>Reward / Verification</b>.</dd>
-    <dt>Empowerment level</dt>
-    <dd>How a proxy improves the agent: <b>L1</b> inference-time guidance, <b>L2</b> training-time optimization, <b>L3</b> agent–proxy co-evolution.</dd>
-    <dt>Actionable information gain</dt>
-    <dd>The proposed evaluation criterion — how much the feedback helps the agent plan, decide, learn, verify, or improve, rather than how visually realistic it is.</dd>
-  </dl>
+  <div class="glossg">
+    <div class="gcard"><div class="gt">World Proxy</div><p>An environment-grounded interface an agent can query before acting, training, or updating. It returns <b>agent-usable feedback</b> rather than only the next physical state.</p></div>
+    <div class="gcard"><div class="gt">Information transition</div><p>The proxy's output at an interaction step — a rendered view, an execution result, a retrieved memory or skill, or a verdict on a plan — not necessarily the next physical state.</p></div>
+    <div class="gcard"><div class="gt">Interaction step (ℓ)</div><p>The index of an agent query. Unlike physical time, a step need not advance the world: it may imagine a viewpoint, simulate an execution, or verify a plan.</p></div>
+    <div class="gcard"><div class="gt">Proxy function</div><p>The type of feedback a proxy returns: <b>Dynamics</b>, <b>Spatial</b>, <b>Execution</b>, <b>Memory</b>, <b>Skill</b>, or <b>Reward / Verification</b>.</p></div>
+    <div class="gcard"><div class="gt">Empowerment level</div><p>How a proxy improves the agent: <b>L1</b> inference-time guidance, <b>L2</b> training-time optimization, <b>L3</b> agent–proxy co-evolution.</p></div>
+    <div class="gcard"><div class="gt">Actionable information gain</div><p>The proposed evaluation criterion — how much the feedback helps the agent plan, decide, learn, verify, or improve, rather than how visually realistic it is.</p></div>
+  </div>
 </section>
 
 <section id="cite" class="reveal">
