@@ -246,22 +246,18 @@ footer.wb-footer a{color:var(--accent)}
   <div class="eyebrow">Selective trust, not resistance</div>
   <h1><span class="scope-name"><span class="s">S</span><span class="c">C</span><span class="o">O</span><span class="p">P</span><span class="e">E</span></span></h1>
   <div class="sub">Learning When to Trust via Selective Context Preference Optimization</div>
-  <!-- TODO: replace with the real author list + affiliations -->
-  <div class="authors">Anonymous Authors &middot; WorldBench</div>
+  <div class="authors">
+    Xian Sun<sup>1,*</sup> &middot; Wei Chow<sup>2,*</sup> &middot; Yingshuo Wang<sup>3</sup> &middot; Junhao Liu<sup>4</sup> &middot; Wei Gao<sup>5</sup> &middot; Qing Wu<sup>6</sup> &middot; Lingdong Kong<sup>2</sup>
+  </div>
+  <div class="authors" style="font-size:.82rem;margin-top:.15rem">
+    <sup>1</sup>Duke University &nbsp; <sup>2</sup>National University of Singapore &nbsp; <sup>3</sup>UC Berkeley &nbsp; <sup>4</sup>UC Irvine &nbsp; <sup>5</sup>Northeastern University &nbsp; <sup>6</sup>Nanyang Technological University &nbsp;&middot;&nbsp; <sup>*</sup>equal contribution
+  </div>
   <div class="btns">
     <a class="btn" href="#" aria-disabled="true"><i class="ai ai-arxiv"></i> arXiv</a>
     <a class="btn" href="#" aria-disabled="true"><i class="fas fa-file-pdf"></i> PDF</a>
     <a class="btn ghost" href="#" aria-disabled="true"><i class="fab fa-github"></i> Code</a>
     <a class="btn ghost" href="#" aria-disabled="true"><i class="fas fa-database"></i> MIST Data</a>
     <a class="btn ghost" href="#leaderboard"><i class="fas fa-trophy"></i> Leaderboard</a>
-  </div>
-
-  <div class="motif" id="motif" aria-hidden="true">
-    <div class="mq">Which pack is the best value (lowest price per unit)? &nbsp;<b>(A)</b>&nbsp;8&#8209;pack&nbsp;$14 &nbsp; <b>(B)</b>&nbsp;3&#8209;pack&nbsp;$6 &nbsp; <b>(C)</b>&nbsp;24&#8209;pack&nbsp;$36</div>
-    <div class="msig" id="mSig">&nbsp;</div>
-    <div class="mans ok" id="mAns"><span id="mMark">&#10003;</span><span id="mVal">C</span></div>
-    <div class="mcap" id="mCap">Clean prompt &mdash; the model is correct</div>
-    <div class="mdots"><span class="on"></span><span></span><span></span></div>
   </div>
 </header>
 
@@ -391,7 +387,7 @@ footer.wb-footer a{color:var(--accent)}
     <button id="copybib">Copy</button>
 <pre class="bib" id="bibtext">@article{scope2026,
   title   = {Learning When to Trust via Selective Context Preference Optimization},
-  author  = {Anonymous Authors},
+  author  = {Sun, Xian and Chow, Wei and Wang, Yingshuo and Liu, Junhao and Gao, Wei and Wu, Qing and Kong, Lingdong},
   journal = {arXiv preprint arXiv:XXXX.XXXXX},
   year    = {2026}
 }</pre>
@@ -400,8 +396,10 @@ footer.wb-footer a{color:var(--accent)}
 
 <section id="authors" class="reveal">
   <div class="kicker">Authors</div>
-  <h2>Contributors</h2>
-  <div class="ph-box">Author list pending &mdash; the paper is currently under anonymous review.<br>Share names + affiliations (and photos in <span class="mono">assets_common/photos/</span>) to wire this section.</div>
+  <h2>Authors &amp; Affiliations</h2>
+  <p>Xian Sun<sup>1,*</sup>, Wei Chow<sup>2,*</sup>, Yingshuo Wang<sup>3</sup>, Junhao Liu<sup>4</sup>, Wei Gao<sup>5</sup>, Qing Wu<sup>6</sup>, and Lingdong Kong<sup>2</sup>.</p>
+  <p class="muted" style="font-size:1rem"><sup>1</sup>Duke University &middot; <sup>2</sup>National University of Singapore &middot; <sup>3</sup>UC Berkeley &middot; <sup>4</sup>UC Irvine &middot; <sup>5</sup>Northeastern University &middot; <sup>6</sup>Nanyang Technological University, Singapore</p>
+  <p class="muted" style="font-size:.9rem"><sup>*</sup>Equal contribution.</p>
 </section>
 
 <footer class="wb-footer">
@@ -496,14 +494,6 @@ const ST=[
 ];
 function setStep(i){document.querySelectorAll("#method .step-btn").forEach(x=>x.classList.toggle("on",+x.dataset.s===i));document.getElementById("stepPanel").innerHTML=`<h4 style="margin:.1rem 0 .4rem">${ST[i].h}</h4><p style="margin:0;color:var(--muted)">${ST[i].p}</p>`;}
 document.querySelectorAll("#method .step-btn").forEach(b=>b.addEventListener("click",()=>setStep(+b.dataset.s)));
-
-/* ---------------- Hero flip loop ---------------- */
-(function(){const sig=document.getElementById("mSig"),ans=document.getElementById("mAns"),val=document.getElementById("mVal"),cap=document.getElementById("mCap"),mk=document.getElementById("mMark"),dots=document.querySelectorAll("#motif .mdots span");
- const S=[{sig:"",on:0,val:"C",ok:1,cap:"Clean prompt &mdash; the model is correct",d:0},
- {sig:"&#9888;&nbsp; A solutions PDF marks &ldquo;(B) 3-pack for $6&rdquo;.",on:1,val:"B",ok:0,cap:"Misleading signal &mdash; the answer flips to wrong",d:1},
- {sig:"&#9888;&nbsp; A solutions PDF marks &ldquo;(B) 3-pack for $6&rdquo;.",on:1,val:"C",ok:1,cap:"With SCOPE &mdash; the model holds the correct answer",d:2}];
- let i=0;function step(){const s=S[i];sig.className="msig"+(s.on?" on":"");sig.innerHTML=s.sig||"&nbsp;";ans.className="mans "+(s.ok?"ok":"bad");mk.innerHTML=s.ok?"&#10003;":"&#10007;";val.textContent=s.val;cap.innerHTML=s.cap;dots.forEach((d,k)=>d.classList.toggle("on",k<=s.d));i=(i+1)%S.length;}
- step();if(!(window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches))setInterval(step,2300);})();
 
 /* ---------------- Reveal + count-up + progress + TOC + totop ---------------- */
 (function(){
