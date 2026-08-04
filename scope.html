@@ -1,537 +1,532 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>SCOPE: Learning When to Trust via Selective Context Preference Optimization</title>
-    <link rel="icon" href="assets_common/icons/worldbench-circle.png" type="image/x-icon">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SCOPE &mdash; Selective Context Preference Optimization</title>
+<meta name="description" content="SCOPE: Learning When to Trust via Selective Context Preference Optimization. We introduce MIST, a matched-condition benchmark for selective trust, and the SC2W metric; show universal susceptibility to misleading signals; and propose SCOPE, which roughly halves SC2W without hurting clean, correct-context, or irrelevant-context accuracy.">
+<link rel="icon" href="assets_common/icons/worldbench-circle.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz@0,6..72;1,6..72&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]});"></script>
+<style>
+:root{
+  --accent:#FF2E63; --accent2:#08D9D6; --link:#d81e57;
+  --c-clean:#252A34; --c-mis:#FF2E63; --c-cor:#0a9a97; --c-irr:#9C9C9C;
+  --bg:#fdfbf2; --panel:#f7f1e0; --panel2:#f2ecd8; --card:#fefcf5;
+  --text:#2b2f38; --muted:#7c7360; --border:#ebe2cd; --hair:#f2ecda;
+  --shadow:0 1px 2px rgba(16,24,40,.04),0 8px 24px rgba(16,24,40,.06);
+  --measure:760px; --radius:16px;
+  --grain:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.09 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--grain),var(--bg);background-attachment:fixed,fixed;color:var(--text);
+  font-family:"Newsreader","Iowan Old Style",Georgia,serif;line-height:1.72;font-size:18px;-webkit-font-smoothing:antialiased}
+a{color:var(--link);text-decoration:none}
+a:hover{text-decoration:underline}
+h1,h2,h3,h4{font-family:"Newsreader","Iowan Old Style",Georgia,serif;line-height:1.22;letter-spacing:-.005em}
+.mono{font-family:"SFMono-Regular",Menlo,Consolas,monospace;font-size:.92em}
 
-    <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
-    <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,600,700,800&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700&display=swap" rel="stylesheet">
+#progress{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--accent),#b02b6b,var(--accent2));z-index:200}
+#topbar{position:sticky;top:0;z-index:100;display:flex;align-items:center;gap:.7rem;padding:.55rem 1.1rem;
+  background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:saturate(1.4) blur(10px);border-bottom:1px solid var(--hair)}
+#topbar img{height:26px;border-radius:50%}
+#topbar .brand{font-weight:600;font-size:.98rem}
+#topbar .brand .scope-name{font-weight:700}
+#topbar .spacer{flex:1}
+#topbar a.mini{color:var(--muted);font-size:.85rem;margin-left:.9rem}
+#topbar a.mini:hover{color:var(--accent)}
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="SCOPE — Selective Context Preference Optimization. We introduce MIST, a matched-condition benchmark for selective trust, show universal susceptibility to misleading signals, and propose SCOPE, which roughly halves the SC2W flip rate without hurting clean, correct-context, or irrelevant-context accuracy.">
+/* SCOPE / MIST wordmarks */
+.scope-name .s{color:var(--accent)} .scope-name .c{color:var(--c-irr)} .scope-name .o{color:var(--accent2)} .scope-name .p{color:var(--accent)} .scope-name .e{color:var(--c-irr)}
+.mist-name{font-weight:700} .mist-name .m{color:var(--accent)} .mist-name .i{color:var(--c-irr)} .mist-name .s{color:var(--accent2)} .mist-name .t{color:var(--c-irr)}
 
-    <script src="./static/js/distill_template.v2.js"></script>
+/* hero */
+.hero{max-width:1080px;margin:0 auto;padding:3.2rem 1.3rem 1.2rem;padding-left:calc(210px + 1.6rem + 1.3rem)}
+.hero .eyebrow{color:var(--accent);font-weight:600;letter-spacing:.14em;text-transform:uppercase;font-size:.72rem}
+.hero h1{font-size:clamp(2.2rem,6vw,3.6rem);margin:.5rem 0 .4rem;letter-spacing:.01em}
+.hero .sub{font-size:clamp(1.1rem,2.6vw,1.5rem);color:var(--text);font-weight:500;margin:.2rem 0 .7rem;max-width:640px}
+.hero .authors{color:var(--muted);font-size:.92rem;margin:.3rem 0 .2rem}
+.btns{display:flex;flex-wrap:wrap;gap:.8rem;margin:1.2rem 0 2.4rem}
+.btn{display:inline-flex;align-items:center;gap:.45rem;padding:.5rem .95rem;border-radius:999px;background:var(--c-clean);color:#fff;font-weight:500;font-size:.9rem;border:1px solid var(--c-clean);
+  transition:transform .15s,box-shadow .15s,opacity .15s,color .15s,border-color .15s}
+.btn:hover{text-decoration:none;transform:translateY(-2px);box-shadow:var(--shadow);opacity:.96}
+.btn.ghost{background:transparent;color:var(--c-clean);border-color:#d8ccab}
+.btn.ghost:hover{border-color:var(--accent);color:var(--accent);opacity:1}
+.btn[aria-disabled="true"]{opacity:.5;pointer-events:none}
 
-    <link rel="stylesheet" href="./static/css/style.css">
-    <link rel="stylesheet" href="./static/css/scope.css">
-    <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+/* hero flip motif */
+.motif{max-width:560px;margin:1.6rem 0 1rem;background:var(--card);border:1px solid var(--border);border-radius:16px;box-shadow:var(--shadow);padding:1.1rem 1.2rem}
+.motif .mq{font-size:1rem;line-height:1.5;color:var(--text)}
+.motif .mq b{color:var(--c-clean)}
+.motif .msig{margin:.7rem 0;min-height:2.2rem;font-size:.9rem;border-radius:10px;padding:.5rem .7rem;border-left:3px solid transparent;background:var(--panel);color:var(--muted);transition:all .4s ease}
+.motif .msig.on{border-left-color:var(--accent);background:color-mix(in srgb,var(--accent) 10%,var(--card));color:var(--text)}
+.motif .mans{display:flex;align-items:center;gap:.5rem;font-size:1.5rem;font-weight:600;transition:color .35s}
+.motif .mans.ok{color:var(--c-cor)} .motif .mans.bad{color:var(--accent)}
+.motif .mcap{margin-top:.5rem;font-size:.82rem;color:var(--muted)}
+.motif .mdots{display:flex;gap:.3rem;margin-top:.7rem}
+.motif .mdots span{height:4px;flex:1;border-radius:999px;background:var(--border)}
+.motif .mdots span.on{background:var(--accent)}
 
-    <script defer src="./static/js/fontawesome.all.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+/* layout */
+.wrap{max-width:1080px;margin:0 auto;padding:0 1.3rem;display:grid;grid-template-columns:210px minmax(0,1fr);gap:1.6rem}
+nav.toc{position:sticky;top:64px;align-self:start;height:max-content;font-size:.92rem;padding-top:2rem}
+nav.toc .lab{color:var(--muted);text-transform:uppercase;letter-spacing:.12em;font-size:.68rem;margin-bottom:.6rem}
+nav.toc a{display:block;color:var(--muted);padding:.28rem 0;border-left:2px solid transparent;padding-left:.7rem}
+nav.toc a.active{color:var(--accent);border-left-color:var(--accent);font-weight:600}
+article{max-width:var(--measure);width:100%;margin:0;padding:1.2rem 0 3rem}
+section{padding:2rem 0;border-top:1px solid var(--hair);scroll-margin-top:70px}
+section:first-of-type{border-top:none}
+.kicker{color:var(--accent);font-weight:600;letter-spacing:.12em;text-transform:uppercase;font-size:.72rem;margin-bottom:.35rem}
+h2{font-size:clamp(1.5rem,3.6vw,2rem);margin:.1rem 0 .7rem}
+h3{font-size:1.15rem;margin:1.3rem 0 .3rem}
+article > section > p{font-size:1.16rem;line-height:1.82;margin:.7rem 0}
+.lead{font-size:1.3rem;line-height:1.62}
+.muted{color:var(--muted)}
+
+.callout{background:var(--panel);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:12px;padding:.9rem 1.1rem;margin:1.2rem 0;box-shadow:var(--shadow)}
+.callout .t{font-weight:600;color:var(--accent);font-size:.8rem;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.3rem}
+blockquote{margin:1.4rem 0;padding:.4rem 0 .4rem 1.1rem;border-left:3px solid var(--accent);font-size:1.32rem;line-height:1.5;color:var(--text)}
+.formula{background:var(--panel2);border:1px solid var(--border);border-radius:12px;padding:.7rem 1rem;margin:1rem 0;text-align:center;overflow-x:auto}
+
+/* stat trio */
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:.9rem;margin:1.4rem 0}
+.stat{text-align:center;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.1rem .8rem;box-shadow:var(--shadow)}
+.stat .num{font-size:2.4rem;font-weight:600;line-height:1;color:var(--accent)}
+.stat .lbl{margin-top:.45rem;font-size:.9rem;color:var(--muted);line-height:1.45}
+@media(max-width:600px){.stats{grid-template-columns:1fr}}
+
+/* why-grid mini cards */
+.mgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.85rem;margin:1.2rem 0}
+@media(max-width:600px){.mgrid{grid-template-columns:1fr}}
+.mcard{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:.95rem;box-shadow:var(--shadow)}
+.mcard .ic{color:var(--accent);font-size:1.25rem}
+.mcard h4{margin:.45rem 0 .3rem;font-size:1.05rem;line-height:1.2}
+.mcard p{margin:0;font-size:.95rem;color:var(--muted);line-height:1.55}
+
+/* figure */
+.fig{margin:1.5rem 0 .4rem;text-align:center}
+.fig img{width:100%;max-width:760px;height:auto;border-radius:12px;border:1px solid var(--border);box-shadow:var(--shadow)}
+.fig figcaption{color:var(--muted);font-size:1rem;margin-top:.6rem;line-height:1.5}
+
+/* segmented four-condition widget */
+.widget{border:1px solid var(--border);border-radius:var(--radius);background:var(--card);box-shadow:var(--shadow);padding:1.1rem;margin:1.4rem 0}
+.widget .whead{font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:.7rem}
+.seg{display:inline-flex;flex-wrap:wrap;border:1px solid var(--border);border-radius:999px;overflow:hidden;background:var(--panel)}
+.seg button{border:0;background:transparent;color:var(--muted);padding:.45rem 1rem;cursor:pointer;font:inherit;font-size:.9rem;font-weight:600}
+.seg button.on[data-c="clean"]{background:var(--c-clean);color:#fff}
+.seg button.on[data-c="mis"]{background:var(--c-mis);color:#fff}
+.seg button.on[data-c="cor"]{background:var(--c-cor);color:#fff}
+.seg button.on[data-c="irr"]{background:var(--c-irr);color:#fff}
+.cond-q{margin:1rem 0 .3rem;font-size:1rem;color:var(--text)}
+.cond-ctx{border-radius:10px;padding:.7rem .85rem;font-size:.95rem;line-height:1.5;border-left:3px solid var(--c-irr);background:var(--panel);margin:.55rem 0 .7rem;transition:all .3s}
+.cond-ctx.mis{border-left-color:var(--c-mis);background:color-mix(in srgb,var(--c-mis) 8%,var(--card))}
+.cond-ctx.cor{border-left-color:var(--c-cor);background:color-mix(in srgb,var(--c-cor) 8%,var(--card))}
+.cond-ans{display:flex;align-items:center;gap:.5rem;font-size:1.2rem;font-weight:600}
+.cond-ans.ok{color:var(--c-cor)} .cond-ans.bad{color:var(--c-mis)}
+
+/* stepper (method) */
+.steps{display:flex;gap:.5rem;flex-wrap:wrap}
+.step-btn{flex:1;min-width:150px;text-align:left;border:1px solid var(--border);border-radius:12px;background:var(--panel);padding:.7rem .8rem;cursor:pointer;font:inherit;transition:.15s}
+.step-btn .lv{font-weight:700;font-size:.78rem;letter-spacing:.06em;color:var(--accent)}
+.step-btn .nm{display:block;font-size:.98rem;font-weight:600;margin-top:.15rem}
+.step-btn.on{color:#fff;background:var(--accent);border-color:var(--accent)}
+.step-btn.on .lv{color:#fff}
+.step-panel{margin-top:1rem;background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:1rem;animation:panelIn .18s ease}
+@keyframes panelIn{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+
+/* animated bars (results) */
+.bars{display:grid;gap:.6rem;margin:1.1rem 0}
+.bar{display:grid;grid-template-columns:190px 1fr 92px;align-items:center;gap:.6rem;font-size:.98rem}
+.bar .blabel{color:var(--text)}
+.bar .btrack{background:var(--panel2);border:1px solid var(--border);border-radius:8px;height:18px;overflow:hidden}
+.bar .barfill{height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:8px;transition:width 1.1s cubic-bezier(.2,.7,.2,1)}
+.bar .bnum{color:var(--muted);text-align:right;font-size:.9rem}
+.reveal.in .bar .barfill{width:var(--w)}
+@media(max-width:600px){.bar{grid-template-columns:120px 1fr 72px;font-size:.86rem}}
+
+/* leaderboard */
+.lb-controls{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;margin:1rem 0 .8rem}
+.lb-controls .seg button{font-size:.84rem;padding:.4rem .85rem}
+.lb-controls .seg button.on{background:var(--c-clean);color:#fff}
+.lb-hint{margin-left:auto;font-size:.8rem;color:var(--muted)}
+.lb-scroll{overflow-x:auto;border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow)}
+table.lb{width:100%;border-collapse:collapse;font-size:.88rem;background:var(--card);min-width:680px}
+.lb thead th{position:sticky;top:0;background:var(--c-clean);color:#fff;font-weight:600;padding:.55rem .6rem;text-align:center;cursor:pointer;user-select:none;white-space:nowrap;font-family:"Newsreader",serif}
+.lb thead th:first-child{text-align:left}
+.lb thead th .ar{font-size:.7rem;opacity:.55;margin-left:2px}
+.lb thead th.sorted .ar{opacity:1;color:var(--accent2)}
+.lb tbody td{padding:.44rem .6rem;text-align:center;border-bottom:1px solid var(--hair);color:var(--text);white-space:nowrap;font-variant-numeric:tabular-nums}
+.lb tbody td:first-child{text-align:left}
+.lb tbody tr:hover{background:var(--panel)}
+.lb .grp td{background:var(--panel2);color:var(--muted);font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;font-weight:700;text-align:left;padding:.34rem .6rem}
+.lb .m{display:flex;align-items:center;gap:.5rem}
+.lb .m img{height:18px;width:18px;object-fit:contain;border-radius:4px}
+.lb .m .nm{font-weight:600}
+.lb .bd{font-size:.62rem;font-weight:700;letter-spacing:.03em;text-transform:uppercase;padding:.06rem .4rem;border-radius:999px}
+.lb .bd.api{background:#eef1f5;color:#5b6270} .lb .bd.open{background:#f0e9ff;color:#6b46c1} .lb .bd.def{background:color-mix(in srgb,var(--accent2) 16%,#fff);color:#0a7f7c}
+.lb .best{font-weight:800;color:var(--accent)}
+.lb .ul{text-decoration:underline;text-decoration-color:var(--accent2);text-underline-offset:2px}
+.lb tr.ours{background:linear-gradient(90deg,color-mix(in srgb,var(--accent) 9%,transparent),color-mix(in srgb,var(--accent2) 8%,transparent))}
+.lb tr.ours .m .nm::after{content:" ★";color:var(--accent);font-size:.85em}
+.lb .sc{border-radius:5px}
+.lb-cards{display:none}
+@media(max-width:640px){
+  .lb-scroll{display:none}.lb-cards{display:block}
+  .lbc{border:1px solid var(--border);border-radius:12px;padding:.75rem .85rem;margin-bottom:.65rem;background:var(--card)}
+  .lbc .m{margin-bottom:.45rem}.lbc.ours{border-color:var(--accent)}
+  .lbc .g{display:grid;grid-template-columns:repeat(3,1fr);gap:.35rem .5rem;font-size:.82rem}
+  .lbc .g div span{display:block;color:var(--muted);font-size:.66rem;text-transform:uppercase}
+}
+
+/* challenge / case cards */
+.chal{display:grid;grid-template-columns:1fr 1fr;gap:.9rem;margin:1.1rem 0}
+@media(max-width:600px){.chal{grid-template-columns:1fr}}
+.chal .c{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:.95rem;box-shadow:var(--shadow)}
+.chal .c .tag{font-size:.66rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;padding:.1rem .45rem;border-radius:999px}
+.chal .c .tag.ok{background:color-mix(in srgb,var(--c-cor) 16%,#fff);color:#0a7f7c}
+.chal .c .tag.warn{background:color-mix(in srgb,var(--c-mis) 12%,#fff);color:var(--c-mis)}
+.chal .c h4{margin:.35rem 0 .35rem;font-size:1.02rem}
+.chal .c p{margin:.2rem 0 .5rem;font-size:.93rem;color:var(--muted);line-height:1.5}
+.chal .flip{display:flex;gap:.5rem}
+.chal .flip .p{flex:1;border-radius:9px;padding:.45rem;text-align:center;font-size:.85rem}
+.chal .flip .p.base{background:color-mix(in srgb,var(--c-mis) 10%,#fff);color:var(--c-mis)}
+.chal .flip .p.ours{background:color-mix(in srgb,var(--c-cor) 12%,#fff);color:#0a7f7c}
+.chal .flip .p b{display:block;font-size:1.05rem}
+
+/* bibtex */
+.bibwrap{position:relative}
+pre.bib{background:var(--panel2);border:1px solid var(--border);border-radius:12px;padding:1rem;overflow-x:auto;font-size:.82rem;line-height:1.5;font-family:"SFMono-Regular",Menlo,Consolas,monospace}
+#copybib{position:absolute;top:.6rem;right:.6rem;cursor:pointer;border:1px solid var(--border);background:var(--card);color:var(--text);border-radius:8px;padding:.28rem .55rem;font-size:.78rem;font-family:inherit}
+
+.ph-box{border:2px dashed #d6cdb2;border-radius:14px;padding:1.4rem;text-align:center;color:var(--muted);background:var(--panel);margin:1rem 0}
+
+footer.wb-footer{border-top:1px solid var(--hair);margin-top:2rem;text-align:center;color:var(--muted);font-size:.85rem;padding:1.6rem 1rem}
+footer.wb-footer a{color:var(--accent)}
+
+#totop{position:fixed;right:1.1rem;bottom:1.1rem;z-index:150;width:42px;height:42px;border-radius:50%;border:1px solid var(--border);background:var(--card);color:var(--text);cursor:pointer;font-size:1.15rem;box-shadow:var(--shadow);opacity:0;pointer-events:none;transform:translateY(8px);transition:opacity .2s,transform .2s,color .15s,border-color .15s}
+#totop.show{opacity:1;pointer-events:auto;transform:none}
+#totop:hover{border-color:var(--accent);color:var(--accent)}
+
+.reveal{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important}
+  .reveal{transition:none!important;opacity:1!important;transform:none!important}
+  .bar .barfill{transition:none!important}
+}
+@media(max-width:900px){
+  .wrap{grid-template-columns:1fr;gap:0}
+  nav.toc{display:none}
+  .hero{padding-left:1.3rem}
+  body{font-size:17px}
+}
+</style>
 </head>
-
 <body>
-    <div class="scroll-progress" id="scrollProgress" style="background: linear-gradient(90deg, #FF2E63, #b02b6b, #08D9D6);"></div>
+<div id="progress"></div>
 
-    <!-- ==================== HERO ==================== -->
-    <div class="header-wrapper" style="background: linear-gradient(220deg, #08D9D6 0%, #FF2E63a0 42%, #252A34 100%);">
-        <div class="header-container" id="header-container">
-            <div class="header-content">
-                <h1 style="font-size:3.8rem;">
-                    <span class="scope-name"><span class="s">S</span><span class="c">C</span><span class="o">O</span><span class="p">P</span><span class="e">E</span></span>
-                </h1>
-                <h2 style="margin:0.6rem 0 1.4rem; font-size:1.5rem; line-height:1.3; color:#fff; font-weight:500; max-width:640px;">
-                    Learning When to Trust via Selective Context Preference Optimization
-                </h2>
-                <!-- TODO: replace placeholder byline with the real author list + affiliations -->
-                <div style="color:#FFFFFFdd; font-size:1rem; margin-bottom:1.4rem; max-width:640px;">
-                    <span style="font-weight:600;">Anonymous Authors</span>
-                    <span style="opacity:0.85;">&nbsp;&middot;&nbsp; WorldBench</span>
-                </div>
+<div id="topbar">
+  <img src="assets_common/icons/worldbench-circle.png" alt="WorldBench">
+  <span class="brand"><span class="scope-name"><span class="s">S</span><span class="c">C</span><span class="o">O</span><span class="p">P</span><span class="e">E</span></span></span>
+  <span class="spacer"></span>
+  <a class="mini" href="#benchmark">MIST</a>
+  <a class="mini" href="#leaderboard">Leaderboard</a>
+  <a class="mini" href="#method">Method</a>
+</div>
 
-                <div class="button-container">
-                    <a href="#" class="button paper-link" target="_blank"><span class="icon is-small"><i class="ai ai-arxiv" style="height:1.5em;"></i></span><span>arXiv</span></a>
-                    <a href="#" class="button paper-link" target="_blank"><span class="icon is-small"><img src="assets_common/icons/pdf.png" style="height:1.4em;"></span><span>PDF</span></a>
-                    <a href="#" class="button" target="_blank"><span class="icon is-small"><img src="assets_common/icons/github.png" style="height:1.4em;"></span><span>Code</span></a>
-                    <a href="#" class="button" target="_blank"><span class="icon is-small"><img src="assets_common/icons/hf.png" style="height:1.5em;"></span><span>MIST Data</span></a>
-                    <a href="#leaderboard" class="button"><span class="icon is-small"><i class="fas fa-trophy" style="height:1.4em;"></i></span><span>Leaderboard</span></a>
-                </div>
-            </div>
+<header class="hero">
+  <div class="eyebrow">Selective trust, not resistance</div>
+  <h1><span class="scope-name"><span class="s">S</span><span class="c">C</span><span class="o">O</span><span class="p">P</span><span class="e">E</span></span></h1>
+  <div class="sub">Learning When to Trust via Selective Context Preference Optimization</div>
+  <!-- TODO: replace with the real author list + affiliations -->
+  <div class="authors">Anonymous Authors &middot; WorldBench</div>
+  <div class="btns">
+    <a class="btn" href="#" aria-disabled="true"><i class="ai ai-arxiv"></i> arXiv</a>
+    <a class="btn" href="#" aria-disabled="true"><i class="fas fa-file-pdf"></i> PDF</a>
+    <a class="btn ghost" href="#" aria-disabled="true"><i class="fab fa-github"></i> Code</a>
+    <a class="btn ghost" href="#" aria-disabled="true"><i class="fas fa-database"></i> MIST Data</a>
+    <a class="btn ghost" href="#leaderboard"><i class="fas fa-trophy"></i> Leaderboard</a>
+  </div>
 
-            <div class="header-image">
-                <!-- Signature "signal-flip" demo: clean -> misleading -> SCOPE -->
-                <div class="flip-demo" id="flipDemo" aria-label="Animated demonstration of a misleading signal flipping a correct answer">
-                    <div class="flip-q">Which pack is the best value (lowest price per unit)?<br>
-                        <b>(A)</b> 8-pack&nbsp;$14 &nbsp; <b>(B)</b> 3-pack&nbsp;$6 &nbsp; <b>(C)</b> 24-pack&nbsp;$36</div>
-                    <div class="flip-signal" id="flipSignal">&nbsp;</div>
-                    <div class="flip-answer ok" id="flipAnswer"><span class="mark">&#10003;</span><span id="flipVal">C</span></div>
-                    <div class="flip-caption" id="flipCap">Clean prompt &mdash; the model is correct</div>
-                    <div class="flip-steps"><span class="flip-dot on"></span><span class="flip-dot"></span><span class="flip-dot"></span></div>
-                </div>
-            </div>
-        </div>
+  <div class="motif" id="motif" aria-hidden="true">
+    <div class="mq">Which pack is the best value (lowest price per unit)? &nbsp;<b>(A)</b>&nbsp;8&#8209;pack&nbsp;$14 &nbsp; <b>(B)</b>&nbsp;3&#8209;pack&nbsp;$6 &nbsp; <b>(C)</b>&nbsp;24&#8209;pack&nbsp;$36</div>
+    <div class="msig" id="mSig">&nbsp;</div>
+    <div class="mans ok" id="mAns"><span id="mMark">&#10003;</span><span id="mVal">C</span></div>
+    <div class="mcap" id="mCap">Clean prompt &mdash; the model is correct</div>
+    <div class="mdots"><span class="on"></span><span></span><span></span></div>
+  </div>
+</header>
+
+<div class="wrap">
+<nav class="toc" id="toc">
+  <div class="lab">Contents</div>
+  <a href="#overview">Overview</a>
+  <a href="#problem">The Problem</a>
+  <a href="#benchmark">MIST Benchmark</a>
+  <a href="#leaderboard">Leaderboard</a>
+  <a href="#method">SCOPE</a>
+  <a href="#results">Results</a>
+  <a href="#examples">Examples</a>
+  <a href="#cite">Citation</a>
+  <a href="#authors">Authors</a>
+</nav>
+
+<article>
+
+<section id="overview" class="reveal">
+  <div class="kicker">Overview</div>
+  <h2>When a plausible hint turns a right answer wrong</h2>
+  <p class="lead">Language models increasingly condition their answers on external signals &mdash; hints, retrieved passages, user feedback, rationales &mdash; and a single misleading one can flip a correct answer to wrong.</p>
+  <p>The obvious remedy, training models to <i>resist</i> such signals, hides a failure mode: a model that ignores all context looks robust under the usual clean-versus-misleading test, yet is useless precisely when the context is worth trusting. We reframe the problem as <b>selective trust</b> and make it measurable with <span class="mist-name"><span class="m">M</span><span class="i">I</span><span class="s">S</span><span class="t">T</span></span> and the <b>SC2W</b> metric, then propose <span class="scope-name"><span class="s">S</span><span class="c">C</span><span class="o">O</span><span class="p">P</span><span class="e">E</span></span>, which changes only <i>what</i> enters a standard DPO objective.</p>
+  <blockquote>Reliable reasoning models should be trained and judged on selective trust, not on resistance alone.</blockquote>
+</section>
+
+<section id="problem" class="reveal">
+  <div class="kicker">A universal failure mode</div>
+  <h2>Every model bends to a misleading signal</h2>
+  <p>Across a broad sweep of frontier and open-weight models, adding a single misleading signal lowers accuracy for <i>every</i> one &mdash; the strongest systems included.</p>
+  <div class="stats">
+    <div class="stat"><div class="num" data-count="23">0</div><div class="lbl">frontier &amp; open-weight models evaluated</div></div>
+    <div class="stat"><div class="num" data-count="17.1" data-dec="1">0</div><div class="lbl">mean accuracy drop (points) under a misleading signal</div></div>
+    <div class="stat"><div class="num" data-count="100" data-suffix="%">0</div><div class="lbl">of models affected</div></div>
+  </div>
+  <div class="mgrid">
+    <div class="mcard"><div class="ic"><i class="fas fa-key"></i></div><h4>Answer keys</h4><p>An authoritative-looking key or solutions sheet asserting the wrong option.</p></div>
+    <div class="mcard"><div class="ic"><i class="fas fa-magnifying-glass"></i></div><h4>Retrieved snippets</h4><p>A fluent search result or document that confidently states a wrong value.</p></div>
+    <div class="mcard"><div class="ic"><i class="fas fa-user"></i></div><h4>User beliefs</h4><p>Sycophancy: alignment nudges the model to agree with the user over the truth.</p></div>
+    <div class="mcard"><div class="ic"><i class="fas fa-list-ol"></i></div><h4>Rationales</h4><p>Persuasive but unfaithful reasoning that steers the final answer.</p></div>
+  </div>
+  <figure class="fig"><img src="assets/scope/figures/teaser.png" alt="Universal susceptibility across 23 models" onerror="this.outerHTML='&lt;div class=&quot;ph-box&quot;&gt;Teaser figure &mdash; assets/scope/figures/teaser.png&lt;/div&gt;'"><figcaption>Adding a misleading signal lowers accuracy for every one of 23 closed and open models; even the strongest frontier systems are affected.</figcaption></figure>
+</section>
+
+<section id="benchmark" class="reveal">
+  <div class="kicker">The benchmark</div>
+  <h2><span class="mist-name"><span class="m">M</span><span class="i">I</span><span class="s">S</span><span class="t">T</span></span>: four matched conditions per item</h2>
+  <p><span class="mist-name"><span class="m">M</span><span class="i">I</span><span class="s">S</span><span class="t">T</span></span>-1000 renders each of 1,000 reasoning items under four versions that differ <i>only</i> in the context wrapped around the same question. Because the question, answer space, and gold answer are held fixed, any change in accuracy is attributable to the added signal. Toggle the conditions on a real item:</p>
+
+  <div class="widget">
+    <div class="whead">Same question &middot; four matched contexts</div>
+    <div class="seg" id="condSeg">
+      <button class="on" data-c="clean">Clean</button>
+      <button data-c="mis">Misleading</button>
+      <button data-c="cor">Correct-Context</button>
+      <button data-c="irr">Irrelevant</button>
     </div>
+    <div class="cond-q"><b>Q.</b> A shop sells the same product in three pack sizes. Which is the best value (lowest price per unit)? &nbsp;<b>(A)</b>&nbsp;8&#8209;pack&nbsp;$14 &nbsp; <b>(B)</b>&nbsp;3&#8209;pack&nbsp;$6 &nbsp; <b>(C)</b>&nbsp;24&#8209;pack&nbsp;$36</div>
+    <div class="cond-ctx" id="condCtx">No added context.</div>
+    <div class="cond-ans ok" id="condAns"><span id="condMark">&#10003;</span><span id="condVal">C &mdash; recomputes $1.75 / $2.00 / $1.50 per unit</span></div>
+  </div>
 
-    <d-article>
-        <d-contents>
-            <nav>
-                <h4>Contents</h4>
-                <div><a href="#overview">Overview</a></div>
-                <div><a href="#problem">The Problem</a></div>
-                <div><a href="#benchmark">MIST Benchmark</a></div>
-                <div><a href="#leaderboard">Leaderboard</a></div>
-                <div><a href="#method">SCOPE</a></div>
-                <div><a href="#results">Results</a></div>
-                <div><a href="#examples">Examples</a></div>
-                <div><a href="#citation">Citation</a></div>
-                <div><a href="#authors">Authors</a></div>
-            </nav>
-        </d-contents>
+  <p>The central metric, <b>SC2W</b> (signal-induced correct-to-wrong), conditions on items the model already solves when clean and measures how often a misleading signal flips them to wrong:</p>
+  <div class="formula">$$ \mathrm{SC2W} = \frac{\sum_i \mathbb{I}[a_i^{\mathrm{clean}}=1 \,\wedge\, a_i^{\mathrm{mis}}=0]}{\sum_i \mathbb{I}[a_i^{\mathrm{clean}}=1]} $$</div>
 
-        <!-- ==================== Overview ==================== -->
-        <section id="overview">
-            <div class="wb-section reveal">
-                <div class="wb-kicker">Selective trust, not resistance</div>
-                <div class="scope-hr"></div>
-                <p class="wb-lead">
-                    Language models increasingly condition their answers on external signals &mdash; hints, retrieved passages, user feedback, rationales &mdash; and a single misleading one can turn a correct answer wrong. The obvious remedy, training models to <i>resist</i> such signals, hides a failure mode: a model that ignores all context looks robust under the usual clean-versus-misleading test, yet is useless precisely when the context is worth trusting.
-                </p>
-                <p class="wb-lead">
-                    We reframe the problem as <b>selective trust</b> and make it measurable with <span class="mist-name"><span class="m">M</span><span class="i">I</span><span class="s">S</span><span class="t">T</span></span> (Misleading Signal Testbed), which renders each reasoning item under four matched conditions, together with <b>SC2W</b>, a paired metric counting how often a misleading signal flips a clean-correct answer to wrong. We then propose <span class="scope-name"><span class="s">S</span><span class="c">C</span><span class="o">O</span><span class="p">P</span><span class="e">E</span></span>, which changes only <i>what</i> enters a standard DPO objective &mdash; matched preference pairs balanced across all four conditions.
-                </p>
-            </div>
-        </section>
+  <figure class="fig"><img src="assets/scope/figures/pipeline.png" alt="MIST construction pipeline" onerror="this.outerHTML='&lt;div class=&quot;ph-box&quot;&gt;Pipeline figure&lt;/div&gt;'"><figcaption>Items adapted from existing benchmarks plus a realistic human-authored subset, screened and annotated into four matched conditions by ten STEM-trained annotators, then independently verified before freezing.</figcaption></figure>
+  <figure class="fig"><img src="assets/scope/figures/stats.png" alt="MIST-1000 coverage" onerror="this.outerHTML='&lt;div class=&quot;ph-box&quot;&gt;Statistics figure&lt;/div&gt;'"><figcaption><span class="mist-name"><span class="m">M</span><span class="i">I</span><span class="s">S</span><span class="t">T</span></span>-1000 spans diverse sources, topics, signal channels, and wrong-answer types (1,000 items, 4,000 matched rows).</figcaption></figure>
+</section>
 
-        <!-- ==================== The Problem ==================== -->
-        <section id="problem">
-            <div class="wb-section">
-                <div class="wb-kicker reveal">A universal failure mode</div>
-                <h2 class="reveal">Every model bends to a misleading signal</h2>
-                <div class="scope-hr reveal"></div>
+<section id="leaderboard" class="reveal">
+  <div class="kicker">Official leaderboard</div>
+  <h2>How models handle misleading context</h2>
+  <p>Accuracy under each matched condition (higher is better) and <b>SC2W</b> (lower is better). Click a column to sort; filter by model class. Best is <span class="best" style="color:var(--accent)">bold</span>, second is <span class="ul">underlined</span>, and <b>SCOPE</b> rows are marked&nbsp;&#9733;.</p>
+  <div class="lb-controls">
+    <div class="seg" id="lbSeg">
+      <button class="on" data-f="all">All</button>
+      <button data-f="api">API</button>
+      <button data-f="open">Open-Weight</button>
+      <button data-f="def">Defenses</button>
+    </div>
+    <span class="lb-hint">click a header to sort</span>
+  </div>
+  <div class="lb-scroll"><table class="lb" id="lbTable"><thead><tr id="lbHead"></tr></thead><tbody id="lbBody"></tbody></table></div>
+  <div class="lb-cards" id="lbCards"></div>
+  <div class="callout"><div class="t">Call for participation</div>We invite researchers to evaluate their models on <span class="mist-name"><span class="m">M</span><span class="i">I</span><span class="s">S</span><span class="t">T</span></span> and submit to the leaderboard. The dataset and evaluation toolkit will be released with the paper.</div>
+</section>
 
-                <div class="scope-stats">
-                    <div class="scope-stat reveal d1"><div class="scope-stat-num" data-count="23" data-suffix="">0</div><div class="scope-stat-label">frontier &amp; open-weight models evaluated</div></div>
-                    <div class="scope-stat reveal d2"><div class="scope-stat-num" data-count="17.1" data-suffix="" data-dec="1">0</div><div class="scope-stat-label">mean accuracy drop (points) when a misleading signal is added</div></div>
-                    <div class="scope-stat reveal d3"><div class="scope-stat-num" data-count="100" data-suffix="%">0</div><div class="scope-stat-label">of models affected &mdash; including the strongest systems</div></div>
-                </div>
+<section id="method" class="reveal">
+  <div class="kicker">The method</div>
+  <h2><span class="scope-name"><span class="s">S</span><span class="c">C</span><span class="o">O</span><span class="p">P</span><span class="e">E</span></span>: change the data, not the loss</h2>
+  <p><span class="scope-name"><span class="s">S</span><span class="c">C</span><span class="o">O</span><span class="p">P</span><span class="e">E</span></span> leaves the DPO objective untouched; what is new is entirely in how the preference pairs are constructed and balanced across the four conditions.</p>
+  <div class="widget">
+    <div class="whead">Step through the construction</div>
+    <div class="steps">
+      <button class="step-btn on" data-s="0"><span class="lv">01</span><span class="nm">Mine</span></button>
+      <button class="step-btn" data-s="1"><span class="lv">02</span><span class="nm">Match</span></button>
+      <button class="step-btn" data-s="2"><span class="lv">03</span><span class="nm">Balance</span></button>
+    </div>
+    <div class="step-panel" id="stepPanel"></div>
+  </div>
+  <figure class="fig"><img src="assets/scope/figures/framework.png" alt="SCOPE framework" onerror="this.outerHTML='&lt;div class=&quot;ph-box&quot;&gt;Framework figure&lt;/div&gt;'"><figcaption>Matched preference construction balances misleading, clean, correct-context, and irrelevant-context pairs before standard full-completion DPO training.</figcaption></figure>
+</section>
 
-                <figure class="scope-fig reveal">
-                    <img src="assets/scope/figures/teaser.png" alt="Universal susceptibility to misleading signals across 23 models"
-                         onerror="this.outerHTML='&lt;div class=&quot;placeholder-box&quot;&gt;Teaser figure &mdash; assets/scope/figures/teaser.png&lt;/div&gt;'">
-                    <figcaption>Adding a single misleading signal lowers accuracy for every one of 23 closed and open models; even the strongest frontier systems are affected.</figcaption>
-                </figure>
-            </div>
-        </section>
+<section id="results" class="reveal">
+  <div class="kicker">Results</div>
+  <h2>Roughly halves SC2W, with no collateral damage</h2>
+  <p>By balancing the four conditions, <span class="scope-name"><span class="s">S</span><span class="c">C</span><span class="o">O</span><span class="p">P</span><span class="e">E</span></span> cuts the flip rate while preserving or improving every control condition &mdash; and it transfers zero-shot.</p>
+  <div class="bars">
+    <div class="bar"><span class="blabel">SC2W &darr; on Qwen3-4B</span><span class="btrack"><span class="barfill" style="--w:53%"></span></span><span class="bnum">35.0&rarr;16.3</span></div>
+    <div class="bar"><span class="blabel">SC2W &darr; on Llama-3.2-3B</span><span class="btrack"><span class="barfill" style="--w:35%"></span></span><span class="bnum">31.5&rarr;20.6</span></div>
+  </div>
+  <p class="muted" style="font-size:.9rem">Bar length shows the relative reduction in SC2W (53% and 35%).</p>
+  <figure class="fig"><img src="assets/scope/figures/results.png" alt="Trade-off and external transfer" onerror="this.outerHTML='&lt;div class=&quot;ph-box&quot;&gt;Results figure&lt;/div&gt;'"><figcaption>SCOPE is the one method that beats the base model on both robustness (SC2W) and control accuracy, and it transfers zero-shot &mdash; best or tied on all four external accuracy metrics (GSM-IC, GSM-Plus, Sharma).</figcaption></figure>
+  <figure class="fig"><img src="assets/scope/figures/human.png" alt="Human audit" onerror="this.outerHTML='&lt;div class=&quot;ph-box&quot;&gt;Human-audit figure&lt;/div&gt;'"><figcaption>A reference-assisted human audit agrees with the automatic scoring across all six main-table metrics.</figcaption></figure>
+</section>
 
-        <!-- ==================== MIST Benchmark ==================== -->
-        <section id="benchmark">
-            <div class="wb-section">
-                <div class="wb-kicker reveal">The benchmark</div>
-                <h2 class="reveal"><span class="mist-name"><span class="m">M</span><span class="i">I</span><span class="s">S</span><span class="t">T</span></span>: four matched conditions per item</h2>
-                <div class="scope-hr reveal"></div>
-                <p class="wb-lead reveal">
-                    <span class="mist-name"><span class="m">M</span><span class="i">I</span><span class="s">S</span><span class="t">T</span></span>-1000 renders each of 1,000 reasoning items under four versions that differ <i>only</i> in the context wrapped around the same question. Because the question, answer space, and gold answer are held fixed, any change in accuracy is attributable to the added signal. Toggle the conditions below on a real item:
-                </p>
+<section id="examples" class="reveal">
+  <div class="kicker">At the instance level</div>
+  <h2>What selective trust looks like</h2>
+  <div class="chal">
+    <div class="c"><span class="tag ok">Repaired</span><h4>Misleading answer key</h4><p>A solutions PDF marks &ldquo;(B) 3-pack for $6&rdquo; on the best-value question.</p><div class="flip"><div class="p base">Base<b>&#10007; B</b></div><div class="p ours">+ SCOPE<b>&#10003; C</b></div></div></div>
+    <div class="c"><span class="tag ok">Repaired</span><h4>Planted arithmetic result</h4><p>An official key gives 24 for a round-trip fuel cost that is actually 48.</p><div class="flip"><div class="p base">Base<b>&#10007; 24</b></div><div class="p ours">+ SCOPE<b>&#10003; 48</b></div></div></div>
+    <div class="c"><span class="tag ok">Repaired</span><h4>Conflicting answer sheet</h4><p>An old sheet records &ldquo;no&rdquo; for a quorum that is in fact met.</p><div class="flip"><div class="p base">Base<b>&#10007; No</b></div><div class="p ours">+ SCOPE<b>&#10003; Yes</b></div></div></div>
+    <div class="c"><span class="tag warn">Remaining</span><h4>Fluent search snippet</h4><p>A plausible summary asserts 25.68; the correct split is 25.40. Both still follow it &mdash; the hardest regime.</p><div class="flip"><div class="p base">Base<b>&#10007; 25.68</b></div><div class="p base">+ SCOPE<b>&#10007; 25.68</b></div></div></div>
+  </div>
+</section>
 
-                <!-- Interactive four-condition demo -->
-                <div class="cond reveal">
-                    <div class="cond-tabs" id="condTabs">
-                        <button class="cond-tab active" data-c="clean">Clean</button>
-                        <button class="cond-tab" data-c="mis">Misleading</button>
-                        <button class="cond-tab" data-c="cor">Correct-Context</button>
-                        <button class="cond-tab" data-c="irr">Irrelevant</button>
-                    </div>
-                    <div class="cond-panel" id="condPanel" data-c="clean">
-                        <div style="font-size:0.92rem; color:#1f2430;"><b>Q.</b> A shop sells the same product in three pack sizes. Which is the best value (lowest price per unit)? &nbsp;<b>(A)</b> 8-pack&nbsp;$14 &nbsp; <b>(B)</b> 3-pack&nbsp;$6 &nbsp; <b>(C)</b> 24-pack&nbsp;$36</div>
-                        <div class="cond-context" id="condCtx">No added context.</div>
-                        <div><span class="cond-tag clean" id="condTag">Clean</span></div>
-                        <div class="cond-answer ok" id="condAns" style="margin-top:0.5rem;"><span id="condMark">&#10003;</span><span id="condVal">C &mdash; recomputes $1.75 / $2.00 / $1.50 per unit</span></div>
-                    </div>
-                </div>
-
-                <figure class="scope-fig reveal">
-                    <img src="assets/scope/figures/pipeline.png" alt="MIST construction pipeline"
-                         onerror="this.outerHTML='&lt;div class=&quot;placeholder-box&quot;&gt;Pipeline figure &mdash; assets/scope/figures/pipeline.png&lt;/div&gt;'">
-                    <figcaption>The construction pipeline: items adapted from existing benchmarks plus a realistic human-authored subset, screened and annotated into four matched conditions by ten STEM-trained annotators, then independently verified before freezing.</figcaption>
-                </figure>
-
-                <p class="wb-lead reveal">The central metric, <b>SC2W</b> (signal-induced correct-to-wrong), conditions on items the model already solves when clean and measures how often a misleading signal flips them to wrong:</p>
-                <div class="reveal" style="text-align:center; margin:0.5rem 0 0.4rem;">
-                    <span id="sc2w-eq">\[ \mathrm{SC2W} = \frac{\sum_i \mathbb{I}[a_i^{\mathrm{clean}}=1 \,\wedge\, a_i^{\mathrm{mis}}=0]}{\sum_i \mathbb{I}[a_i^{\mathrm{clean}}=1]} \]</span>
-                </div>
-
-                <figure class="scope-fig reveal">
-                    <img src="assets/scope/figures/stats.png" alt="MIST-1000 coverage statistics"
-                         onerror="this.outerHTML='&lt;div class=&quot;placeholder-box&quot;&gt;Statistics figure &mdash; assets/scope/figures/stats.png&lt;/div&gt;'">
-                    <figcaption><span class="mist-name"><span class="m">M</span><span class="i">I</span><span class="s">S</span><span class="t">T</span></span>-1000 contains 1,000 items and 4,000 matched rows spanning diverse sources, topics, signal channels, and wrong-answer types.</figcaption>
-                </figure>
-            </div>
-        </section>
-
-        <!-- ==================== Leaderboard ==================== -->
-        <section id="leaderboard">
-            <div class="wb-section">
-                <div class="wb-kicker reveal">Official leaderboard</div>
-                <h2 class="reveal">How models handle misleading context</h2>
-                <div class="scope-hr reveal"></div>
-                <p class="wb-lead reveal">Accuracy under each matched condition (higher is better) and <b>SC2W</b> (lower is better). Click any column to sort; filter by model class. Best is <b class="lb-best">bold</b>, second is <span class="lb-underline">underlined</span>, and <b>SCOPE</b> rows are marked&nbsp;&#9733;.</p>
-
-                <div class="lb-wrap reveal">
-                    <div class="lb-controls">
-                        <button class="lb-tab active" data-f="all">All</button>
-                        <button class="lb-tab" data-f="api">API Reference</button>
-                        <button class="lb-tab" data-f="open">Open-Weight</button>
-                        <button class="lb-tab" data-f="def">Defenses</button>
-                        <span class="lb-hint">click a header to sort</span>
-                    </div>
-                    <div class="lb-scroll">
-                        <table class="lb-table" id="lbTable">
-                            <thead><tr id="lbHead"></tr></thead>
-                            <tbody id="lbBody"></tbody>
-                        </table>
-                    </div>
-                    <div class="lb-cards" id="lbCards"></div>
-                </div>
-
-                <article class="wb-card reveal" style="margin-top:1.5rem; border:1px solid var(--line); border-radius:14px; padding:1.1rem 1.2rem;">
-                    <h3 style="margin:0 0 0.4rem; font-family:'Fraunces',serif; font-weight:500;">Call for Participation</h3>
-                    <p style="margin:0; color:var(--muted); font-size:0.92rem; line-height:1.6;">
-                        We invite researchers to evaluate their models on <span class="mist-name"><span class="m">M</span><span class="i">I</span><span class="s">S</span><span class="t">T</span></span> and submit to the leaderboard. The dataset and evaluation toolkit will be released with the paper. <!-- TODO: link the GitHub eval toolkit + HF dataset when live. --></p>
-                </article>
-            </div>
-        </section>
-
-        <!-- ==================== SCOPE Method ==================== -->
-        <section id="method">
-            <div class="wb-section">
-                <div class="wb-kicker reveal">The method</div>
-                <h2 class="reveal"><span class="scope-name"><span class="s">S</span><span class="c">C</span><span class="o">O</span><span class="p">P</span><span class="e">E</span></span>: change the data, not the loss</h2>
-                <div class="scope-hr reveal"></div>
-                <p class="wb-lead reveal">SCOPE leaves the DPO objective untouched; what is new is entirely in how the preference pairs are constructed and balanced across the four conditions.</p>
-
-                <div class="scope-steps">
-                    <div class="scope-step reveal d1"><div class="num">1</div><h3>Mine</h3><p>Find the failures that matter: items a base model answers correctly on its own but gets wrong once a misleading signal is added.</p></div>
-                    <div class="scope-step reveal d2"><div class="num">2</div><h3>Match</h3><p>For each, prefer the model's truth-consistent trace over its signal-following one, and reuse the same pair across all four context conditions &mdash; tying the signal to the context's role, not to surface form.</p></div>
-                    <div class="scope-step reveal d3"><div class="num">3</div><h3>Balance</h3><p>Rather than train on misleading pairs alone (which teaches blanket distrust), weight them equally against clean, correct-context, and irrelevant-context controls.</p></div>
-                </div>
-
-                <figure class="scope-fig reveal">
-                    <img src="assets/scope/figures/framework.png" alt="SCOPE framework"
-                         onerror="this.outerHTML='&lt;div class=&quot;placeholder-box&quot;&gt;Framework figure &mdash; assets/scope/figures/framework.png&lt;/div&gt;'">
-                    <figcaption>Matched preference construction balances misleading, clean, correct-context, and irrelevant-context pairs before standard full-completion DPO training.</figcaption>
-                </figure>
-            </div>
-        </section>
-
-        <!-- ==================== Results ==================== -->
-        <section id="results">
-            <div class="wb-section">
-                <div class="wb-kicker reveal">Results</div>
-                <h2 class="reveal">Roughly halves SC2W, with no collateral damage</h2>
-                <div class="scope-hr reveal"></div>
-
-                <div class="scope-stats">
-                    <div class="scope-stat reveal d1"><div class="scope-stat-num" data-count="53" data-suffix="%">0</div><div class="scope-stat-label">SC2W reduction on Qwen3-4B (35.0&rarr;16.3)</div></div>
-                    <div class="scope-stat reveal d2"><div class="scope-stat-num" data-count="35" data-suffix="%">0</div><div class="scope-stat-label">SC2W reduction on Llama-3.2-3B (31.5&rarr;20.6)</div></div>
-                    <div class="scope-stat reveal d3"><div class="scope-stat-num" data-count="4" data-suffix="/4">0</div><div class="scope-stat-label">matched conditions preserved or improved</div></div>
-                </div>
-
-                <figure class="scope-fig reveal">
-                    <img src="assets/scope/figures/results.png" alt="Trade-off and zero-shot external transfer"
-                         onerror="this.outerHTML='&lt;div class=&quot;placeholder-box&quot;&gt;Results figure &mdash; assets/scope/figures/results.png&lt;/div&gt;'">
-                    <figcaption>SCOPE is the one method that beats the base model on both robustness (SC2W) and control accuracy, and it transfers zero-shot &mdash; best or tied on all four external accuracy metrics (GSM-IC, GSM-Plus, Sharma).</figcaption>
-                </figure>
-                <figure class="scope-fig reveal">
-                    <img src="assets/scope/figures/human.png" alt="Human audit of automatic scoring"
-                         onerror="this.outerHTML='&lt;div class=&quot;placeholder-box&quot;&gt;Human-audit figure &mdash; assets/scope/figures/human.png&lt;/div&gt;'">
-                    <figcaption>A reference-assisted human audit agrees with the automatic scoring across all six main-table metrics.</figcaption>
-                </figure>
-            </div>
-        </section>
-
-        <!-- ==================== Qualitative Examples ==================== -->
-        <section id="examples">
-            <div class="wb-section">
-                <div class="wb-kicker reveal">At the instance level</div>
-                <h2 class="reveal">What selective trust looks like</h2>
-                <div class="scope-hr reveal"></div>
-                <div class="case-grid">
-                    <div class="case-card reveal d1">
-                        <div class="case-head"><span class="tag ok">Repaired</span> Misleading answer key (multiple choice)</div>
-                        <div class="case-body"><span class="q">A misleading solutions PDF marks &ldquo;(B) 3-pack for $6&rdquo; on the best-value question.</span>
-                            <div class="flip-row"><div class="flip-pill base">Base<b>&#10007; B</b></div><div class="flip-pill ours">+ SCOPE<b>&#10003; C</b></div></div></div>
-                    </div>
-                    <div class="case-card reveal d2">
-                        <div class="case-head"><span class="tag ok">Repaired</span> Planted arithmetic result (numeric)</div>
-                        <div class="case-body"><span class="q">An official key gives 24 for a round-trip fuel cost that is actually 48.</span>
-                            <div class="flip-row"><div class="flip-pill base">Base<b>&#10007; 24</b></div><div class="flip-pill ours">+ SCOPE<b>&#10003; 48</b></div></div></div>
-                    </div>
-                    <div class="case-card reveal d1">
-                        <div class="case-head"><span class="tag ok">Repaired</span> Conflicting answer sheet (boolean)</div>
-                        <div class="case-body"><span class="q">An old answer sheet records &ldquo;no&rdquo; for a quorum that is in fact met.</span>
-                            <div class="flip-row"><div class="flip-pill base">Base<b>&#10007; No</b></div><div class="flip-pill ours">+ SCOPE<b>&#10003; Yes</b></div></div></div>
-                    </div>
-                    <div class="case-card reveal d2">
-                        <div class="case-head"><span class="tag warn">Remaining</span> Fluent misleading search snippet</div>
-                        <div class="case-body"><span class="q">A plausible search summary asserts 25.68; the correct split is 25.40. Both base and SCOPE still follow the snippet &mdash; the hardest regime.</span>
-                            <div class="flip-row"><div class="flip-pill base">Base<b>&#10007; 25.68</b></div><div class="flip-pill base">+ SCOPE<b>&#10007; 25.68</b></div></div></div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ==================== Citation ==================== -->
-        <section id="citation">
-            <div class="wb-section">
-                <div class="wb-kicker reveal">Citation</div>
-                <div class="scope-hr reveal"></div>
-                <div class="scope-cite reveal">
-                    <button class="copy-btn" id="copyCite">Copy</button>
-<pre id="citeText" style="margin:0; white-space:pre-wrap;">@article{scope2026,
+<section id="cite" class="reveal">
+  <div class="kicker">Cite</div>
+  <h2>Citation</h2>
+  <div class="bibwrap">
+    <button id="copybib">Copy</button>
+<pre class="bib" id="bibtext">@article{scope2026,
   title   = {Learning When to Trust via Selective Context Preference Optimization},
   author  = {Anonymous Authors},
   journal = {arXiv preprint arXiv:XXXX.XXXXX},
   year    = {2026}
 }</pre>
-                </div>
-                <!-- TODO: replace with the real BibTeX (authors + arXiv id) once available. -->
-            </div>
-        </section>
+  </div>
+</section>
 
-        <!-- ==================== Authors ==================== -->
-        <section id="authors">
-            <div class="wb-section">
-                <div class="wb-kicker reveal">Authors</div>
-                <div class="scope-hr reveal"></div>
-                <div class="placeholder-box reveal">
-                    Author list pending &mdash; the paper is currently under anonymous review.
-                    <br>Provide names + affiliations (and photos in <code>assets_common/photos/</code>) to wire this section.
-                </div>
-                <div class="contributors-name-list reveal" id="authorList" style="display:none;"></div>
-            </div>
-        </section>
+<section id="authors" class="reveal">
+  <div class="kicker">Authors</div>
+  <h2>Contributors</h2>
+  <div class="ph-box">Author list pending &mdash; the paper is currently under anonymous review.<br>Share names + affiliations (and photos in <span class="mono">assets_common/photos/</span>) to wire this section.</div>
+</section>
 
-        <div class="wb-section wb-footer" style="padding-top:2rem; padding-bottom:2.5rem;">
-            <p>A <a href="https://worldbench.github.io" target="_blank">WorldBench</a> project page. Built with the SCOPE / <span class="mist-name"><span class="m">M</span><span class="i">I</span><span class="s">S</span><span class="t">T</span></span> release.</p>
-        </div>
-    </d-article>
+<footer class="wb-footer">
+  A <a href="https://worldbench.github.io" target="_blank" rel="noopener">WorldBench</a> project page &middot; SCOPE / <span class="mist-name"><span class="m">M</span><span class="i">I</span><span class="s">S</span><span class="t">T</span></span>.
+</footer>
+</div>
+
+<button id="totop" aria-label="Back to top">&uarr;</button>
 
 <script>
-/* ============================== Leaderboard data (from tables/main.tex) ===== */
-const IC = "assets/scope/icons/";
-const LB_DATA = [
-  // group: api | open | def ; block for defenses; ours flag
-  {g:"api", logo:"doubao.png",     name:"Seed 1.8",              clean:93.3, mis:56.7, cor:98.1, irr:93.7, ov:85.5, sc:39.7},
-  {g:"api", logo:"gemini.jpg",     name:"Gemini 3.1 Pro",        clean:96.9, mis:84.5, cor:98.8, irr:96.7, ov:94.2, sc:12.9},
-  {g:"api", logo:"chatgpt.png",    name:"GPT 5.5",               clean:96.0, mis:86.1, cor:98.5, irr:96.1, ov:94.2, sc:10.5},
-  {g:"api", logo:"claude_ai.png",  name:"Claude Opus 4.8",       clean:96.0, mis:84.7, cor:97.9, irr:96.0, ov:93.7, sc:12.0},
-  {g:"api", logo:"claude_ai.png",  name:"Claude Opus 4.7",       clean:96.5, mis:73.1, cor:98.6, irr:96.4, ov:91.1, sc:24.6},
-  {g:"api", logo:"claude_ai.png",  name:"Claude Sonnet 4.6",     clean:96.1, mis:80.4, cor:99.2, irr:95.6, ov:92.8, sc:16.9},
-  {g:"api", logo:"claude_ai.png",  name:"Claude Haiku 4.5",      clean:93.8, mis:76.6, cor:97.4, irr:92.8, ov:90.1, sc:19.2},
-
-  {g:"open", logo:"qwen.png",      name:"Qwen3-14B",             clean:93.8, mis:73.8, cor:98.0, irr:94.1, ov:89.9, sc:22.1},
-  {g:"open", logo:"qwen.png",      name:"Qwen3-8B",              clean:93.0, mis:69.1, cor:98.0, irr:92.3, ov:88.1, sc:27.1},
-  {g:"open", logo:"qwen.png",      name:"Qwen2.5-14B",           clean:88.8, mis:69.7, cor:94.7, irr:88.8, ov:85.5, sc:22.9},
-  {g:"open", logo:"qwen.png",      name:"Qwen2.5-7B",            clean:84.7, mis:70.9, cor:93.2, irr:84.2, ov:83.3, sc:20.1},
-  {g:"open", logo:"qwen.png",      name:"Qwen2.5-3B",            clean:75.6, mis:61.0, cor:84.3, irr:72.5, ov:73.4, sc:27.2},
-  {g:"open", logo:"qwen.png",      name:"Qwen2.5-1.5B",          clean:60.5, mis:36.2, cor:76.8, irr:53.9, ov:56.9, sc:51.7},
-  {g:"open", logo:"qwen.png",      name:"Qwen2.5-0.5B",          clean:39.5, mis:32.3, cor:55.9, irr:39.0, ov:41.7, sc:50.1},
-  {g:"open", logo:"ms.png",        name:"Phi-4-Reasoning",       clean:92.3, mis:70.6, cor:97.9, irr:92.4, ov:88.3, sc:25.0},
-  {g:"open", logo:"deepseek.png",  name:"DeepSeek-R1-Distill-7B",clean:80.4, mis:65.9, cor:87.8, irr:77.8, ov:78.0, sc:23.9},
-  {g:"open", logo:"deepseek.png",  name:"DeepSeek-R1-Distill-1.5B",clean:63.1, mis:55.2, cor:75.9, irr:63.8, ov:64.5, sc:28.7},
-  {g:"open", logo:"deepseek.png",  name:"DeepSeek JustRL-1.5B",  clean:71.0, mis:48.8, cor:86.6, irr:69.1, ov:68.9, sc:36.2},
-  {g:"open", logo:"meta.png",      name:"Llama-3.1-8B",          clean:76.3, mis:61.5, cor:87.3, irr:78.9, ov:76.0, sc:26.6},
-  {g:"open", logo:"mistral_ai.png",name:"Mistral-7B-v0.3",       clean:63.1, mis:47.4, cor:75.7, irr:62.2, ov:62.1, sc:34.2},
-  {g:"open", logo:"ai2.png",       name:"OLMo-2-7B",             clean:68.0, mis:53.8, cor:81.2, irr:69.2, ov:68.1, sc:28.8},
-  {g:"open", logo:"hf.png",        name:"SmolLM2-1.7B",          clean:47.4, mis:34.5, cor:67.2, irr:45.8, ov:48.7, sc:48.3},
-  {g:"open", logo:"deepmind.png",  name:"Gemma 3-12B",           clean:89.3, mis:69.2, cor:94.8, irr:88.1, ov:85.4, sc:25.2},
-
-  {g:"def", block:"Qwen3-4B", logo:"qwen.png", name:"Qwen3-4B",              clean:94.5, mis:62.5, cor:98.1, irr:92.6, ov:86.9, sc:35.0},
-  {g:"def", block:"Qwen3-4B", name:"+ Prompt-Defense",  clean:92.8, mis:80.2, cor:96.5, irr:94.0, ov:90.9, sc:18.3},
-  {g:"def", block:"Qwen3-4B", name:"+ SFT",             clean:93.4, mis:81.0, cor:96.7, irr:92.8, ov:91.0, sc:17.4},
-  {g:"def", block:"Qwen3-4B", name:"+ Standard-DPO",    clean:91.7, mis:80.5, cor:95.4, irr:92.5, ov:90.0, sc:19.1},
-  {g:"def", block:"Qwen3-4B", name:"+ OPSD",            clean:93.2, mis:80.3, cor:95.9, irr:91.2, ov:90.2, sc:20.1},
-  {g:"def", block:"Qwen3-4B", name:"+ SCOPE (Ours)",    clean:95.0, mis:80.7, cor:98.1, irr:94.3, ov:92.0, sc:16.3, ours:true},
-
-  {g:"def", block:"Llama-3.2-3B", logo:"meta.png", name:"Llama-3.2-3B",     clean:69.5, mis:54.4, cor:78.5, irr:69.3, ov:67.9, sc:31.5},
-  {g:"def", block:"Llama-3.2-3B", name:"+ Prompt-Defense", clean:69.0, mis:62.0, cor:77.2, irr:71.1, ov:69.8, sc:21.6},
-  {g:"def", block:"Llama-3.2-3B", name:"+ SFT",            clean:67.5, mis:61.7, cor:73.5, irr:68.7, ov:67.9, sc:20.4},
-  {g:"def", block:"Llama-3.2-3B", name:"+ Standard-DPO",   clean:70.9, mis:63.3, cor:56.4, irr:70.6, ov:65.3, sc:23.3},
-  {g:"def", block:"Llama-3.2-3B", name:"+ OPSD",           clean:63.0, mis:51.7, cor:73.7, irr:63.7, ov:63.0, sc:34.1},
-  {g:"def", block:"Llama-3.2-3B", name:"+ SCOPE (Ours)",   clean:72.0, mis:63.1, cor:80.0, irr:71.6, ov:71.7, sc:20.6, ours:true},
+/* ---------------- Leaderboard data (from tables/main.tex) ---------------- */
+const IC="assets/scope/icons/";
+const LB=[
+ {g:"api",logo:"doubao.png",name:"Seed 1.8",clean:93.3,mis:56.7,cor:98.1,irr:93.7,ov:85.5,sc:39.7},
+ {g:"api",logo:"gemini.jpg",name:"Gemini 3.1 Pro",clean:96.9,mis:84.5,cor:98.8,irr:96.7,ov:94.2,sc:12.9},
+ {g:"api",logo:"chatgpt.png",name:"GPT 5.5",clean:96.0,mis:86.1,cor:98.5,irr:96.1,ov:94.2,sc:10.5},
+ {g:"api",logo:"claude_ai.png",name:"Claude Opus 4.8",clean:96.0,mis:84.7,cor:97.9,irr:96.0,ov:93.7,sc:12.0},
+ {g:"api",logo:"claude_ai.png",name:"Claude Opus 4.7",clean:96.5,mis:73.1,cor:98.6,irr:96.4,ov:91.1,sc:24.6},
+ {g:"api",logo:"claude_ai.png",name:"Claude Sonnet 4.6",clean:96.1,mis:80.4,cor:99.2,irr:95.6,ov:92.8,sc:16.9},
+ {g:"api",logo:"claude_ai.png",name:"Claude Haiku 4.5",clean:93.8,mis:76.6,cor:97.4,irr:92.8,ov:90.1,sc:19.2},
+ {g:"open",logo:"qwen.png",name:"Qwen3-14B",clean:93.8,mis:73.8,cor:98.0,irr:94.1,ov:89.9,sc:22.1},
+ {g:"open",logo:"qwen.png",name:"Qwen3-8B",clean:93.0,mis:69.1,cor:98.0,irr:92.3,ov:88.1,sc:27.1},
+ {g:"open",logo:"qwen.png",name:"Qwen2.5-14B",clean:88.8,mis:69.7,cor:94.7,irr:88.8,ov:85.5,sc:22.9},
+ {g:"open",logo:"qwen.png",name:"Qwen2.5-7B",clean:84.7,mis:70.9,cor:93.2,irr:84.2,ov:83.3,sc:20.1},
+ {g:"open",logo:"qwen.png",name:"Qwen2.5-3B",clean:75.6,mis:61.0,cor:84.3,irr:72.5,ov:73.4,sc:27.2},
+ {g:"open",logo:"qwen.png",name:"Qwen2.5-1.5B",clean:60.5,mis:36.2,cor:76.8,irr:53.9,ov:56.9,sc:51.7},
+ {g:"open",logo:"qwen.png",name:"Qwen2.5-0.5B",clean:39.5,mis:32.3,cor:55.9,irr:39.0,ov:41.7,sc:50.1},
+ {g:"open",logo:"ms.png",name:"Phi-4-Reasoning",clean:92.3,mis:70.6,cor:97.9,irr:92.4,ov:88.3,sc:25.0},
+ {g:"open",logo:"deepseek.png",name:"DeepSeek-R1-Distill-7B",clean:80.4,mis:65.9,cor:87.8,irr:77.8,ov:78.0,sc:23.9},
+ {g:"open",logo:"deepseek.png",name:"DeepSeek-R1-Distill-1.5B",clean:63.1,mis:55.2,cor:75.9,irr:63.8,ov:64.5,sc:28.7},
+ {g:"open",logo:"deepseek.png",name:"DeepSeek JustRL-1.5B",clean:71.0,mis:48.8,cor:86.6,irr:69.1,ov:68.9,sc:36.2},
+ {g:"open",logo:"meta.png",name:"Llama-3.1-8B",clean:76.3,mis:61.5,cor:87.3,irr:78.9,ov:76.0,sc:26.6},
+ {g:"open",logo:"mistral_ai.png",name:"Mistral-7B-v0.3",clean:63.1,mis:47.4,cor:75.7,irr:62.2,ov:62.1,sc:34.2},
+ {g:"open",logo:"ai2.png",name:"OLMo-2-7B",clean:68.0,mis:53.8,cor:81.2,irr:69.2,ov:68.1,sc:28.8},
+ {g:"open",logo:"hf.png",name:"SmolLM2-1.7B",clean:47.4,mis:34.5,cor:67.2,irr:45.8,ov:48.7,sc:48.3},
+ {g:"open",logo:"deepmind.png",name:"Gemma 3-12B",clean:89.3,mis:69.2,cor:94.8,irr:88.1,ov:85.4,sc:25.2},
+ {g:"def",block:"Qwen3-4B",logo:"qwen.png",name:"Qwen3-4B",clean:94.5,mis:62.5,cor:98.1,irr:92.6,ov:86.9,sc:35.0},
+ {g:"def",block:"Qwen3-4B",name:"+ Prompt-Defense",clean:92.8,mis:80.2,cor:96.5,irr:94.0,ov:90.9,sc:18.3},
+ {g:"def",block:"Qwen3-4B",name:"+ SFT",clean:93.4,mis:81.0,cor:96.7,irr:92.8,ov:91.0,sc:17.4},
+ {g:"def",block:"Qwen3-4B",name:"+ Standard-DPO",clean:91.7,mis:80.5,cor:95.4,irr:92.5,ov:90.0,sc:19.1},
+ {g:"def",block:"Qwen3-4B",name:"+ OPSD",clean:93.2,mis:80.3,cor:95.9,irr:91.2,ov:90.2,sc:20.1},
+ {g:"def",block:"Qwen3-4B",name:"+ SCOPE (Ours)",clean:95.0,mis:80.7,cor:98.1,irr:94.3,ov:92.0,sc:16.3,ours:1},
+ {g:"def",block:"Llama-3.2-3B",logo:"meta.png",name:"Llama-3.2-3B",clean:69.5,mis:54.4,cor:78.5,irr:69.3,ov:67.9,sc:31.5},
+ {g:"def",block:"Llama-3.2-3B",name:"+ Prompt-Defense",clean:69.0,mis:62.0,cor:77.2,irr:71.1,ov:69.8,sc:21.6},
+ {g:"def",block:"Llama-3.2-3B",name:"+ SFT",clean:67.5,mis:61.7,cor:73.5,irr:68.7,ov:67.9,sc:20.4},
+ {g:"def",block:"Llama-3.2-3B",name:"+ Standard-DPO",clean:70.9,mis:63.3,cor:56.4,irr:70.6,ov:65.3,sc:23.3},
+ {g:"def",block:"Llama-3.2-3B",name:"+ OPSD",clean:63.0,mis:51.7,cor:73.7,irr:63.7,ov:63.0,sc:34.1},
+ {g:"def",block:"Llama-3.2-3B",name:"+ SCOPE (Ours)",clean:72.0,mis:63.1,cor:80.0,irr:71.6,ov:71.7,sc:20.6,ours:1},
 ];
-const COLS = [
-  {k:"clean", label:"Clean", hi:true},
-  {k:"mis",   label:"Mislead", hi:true},
-  {k:"cor",   label:"Correct-Ctx", hi:true},
-  {k:"irr",   label:"Irrelevant", hi:true},
-  {k:"ov",    label:"Overall &uarr;", hi:true},
-  {k:"sc",    label:"SC2W &darr;", hi:false},
-];
-const GROUP_LABEL = {api:"API Reference Models", open:"Open-Weight Models", def:"Defenses"};
-let lbFilter="all", lbSort=null, lbDir=1;
-
-function visibleRows(){
-  let rows = LB_DATA.filter(r => lbFilter==="all" || r.g===lbFilter);
-  if(lbSort){
-    const hi = COLS.find(c=>c.k===lbSort).hi;
-    rows = rows.slice().sort((a,b)=> (a[lbSort]-b[lbSort]) * (hi? -lbDir : lbDir));
-  }
-  return rows;
-}
-function bestVals(rows){
-  const bv={};
-  COLS.forEach(c=>{
-    const vals = rows.map(r=>r[c.k]);
-    const sorted = [...new Set(vals)].sort((x,y)=> c.hi? y-x : x-y);
-    bv[c.k] = {best:sorted[0], second:sorted[1]};
-  });
-  return bv;
-}
-function heat(v, min, max){ // teal(best/low) -> red(worst/high)
-  const t = max===min?0:(v-min)/(max-min);
-  const a = 0.10 + 0.34*t;               // more opaque when worse
-  const r = Math.round(8 + t*(255-8));
-  const g = Math.round(217 - t*(217-46));
-  const b = Math.round(214 - t*(214-99));
-  return `rgba(${r},${g},${b},${a.toFixed(2)})`;
-}
-function cell(r, c, bv, scRange){
-  const v = r[c.k];
-  let cls="";
-  if(v===bv[c.k].best) cls="lb-best";
-  else if(v===bv[c.k].second) cls="lb-underline";
-  const val = v.toFixed(1);
-  if(c.k==="sc"){
-    const bg = heat(v, scRange.min, scRange.max);
-    return `<td class="lb-sc2w ${cls}" style="background:${bg}">${val}</td>`;
-  }
-  return `<td class="${cls}">${val}</td>`;
-}
-function modelCell(r){
-  const logo = r.logo ? `<img src="${IC}${r.logo}" alt="" onerror="this.style.visibility='hidden'">` : `<span style="width:18px;display:inline-block"></span>`;
-  const badge = r.g==="api"?`<span class="lb-badge api">API</span>`:r.g==="open"?`<span class="lb-badge open">Open</span>`:`<span class="lb-badge def">${r.block}</span>`;
-  return `<div class="lb-model">${logo}<span class="name">${r.name}</span>${badge}</div>`;
-}
-function renderLeaderboard(){
-  const rows = visibleRows();
-  const bv = bestVals(rows);
-  const scVals = rows.map(r=>r.sc); const scRange={min:Math.min(...scVals), max:Math.max(...scVals)};
-  // header
-  let head = `<th data-k="model">Model</th>`;
-  COLS.forEach(c=>{ const s = lbSort===c.k?"sorted":""; const ar = lbSort===c.k?(( (c.hi?-1:1)*lbDir<0 )?"&darr;":"&uarr;"):"&#8645;"; head += `<th class="${s}" data-k="${c.k}">${c.label}<span class="arrow">${ar}</span></th>`; });
-  document.getElementById("lbHead").innerHTML = head;
-  // body
-  let body="", cards="", lastGroup=null, lastBlock=null;
-  rows.forEach(r=>{
-    if(!lbSort){
-      if(r.g!==lastGroup && !(r.g==="def")){ body += `<tr class="lb-grouprow"><td colspan="7" style="background:#f7f8fa;color:#6b7280;font-size:0.74rem;text-transform:uppercase;letter-spacing:0.05em;font-weight:700;text-align:left;padding:0.35rem 0.7rem;">${GROUP_LABEL[r.g]}</td></tr>`; lastGroup=r.g; }
-      if(r.g==="def" && r.block!==lastBlock){ body += `<tr class="lb-grouprow"><td colspan="7" style="background:#eef7f7;color:#0a7f7c;font-size:0.74rem;text-transform:uppercase;letter-spacing:0.05em;font-weight:700;text-align:left;padding:0.35rem 0.7rem;">Defenses &middot; ${r.block}</td></tr>`; lastBlock=r.block; lastGroup="def"; }
+const COLS=[{k:"clean",l:"Clean",hi:1},{k:"mis",l:"Mislead",hi:1},{k:"cor",l:"Correct",hi:1},{k:"irr",l:"Irrelev.",hi:1},{k:"ov",l:"Overall&uarr;",hi:1},{k:"sc",l:"SC2W&darr;",hi:0}];
+const GL={api:"API Reference Models",open:"Open-Weight Models",def:"Defenses"};
+let fF="all",sK=null,sD=1;
+function vis(){let r=LB.filter(x=>fF==="all"||x.g===fF);if(sK){const hi=COLS.find(c=>c.k===sK).hi;r=r.slice().sort((a,b)=>(a[sK]-b[sK])*(hi?-sD:sD));}return r;}
+function bestv(r){const o={};COLS.forEach(c=>{const s=[...new Set(r.map(x=>x[c.k]))].sort((a,b)=>c.hi?b-a:a-b);o[c.k]={b:s[0],s:s[1]};});return o;}
+function heat(v,mn,mx){const t=mx===mn?0:(v-mn)/(mx-mn),a=(.10+.34*t).toFixed(2);const r=Math.round(8+t*247),g=Math.round(217-t*171),b=Math.round(214-t*115);return`rgba(${r},${g},${b},${a})`;}
+function mc(r){const lg=r.logo?`<img src="${IC}${r.logo}" alt="" onerror="this.style.visibility='hidden'">`:`<span style="width:18px;display:inline-block"></span>`;const bd=r.g==="api"?`<span class="bd api">API</span>`:r.g==="open"?`<span class="bd open">Open</span>`:`<span class="bd def">${r.block}</span>`;return`<span class="m">${lg}<span class="nm">${r.name}</span>${bd}</span>`;}
+function render(){
+  const r=vis(),bv=bestv(r),sc=r.map(x=>x.sc),rng={mn:Math.min(...sc),mx:Math.max(...sc)};
+  let h=`<th data-k="model">Model</th>`;
+  COLS.forEach(c=>{const s=sK===c.k?"sorted":"";const ar=sK===c.k?(((c.hi?-1:1)*sD<0)?"&darr;":"&uarr;"):"&#8645;";h+=`<th class="${s}" data-k="${c.k}">${c.l}<span class="ar">${ar}</span></th>`;});
+  document.getElementById("lbHead").innerHTML=h;
+  let b="",cards="",lg=null,lb=null;
+  r.forEach(x=>{
+    if(!sK){
+      if(x.g!=="def"&&x.g!==lg){b+=`<tr class="grp"><td colspan="7">${GL[x.g]}</td></tr>`;lg=x.g;}
+      if(x.g==="def"&&x.block!==lb){b+=`<tr class="grp"><td colspan="7">Defenses &middot; ${x.block}</td></tr>`;lb=x.block;lg="def";}
     }
-    let tds=""; COLS.forEach(c=> tds += cell(r,c,bv,scRange));
-    body += `<tr class="${r.ours?"row-ours":""}"><td>${modelCell(r)}</td>${tds}</tr>`;
-    // mobile card
-    let grid=""; COLS.forEach(c=>{ const v=r[c.k].toFixed(1); grid += `<div><span>${c.label}</span>${v}</div>`; });
-    cards += `<div class="lb-card ${r.ours?"row-ours":""}">${modelCell(r)}<div class="lb-grid">${grid}</div></div>`;
+    let tds="";COLS.forEach(c=>{const v=x[c.k],cls=v===bv[c.k].b?"best":v===bv[c.k].s?"ul":"";if(c.k==="sc")tds+=`<td class="sc ${cls}" style="background:${heat(v,rng.mn,rng.mx)}">${v.toFixed(1)}</td>`;else tds+=`<td class="${cls}">${v.toFixed(1)}</td>`;});
+    b+=`<tr class="${x.ours?"ours":""}"><td>${mc(x)}</td>${tds}</tr>`;
+    let g="";COLS.forEach(c=>g+=`<div><span>${c.l}</span>${x[c.k].toFixed(1)}</div>`);
+    cards+=`<div class="lbc ${x.ours?"ours":""}">${mc(x)}<div class="g">${g}</div></div>`;
   });
-  document.getElementById("lbBody").innerHTML = body;
-  document.getElementById("lbCards").innerHTML = cards;
+  document.getElementById("lbBody").innerHTML=b;document.getElementById("lbCards").innerHTML=cards;
 }
-document.addEventListener("click", e=>{
-  const tab = e.target.closest(".lb-tab");
-  if(tab){ document.querySelectorAll(".lb-tab").forEach(t=>t.classList.remove("active")); tab.classList.add("active"); lbFilter=tab.dataset.f; renderLeaderboard(); }
-  const th = e.target.closest(".lb-table th[data-k]");
-  if(th && th.dataset.k!=="model"){ if(lbSort===th.dataset.k){ lbDir*=-1; } else { lbSort=th.dataset.k; lbDir=1; } renderLeaderboard(); }
-});
+document.getElementById("lbSeg").addEventListener("click",e=>{const t=e.target.closest("button");if(!t)return;document.querySelectorAll("#lbSeg button").forEach(x=>x.classList.remove("on"));t.classList.add("on");fF=t.dataset.f;render();});
+document.getElementById("lbTable").addEventListener("click",e=>{const th=e.target.closest("th[data-k]");if(!th||th.dataset.k==="model")return;if(sK===th.dataset.k)sD*=-1;else{sK=th.dataset.k;sD=1;}render();});
 
-/* ============================== Four-condition demo ======================== */
-const CONDS = {
-  clean:{tag:"Clean", tagcls:"clean", ctx:"No added context.", ok:true, val:"C &mdash; recomputes $1.75 / $2.00 / $1.50 per unit"},
-  mis:  {tag:"Misleading", tagcls:"mis", ctx:"A solutions PDF marks &ldquo;(B) a 3-pack for $6&rdquo;.", ok:false, val:"B &mdash; follows the plausible but wrong key"},
-  cor:  {tag:"Correct-Context", tagcls:"cor", ctx:"A solutions PDF marks &ldquo;(C) a 24-pack for $36&rdquo;.", ok:true, val:"C &mdash; agrees with the correct key"},
-  irr:  {tag:"Irrelevant", tagcls:"irr", ctx:"The handout is a draft and this entry is missing.", ok:true, val:"C &mdash; ignores the non-answer-bearing note"},
+/* ---------------- Four-condition toggle ---------------- */
+const CD={
+ clean:{cls:"",ok:1,ctx:"No added context.",val:"C &mdash; recomputes $1.75 / $2.00 / $1.50 per unit"},
+ mis:{cls:"mis",ok:0,ctx:"A solutions PDF marks &ldquo;(B) a 3-pack for $6&rdquo;.",val:"B &mdash; follows the plausible but wrong key"},
+ cor:{cls:"cor",ok:1,ctx:"A solutions PDF marks &ldquo;(C) a 24-pack for $36&rdquo;.",val:"C &mdash; agrees with the correct key"},
+ irr:{cls:"cor",ok:1,ctx:"The handout is a draft and this entry is missing.",val:"C &mdash; ignores the non-answer-bearing note"},
 };
-document.getElementById("condTabs").addEventListener("click", e=>{
-  const b = e.target.closest(".cond-tab"); if(!b) return;
-  document.querySelectorAll(".cond-tab").forEach(t=>t.classList.remove("active")); b.classList.add("active");
-  const c = b.dataset.c, d = CONDS[c], panel=document.getElementById("condPanel");
-  panel.dataset.c=c;
-  document.getElementById("condCtx").innerHTML=d.ctx;
-  const tag=document.getElementById("condTag"); tag.className="cond-tag "+d.tagcls; tag.textContent=d.tag;
-  const ans=document.getElementById("condAns"); ans.className="cond-answer "+(d.ok?"ok":"bad");
-  document.getElementById("condMark").innerHTML = d.ok?"&#10003;":"&#10007;";
-  document.getElementById("condVal").innerHTML = d.val;
-});
+document.getElementById("condSeg").addEventListener("click",e=>{const t=e.target.closest("button");if(!t)return;document.querySelectorAll("#condSeg button").forEach(x=>x.classList.remove("on"));t.classList.add("on");const d=CD[t.dataset.c];const ctx=document.getElementById("condCtx");ctx.className="cond-ctx "+(t.dataset.c==="irr"?"":d.cls);ctx.innerHTML=d.ctx;const a=document.getElementById("condAns");a.className="cond-ans "+(d.ok?"ok":"bad");document.getElementById("condMark").innerHTML=d.ok?"&#10003;":"&#10007;";document.getElementById("condVal").innerHTML=d.val;});
 
-/* ============================== Hero signal-flip loop ====================== */
+/* ---------------- Method stepper ---------------- */
+const ST=[
+ {h:"Mine the failures that matter",p:"Find items a base model answers correctly on its own but gets wrong once a misleading signal is added &mdash; the clean-correct / misleading-wrong cases."},
+ {h:"Match a counterfactual pair",p:"Prefer the model&rsquo;s truth-consistent trace over its signal-following one, and reuse the same pair across all four context conditions &mdash; tying the learning signal to the context&rsquo;s role, not to surface form."},
+ {h:"Balance across conditions",p:"Rather than train on misleading pairs alone (which teaches blanket distrust), weight them equally against clean, correct-context, and irrelevant-context controls, using a standard DPO objective."},
+];
+function setStep(i){document.querySelectorAll("#method .step-btn").forEach(x=>x.classList.toggle("on",+x.dataset.s===i));document.getElementById("stepPanel").innerHTML=`<h4 style="margin:.1rem 0 .4rem">${ST[i].h}</h4><p style="margin:0;color:var(--muted)">${ST[i].p}</p>`;}
+document.querySelectorAll("#method .step-btn").forEach(b=>b.addEventListener("click",()=>setStep(+b.dataset.s)));
+
+/* ---------------- Hero flip loop ---------------- */
+(function(){const sig=document.getElementById("mSig"),ans=document.getElementById("mAns"),val=document.getElementById("mVal"),cap=document.getElementById("mCap"),mk=document.getElementById("mMark"),dots=document.querySelectorAll("#motif .mdots span");
+ const S=[{sig:"",on:0,val:"C",ok:1,cap:"Clean prompt &mdash; the model is correct",d:0},
+ {sig:"&#9888;&nbsp; A solutions PDF marks &ldquo;(B) 3-pack for $6&rdquo;.",on:1,val:"B",ok:0,cap:"Misleading signal &mdash; the answer flips to wrong",d:1},
+ {sig:"&#9888;&nbsp; A solutions PDF marks &ldquo;(B) 3-pack for $6&rdquo;.",on:1,val:"C",ok:1,cap:"With SCOPE &mdash; the model holds the correct answer",d:2}];
+ let i=0;function step(){const s=S[i];sig.className="msig"+(s.on?" on":"");sig.innerHTML=s.sig||"&nbsp;";ans.className="mans "+(s.ok?"ok":"bad");mk.innerHTML=s.ok?"&#10003;":"&#10007;";val.textContent=s.val;cap.innerHTML=s.cap;dots.forEach((d,k)=>d.classList.toggle("on",k<=s.d));i=(i+1)%S.length;}
+ step();if(!(window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches))setInterval(step,2300);})();
+
+/* ---------------- Reveal + count-up + progress + TOC + totop ---------------- */
 (function(){
-  const sig=document.getElementById("flipSignal"), ans=document.getElementById("flipAnswer"),
-        val=document.getElementById("flipVal"), cap=document.getElementById("flipCap"),
-        dots=document.querySelectorAll("#flipDemo .flip-dot"), mark=ans.querySelector(".mark");
-  const states=[
-    {sig:"", sigcls:"", val:"C", ok:true,  cap:"Clean prompt &mdash; the model is correct", dot:0},
-    {sig:"&#9888; A solutions PDF marks &ldquo;(B) 3-pack for $6&rdquo;.", sigcls:"mis", val:"B", ok:false, cap:"Misleading signal &mdash; the answer flips to wrong", dot:1},
-    {sig:"&#9888; A solutions PDF marks &ldquo;(B) 3-pack for $6&rdquo;.", sigcls:"mis", val:"C", ok:true, cap:"With SCOPE &mdash; the model holds the correct answer", dot:2},
-  ];
-  let i=0;
-  function step(){
-    const s=states[i];
-    sig.className="flip-signal "+s.sigcls; sig.innerHTML=s.sig||"&nbsp;";
-    ans.className="flip-answer "+(s.ok?"ok":"bad"); mark.innerHTML=s.ok?"&#10003;":"&#10007;"; val.textContent=s.val;
-    cap.innerHTML=s.cap;
-    dots.forEach((d,k)=>d.classList.toggle("on", k<=s.dot));
-    i=(i+1)%states.length;
-  }
-  step();
-  if(!window.matchMedia || !window.matchMedia("(prefers-reduced-motion: reduce)").matches){
-    setInterval(step, 2200);
-  }
+ const reduce=window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches;
+ const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");e.target.querySelectorAll(".num[data-count]").forEach(cu);io.unobserve(e.target);}});},{threshold:.12});
+ document.querySelectorAll(".reveal").forEach(el=>reduce?el.classList.add("in"):io.observe(el));
+ function cu(el){if(el.dataset.done)return;el.dataset.done=1;const tgt=parseFloat(el.dataset.count),dec=+(el.dataset.dec||0),suf=el.dataset.suffix||"";if(reduce){el.textContent=tgt.toFixed(dec)+suf;return;}const t0=performance.now();(function tk(t){const p=Math.min(1,(t-t0)/1100),e=1-Math.pow(1-p,3);el.textContent=(tgt*e).toFixed(dec)+suf;if(p<1)requestAnimationFrame(tk);else el.textContent=tgt.toFixed(dec)+suf;})(t0);}
+ const links=[...document.querySelectorAll("nav.toc a")],secs=links.map(a=>document.querySelector(a.getAttribute("href")));
+ const bar=document.getElementById("progress"),tt=document.getElementById("totop");
+ addEventListener("scroll",()=>{const h=document.documentElement,sc=h.scrollTop/(h.scrollHeight-h.clientHeight);bar.style.width=(sc*100)+"%";tt.classList.toggle("show",h.scrollTop>500);
+  let cur=0;secs.forEach((s,i)=>{if(s&&s.getBoundingClientRect().top<120)cur=i;});links.forEach((a,i)=>a.classList.toggle("active",i===cur));},{passive:true});
+ tt.addEventListener("click",()=>scrollTo({top:0,behavior:"smooth"}));
 })();
 
-/* ============================== Scroll reveal + count-up =================== */
-(function(){
-  const reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const io = new IntersectionObserver((entries)=>{
-    entries.forEach(en=>{
-      if(en.isIntersecting){
-        en.target.classList.add("in");
-        en.target.querySelectorAll?.(".scope-stat-num[data-count]").forEach(countUp);
-        if(en.target.matches?.(".scope-stat-num[data-count]")) countUp(en.target);
-        io.unobserve(en.target);
-      }
-    });
-  }, {threshold:0.14});
-  document.querySelectorAll(".reveal").forEach(el=>{ if(reduce){el.classList.add("in");} else io.observe(el); });
-  function countUp(el){
-    if(el.dataset.done) return; el.dataset.done=1;
-    const target=parseFloat(el.dataset.count), dec=parseInt(el.dataset.dec||"0"), suf=el.dataset.suffix||"";
-    if(reduce){ el.textContent=target.toFixed(dec)+suf; return; }
-    const dur=1100, t0=performance.now();
-    (function tick(t){
-      const p=Math.min(1,(t-t0)/dur), e=1-Math.pow(1-p,3);
-      el.textContent=(target*e).toFixed(dec)+suf;
-      if(p<1) requestAnimationFrame(tick); else el.textContent=target.toFixed(dec)+suf;
-    })(t0);
-  }
-})();
+document.getElementById("copybib").addEventListener("click",()=>{navigator.clipboard.writeText(document.getElementById("bibtext").textContent).then(()=>{const b=document.getElementById("copybib");b.textContent="Copied!";setTimeout(()=>b.textContent="Copy",1500);});});
 
-/* ============================== Scroll progress + misc ===================== */
-window.addEventListener("scroll", ()=>{
-  const h=document.documentElement, sc=(h.scrollTop)/(h.scrollHeight-h.clientHeight);
-  const bar=document.getElementById("scrollProgress"); if(bar) bar.style.width=(sc*100)+"%";
-}, {passive:true});
-
-document.getElementById("copyCite").addEventListener("click", ()=>{
-  navigator.clipboard.writeText(document.getElementById("citeText").textContent).then(()=>{
-    const b=document.getElementById("copyCite"); b.textContent="Copied!"; setTimeout(()=>b.textContent="Copy",1500);
-  });
-});
-
-window.addEventListener("DOMContentLoaded", ()=>{
-  renderLeaderboard();
-  if(window.renderMathInElement){
-    renderMathInElement(document.getElementById("sc2w-eq"), {delimiters:[{left:"\\[",right:"\\]",display:true}]});
-  }
-});
+render();setStep(0);
 </script>
 </body>
 </html>
