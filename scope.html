@@ -44,9 +44,10 @@ h1,h2,h3,h4{font-family:"Newsreader","Iowan Old Style",Georgia,serif;line-height
 #topbar a.mini{color:var(--muted);font-size:.85rem;margin-left:.9rem}
 #topbar a.mini:hover{color:var(--accent)}
 
-/* SCOPE / MIST wordmarks */
-.scope-name .s{color:var(--accent)} .scope-name .c{color:var(--c-irr)} .scope-name .o{color:var(--accent2)} .scope-name .p{color:var(--accent)} .scope-name .e{color:var(--c-irr)}
+/* SCOPE / MIST / SC2W wordmarks (paper colors) */
+.scope-name{font-weight:700} .scope-name .s{color:var(--accent)} .scope-name .c{color:var(--c-irr)} .scope-name .o{color:var(--accent2)} .scope-name .p{color:var(--accent)} .scope-name .e{color:var(--c-irr)}
 .mist-name{font-weight:700} .mist-name .m{color:var(--accent)} .mist-name .i{color:var(--c-irr)} .mist-name .s{color:var(--accent2)} .mist-name .t{color:var(--c-irr)}
+.scptow{font-weight:700} .scptow .s{color:var(--accent)} .scptow .c{color:var(--c-irr)} .scptow .two{color:var(--accent2)} .scptow .w{color:var(--c-clean)}
 
 /* hero */
 .hero{max-width:1080px;margin:0 auto;padding:3.2rem 1.3rem 1.2rem;padding-left:calc(210px + 1.6rem + 1.3rem)}
@@ -337,7 +338,8 @@ footer.wb-footer a{color:var(--accent)}
   <div class="kicker">Overview</div>
   <h2>When a plausible hint turns a right answer wrong</h2>
   <p class="lead">Language models increasingly condition their answers on external signals &mdash; hints, retrieved passages, user feedback, rationales &mdash; and a single misleading one can flip a correct answer to wrong.</p>
-  <p>The obvious remedy, training models to <i>resist</i> such signals, hides a failure mode: a model that ignores all context looks robust under the usual clean-versus-misleading test, yet is useless precisely when the context is worth trusting. We reframe the problem as <b>selective trust</b> and make it measurable with <span class="mist-name"><span class="m">M</span><span class="i">I</span><span class="s">S</span><span class="t">T</span></span> and the <b>SC2W</b> metric, then propose <span class="scope-name"><span class="s">S</span><span class="c">C</span><span class="o">O</span><span class="p">P</span><span class="e">E</span></span>, which changes only <i>what</i> enters a standard DPO objective.</p>
+  <p>The obvious remedy, training models to <i>resist</i> such signals, hides a failure mode: a model that ignores all context looks robust under the usual clean-versus-misleading test, yet is useless precisely when the context is worth trusting.</p>
+  <p>We reframe the problem as <b>selective trust</b> and make it measurable with <span class="mist-name"><span class="m">M</span><span class="i">I</span><span class="s">S</span><span class="t">T</span></span>, a benchmark that renders each reasoning item under four matched conditions, and <span class="scptow"><span class="s">S</span><span class="c">C</span><span class="two">2</span><span class="w">W</span></span>, a paired metric counting how often a misleading signal flips a clean-correct answer to wrong. We then propose <span class="scope-name"><span class="s">S</span><span class="c">C</span><span class="o">O</span><span class="p">P</span><span class="e">E</span></span>, which changes only <i>what</i> enters a standard DPO objective &mdash; matched preference pairs balanced across all four conditions &mdash; and roughly halves <span class="scptow"><span class="s">S</span><span class="c">C</span><span class="two">2</span><span class="w">W</span></span> while preserving accuracy when the added context is clean, correct, or irrelevant.</p>
   <blockquote>Reliable reasoning models should be trained and judged on selective trust, not on resistance alone.</blockquote>
 </section>
 
