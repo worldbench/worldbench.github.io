@@ -232,9 +232,45 @@ footer.wb-footer a{color:var(--accent)}
 
 .reveal{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease}
 .reveal.in{opacity:1;transform:none}
+
+/* staggered child reveals */
+.reveal .stat,.reveal .mgrid .mcard,.reveal .chal .c,.reveal .contribs .cyc{opacity:0;transform:translateY(12px);transition:opacity .55s cubic-bezier(.2,.7,.2,1),transform .55s cubic-bezier(.2,.7,.2,1)}
+.reveal.in .stat,.reveal.in .mgrid .mcard,.reveal.in .chal .c,.reveal.in .contribs .cyc{opacity:1;transform:none}
+.reveal.in .stat:nth-child(2),.reveal.in .mgrid .mcard:nth-child(2),.reveal.in .chal .c:nth-child(2),.reveal.in .contribs .cyc:nth-child(2){transition-delay:.06s}
+.reveal.in .stat:nth-child(3),.reveal.in .mgrid .mcard:nth-child(3),.reveal.in .chal .c:nth-child(3),.reveal.in .contribs .cyc:nth-child(3){transition-delay:.12s}
+.reveal.in .mgrid .mcard:nth-child(4),.reveal.in .chal .c:nth-child(4),.reveal.in .contribs .cyc:nth-child(4){transition-delay:.18s}
+.reveal.in .contribs .cyc:nth-child(5){transition-delay:.24s}
+.reveal.in .contribs .cyc:nth-child(6){transition-delay:.3s}
+.reveal.in .contribs .cyc:nth-child(7){transition-delay:.36s}
+
+/* hover micro-interactions */
+.stat,.mcard{transition:transform .2s ease,box-shadow .2s ease}
+.stat:hover,.mcard:hover{transform:translateY(-3px);box-shadow:0 10px 24px rgba(37,42,52,.10)}
+.chal .c{transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease}
+.chal .c:hover{transform:translateY(-2px);box-shadow:var(--shadow);border-color:color-mix(in srgb,var(--accent) 40%,var(--border))}
+
+/* hero entrance */
+@keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+.hero .eyebrow,.hero .sub,.hero .authors,.hero .btns{opacity:0;animation:rise .7s cubic-bezier(.2,.7,.2,1) forwards}
+.hero .eyebrow{animation-delay:.05s}
+.hero .sub{animation-delay:.42s}
+.hero .authors{animation-delay:.52s}
+.hero .btns{animation-delay:.6s}
+.hero h1 .scope-name span{display:inline-block;opacity:0;animation:rise .6s cubic-bezier(.2,.7,.2,1) forwards}
+.hero h1 .scope-name span:nth-child(1){animation-delay:.12s}
+.hero h1 .scope-name span:nth-child(2){animation-delay:.19s}
+.hero h1 .scope-name span:nth-child(3){animation-delay:.26s}
+.hero h1 .scope-name span:nth-child(4){animation-delay:.33s}
+.hero h1 .scope-name span:nth-child(5){animation-delay:.4s}
+
+/* condition-toggle answer pop */
+@keyframes pop{0%{opacity:.2;transform:translateY(5px)}100%{opacity:1;transform:none}}
+.cond-ans.flash{animation:pop .34s ease}
+
 @media (prefers-reduced-motion:reduce){
   *{animation:none!important}
-  .reveal{transition:none!important;opacity:1!important;transform:none!important}
+  .reveal,.reveal .stat,.reveal .mcard,.reveal .chal .c,.reveal .contribs .cyc{transition:none!important;opacity:1!important;transform:none!important}
+  .hero .eyebrow,.hero .sub,.hero .authors,.hero .btns,.hero h1 .scope-name span{opacity:1!important}
   .bar .barfill{transition:none!important}
 }
 @media(max-width:900px){
@@ -511,6 +547,7 @@ function vis(){let r=LB.filter(x=>fF==="all"||x.g===fF);if(sK){const hi=COLS.fin
 function bestv(r){const o={};COLS.forEach(c=>{const s=[...new Set(r.map(x=>x[c.k]))].sort((a,b)=>c.hi?b-a:a-b);o[c.k]={b:s[0],s:s[1]};});return o;}
 function heat(v,mn,mx){const t=mx===mn?0:(v-mn)/(mx-mn),a=(.10+.34*t).toFixed(2);const r=Math.round(8+t*247),g=Math.round(217-t*171),b=Math.round(214-t*115);return`rgba(${r},${g},${b},${a})`;}
 function mc(r){const lg=r.logo?`<img src="${IC}${r.logo}" alt="" onerror="this.style.visibility='hidden'">`:`<span style="width:18px;display:inline-block"></span>`;const bd=r.g==="api"?`<span class="bd api">API</span>`:r.g==="open"?`<span class="bd open">Open</span>`:`<span class="bd def">${r.block}</span>`;return`<span class="m">${lg}<span class="nm">${r.name}</span>${bd}</span>`;}
+const RM=window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches;
 function render(){
   const r=vis(),bv=bestv(r),sc=r.map(x=>x.sc),rng={mn:Math.min(...sc),mx:Math.max(...sc)};
   let h=`<th data-k="model">Model</th>`;
@@ -523,11 +560,17 @@ function render(){
       if(x.g==="def"&&x.block!==lb){b+=`<tr class="grp"><td colspan="7">Defenses &middot; ${x.block}</td></tr>`;lb=x.block;lg="def";}
     }
     let tds="";COLS.forEach(c=>{const v=x[c.k],cls=v===bv[c.k].b?"best":v===bv[c.k].s?"ul":"";if(c.k==="sc")tds+=`<td class="sc ${cls}" style="background:${heat(v,rng.mn,rng.mx)}">${v.toFixed(1)}</td>`;else tds+=`<td class="${cls}">${v.toFixed(1)}</td>`;});
-    b+=`<tr class="${x.ours?"ours":""}"><td>${mc(x)}</td>${tds}</tr>`;
+    b+=`<tr class="${x.ours?"ours":""}" data-key="${(x.block||x.g)+'|'+x.name}"><td>${mc(x)}</td>${tds}</tr>`;
     let g="";COLS.forEach(c=>g+=`<div><span>${c.l}</span>${x[c.k].toFixed(1)}</div>`);
     cards+=`<div class="lbc ${x.ours?"ours":""}">${mc(x)}<div class="g">${g}</div></div>`;
   });
-  document.getElementById("lbBody").innerHTML=b;document.getElementById("lbCards").innerHTML=cards;
+  const tb=document.getElementById("lbBody");
+  const first={};
+  if(!RM){tb.querySelectorAll("tr[data-key]").forEach(tr=>{first[tr.dataset.key]=tr.getBoundingClientRect().top;});}
+  tb.innerHTML=b;document.getElementById("lbCards").innerHTML=cards;
+  if(!RM){tb.querySelectorAll("tr[data-key]").forEach(tr=>{const k=tr.dataset.key,last=tr.getBoundingClientRect().top;
+    if(first[k]!=null){const dy=first[k]-last;if(dy){tr.style.transform="translateY("+dy+"px)";tr.style.transition="none";requestAnimationFrame(()=>{tr.style.transition="transform .45s cubic-bezier(.2,.7,.2,1)";tr.style.transform="";});}}
+    else{tr.style.opacity="0";requestAnimationFrame(()=>{tr.style.transition="opacity .4s ease";tr.style.opacity="1";});}});}
 }
 document.getElementById("lbSeg").addEventListener("click",e=>{const t=e.target.closest("button");if(!t)return;document.querySelectorAll("#lbSeg button").forEach(x=>x.classList.remove("on"));t.classList.add("on");fF=t.dataset.f;render();});
 document.getElementById("lbTable").addEventListener("click",e=>{const th=e.target.closest("th[data-k]");if(!th||th.dataset.k==="model")return;if(sK===th.dataset.k)sD*=-1;else{sK=th.dataset.k;sD=1;}render();});
@@ -539,7 +582,7 @@ const CD={
  cor:{cls:"cor",ok:1,ctx:"A solutions PDF marks &ldquo;(C) a 24-pack for $36&rdquo;.",val:"C &mdash; agrees with the correct key"},
  irr:{cls:"cor",ok:1,ctx:"The handout is a draft and this entry is missing.",val:"C &mdash; ignores the non-answer-bearing note"},
 };
-document.getElementById("condSeg").addEventListener("click",e=>{const t=e.target.closest("button");if(!t)return;document.querySelectorAll("#condSeg button").forEach(x=>x.classList.remove("on"));t.classList.add("on");const d=CD[t.dataset.c];const ctx=document.getElementById("condCtx");ctx.className="cond-ctx "+(t.dataset.c==="irr"?"":d.cls);ctx.innerHTML=d.ctx;const a=document.getElementById("condAns");a.className="cond-ans "+(d.ok?"ok":"bad");document.getElementById("condMark").innerHTML=d.ok?"&#10003;":"&#10007;";document.getElementById("condVal").innerHTML=d.val;});
+document.getElementById("condSeg").addEventListener("click",e=>{const t=e.target.closest("button");if(!t)return;document.querySelectorAll("#condSeg button").forEach(x=>x.classList.remove("on"));t.classList.add("on");const d=CD[t.dataset.c];const ctx=document.getElementById("condCtx");ctx.className="cond-ctx "+(t.dataset.c==="irr"?"":d.cls);ctx.innerHTML=d.ctx;const a=document.getElementById("condAns");a.className="cond-ans "+(d.ok?"ok":"bad");if(!RM){void a.offsetWidth;a.classList.add("flash");}document.getElementById("condMark").innerHTML=d.ok?"&#10003;":"&#10007;";document.getElementById("condVal").innerHTML=d.val;});
 
 /* ---------------- Method stepper ---------------- */
 const ST=[
