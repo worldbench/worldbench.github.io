@@ -208,6 +208,21 @@ pre.bib{background:var(--panel2);border:1px solid var(--border);border-radius:12
 
 .ph-box{border:2px dashed #d6cdb2;border-radius:14px;padding:1.4rem;text-align:center;color:var(--muted);background:var(--panel);margin:1rem 0}
 
+/* author cards */
+.contribs{display:grid;grid-template-columns:1fr;gap:.7rem;margin:1.2rem 0 .5rem}
+.cyc{display:flex;align-items:center;gap:.9rem;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:.7rem .95rem;box-shadow:var(--shadow);transition:border-color .15s,box-shadow .15s}
+.cyc:hover{border-color:color-mix(in srgb,var(--accent) 45%,var(--border))}
+.cphoto{width:56px;height:56px;border-radius:50%;object-fit:cover;flex:0 0 auto;border:1px solid var(--border);background:var(--panel)}
+.cphoto.ph{display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:1.4rem}
+.cinfo{min-width:0;flex:1;display:flex;align-items:center;gap:.8rem}
+.cmeta{flex:1;min-width:0}
+.cname{font-weight:600;font-size:1.1rem;line-height:1.25;color:var(--text)}
+.caff{font-size:.9rem;color:var(--muted);margin-top:.05rem}
+.clinks{display:flex;flex-wrap:wrap;gap:.3rem;font-size:1.25rem;flex:0 0 auto}
+.clinks a{color:var(--muted);line-height:1;padding:0 .3rem}
+.clinks a:hover{color:var(--accent)}
+@media(max-width:600px){.cinfo{flex-direction:column;align-items:flex-start;gap:.4rem}}
+
 footer.wb-footer{border-top:1px solid var(--hair);margin-top:2rem;text-align:center;color:var(--muted);font-size:.85rem;padding:1.6rem 1rem}
 footer.wb-footer a{color:var(--accent)}
 
@@ -402,15 +417,45 @@ footer.wb-footer a{color:var(--accent)}
 <section id="authors" class="reveal">
   <div class="kicker">Authors</div>
   <h2>Authors &amp; Affiliations</h2>
-  <p>Xian Sun<sup>1</sup>, Wei Chow<sup>2</sup>, Yingshuo Wang<sup>3</sup>, Junhao Liu<sup>4</sup>, Wei Gao<sup>5</sup>, Qing Wu<sup>6</sup>, and Lingdong Kong<sup>2</sup>.</p>
-  <p class="muted" style="font-size:1rem;line-height:1.9">
-    <sup>1</sup>Duke University<br>
-    <sup>2</sup>National University of Singapore<br>
-    <sup>3</sup>UC Berkeley<br>
-    <sup>4</sup>UC Irvine<br>
-    <sup>5</sup>Northeastern University<br>
-    <sup>6</sup>Nanyang Technological University, Singapore
-  </p>
+  <div class="contribs">
+    <div class="cyc">
+      <img class="cphoto" src="assets_common/photos/xian_sun.jpg" alt="Xian Sun" loading="lazy" width="56" height="56" onerror="this.outerHTML='&lt;div class=&quot;cphoto ph&quot;&gt;&lt;i class=&quot;fas fa-user&quot;&gt;&lt;/i&gt;&lt;/div&gt;'">
+      <div class="cinfo"><div class="cmeta"><div class="cname">Xian Sun</div><div class="caff">Duke University</div></div></div>
+    </div>
+    <div class="cyc">
+      <img class="cphoto" src="assets_common/photos/wei_chow.jpg" alt="Wei Chow" loading="lazy" width="56" height="56" onerror="this.outerHTML='&lt;div class=&quot;cphoto ph&quot;&gt;&lt;i class=&quot;fas fa-user&quot;&gt;&lt;/i&gt;&lt;/div&gt;'">
+      <div class="cinfo"><div class="cmeta"><div class="cname">Wei Chow</div><div class="caff">National University of Singapore</div></div>
+        <div class="clinks"><a href="https://scholar.google.com/citations?user=br7-IGkAAAAJ" target="_blank" rel="noopener" aria-label="Google Scholar"><i class="ai ai-google-scholar"></i></a></div></div>
+    </div>
+    <div class="cyc">
+      <img class="cphoto" src="assets_common/photos/yingshuo_wang.jpg" alt="Yingshuo Wang" loading="lazy" width="56" height="56" onerror="this.outerHTML='&lt;div class=&quot;cphoto ph&quot;&gt;&lt;i class=&quot;fas fa-user&quot;&gt;&lt;/i&gt;&lt;/div&gt;'">
+      <div class="cinfo"><div class="cmeta"><div class="cname">Yingshuo Wang</div><div class="caff">UC Berkeley</div></div></div>
+    </div>
+    <div class="cyc">
+      <div class="cphoto ph"><i class="fas fa-user"></i></div>
+      <div class="cinfo"><div class="cmeta"><div class="cname">Junhao Liu</div><div class="caff">UC Irvine</div></div></div>
+    </div>
+    <div class="cyc">
+      <img class="cphoto" src="assets_common/photos/wei_gao.jpg" alt="Wei Gao" loading="lazy" width="56" height="56" onerror="this.outerHTML='&lt;div class=&quot;cphoto ph&quot;&gt;&lt;i class=&quot;fas fa-user&quot;&gt;&lt;/i&gt;&lt;/div&gt;'">
+      <div class="cinfo"><div class="cmeta"><div class="cname">Wei Gao</div><div class="caff">Northeastern University</div></div></div>
+    </div>
+    <div class="cyc">
+      <img class="cphoto" src="assets_common/photos/qing.png" alt="Qing Wu" loading="lazy" width="56" height="56" onerror="this.outerHTML='&lt;div class=&quot;cphoto ph&quot;&gt;&lt;i class=&quot;fas fa-user&quot;&gt;&lt;/i&gt;&lt;/div&gt;'">
+      <div class="cinfo"><div class="cmeta"><div class="cname">Qing Wu</div><div class="caff">Nanyang Technological University, Singapore</div></div></div>
+    </div>
+    <div class="cyc">
+      <img class="cphoto" src="assets_common/photos/lingdong_kong.jpg" alt="Lingdong Kong" loading="lazy" width="56" height="56" onerror="this.outerHTML='&lt;div class=&quot;cphoto ph&quot;&gt;&lt;i class=&quot;fas fa-user&quot;&gt;&lt;/i&gt;&lt;/div&gt;'">
+      <div class="cinfo"><div class="cmeta"><div class="cname">Lingdong Kong</div><div class="caff">National University of Singapore</div></div>
+        <div class="clinks">
+          <a href="mailto:lingdong.kong@u.nus.edu" aria-label="Email"><i class="fas fa-envelope"></i></a>
+          <a href="https://ldkong.com" target="_blank" rel="noopener" aria-label="Homepage"><i class="fas fa-globe"></i></a>
+          <a href="https://scholar.google.com/citations?user=-j1j7TkAAAAJ&amp;hl=en" target="_blank" rel="noopener" aria-label="Google Scholar"><i class="ai ai-google-scholar"></i></a>
+          <a href="https://github.com/ldkong1205/" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
+          <a href="https://www.linkedin.com/in/ldkong/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+          <a href="https://twitter.com/ldkong1205" target="_blank" rel="noopener" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+        </div></div>
+    </div>
+  </div>
 </section>
 
 <footer class="wb-footer">
