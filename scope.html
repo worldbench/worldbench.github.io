@@ -304,7 +304,6 @@ footer.wb-footer a{color:var(--accent)}
     <div class="mcard"><div class="ic"><i class="fas fa-user"></i></div><h4>User beliefs</h4><p>Sycophancy: alignment nudges the model to agree with the user over the truth.</p></div>
     <div class="mcard"><div class="ic"><i class="fas fa-list-ol"></i></div><h4>Rationales</h4><p>Persuasive but unfaithful reasoning that steers the final answer.</p></div>
   </div>
-  <figure class="fig"><img src="assets/scope/figures/teaser.png" alt="Universal susceptibility across 23 models" onerror="this.outerHTML='&lt;div class=&quot;ph-box&quot;&gt;Teaser figure &mdash; assets/scope/figures/teaser.png&lt;/div&gt;'"><figcaption>Adding a misleading signal lowers accuracy for every one of 23 closed and open models; even the strongest frontier systems are affected.</figcaption></figure>
 </section>
 
 <section id="benchmark" class="reveal">
@@ -328,8 +327,6 @@ footer.wb-footer a{color:var(--accent)}
   <p>The central metric, <b>SC2W</b> (signal-induced correct-to-wrong), conditions on items the model already solves when clean and measures how often a misleading signal flips them to wrong:</p>
   <div class="formula">$$ \mathrm{SC2W} = \frac{\sum_i \mathbb{I}[a_i^{\mathrm{clean}}=1 \,\wedge\, a_i^{\mathrm{mis}}=0]}{\sum_i \mathbb{I}[a_i^{\mathrm{clean}}=1]} $$</div>
 
-  <figure class="fig"><img src="assets/scope/figures/pipeline.png" alt="MIST construction pipeline" onerror="this.outerHTML='&lt;div class=&quot;ph-box&quot;&gt;Pipeline figure&lt;/div&gt;'"><figcaption>Items adapted from existing benchmarks plus a realistic human-authored subset, screened and annotated into four matched conditions by ten STEM-trained annotators, then independently verified before freezing.</figcaption></figure>
-  <figure class="fig"><img src="assets/scope/figures/stats.png" alt="MIST-1000 coverage" onerror="this.outerHTML='&lt;div class=&quot;ph-box&quot;&gt;Statistics figure&lt;/div&gt;'"><figcaption><span class="mist-name"><span class="m">M</span><span class="i">I</span><span class="s">S</span><span class="t">T</span></span>-1000 spans diverse sources, topics, signal channels, and wrong-answer types (1,000 items, 4,000 matched rows).</figcaption></figure>
 </section>
 
 <section id="leaderboard" class="reveal">
@@ -363,7 +360,6 @@ footer.wb-footer a{color:var(--accent)}
     </div>
     <div class="step-panel" id="stepPanel"></div>
   </div>
-  <figure class="fig"><img src="assets/scope/figures/framework.png" alt="SCOPE framework" onerror="this.outerHTML='&lt;div class=&quot;ph-box&quot;&gt;Framework figure&lt;/div&gt;'"><figcaption>Matched preference construction balances misleading, clean, correct-context, and irrelevant-context pairs before standard full-completion DPO training.</figcaption></figure>
 </section>
 
 <section id="results" class="reveal">
@@ -375,8 +371,6 @@ footer.wb-footer a{color:var(--accent)}
     <div class="bar"><span class="blabel">SC2W &darr; on Llama-3.2-3B</span><span class="btrack"><span class="barfill" style="--w:35%"></span></span><span class="bnum">31.5&rarr;20.6</span></div>
   </div>
   <p class="muted" style="font-size:.9rem">Bar length shows the relative reduction in SC2W (53% and 35%).</p>
-  <figure class="fig"><img src="assets/scope/figures/results.png" alt="Trade-off and external transfer" onerror="this.outerHTML='&lt;div class=&quot;ph-box&quot;&gt;Results figure&lt;/div&gt;'"><figcaption>SCOPE is the one method that beats the base model on both robustness (SC2W) and control accuracy, and it transfers zero-shot &mdash; best or tied on all four external accuracy metrics (GSM-IC, GSM-Plus, Sharma).</figcaption></figure>
-  <figure class="fig"><img src="assets/scope/figures/human.png" alt="Human audit" onerror="this.outerHTML='&lt;div class=&quot;ph-box&quot;&gt;Human-audit figure&lt;/div&gt;'"><figcaption>A reference-assisted human audit agrees with the automatic scoring across all six main-table metrics.</figcaption></figure>
 </section>
 
 <section id="examples" class="reveal">
