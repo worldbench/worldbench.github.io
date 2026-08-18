@@ -1,0 +1,65 @@
+[
+ {
+  "key": "daily",
+  "label": "Daily Living",
+  "source": "aea",
+  "clip_id": "loc1_script1_seq1_rec1_0090000",
+  "blurb": "Long unremarkable stretches, which is where a worn device spends most of its time.",
+  "image": "assets/egomm/activities/daily.jpg",
+  "bytes": 8779
+ },
+ {
+  "key": "cooking",
+  "label": "Cooking",
+  "source": "hdepic",
+  "clip_id": "P05-20240423-170021__00570",
+  "blurb": "Hands leave the frame constantly, and contact sounds carry what the camera loses.",
+  "image": "assets/egomm/activities/cooking.jpg",
+  "bytes": 15043
+ },
+ {
+  "key": "social",
+  "label": "Social & Play",
+  "source": "egolife",
+  "clip_id": "DAY1_A1_JAKE_11100000",
+  "blurb": "Overlapping speech, several people, and a camera that follows the wearer's attention.",
+  "image": "assets/egomm/activities/social.jpg",
+  "bytes": 21412
+ },
+ {
+  "key": "sports",
+  "label": "Sports & Fitness",
+  "source": "egoexo4d",
+  "clip_id": "upenn_0706_Dance_5_6_0090000",
+  "blurb": "Sustained whole-body motion that the inertial stream separates cleanly.",
+  "image": "assets/egomm/activities/sports.jpg",
+  "bytes": 7318
+ },
+ {
+  "key": "assembly",
+  "label": "Assembly & Trades",
+  "source": "holoassist",
+  "clip_id": "z132-aug-12-22-knarrevik_assemble_0000_0030",
+  "blurb": "Fine manipulation under instruction, with tools that sound distinct from one another.",
+  "image": "assets/egomm/activities/assembly.jpg",
+  "bytes": 13516
+ },
+ {
+  "key": "arts",
+  "label": "Arts & Crafts",
+  "source": "egoexo4d",
+  "clip_id": "upenn_0724_Piano_1_4_0300000",
+  "blurb": "Repetitive skilled motion where the sound of the activity is the clearest signal.",
+  "image": "assets/egomm/activities/arts.jpg",
+  "bytes": 18416
+ },
+ {
+  "key": "health",
+  "label": "Health & Safety",
+  "source": "egoexo4d",
+  "clip_id": "nus_cpr_25_2_0030000",
+  "blurb": "Procedural sequences where timing and rhythm matter more than appearance.",
+  "image": "assets/egomm/activities/health.jpg",
+  "bytes": 7729
+ }
+]

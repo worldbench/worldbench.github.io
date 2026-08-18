@@ -161,27 +161,99 @@ figcaption b { color: var(--ink-soft); font-weight: 600; }
 .anim-card .label { padding: .55rem .8rem; font-size: .8rem; color: var(--ink-soft); border-top: 1px solid var(--rule); background: var(--paper); }
 
 /* ---------- example player ---------- */
-.example { border: 1px solid var(--rule); border-radius: var(--radius); overflow: hidden; margin: 1.1rem 0; }
+.example { border: 1px solid var(--rule); border-radius: var(--radius); overflow: hidden; margin: 1.4rem 0; }
 .example .head { padding: .9rem 1.15rem; border-bottom: 1px solid var(--rule); display: flex; align-items: center; gap: .6rem; flex-wrap: wrap; }
 .example .task { font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-faint); }
-.example .body { display: grid; grid-template-columns: minmax(0,1.1fr) minmax(0,1fr); gap: 0; }
+.example .ex-head { font-weight: 600; color: var(--ink); }
+.example .src { margin-left: auto; }
+.example .body { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1.05fr); gap: 0; }
 @media (max-width: 800px) { .example .body { grid-template-columns: 1fr; } }
-.example .stage { background: #0d0f13; display: flex; align-items: center; justify-content: center; min-height: 12rem; }
-.example .stage video, .example .stage img { width: 100%; display: block; }
-.example .panel { padding: 1.05rem 1.15rem; }
+.example .stage { background: #0d0f13; display: flex; flex-direction: column; justify-content: center; min-height: 12rem; }
+.example .stage video { width: 100%; display: block; }
+.example .stage .imu-strip { width: 100%; display: block; background: var(--paper); padding: .5rem .6rem; border-top: 1px solid #22252c; }
+.example .panel { padding: 1.05rem 1.15rem; border-left: 1px solid var(--rule); }
+@media (max-width: 800px) { .example .panel { border-left: 0; border-top: 1px solid var(--rule); } }
 .example .q { color: var(--ink); font-weight: 600; margin-bottom: .7rem; }
-.toggles { display: flex; gap: .4rem; margin-bottom: .8rem; }
+
+/* options, with the reference answer marked */
+.opts { list-style: none; margin: 0 0 .9rem; padding: 0; counter-reset: opt; }
+.opts li {
+  counter-increment: opt; position: relative;
+  padding: .3rem 0 .3rem 1.9rem; font-size: .88rem; color: var(--ink-soft); line-height: 1.5;
+}
+.opts li::before {
+  content: counter(opt, upper-alpha); position: absolute; left: 0; top: .38rem;
+  width: 1.25rem; text-align: center; border-radius: 4px;
+  font: 600 .7rem/1.3 ui-monospace, SFMono-Regular, Menlo, monospace;
+  color: var(--ink-faint); background: var(--paper-soft);
+}
+.opts li.gold { color: var(--ink); font-weight: 500; }
+.opts li.gold::before { background: var(--egimu); color: #fff; }
+.opts .tag {
+  margin-left: .4rem; padding: .05em .4em; border-radius: 4px;
+  background: color-mix(in srgb, var(--egimu) 14%, transparent);
+  color: var(--egimu); font-size: .68rem; font-weight: 600;
+  letter-spacing: .04em; text-transform: uppercase; white-space: nowrap;
+}
+
+/* the real audio toggle: muting the player is what a video-only model receives */
+.listen { display: flex; align-items: center; gap: .6rem; flex-wrap: wrap; margin-bottom: .9rem; }
+.listen .muted { font-size: var(--fs-small); }
 .toggle {
   border: 1px solid var(--rule); background: var(--paper); border-radius: 999px;
-  padding: .28rem .7rem; font-size: .78rem; color: var(--ink-soft); cursor: pointer;
+  padding: .28rem .8rem; font-size: .78rem; color: var(--ink-soft); cursor: pointer;
   transition: all .18s ease;
 }
+.toggle:hover { border-color: var(--ink-faint); }
 .toggle[aria-pressed="true"] { background: var(--ink); color: #fff; border-color: var(--ink); }
-.pred { border-top: 1px solid var(--rule); padding: .5rem 0; display: flex; gap: .6rem; align-items: baseline; font-size: .86rem; }
-.pred .who { color: var(--ink-faint); min-width: 8.5rem; }
-.pred .ans { color: var(--ink-soft); }
-.pred.correct .ans { color: var(--egimu); font-weight: 600; }
-.pred.wrong   .ans { color: var(--egaud); }
+
+/* what the inertial signal actually says */
+.computed {
+  border: 1px solid var(--rule); border-left: 2px solid var(--egimu);
+  border-radius: 8px; padding: .55rem .8rem; margin-bottom: .9rem; background: var(--paper-soft);
+}
+.computed .k { font-size: .68rem; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-faint); }
+.computed p { margin: .2rem 0 0; font-size: .82rem; color: var(--ink-soft);
+              font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+.computed b { color: var(--ink); font-family: inherit; }
+
+/* the split that carries the claim */
+.split { display: grid; gap: .5rem; grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr)); margin-bottom: .8rem; }
+.sp { border: 1px solid var(--rule); border-radius: 8px; padding: .55rem .7rem; }
+.sp .n { display: block; font-family: "Fraunces", serif; font-size: 1.35rem; font-weight: 600; line-height: 1.1; }
+.sp .l { display: block; font-size: .72rem; color: var(--ink-faint); line-height: 1.35; margin-top: .15rem; }
+.sp.on { border-color: color-mix(in srgb, var(--egimu) 45%, var(--rule)); }
+.sp.on .n { color: var(--egimu); }
+.sp.off .n { color: var(--egaud); }
+
+.ex-note { font-size: var(--fs-small); line-height: 1.6; margin: 0 0 .7rem; }
+
+/* ---------- activity grid: real frames, not icons ---------- */
+.act-grid { display: grid; gap: .9rem; grid-template-columns: repeat(auto-fit, minmax(13.5rem, 1fr)); margin: 1.4rem 0 1rem; }
+.act { margin: 0; border: 1px solid var(--rule); border-radius: var(--radius); overflow: hidden; background: var(--paper); }
+.act img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; display: block; background: #0d0f13; }
+.act figcaption { margin: 0; padding: .6rem .75rem .7rem; font-size: .78rem; line-height: 1.5; color: var(--ink-faint); }
+.act figcaption b { display: block; color: var(--ink); font-size: .84rem; font-weight: 600; margin-bottom: .15rem; }
+.act .prov {
+  display: inline-block; margin-top: .35rem; padding: .05em .4em; border-radius: 4px;
+  background: var(--paper-soft); color: var(--ink-faint);
+  font: 500 .68rem/1.5 ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+/* per-model answers, collapsed by default */
+.permodel summary {
+  cursor: pointer; font-size: .8rem; color: var(--ink-soft);
+  padding: .3rem 0; list-style-position: inside;
+}
+.permodel summary:hover { color: var(--ink); }
+.pm-grid { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr)); margin-top: .5rem; }
+.pm-col .k { font-size: .68rem; letter-spacing: .07em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: .3rem; }
+.pm { display: flex; justify-content: space-between; gap: .5rem; align-items: baseline;
+      padding: .16rem 0; border-bottom: 1px solid var(--paper-soft); }
+.pm .m { font-size: .74rem; color: var(--ink-soft); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.pm .a { font: 600 .74rem/1 ui-monospace, SFMono-Regular, Menlo, monospace; }
+.pm.ok .a { color: var(--egimu); }
+.pm.no .a { color: var(--ink-faint); }
 
 /* ---------- bibtex ---------- */
 pre.bib {

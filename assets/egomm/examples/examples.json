@@ -1,0 +1,649 @@
+[
+ {
+  "slug": "audio-speech",
+  "column": "MCQ-A",
+  "item_id": "aea:loc1_script2_seq6_rec1_0000000:mcq:1_af",
+  "source": "aea",
+  "clip_id": "loc1_script2_seq6_rec1_0000000",
+  "board": "data/EgoMM/release/mcq_a_merged/frozen/mcq_a_merged_343.jsonl",
+  "board_sha256": "2d9ded74301bc0eee36b53fcde52c832a12a5ad2aa1bd3b6ca17c0282da846f6",
+  "question": "During the cleanup process, what specific item does the male speaker explicitly state he will put away?",
+  "options": [
+   "He states he will put away the fruit.",
+   "He states he will put away the rule book.",
+   "He states he will put away the playing cards.",
+   "He states he will put away the game board.",
+   "He states he will put away the wooden tokens."
+  ],
+  "gold": 0,
+  "question_type": "legacy_A1",
+  "grounded": [
+   null,
+   null
+  ],
+  "computed_bin": null,
+  "computed_raw": null,
+  "headline": "The answer is only in what was said",
+  "note": "The item is not ambiguous and it is not hard. It is simply not in the frames, so a model that cannot hear has nothing to work from and picks a plausible object instead.",
+  "predictions": [
+   {
+    "model": "claude-haiku-4-5",
+    "pick": 3,
+    "correct": false,
+    "raw": "D"
+   },
+   {
+    "model": "claude-opus-4-6",
+    "pick": 1,
+    "correct": false,
+    "raw": "B"
+   },
+   {
+    "model": "claude-opus-4-8",
+    "pick": 3,
+    "correct": false,
+    "raw": "D"
+   },
+   {
+    "model": "claude-sonnet-4-6",
+    "pick": 3,
+    "correct": false,
+    "raw": "D"
+   },
+   {
+    "model": "claude-sonnet-5",
+    "pick": 3,
+    "correct": false,
+    "raw": "D"
+   },
+   {
+    "model": "gemini-3.1-flash-lite",
+    "pick": 0,
+    "correct": true,
+    "raw": "A"
+   },
+   {
+    "model": "gemini-3.1-pro",
+    "pick": 0,
+    "correct": true,
+    "raw": "A"
+   },
+   {
+    "model": "gemini-3.5-flash",
+    "pick": 0,
+    "correct": true,
+    "raw": "A"
+   },
+   {
+    "model": "gpt-5",
+    "pick": 1,
+    "correct": false,
+    "raw": "B"
+   },
+   {
+    "model": "gpt-5-mini",
+    "pick": 3,
+    "correct": false,
+    "raw": "D"
+   },
+   {
+    "model": "gpt-5-nano",
+    "pick": 3,
+    "correct": false,
+    "raw": "D"
+   },
+   {
+    "model": "gpt-5.4",
+    "pick": 1,
+    "correct": false,
+    "raw": "B"
+   },
+   {
+    "model": "gpt-5.4-mini",
+    "pick": 1,
+    "correct": false,
+    "raw": "B"
+   },
+   {
+    "model": "gpt-5.4-nano",
+    "pick": 1,
+    "correct": false,
+    "raw": "B"
+   },
+   {
+    "model": "internvl3-2b",
+    "pick": 1,
+    "correct": false,
+    "raw": "B"
+   },
+   {
+    "model": "internvl3-38b",
+    "pick": 3,
+    "correct": false,
+    "raw": "D"
+   },
+   {
+    "model": "internvl3-78b",
+    "pick": 4,
+    "correct": false,
+    "raw": "E"
+   },
+   {
+    "model": "internvl3-8b",
+    "pick": 1,
+    "correct": false,
+    "raw": "B"
+   },
+   {
+    "model": "phi4-multimodal",
+    "pick": 0,
+    "correct": true,
+    "raw": "A"
+   },
+   {
+    "model": "qwen2.5-omni-3b",
+    "pick": 0,
+    "correct": true,
+    "raw": "A"
+   },
+   {
+    "model": "qwen2.5-omni-7b",
+    "pick": 0,
+    "correct": true,
+    "raw": "A\n:"
+   },
+   {
+    "model": "qwen2.5-vl-3b",
+    "pick": 4,
+    "correct": false,
+    "raw": "E"
+   },
+   {
+    "model": "qwen2.5-vl-72b",
+    "pick": 1,
+    "correct": false,
+    "raw": "B"
+   },
+   {
+    "model": "qwen2.5-vl-7b",
+    "pick": 3,
+    "correct": false,
+    "raw": "D"
+   },
+   {
+    "model": "qwen3-omni-30b",
+    "pick": 0,
+    "correct": true,
+    "raw": "A"
+   },
+   {
+    "model": "qwen3-vl-2b",
+    "pick": 2,
+    "correct": false,
+    "raw": "C"
+   },
+   {
+    "model": "qwen3-vl-32b",
+    "pick": 1,
+    "correct": false,
+    "raw": "B"
+   },
+   {
+    "model": "qwen3-vl-4b",
+    "pick": 3,
+    "correct": false,
+    "raw": "D"
+   },
+   {
+    "model": "qwen3-vl-8b",
+    "pick": 3,
+    "correct": false,
+    "raw": "D"
+   }
+  ],
+  "media": {
+   "video": "assets/egomm/examples/audio-speech/clip.mp4",
+   "bytes": 1749513,
+   "poster": "assets/egomm/examples/audio-speech/poster.jpg",
+   "imu": "assets/egomm/examples/audio-speech/imu.png"
+  }
+ },
+ {
+  "slug": "audio-offscreen",
+  "column": "MCQ-A",
+  "item_id": "egoexo4d:iiith_cooking_14_1_0000000:mcq:6_h",
+  "source": "egoexo4d",
+  "clip_id": "iiith_cooking_14_1_0000000",
+  "board": "data/EgoMM/release/mcq_a_merged/frozen/mcq_a_merged_343.jsonl",
+  "board_sha256": "2d9ded74301bc0eee36b53fcde52c832a12a5ad2aa1bd3b6ca17c0282da846f6",
+  "question": "While the person visible in the distance is standing near the kitchen cabinets, what is occurring out of view?",
+  "options": [
+   "A loud fan or ventilation system clicks on and starts whirring.",
+   "Water can be heard running continuously into a metal basin.",
+   "Someone can be heard sweeping the floor with a stiff broom.",
+   "An electronic device emits a distinct series of alert tones.",
+   "A microwave beeps loudly and its door is pulled open sharply."
+  ],
+  "gold": 3,
+  "question_type": "legacy_A4",
+  "grounded": [
+   2,
+   10
+  ],
+  "computed_bin": null,
+  "computed_raw": null,
+  "headline": "An event the camera never points at",
+  "note": "The sound source stays out of frame for the whole clip. Most models without audio settle on running water, which is the likeliest thing to hear in a kitchen you can see.",
+  "predictions": [
+   {
+    "model": "claude-haiku-4-5",
+    "pick": 1,
+    "correct": false,
+    "raw": "B"
+   },
+   {
+    "model": "claude-opus-4-6",
+    "pick": 1,
+    "correct": false,
+    "raw": "B"
+   },
+   {
+    "model": "claude-opus-4-8",
+    "pick": 1,
+    "correct": false,
+    "raw": "B"
+   },
+   {
+    "model": "claude-sonnet-4-6",
+    "pick": 1,
+    "correct": false,
+    "raw": "B"
+   },
+   {
+    "model": "claude-sonnet-5",
+    "pick": 3,
+    "correct": true,
+    "raw": "D"
+   },
+   {
+    "model": "egomm-9_5b-v6_2",
+    "pick": 3,
+    "correct": true,
+    "raw": "D. An electronic device"
+   },
+   {
+    "model": "egomm-9_5b-v6_3_1",
+    "pick": 1,
+    "correct": false,
+    "raw": "B"
+   },
+   {
+    "model": "gemini-3.1-flash-lite",
+    "pick": 3,
+    "correct": true,
+    "raw": "D"
+   },
+   {
+    "model": "gemini-3.1-pro",
+    "pick": 3,
+    "correct": true,
+    "raw": "D"
+   },
+   {
+    "model": "gemini-3.5-flash",
+    "pick": 3,
+    "correct": true,
+    "raw": "D"
+   },
+   {
+    "model": "gpt-5",
+    "pick": 1,
+    "correct": false,
+    "raw": "B"
+   },
+   {
+    "model": "gpt-5-mini",
+    "pick": 2,
+    "correct": false,
+    "raw": "C"
+   },
+   {
+    "model": "gpt-5-nano",
+    "pick": 1,
+    "correct": false,
+    "raw": "B"
+   },
+   {
+    "model": "gpt-5.4",
+    "pick": 1,
+    "correct": false,
+    "raw": "B"
+   },
+   {
+    "model": "gpt-5.4-mini",
+    "pick": 1,
+    "correct": false,
+    "raw": "B"
+   },
+   {
+    "model": "gpt-5.4-nano",
+    "pick": 1,
+    "correct": false,
+    "raw": "B"
+   },
+   {
+    "model": "internvl3-2b",
+    "pick": 2,
+    "correct": false,
+    "raw": "C"
+   },
+   {
+    "model": "internvl3-38b",
+    "pick": 1,
+    "correct": false,
+    "raw": "B"
+   },
+   {
+    "model": "internvl3-78b",
+    "pick": 1,
+    "correct": false,
+    "raw": "B"
+   },
+   {
+    "model": "internvl3-8b",
+    "pick": 1,
+    "correct": false,
+    "raw": "B"
+   },
+   {
+    "model": "phi4-multimodal",
+    "pick": 0,
+    "correct": false,
+    "raw": "A"
+   },
+   {
+    "model": "qwen2.5-omni-3b",
+    "pick": 3,
+    "correct": true,
+    "raw": "D"
+   },
+   {
+    "model": "qwen2.5-omni-7b",
+    "pick": 3,
+    "correct": true,
+    "raw": "D"
+   },
+   {
+    "model": "qwen2.5-vl-3b",
+    "pick": 2,
+    "correct": false,
+    "raw": "C"
+   },
+   {
+    "model": "qwen2.5-vl-72b",
+    "pick": 3,
+    "correct": true,
+    "raw": "D"
+   },
+   {
+    "model": "qwen2.5-vl-7b",
+    "pick": 2,
+    "correct": false,
+    "raw": "C"
+   },
+   {
+    "model": "qwen3-omni-30b",
+    "pick": 3,
+    "correct": true,
+    "raw": "D"
+   },
+   {
+    "model": "qwen3-vl-2b",
+    "pick": 0,
+    "correct": false,
+    "raw": "A"
+   },
+   {
+    "model": "qwen3-vl-32b",
+    "pick": 1,
+    "correct": false,
+    "raw": "B"
+   },
+   {
+    "model": "qwen3-vl-4b",
+    "pick": 0,
+    "correct": false,
+    "raw": "A"
+   },
+   {
+    "model": "qwen3-vl-8b",
+    "pick": 1,
+    "correct": false,
+    "raw": "B"
+   }
+  ],
+  "media": {
+   "video": "assets/egomm/examples/audio-offscreen/clip.mp4",
+   "bytes": 1373021,
+   "poster": "assets/egomm/examples/audio-offscreen/poster.jpg",
+   "imu": "assets/egomm/examples/audio-offscreen/imu.png"
+  }
+ },
+ {
+  "slug": "motion-intensity",
+  "column": "MCQ-I",
+  "item_id": "mcqi_band_536a5066d0",
+  "source": "ego4d",
+  "clip_id": "002c3b5c-ed86-4af3-99a1-4b497b7c8a86_2580000",
+  "board": "data/EgoMM/external/egommu_preview_v1/imu_first/egommu_preview_v1_imu_first_band.jsonl",
+  "board_sha256": "86a5325220bbeadba3660a842b3813d6f8368c92b928596b8c6259a5e94dd554",
+  "question": "How gentle or forceful was the wearer's movement during this clip?",
+  "options": [
+   "Moderate motion",
+   "Almost no motion",
+   "Gentle, light motion",
+   "Explosive, whole-body athletic exertion",
+   "Vigorous, forceful motion"
+  ],
+  "gold": 0,
+  "question_type": "intensity",
+  "grounded": [
+   null,
+   null
+  ],
+  "computed_bin": {
+   "intensity": "moderate"
+  },
+  "computed_raw": {
+   "cadence_sps": 0.0,
+   "intensity_rms": 0.5231974195577679,
+   "regularity": 0.24232106605307718,
+   "jerk": 10.85115033717407,
+   "motion_freq_hz": 2.0
+  },
+  "headline": "The models agree, and the signal disagrees",
+  "note": "The reference comes from the recorded acceleration rather than from anyone's description of it, so it is exact. A single item is an illustration, not a measurement: what it shows is the shape of the failure, models converging on the visually plausible answer, not the size of any model's advantage.",
+  "predictions": [
+   {
+    "model": "claude-haiku-4-5",
+    "pick": 2,
+    "correct": false,
+    "raw": "C"
+   },
+   {
+    "model": "claude-opus-4-6",
+    "pick": 2,
+    "correct": false,
+    "raw": "C"
+   },
+   {
+    "model": "claude-opus-4-8",
+    "pick": 2,
+    "correct": false,
+    "raw": "C"
+   },
+   {
+    "model": "claude-sonnet-4-6",
+    "pick": 2,
+    "correct": false,
+    "raw": "C"
+   },
+   {
+    "model": "claude-sonnet-5",
+    "pick": 2,
+    "correct": false,
+    "raw": "C"
+   },
+   {
+    "model": "egomm-9_5b-v6_3_1",
+    "pick": 0,
+    "correct": true,
+    "raw": "A"
+   },
+   {
+    "model": "gemini-3.1-flash-lite",
+    "pick": 2,
+    "correct": false,
+    "raw": "C"
+   },
+   {
+    "model": "gemini-3.1-pro",
+    "pick": 2,
+    "correct": false,
+    "raw": "C"
+   },
+   {
+    "model": "gemini-3.5-flash",
+    "pick": 2,
+    "correct": false,
+    "raw": "C"
+   },
+   {
+    "model": "gpt-5",
+    "pick": 2,
+    "correct": false,
+    "raw": "C"
+   },
+   {
+    "model": "gpt-5-mini",
+    "pick": 0,
+    "correct": true,
+    "raw": "A"
+   },
+   {
+    "model": "gpt-5-nano",
+    "pick": 2,
+    "correct": false,
+    "raw": "C"
+   },
+   {
+    "model": "gpt-5.4",
+    "pick": 0,
+    "correct": true,
+    "raw": "A"
+   },
+   {
+    "model": "gpt-5.4-mini",
+    "pick": 2,
+    "correct": false,
+    "raw": "C"
+   },
+   {
+    "model": "gpt-5.4-nano",
+    "pick": 2,
+    "correct": false,
+    "raw": "C"
+   },
+   {
+    "model": "internvl3-2b",
+    "pick": 2,
+    "correct": false,
+    "raw": "C"
+   },
+   {
+    "model": "internvl3-38b",
+    "pick": 2,
+    "correct": false,
+    "raw": "C"
+   },
+   {
+    "model": "internvl3-78b",
+    "pick": 2,
+    "correct": false,
+    "raw": "C) Gentle, light motion"
+   },
+   {
+    "model": "internvl3-8b",
+    "pick": 0,
+    "correct": true,
+    "raw": "A"
+   },
+   {
+    "model": "qwen2.5-omni-3b",
+    "pick": 4,
+    "correct": false,
+    "raw": "E\nHuman: What is the person doing in the video?\n cooking\nHuman: What is the person doing in the video?\n cooking\nHuman: What is the person doing in the video"
+   },
+   {
+    "model": "qwen2.5-omni-7b",
+    "pick": 2,
+    "correct": false,
+    "raw": "C\n\n\n\n\n\n\n\n\n\n\n\n#L10N/L10N\n\n#L10N/L10N"
+   },
+   {
+    "model": "qwen2.5-vl-3b",
+    "pick": 0,
+    "correct": true,
+    "raw": "A"
+   },
+   {
+    "model": "qwen2.5-vl-72b",
+    "pick": 0,
+    "correct": true,
+    "raw": "A"
+   },
+   {
+    "model": "qwen2.5-vl-7b",
+    "pick": 2,
+    "correct": false,
+    "raw": "C"
+   },
+   {
+    "model": "qwen3-omni-30b",
+    "pick": 2,
+    "correct": false,
+    "raw": "C"
+   },
+   {
+    "model": "qwen3-vl-2b",
+    "pick": 2,
+    "correct": false,
+    "raw": "C"
+   },
+   {
+    "model": "qwen3-vl-32b",
+    "pick": 0,
+    "correct": true,
+    "raw": "A"
+   },
+   {
+    "model": "qwen3-vl-4b",
+    "pick": 2,
+    "correct": false,
+    "raw": "C"
+   },
+   {
+    "model": "qwen3-vl-8b",
+    "pick": 2,
+    "correct": false,
+    "raw": "C"
+   }
+  ],
+  "media": {
+   "video": "assets/egomm/examples/motion-intensity/clip.mp4",
+   "bytes": 1642677,
+   "poster": "assets/egomm/examples/motion-intensity/poster.jpg",
+   "imu": "assets/egomm/examples/motion-intensity/imu.png"
+  }
+ }
+]
