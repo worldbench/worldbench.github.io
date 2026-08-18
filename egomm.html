@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>EgoMM: Towards Multimodal Egocentric Intelligence</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="EgoMM is a tri-modal egocentric resource pairing synchronized video, audio, and head-mounted IMU with a modality-stratified benchmark and a tri-modal model, plus EgoBuddy, an always-on companion that gates its camera from the sensors it can afford to leave running.">
+<meta property="og:title" content="EgoMM: Towards Multimodal Egocentric Intelligence">
+<meta property="og:description" content="A wearable records three streams. The field reads one.">
+<meta property="og:image" content="https://worldbench.github.io/assets/egomm/figures/teaser.png">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets_common/icons/worldbench-circle.png" type="image/x-icon">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+<link rel="stylesheet" href="./static/css/egomm.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="./index.html">WorldBench</a>
+    <nav>
+      <a href="#overview">Overview</a>
+      <a href="#dataset">Dataset</a>
+      <a href="#benchmark">Benchmark</a>
+      <a href="#model">Model</a>
+      <a href="#egobuddy">EgoBuddy</a>
+      <a href="#examples">Examples</a>
+      <a href="#bibtex">BibTeX</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ============================ HERO ============================ -->
+<div class="wrap hero">
+  <div class="venue">Apple &nbsp;·&nbsp; Preprint</div>
+  <h1>EgoMM: Towards Multimodal Egocentric Intelligence</h1>
+  <p class="tagline"><strong>A wearable records three streams. The field reads one.</strong>
+     EgoMM makes each sensor's contribution measurable, and EgoBuddy turns that measurement into a capture policy for a device worn all day.</p>
+  <p class="authors">
+    Lingdong Kong &nbsp;·&nbsp; Seth Dong Huk Park &nbsp;·&nbsp; Peter Fu &nbsp;·&nbsp; Joshua M Susskind &nbsp;·&nbsp; Afshin Dehghan
+  </p>
+  <p class="affil">Apple</p>
+  <div class="badges">
+    <a class="badge" href="#"><i class="ai ai-arxiv"></i> arXiv</a>
+    <a class="badge ghost" href="https://github.com/worldbench/EgoMM"><i class="fab fa-github"></i> Code</a>
+    <a class="badge ghost" href="#"><i class="fas fa-database"></i> Dataset</a>
+    <a class="badge ghost" href="#examples"><i class="fas fa-play"></i> Live examples</a>
+  </div>
+
+  <figure style="margin-top:2.6rem">
+    <img src="assets/egomm/figures/teaser.png" alt="EgoMM overview: synchronized video, audio, and head-mounted inertial motion.">
+  </figure>
+</div>
+
+<div class="wrap layout">
+
+  <!-- ============================ TOC ============================ -->
+  <aside class="toc">
+    <div class="hint">Contents</div>
+    <ol>
+      <li><a href="#overview">Overview</a></li>
+      <li><a href="#dataset">Data Curation</a></li>
+      <li><a href="#benchmark">The EgoMMU Benchmark</a></li>
+      <li><a href="#signatures">Motion Signatures</a></li>
+      <li><a href="#model">The EgoMM Model</a></li>
+      <li><a href="#egobuddy">EgoBuddy</a></li>
+      <li><a href="#leaderboard">Leaderboard</a></li>
+      <li><a href="#examples">Examples</a></li>
+      <li><a href="#bibtex">BibTeX</a></li>
+    </ol>
+  </aside>
+
+  <main>
+
+  <!-- ============================ OVERVIEW ============================ -->
+  <section id="overview">
+    <h2>Overview</h2>
+    <div class="col">
+      <p class="lead">Modern wearables ship a tightly synchronized sensor stack: an outward-facing camera, one or more microphones, and an inertial unit sampling at hundreds of Hertz. The three are co-located on one body, driven by one clock, and present whenever the device is worn.</p>
+      <p>Yet the community's working model of egocentric understanding has stayed almost entirely visual. Open video models consume frames and nothing else; the strongest closed systems accept video and audio but ignore motion; and the large egocentric corpora are consumed as silent, motion-blind streams of pixels. That framing is a poor fit for how wearables are worn, because the camera is routinely occluded, dim, or pointed away while audio and motion keep carrying signal.</p>
+      <p>We build the three things needed to make the cost of that framing visible, and then show what the same structure buys on a device that cannot run its camera at full rate.</p>
+      <div class="grid c4" style="margin-top:1.6rem">
+        <div class="card"><div class="k">Corpus</div><p>Synchronized <span class="chip v">V</span> <span class="chip a">A</span> <span class="chip i">I</span> at clip granularity, annotation-grounded.</p></div>
+        <div class="card"><div class="k">Benchmark</div><p>Every item tagged with the modality it requires; every axis calibrated against a floor.</p></div>
+        <div class="card"><div class="k">Model</div><p>A compact tri-modal model that encodes the raw inertial stream.</p></div>
+        <div class="card"><div class="k">EgoBuddy</div><p>Always-on memory, with capture decided from the cheap streams.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ DATASET ============================ -->
+  <section id="dataset">
+    <h2>Data Curation</h2>
+    <div class="col">
+      <p>An egocentric observation is not a video with side channels. A clip is a synchronized triple: the frames from the outward-facing camera, the waveform from the on-device microphones, and the paired inertial streams from the two head-mounted units, all recorded from one body against one clock.</p>
+      <p>Clips are drawn from head-mounted rigs that differ in field of view, microphone array, inertial rate, and native axis convention. That heterogeneity is deliberate: a corpus from one device would confound tri-modal understanding with the idiosyncrasies of one sensor stack, so all inertial data is normalized into a shared body frame and the device diversity is kept visible.</p>
+      <div class="grid c3" style="margin:1.6rem 0">
+        <div class="card" style="text-align:center"><img src="assets/egomm/figures/device_aria.png" alt="Project Aria" style="height:64px;object-fit:contain"><div class="k" style="margin-top:.6rem">Project Aria</div><p class="muted">Two on-board inertial units</p></div>
+        <div class="card" style="text-align:center"><img src="assets/egomm/figures/device_hololens2.png" alt="HoloLens 2" style="height:64px;object-fit:contain"><div class="k" style="margin-top:.6rem">HoloLens 2</div><p class="muted">Single head unit</p></div>
+        <div class="card" style="text-align:center"><img src="assets/egomm/figures/device_gopro.png" alt="GoPro-class" style="height:64px;object-fit:contain"><div class="k" style="margin-top:.6rem">GoPro-class</div><p class="muted">Action-camera capture</p></div>
+      </div>
+      <h3>Activity coverage</h3>
+      <p>The corpus spans seven domains, from unremarkable daily routine to fine-grained skilled activity, which are the two regimes egocentric understanding has to cover.</p>
+    </div>
+    <div class="grid c4" style="margin-top:1.2rem">
+      <div class="card" style="text-align:center"><img src="assets/egomm/img/act_home.png" alt="" style="height:44px"><div class="k" style="margin-top:.5rem">Daily Living</div></div>
+      <div class="card" style="text-align:center"><img src="assets/egomm/img/act_cooking.png" alt="" style="height:44px"><div class="k" style="margin-top:.5rem">Cooking</div></div>
+      <div class="card" style="text-align:center"><img src="assets/egomm/img/act_social.png" alt="" style="height:44px"><div class="k" style="margin-top:.5rem">Social &amp; Play</div></div>
+      <div class="card" style="text-align:center"><img src="assets/egomm/img/act_sport.png" alt="" style="height:44px"><div class="k" style="margin-top:.5rem">Sports &amp; Fitness</div></div>
+      <div class="card" style="text-align:center"><img src="assets/egomm/img/act_build.png" alt="" style="height:44px"><div class="k" style="margin-top:.5rem">Assembly &amp; Trades</div></div>
+      <div class="card" style="text-align:center"><img src="assets/egomm/img/act_arts.png" alt="" style="height:44px"><div class="k" style="margin-top:.5rem">Arts &amp; Crafts</div></div>
+      <div class="card" style="text-align:center"><img src="assets/egomm/img/act_health.png" alt="" style="height:44px"><div class="k" style="margin-top:.5rem">Health &amp; Safety</div></div>
+    </div>
+  </section>
+
+  <!-- ============================ BENCHMARK ============================ -->
+  <section id="benchmark">
+    <h2>The EgoMMU Benchmark</h2>
+    <div class="col">
+      <p>A corpus makes tri-modal models possible; it does not make their behaviour legible. EgoMMU asks one question quantitatively: <strong>does a model actually use each sensor stream, or does it score well from priors?</strong> A single aggregate cannot tell the two apart.</p>
+      <p>The benchmark is therefore organized as <strong>task &times; modality</strong>. Five task families are each split by the modality required to answer, giving a grid of columns rather than a ranking. Reading a row states what a model can do; reading a column states what a modality contributes.</p>
+      <div class="grid c3" style="margin:1.6rem 0">
+        <div class="card"><div class="k">Multiple choice</div><p><span class="chip v">V</span> <span class="chip a">A</span> <span class="chip i">I</span></p><p class="muted">Includes speech-tone questions, unanswerable from frames, and bilateral asymmetry questions requiring both inertial units.</p></div>
+        <div class="card"><div class="k">Fact check &amp; open QA</div><p><span class="chip v">V</span> <span class="chip a">A</span> <span class="chip i">I</span></p><p class="muted">Fact check scores nothing for a wrong verdict, whatever the justification. Open QA items require a pair of modalities.</p></div>
+        <div class="card"><div class="k">Temporal &amp; narration</div><p><span class="chip v">V</span> <span class="chip a">A</span> <span class="chip i">I</span></p><p class="muted">Temporal grounding is reported against a constant-span reference, so a score below it is not read as localization.</p></div>
+      </div>
+      <h3>Every column has a floor</h3>
+      <p>A column is only informative if it measures the modality it names, and that is a property to be established rather than assumed. For each axis we measure the score reachable <em>without</em> the modality under test, by withholding that stream or the media entirely. Items solvable at the floor measure difficulty rather than perception, and are removed. An audio item a silent model already answers is not an audio item.</p>
+    </div>
+  </section>
+
+  <!-- ============================ IMU SIGNATURES ============================ -->
+  <section id="signatures">
+    <h2>Motion Signatures</h2>
+    <div class="col">
+      <p>Inertial signal is more discriminative than its low dimensionality suggests. Unlike a wrist- or thigh-worn sensor, a head-mounted unit separates activities by <strong>locomotion and head-orientation dynamics</strong>: still versus walking versus running, head pitch when looking down at a task, yaw when scanning a room.</p>
+      <p class="muted">Each clip below shows the head-orientation triad reconstructed from the gyro-integrated, gravity-corrected signal, beside the accelerometer and gyroscope traces. Hover to play.</p>
+    </div>
+    <div class="anim-grid" style="margin-top:1.4rem">
+      <div class="anim-card"><video src="assets/egomm/anim/Dance.mp4" muted loop playsinline preload="metadata" aria-label="Head-IMU signature for dancing: continuous gyro-dominated head rotation."></video><div class="label">Dance &nbsp;<span class="muted">continuous rotation</span></div></div>
+      <div class="anim-card"><video src="assets/egomm/anim/Basketball.mp4" muted loop playsinline preload="metadata" aria-label="Head-IMU signature for basketball: high-amplitude periodic locomotion with sharp scanning turns."></video><div class="label">Basketball &nbsp;<span class="muted">periodic, sharp turns</span></div></div>
+      <div class="anim-card"><video src="assets/egomm/anim/Walking.mp4" muted loop playsinline preload="metadata" aria-label="Head-IMU signature for walking: regular gait cadence."></video><div class="label">Walking &nbsp;<span class="muted">regular cadence</span></div></div>
+      <div class="anim-card"><video src="assets/egomm/anim/Running_Workout.mp4" muted loop playsinline preload="metadata" aria-label="Head-IMU signature for running: high-frequency gait."></video><div class="label">Running &nbsp;<span class="muted">high-frequency gait</span></div></div>
+      <div class="anim-card"><video src="assets/egomm/anim/Search_Conversation.mp4" muted loop playsinline preload="metadata" aria-label="Head-IMU signature for searching and conversation: gyro-dominated yaw."></video><div class="label">Search &nbsp;<span class="muted">yaw-dominated</span></div></div>
+      <div class="anim-card"><video src="assets/egomm/anim/Cooking.mp4" muted loop playsinline preload="metadata" aria-label="Head-IMU signature for cooking: stationary with sustained head-down pitch."></video><div class="label">Cooking &nbsp;<span class="muted">sustained head-down</span></div></div>
+      <div class="anim-card"><video src="assets/egomm/anim/Eating.mp4" muted loop playsinline preload="metadata" aria-label="Head-IMU signature for eating: flat and gravity-dominated."></video><div class="label">Eating &nbsp;<span class="muted">gravity-dominated</span></div></div>
+    </div>
+  </section>
+
+  <!-- ============================ MODEL ============================ -->
+  <section id="model">
+    <h2>The EgoMM Model</h2>
+    <div class="col">
+      <p>EgoMM extends a strong vision-language backbone rather than replacing it. Audio and motion enter as additional token blocks projected into the same embedding space, with no surgery on the backbone, so the recipe transfers as backbones improve.</p>
+    </div>
+    <figure>
+      <img src="assets/egomm/figures/framework_egomm.png" alt="EgoMM architecture: video, audio, and inertial encoders projecting into a shared token sequence consumed by the language model.">
+      <figcaption><b>The EgoMM architecture.</b> Each stream becomes its own block of tokens, time-aligned to the clip. Because a modality is a block rather than a branch, omitting it yields a shorter sequence rather than a different model, which is what lets one checkpoint accept any subset of the three streams.</figcaption>
+    </figure>
+    <div class="col">
+      <p>The motion branch reads the raw signal and is deliberately hybrid: a learned encoder sees the inertial waveform itself, while a rule-based path computes interpretable descriptors, covering locomotion state, cadence, head pitch, intensity, and bilateral symmetry, and presents them as text. The learned path captures dynamics no fixed feature set anticipates; the computed descriptors are exact and auditable.</p>
+    </div>
+  </section>
+
+  <!-- ============================ EGOBUDDY ============================ -->
+  <section id="egobuddy">
+    <h2>EgoBuddy: an always-on companion</h2>
+    <div class="col">
+      <p>Per-clip understanding is not what a worn device is asked for. A companion switched on in the morning and consulted in the evening must answer from a day it has already lived through, having decided, continuously and without knowing the question, what was worth keeping.</p>
+      <p>The setting differs from clip-level evaluation in one structural respect: <strong>the question arrives after the evidence has passed.</strong> A system permitted to revisit the raw stream after seeing the question is solving retrieval over a recording; a system that must answer from what it chose to keep is solving the problem a device has.</p>
+    </div>
+    <figure>
+      <img src="assets/egomm/figures/framework_egorag.png" alt="The caption-then-retrieve pipeline: per-clip captioning, hierarchical memory, coarse-to-fine retrieval.">
+      <figcaption><b>The pipeline long-horizon egocentric assistance has converged on.</b> We keep its coarse-to-fine structure and depart from it in two respects: what the captions are written from, and whether the frames they describe were acquired at all.</figcaption>
+    </figure>
+    <div class="col">
+      <h3>Capture is a decision, not a sampling rate</h3>
+      <p>The three streams are not equally affordable. Microphones and inertial units draw little enough power to run all day; the camera and the vision stack that consumes its frames do not. And when audio is continuously available, a sparse frame budget already recovers most of what dense sampling records, because much of what can be said about a moment is carried by what was said and done in it.</p>
+      <p>So EgoBuddy scores capture-worthiness continuously from the streams it pays for anyway, and acquires a frame when they indicate the visual field has likely changed. The decision must be <strong>causal</strong>: choosing the best frames within a window requires having seen the window, which requires the camera to have been running throughout, which is exactly the cost the mechanism exists to avoid.</p>
+      <p>It is also irreversible. Frames that are not acquired are never stored, so unlike post-hoc sampling there is nothing to revisit. Condensation becomes a property of capture rather than of compression.</p>
+    </div>
+  </section>
+
+  <!-- ============================ LEADERBOARD ============================ -->
+  <section id="leaderboard">
+    <h2>Leaderboard</h2>
+    <div class="col">
+      <p>Per-column results across the task &times; modality grid, with each column's floor shown as a reference, are released with the paper.</p>
+      <div class="card" style="background:var(--paper-soft)">
+        <div class="k">Coming with the paper release</div>
+        <p style="margin-top:.4rem">The interactive board will let you sort by any column and filter to a single modality, so the disagreement between columns is visible directly. Two results it will make plain: models that can hear clear video-only ones by a wide margin on the audio columns, while scores on the motion columns follow neither audio access nor parameter count, because no prior system receives an inertial stream at all.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ EXAMPLES ============================ -->
+  <section id="examples">
+    <h2>Examples</h2>
+    <div class="col">
+      <p>Each example below is a real benchmark item. Toggle a modality off to see what the same models answer without it, which is the comparison the benchmark is built to support.</p>
+      <p class="muted">Clip media is being exported for static hosting; the cases and model predictions shown are from the evaluated board.</p>
+    </div>
+
+    <div class="example">
+      <div class="head"><span class="task">MCQ · Audio</span><span class="chip a">A</span><span class="muted">counting overlapping voices</span></div>
+      <div class="body">
+        <div class="stage"><img src="assets/egomm/img/sensors_audio.png" alt="Audio stream placeholder"></div>
+        <div class="panel">
+          <div class="q">How many distinct people speak during the clip?</div>
+          <div class="toggles">
+            <button class="toggle" aria-pressed="true" data-mod="v">Video</button>
+            <button class="toggle" aria-pressed="true" data-mod="a">Audio</button>
+            <button class="toggle" aria-pressed="true" data-mod="i">IMU</button>
+          </div>
+          <div class="pred correct"><span class="who">Reference</span><span class="ans">three</span></div>
+          <div class="pred wrong"><span class="who">Video-only model</span><span class="ans">one</span></div>
+          <div class="pred correct"><span class="who">Audio-capable model</span><span class="ans">three</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="example">
+      <div class="head"><span class="task">MCQ · Motion</span><span class="chip i">I</span><span class="muted">a posture the camera never really shows</span></div>
+      <div class="body">
+        <div class="stage"><img src="assets/egomm/img/sensors_imu.png" alt="Inertial stream placeholder"></div>
+        <div class="panel">
+          <div class="q">Is the wearer seated, standing, or walking during the first ten seconds?</div>
+          <div class="toggles">
+            <button class="toggle" aria-pressed="true" data-mod="v">Video</button>
+            <button class="toggle" aria-pressed="true" data-mod="a">Audio</button>
+            <button class="toggle" aria-pressed="true" data-mod="i">IMU</button>
+          </div>
+          <div class="pred correct"><span class="who">Reference</span><span class="ans">seated</span></div>
+          <div class="pred wrong"><span class="who">Video-only model</span><span class="ans">standing</span></div>
+          <div class="pred wrong"><span class="who">Audio-capable model</span><span class="ans">standing</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="example">
+      <div class="head"><span class="task">Temporal · Audio</span><span class="chip a">A</span><span class="muted">a moment only the audio marks</span></div>
+      <div class="body">
+        <div class="stage"><img src="assets/egomm/img/sensors_video.png" alt="Video stream placeholder"></div>
+        <div class="panel">
+          <div class="q">When does the microwave finish?</div>
+          <div class="toggles">
+            <button class="toggle" aria-pressed="true" data-mod="v">Video</button>
+            <button class="toggle" aria-pressed="true" data-mod="a">Audio</button>
+            <button class="toggle" aria-pressed="true" data-mod="i">IMU</button>
+          </div>
+          <div class="pred correct"><span class="who">Reference</span><span class="ans">18.4 – 20.1 s</span></div>
+          <div class="pred wrong"><span class="who">Two video-only models</span><span class="ans">converge on the same wrong moment</span></div>
+          <div class="pred correct"><span class="who">Audio-capable model</span><span class="ans">18.0 – 20.6 s</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ BIBTEX ============================ -->
+  <section id="bibtex">
+    <h2>BibTeX</h2>
+    <button class="copy" id="copyBib">Copy</button>
+    <pre class="bib" id="bibText">@article{egomm,
+  title   = {EgoMM: Towards Multimodal Egocentric Intelligence},
+  author  = {Kong, Lingdong and Park, Seth Dong Huk and Fu, Peter
+             and Susskind, Joshua M and Dehghan, Afshin},
+  journal = {arXiv preprint},
+  year    = {2026},
+  url     = {https://worldbench.github.io/EgoMM}
+}</pre>
+  </section>
+
+  </main>
+</div>
+
+<footer>
+  <div class="wrap">
+    <p>EgoMM is part of <a href="./index.html">WorldBench</a>. Page built for the EgoMM release.</p>
+  </div>
+</footer>
+
+<script>
+/* ---- TOC scroll tracking: highlight the section currently in view ---- */
+(function () {
+  const links = [...document.querySelectorAll('.toc a')];
+  const map = new Map(links.map(a => [a.getAttribute('href').slice(1), a]));
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      links.forEach(a => a.classList.remove('active'));
+      const a = map.get(e.target.id);
+      if (a) a.classList.add('active');
+    });
+  }, { rootMargin: '-25% 0px -70% 0px' });
+  document.querySelectorAll('main section[id]').forEach(s => obs.observe(s));
+})();
+
+/* ---- IMU gallery: play on hover, pause and rewind on leave ---- */
+document.querySelectorAll('.anim-card').forEach(card => {
+  const v = card.querySelector('video');
+  if (!v) return;
+  card.addEventListener('mouseenter', () => v.play().catch(() => {}));
+  card.addEventListener('mouseleave', () => { v.pause(); v.currentTime = 0; });
+});
+
+/* ---- example modality toggles ---- */
+document.querySelectorAll('.example').forEach(ex => {
+  ex.querySelectorAll('.toggle').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const on = btn.getAttribute('aria-pressed') === 'true';
+      btn.setAttribute('aria-pressed', String(!on));
+      const active = [...ex.querySelectorAll('.toggle')]
+        .filter(b => b.getAttribute('aria-pressed') === 'true')
+        .map(b => b.dataset.mod);
+      /* dim predictions that depend on a modality the visitor has switched off */
+      ex.querySelectorAll('.pred').forEach(p => {
+        const needs = ex.querySelector('.head .chip')?.classList.contains('a') ? 'a'
+                    : ex.querySelector('.head .chip')?.classList.contains('i') ? 'i' : 'v';
+        p.style.opacity = active.includes(needs) ? '1' : '.35';
+      });
+      const stage = ex.querySelector('.stage');
+      if (stage) stage.style.opacity = active.includes('v') ? '1' : '.25';
+    });
+  });
+});
+
+/* ---- copy BibTeX ---- */
+document.getElementById('copyBib')?.addEventListener('click', async (e) => {
+  await navigator.clipboard.writeText(document.getElementById('bibText').textContent);
+  const b = e.target; const t = b.textContent; b.textContent = 'Copied';
+  setTimeout(() => { b.textContent = t; }, 1400);
+});
+</script>
+</body>
+</html>
