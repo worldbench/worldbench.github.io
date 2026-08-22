@@ -407,7 +407,7 @@ a.anchor:hover{opacity:1;color:var(--accent);text-decoration:none}
   <div class="fwheel-wrap"><svg id="fwheel" viewBox="0 0 440 460" role="img" aria-label="Six proxy functions around the World Proxy hub"></svg></div>
   <div class="fpanel" id="fpanel"></div>
   <div class="dist">
-    <div class="cap">Reading list &mdash; 197 works across the proxy functions</div>
+    <div class="cap">Reading list &mdash; 213 works across the proxy functions</div>
     <div class="bars" id="bars"></div>
     <p class="muted" style="font-size:.9rem;margin-top:.6rem">Browse the full curated list on <a href="https://github.com/worldbench/awesome-agentic-world-model" target="_blank" rel="noopener">GitHub</a>.</p>
   </div>
@@ -637,7 +637,7 @@ function selFn(i){curFn=i;fwheel.querySelectorAll('.wnode').forEach(g=>g.classLi
   else start();})();
 
 // ---- reading-list bars ----
-(function(){const BARS=[["Dynamics",40],["Spatial",49],["Execution",29],["Memory / Skill",5],["Reward / Verification",74]],bmax=74,el=document.getElementById('bars');
+(function(){const BARS=[["Dynamics",90],["Spatial",54],["Execution",32],["Memory / Skill",12],["Reward / Verification",25]],bmax=90,el=document.getElementById('bars');
   if(el)el.innerHTML=BARS.map(([n,c])=>`<div class="bar"><div class="blabel">${n}</div><div class="btrack"><div class="barfill" style="--w:${(c/bmax*100).toFixed(1)}%"></div></div><div class="bnum">${c}</div></div>`).join('');})();
 
 // ---- toggle (auto-switch between the two views) ----
