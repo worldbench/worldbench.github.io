@@ -89,13 +89,14 @@
                 </h2>
 
 
+                <p class="wb-kicker" style="margin:0.5rem 0 1.2rem;">Manuscript and collection updated: October 11, 2026.</p>
                 <div class="button-container">
-                    <a href="" class="button paper-link" target="_blank">
+                    <a href="https://arxiv.org/abs/2512.16760" class="button paper-link" target="_blank">
                         <span class="icon is-small">
                             <i class="ai ai-arxiv "  style="height: 1.5em;"></i>
                         </span><span>arXiv</span>
                     </a>
-                    <a href="assets_common/papers/vla4ad.pdf" class="button paper-link" target="_blank">
+                    <a href="assets_common/papers/vla4ad.pdf?v=20261011" class="button paper-link" target="_blank">
                         <span class="icon is-small">
                             <img src="assets_common/icons/pdf.png" style="height: 1.4em;">
                         </span><span>PDF</span>
@@ -128,6 +129,7 @@
                     <div><a href="#definition">Definition</a></div>
                     <!-- <div><a href="#taxonomy">Taxonomy</a></div> -->
                     <div><a href="#projects">Collections</a></div>
+                    <div><a href="#citation">Citation</a></div>
                     <div><a href="#contributors">Contributors</a></div>
                 </nav>
             </d-contents>
@@ -343,6 +345,19 @@
 
 
 
+
+            <section id="citation">
+                <div class="wb-section">
+                  <h2>Citation</h2>
+                  <p>If this survey is useful to your research, please cite:</p>
+                  <pre style="overflow-x:auto; padding:1.2rem; background:#f7f8fa; border-radius:8px;"><code>@article{survey_vla4ad,
+    title   = {Vision-Language-Action Models for Autonomous Driving: Past, Present, and Future},
+    author  = {Tianshuai Hu and Xiaolu Liu and Song Wang and Yiyao Zhu and Ao Liang and Lingdong Kong and Guoyang Zhao and Zeying Gong and Jun Cen and Zhiyu Huang and Xiaoshuai Hao and Linfeng Li and Hang Song and Xiangtai Li and Jun Ma and Shaojie Shen and Jianke Zhu and Dacheng Tao and Ziwei Liu and Junwei Liang},
+    journal = {arXiv preprint arXiv:2512.16760},
+    year    = {2025},
+}</code></pre>
+                </div>
+            </section>
 
             <section id="contributors">
               <br><br><br>
@@ -755,7 +770,7 @@
                       <a href="https://worldbench.github.io/survey" target="_blank" class="project-link">
                         <i class="fas fa-globe"></i>
                       </a>
-                      <a href="https://github.com/worldbench/survey" target="_blank" class="project-link">
+                      <a href="https://github.com/worldbench/awesome-3d-4d-world-models" target="_blank" class="project-link">
                         <img src="assets_common/icons/github.png" class="icon-img" loading="lazy">
                       </a>
                       <a href="https://huggingface.co/spaces/worldbench/WorldLens" target="_blank" class="project-link">
@@ -1017,6 +1032,13 @@
           const paperStore = {
             va: {
                 A: [  // Action-Only Models
+                {"title": "RADP: Learning to Explain While Planning: Rule-Aligned Diffusion Planning for Autonomous Driving", "authors": "Jiaxi Ye, Chunji Lv, Guoren Wang, Changsheng Li", "venue": "arXiv", "year": 2026, "paper": "https://arxiv.org/abs/2609.39995", "code": "#", "project": "#"},
+                {"title": "EMPlan: Efficient Multi-Modal Planning with Reward-Guided Preference Optimization for Autonomous Driving", "authors": "Chenglin Chen, Lujia Wang, Xinhu Zheng, Jun Ma, Haoang Li", "venue": "arXiv", "year": 2026, "paper": "https://arxiv.org/abs/2609.38862", "code": "#", "project": "#"},
+                {"title": "DriveZero: End-to-End Driving Beyond Human Demonstrations", "authors": "Hao He, Chengcheng Hu, Zirun Su, Heng Zhang, Haisong Liu, Jinke Li, Haochen Tian, Zhenwei Shen, Hongyang Li, Zhichao Li, Yunchen Yang, Bochao Huang, Siyu Zhang, Kuangye Chen, Xiongjie Zhang, Wentao Dai, Hengchen Dai, Siyuan Liu, Zehao Huang, Naiyan Wang", "venue": "arXiv", "year": 2026, "paper": "https://arxiv.org/abs/2609.06055", "code": "#", "project": "#"},
+                {"title": "Scaling Curriculum Learning For Autonomous Driving", "authors": "Cevahir Koprulu, David Paz, Feng Tao, Yuliang Guo, Xinyu Huang, Ufuk Topcu, Liu Ren", "venue": "arXiv", "year": 2026, "paper": "https://arxiv.org/abs/2608.22549", "code": "#", "project": "#"},
+                {"title": "MomADv2: Reliable Temporal Memory for End-to-End Autonomous Driving", "authors": "Ziying Song, Shengkai Zhang, Lin Liu, Peiliang Wu, Lei Yang, Dongyang Xu, Bin Sun, Li Wang, Shaoqing Xu, Caiyan Jia, Yadan Luo", "venue": "arXiv", "year": 2026, "paper": "https://arxiv.org/abs/2608.23405", "code": "#", "project": "#"},
+                {"title": "RoG-DAgger: Rollout-Guided Post-Training for End-to-End Driving", "authors": "Liangyu Zhong, Joachim Sicking, Fabian Hueger, Hanno Gottschalk", "venue": "arXiv", "year": 2026, "paper": "https://arxiv.org/abs/2608.24525", "code": "#", "project": "#"},
+                {"title": "Not All History Helps: Velocity-Aware Selective Memory for Long-Horizon End-to-End Autonomous Driving", "authors": "Yuchen Liu, Ziying Song, Shengkai Zhang, Jiannan Chen, Peiliang Wu, Lei Yang, Bin Sun, Yan Gong, Li Wang", "venue": "arXiv", "year": 2026, "paper": "https://arxiv.org/abs/2608.15573", "code": "#", "project": "#"},
                 { title:"Learning by Cheating", authors:"", venue:"CoRL", year:2020, paper:"https://arxiv.org/abs/1912.12294", code:"https://github.com/dotchen/LearningByCheating", project:"#"},
                 { title:"End-to-End Model-Free Reinforcement Learning for Urban Driving using Implicit Affordances", authors:"", venue:"CVPR", year:2020, paper:"https://arxiv.org/abs/1911.10868", code:"#", project:"#"},
                 { title:"NEAT: Neural Attention Fields for End-to-End Autonomous Driving", authors:"", venue:"ICCV", year:2021, paper:"https://arxiv.org/abs/2109.04456", code:"https://github.com/autonomousvision/neat", project:"#"},
@@ -1033,6 +1055,8 @@
                 { title:"TrajDiff: End-to-end Autonomous Driving without Perception Annotation", authors:"", venue:"arXiv", year:2025, paper:"https://arxiv.org/abs/2512.00723", code:"#", project:"#"},
                 ],
                 B: [  // Perception-Action Models
+                {"title": "VG-SAF: Variance-Guided Spatial Attention Fusion for Robust End-to-End Driving under Asymmetric Sensor Degradation", "authors": "Weizhi Tao, Zengwang Jin, Xiao Wang, Hailong Huang", "venue": "arXiv", "year": 2026, "paper": "https://arxiv.org/abs/2608.24366", "code": "#", "project": "#"},
+                {"title": "ViRA: Do Better Visual Representations Always Lead to Better End-to-End Autonomous Driving?", "authors": "Zihao Zhang, Haochen Tian, Tianyu Li, Changhui Jing, Jingliang He, Naisheng Ye, Ziyuan Pu, Zhenjie Yang", "venue": "arXiv", "year": 2026, "paper": "https://arxiv.org/abs/2610.09695", "code": "https://github.com/OpenDriveLab/ViRA", "project": "#"},
                 { title:"BeyondSight: Object Permanence for End-to-End Autonomous Driving", authors:"", venue:"arXiv", year:2026, paper:"https://arxiv.org/abs/2607.09138", code:"#", project:"#"},
                 { title:"What's Hidden Matters: Identifying Planning-Critical Occluded Agents using Vision-Language Models", authors:"", venue:"arXiv", year:2026, paper:"https://arxiv.org/abs/2607.00283", code:"#", project:"#"},
                 { title:"Plug-and-Play Traffic Element Awareness for End-to-End Autonomous Driving", authors:"", venue:"arXiv", year:2026, paper:"https://arxiv.org/abs/2608.18035", code:"#", project:"#"},
@@ -1060,6 +1084,10 @@
                     { title:"Mimir: Hierarchical goal-driven diffusion with uncertainty propagation for end-to-end autonomous driving", authors:"", venue:"arXiv", year:2025, paper:"https://arxiv.org/abs/2512.07130", code:"https://github.com/ZebinX/Mimir-Uncertainty-Driving", project:"#"}
                 ],
                 C: [  // Image-Based World Models
+                {"title": "PhysWAM: Physically Consistent World Action Model for Autonomous Driving", "authors": "Dhruv Parikh, Fengcheng Yu, Quankai Gao, Jiawei Yang, Junjie Ye, Maulik Bhatt, Thang Vu, Charles Ochoa, Rowan McAllister, Igor Vasiljevic, Rajgopal Kannan, Viktor Prasanna, Vitor Guizilini, Yue Wang", "venue": "arXiv", "year": 2026, "paper": "https://arxiv.org/abs/2609.37970", "code": "#", "project": "#"},
+                {"title": "RoXDrive: Closed-Loop Reinforcement Learning for End-to-End Autonomous Driving via Action-Faithful Rollouts", "authors": "Hongbin Lin, Chaoda Zheng, Yiming Yang, Xiangyu Li, Shijia Chen, Jinhao Deng, Kangjie Chen, Dongbin Zhang, Jie Feng, Yu Zhang, Xianming Liu, Shuguang Cui, Boyang Wang, Zhen Li", "venue": "arXiv", "year": 2026, "paper": "https://arxiv.org/abs/2609.36851", "code": "#", "project": "#"},
+                {"title": "ZYT-World: A Real-Time Controllable World Model for Closed-Loop Autonomous-Driving Simulation", "authors": "Boni Hu, Xiong Wei, Haoming Huang, Yong Huang, Chenbo Wang, Yi Yang, Jiancheng Wang, Ruicheng Zhu, Zhimin Yang, Guanglai Liu, Qiaowan Jin, Dongzhuo Wang, Haiwei Kuang, Jiajun Fan, Yue Wu, Jiaxin Wei, Hao Sun, Feihong Yan, Yuyao Zhou, Wei Bi, Kaixuan Wang, Zichao Guo, Xiaozhi Chen", "venue": "arXiv", "year": 2026, "paper": "https://arxiv.org/abs/2609.21712", "code": "#", "project": "#"},
+                {"title": "SV-WAM: An Efficient Surround-View World-Action Model for End-to-End Autonomous Driving", "authors": "Jinyang Wang, Shiwei Li, Junjian Wang, Zhiqiang Deng, Jianbin Gao, Yihang Zhao, Liu Liu, Yongjia Zhao, Jinlong Chen, Huirui Xu, Yifeng Pan, Kangwei Liu, Fan Ren, Ji Tao, Minghao Yang", "venue": "arXiv", "year": 2026, "paper": "https://arxiv.org/abs/2609.03602", "code": "#", "project": "#"},
                 { title:"How Can Driving World Models Do Counterfactual Prediction?", authors:"", venue:"arXiv", year:2026, paper:"https://arxiv.org/abs/2608.11601", code:"#", project:"#"},
                 { title:"Orbis 2: A Hierarchical World Model for Driving", authors:"", venue:"arXiv", year:2026, paper:"https://arxiv.org/abs/2607.15898", code:"#", project:"#"},
                 { title:"M$^\\text{4}$World: A Multi-view Multimodal Driving World Model for Interactive Object Manipulation and Minute-long Streaming", authors:"", venue:"arXiv", year:2026, paper:"https://arxiv.org/abs/2607.14005", code:"#", project:"#"},
@@ -1078,6 +1106,7 @@
                     { title:"VaViM and VaVAM: Autonomous driving through video generative modeling", authors:"", venue:"arXiv", year:2025, paper:"https://arxiv.org/abs/2502.15672", code:"https://github.com/valeoai/VideoActionModel", project:"https://valeoai.github.io/vavim-vavam/"}
                 ],
                 D: [  // Occupancy World Models
+                {"title": "V2X-WAM: A Cooperative World Action Model for End-to-End Autonomous Driving", "authors": "Junwei You, Weizhe Tang, Can Wang, Yan Zhao, Jun Hua, Haotian Shi, Wei Zhang, Lin Wang, Bin Ran", "venue": "arXiv", "year": 2026, "paper": "https://arxiv.org/abs/2609.37098", "code": "#", "project": "#"},
                 { title:"OWMDrive: Causality-Aware End-to-End Autonomous Driving via 4D Occupancy World Model", authors:"", venue:"arXiv", year:2026, paper:"https://arxiv.org/abs/2606.30421", code:"#", project:"#"},
                 { title:"GaussianDWM++: Language-Grounded 3D Gaussian Driving World Model for Unified Scene Understanding, Editing, and Multi-Modal Generation", authors:"", venue:"arXiv", year:2026, paper:"https://arxiv.org/abs/2608.16234", code:"#", project:"#"},
                 { title:"OccWorld: Learning a 3D Occupancy World Model for Autonomous Driving", authors:"", venue:"ECCV", year:2024, paper:"https://arxiv.org/abs/2311.16038", code:"https://github.com/wzzheng/OccWorld", project:"https://wzzheng.net/OccWorld/"},
@@ -1090,6 +1119,20 @@
                 { title:"AD-R1: Closed-loop reinforcement learning for end-to-end autonomous driving with impartial world models", authors:"", venue:"arXiv", year:2025, paper:"https://arxiv.org/abs/2511.20325", code:"#", project:"#"},  
                 ],
                 E: [  // Latent World Models
+                {"title": "ReWAM: Reciprocal World Action Models for Interactive Autonomous Driving", "authors": "Benshan Ma, Pei Liu, Ruiguo Zhong, Lang Zhang, Mingyue Feng, Yaonong Wang, Jun Ma", "venue": "arXiv", "year": 2026, "paper": "https://arxiv.org/abs/2609.39245", "code": "https://github.com/LeapWM/rewam", "project": "#"},
+                {"title": "World4Scorer: Outcome-Grounded World Modeling for Autonomous Driving", "authors": "Jieyuan Pei, Meiyi Lu, Sining Ang, Yubo Zhao, Zhangyi Hu, Mingwei Xu, Haokai Ding, Wei Li, Zihan You, Jianwei Zheng, Li Yu, Yifeng Pan, Ji Tao, Rongjunchen Zhang, Yan Wang", "venue": "arXiv", "year": 2026, "paper": "https://arxiv.org/abs/2609.36438", "code": "https://github.com/GuobaPei/World4Scorer", "project": "https://guobapei.github.io/World4Scorer/"},
+                {"title": "AD-E2E-JEPA: A Joint-Embedding Predictive Architecture For End-to-End Autonomous Driving", "authors": "Haoran Zhu, Wancong Zhang, Yann LeCun, Anna Choromanska", "venue": "arXiv", "year": 2026, "paper": "https://arxiv.org/abs/2609.34085", "code": "https://github.com/HaoranZhuExplorer/AD-E2E-JEPA", "project": "#"},
+                {"title": "MomWorld: Momentum-Aware Latent World Model for Long-Horizon Autonomous Driving", "authors": "Ziying Song, Shengkai Zhang, Lei Yang, Haozhuang Chi, Yuchen Liu, Jiangtao Su, Lin Liu, Ziyang Liu, Chen Lv", "venue": "arXiv", "year": 2026, "paper": "https://arxiv.org/abs/2609.33737", "code": "#", "project": "#"},
+                {"title": "WALT: Learning World-Model-Aligned Latent Trajectories for Autonomous Driving", "authors": "Mingkai Jia, Jiaxin Guo, Zhijian Shu, Jiawei Xu, Mingxiao Li, Jintao Cheng, Ping Tan, Wei Yin", "venue": "arXiv", "year": 2026, "paper": "https://arxiv.org/abs/2609.30436", "code": "#", "project": "#"},
+                {"title": "ForeDrive: Foresight-Guided End-to-End Autonomous Driving with a Planning-Relevant Latent World Model", "authors": "Sinuo Wang, Zichong Gu, Yuhan Huang, Wenxin Wen, Xun Yang, Yiqing Zhang, Xingyu Zhang, Ningyu Che, Jie Ling, Qiankun Yu, Wei Liu, Jing Xu, Xinggang Wang", "venue": "arXiv", "year": 2026, "paper": "https://arxiv.org/abs/2609.26299", "code": "#", "project": "#"},
+                {"title": "D-JEPA: A Decision-Aligned Latent World Model", "authors": "Shuaijun Liu, Chengyu Wu, Qifu Wen, Feiyang You, Chenglong Zhang, Shuyang Hao, Xi Lin, Ningxin Su", "venue": "arXiv", "year": 2026, "paper": "https://arxiv.org/abs/2609.24749", "code": "#", "project": "#"},
+                {"title": "MM-Future: Multi-Mode Joint World-Action Modeling for Autonomous Driving", "authors": "Shuai Liu, Hechangle Gong, Hao Jiang, Runlin He, Junxiang Zhan, Kai Huang, Sheng Yang, Shaoqing Ren", "venue": "arXiv", "year": 2026, "paper": "https://arxiv.org/abs/2609.20377", "code": "#", "project": "#"},
+                {"title": "Drive-HWM: Hierarchical World Models for Dynamic-Latent Guided Autonomous Driving", "authors": "Zhaoxin Fan, Tianbao Zhang, Wenjun Wu, Xiaofeng Wang, Yeying Jin, Jian Zhao, Zheng Zhu, Shuicheng Yan", "venue": "arXiv", "year": 2026, "paper": "https://arxiv.org/abs/2609.03572", "code": "#", "project": "#"},
+                {"title": "DA-WAM: Decision-Aligned Future Latents for Driving World Models", "authors": "Ruiguo Zhong, Benshan Ma, Xiaolong Chen, Lang Zhang, Mingyue Feng, Yaonong Wang, Pei Liu, Jun Ma", "venue": "arXiv", "year": 2026, "paper": "https://arxiv.org/abs/2608.19085", "code": "#", "project": "#"},
+                {"title": "WA-JEPA: Rethinking the Video JEPA Paradigm for World-Action Modeling in Autonomous Driving", "authors": "Xinlin Wang, Yujiao Xiang, Yuheng Zhou, Jingqi Wang, Minqing Huang, Jiajie Huang, Dongxu Wei, Tingguang Zhou, Xiyang Wang, Gong Chen, Zhi Xu, Feiyang Tan, Hangning Zhou, Mu Yang", "venue": "arXiv", "year": 2026, "paper": "https://arxiv.org/abs/2608.20974", "code": "https://github.com/AFARI-Research/WA-JEPA", "project": "#"},
+                {"title": "RISE: Adaptive Imagination for World Action Models", "authors": "Hongbo Lu, Liang Yao, Chenghao He, Hao Han, Fan Liu, Wenlong Liao, Tao He, Pai Peng", "venue": "arXiv", "year": 2026, "paper": "https://arxiv.org/abs/2608.20430", "code": "#", "project": "#"},
+                {"title": "GeoWAM: Visual Geometry World Action Models for Autonomous Driving", "authors": "Yiren Lu, Xin Ye, Jiaming Liu, Philip Jacobson, Jin Yao, Yi-chung Chen, Liam Merino, Dhruva Dixith Kurra, Min Cai, Tom Lampo, Yu Yin, Danhua Guo, Burhan Yaman", "venue": "arXiv", "year": 2026, "paper": "https://arxiv.org/abs/2608.23486", "code": "#", "project": "#"},
+                {"title": "VGGTWorld-VLA: Intent-Conditioned 3D World Evolution for Autonomous Driving", "authors": "Zhaoyang Liu, Kun Jiang, Ziying Song, Diange Yang", "venue": "arXiv", "year": 2026, "paper": "https://arxiv.org/abs/2610.11161", "code": "#", "project": "#"},
                 { title:"CRISP: A Spatiotemporal Camera-Radar Backbone for Driving via Forecasting-Based World-Model Pretraining", authors:"", venue:"arXiv", year:2026, paper:"https://arxiv.org/abs/2607.04541", code:"#", project:"#"},
                 { title:"Geographic Diversity Beats Data Volume for Cross-Domain Generalization in Zero-Label JEPA Driving World Models", authors:"", venue:"arXiv", year:2026, paper:"https://arxiv.org/abs/2607.04500", code:"#", project:"#"},
                 { title:"Auto-JEPA: A Latent World Model of Continuous Intent for End-to-End Autonomous Driving", authors:"", venue:"arXiv", year:2026, paper:"https://arxiv.org/abs/2607.29031", code:"#", project:"#"},
@@ -1112,6 +1155,8 @@
             // Vision-Language-Action Models
             vla: {
               A: [  // Textual Action Generator
+                {"title": "FocusDrive: Reasoning with Visual Focus for Autonomous Driving", "authors": "Zhiyuan Liu, Zehong Ke, Yuanxin Tian, Hao Cheng, Jinhao Li, Yining Xing, Yanbo Jiang, Zhenhua Xu, Wenhao Yu, Jianqiang Wang", "venue": "arXiv", "year": 2026, "paper": "https://arxiv.org/abs/2609.33190", "code": "#", "project": "#"},
+                {"title": "GeoCoTDrive: Explicit Geometric Chain-of-Thought for Vision-Language-Action in Autonomous Driving", "authors": "Xingtai Gui, Yucheng Zhou, Dongqian Guo, Jiahao Gong, Feiyang Tan, Jianbing Shen", "venue": "arXiv", "year": 2026, "paper": "https://arxiv.org/abs/2610.10390", "code": "https://github.com/TabGuigui/GeoCoTDrive", "project": "#"},
                 { title:"Reasoning-aware Speculative Decoding for Efficient Vision-Language-Action Models in Autonomous Driving", authors:"", venue:"arXiv", year:2026, paper:"https://arxiv.org/abs/2606.31160", code:"#", project:"#"},
                 { title:"What Do They See? Interpreting Complex Road Scenarios Through the Eyes of Vision-Language-Action Models for Safe and Trustworthy Autonomous Vehicle Learning", authors:"", venue:"arXiv", year:2026, paper:"https://arxiv.org/abs/2607.16938", code:"#", project:"#"},
                 { title:"Teaching Vision-Language-Action Models What to See and Where to Look", authors:"", venue:"arXiv", year:2026, paper:"https://arxiv.org/abs/2607.01658", code:"#", project:"#"},
@@ -1156,6 +1201,18 @@
                 { title:"CoReVLA: A dual-stage end-to-end autonomous driving framework for long-tail scenarios via collect-and-refine", authors:"", venue:"arXiv", year:2025, paper:"https://arxiv.org/abs/2503.07608", code:"https://github.com/FanGShiYuu/CoReVLA", project:"https://fangshiyuu.github.io/CoReVLA/"}
             ],
             B: [  // Numerical Action Generator
+                {"title": "AD-Memo: Vision-Language-Action Autonomous Driving Agent with Language-based Memory", "authors": "Kai Yan, Xiangyu Chen, Yulong Cao, Alex Naumann, Peter Karkus, Yan Wang, Jef Packer, Alex Schwing, Yuxiong Wang, Boris Ivanovic, Wenjie Luo, Marco Pavone", "venue": "arXiv", "year": 2026, "paper": "https://arxiv.org/abs/2609.38641", "code": "#", "project": "#"},
+                {"title": "RefineDrive: Reliable Failure-Guided Learning for Vision-Language-Action Driving", "authors": "Zhe Sun, Ziyi Luo, Yehao Lu, Lei Zhou, Xi Li", "venue": "arXiv", "year": 2026, "paper": "https://arxiv.org/abs/2609.35078", "code": "#", "project": "#"},
+                {"title": "CAR-VLA: Complexity-Aware and Risk-Adaptive Reasoning for Autonomous Driving", "authors": "Xiaolei Chen, Zhuolin He, Yuxuan Liang, Xu Li, Haotian Chen, Fan Shi, Mengyang Zhao, Wenjuan Meng, Zisheng Chen, Zhihao Zhu, Zhounan Jin, Hengli Wang, Qingfan Wang, Jiamei Liang, Bin Li, Xiangyang Xue", "venue": "arXiv", "year": 2026, "paper": "https://arxiv.org/abs/2609.34387", "code": "https://github.com/chenxl124578/CAR-VLA", "project": "#"},
+                {"title": "Sometimes You Gotta Run Before You Can Walk: Run-then-Walk Scheduling Strategy for VLM Autonomous Driving", "authors": "Yuqi Ye, Shangkun Sun, Junhong Lin, Jiayi Zhao, Changhao Peng, Wei Zheng, Guoqing Liu, Tiesong Zhao, Wei Gao", "venue": "arXiv", "year": 2026, "paper": "https://arxiv.org/abs/2609.25831", "code": "#", "project": "#"},
+                {"title": "FIVE-VLA: Fast and EffectIVE Autonomous Driving with Recurrent Action Memory", "authors": "Kemal Oksuz, Alexandru Buburuzan, Yuhan Yao, Puneet K. Dokania", "venue": "arXiv", "year": 2026, "paper": "https://arxiv.org/abs/2609.18623", "code": "#", "project": "#"},
+                {"title": "RAF-VLA: Representation Alignment with the Future for End-to-End Autonomous Driving", "authors": "Dogun Kim, Yongjae Lee, Joonhee Lim, Yeina Lee, Junhyeok Park, Moogeun Park, Dongsuk Kum", "venue": "arXiv", "year": 2026, "paper": "https://arxiv.org/abs/2609.17728", "code": "#", "project": "#"},
+                {"title": "GRAVA: Grounded Reasoning-to-Action Representation and Learning for Autonomous Driving", "authors": "Xiao Liu, Haoyu Li, Jianghao Leng, Lin Wang, Chao Sun", "venue": "arXiv", "year": 2026, "paper": "https://arxiv.org/abs/2609.15169", "code": "https://github.com/AhernResearch/grava", "project": "#"},
+                {"title": "LaPla: Continuous Actions from Discrete Minds: Latent-Aligned Planning for End-to-End Autonomous Driving", "authors": "Ruoyu Yao, Yusen Xie, Qingzhao Liu, Pei Liu, Zewei Yang, Yipeng Zhu, Xiaolong Wang, Jun Ma", "venue": "arXiv", "year": 2026, "paper": "https://arxiv.org/abs/2609.04070", "code": "#", "project": "#"},
+                {"title": "Qwen-Drive-1.0: An Initial Step towards a Vision-Language Foundation Model for Autonomous Driving", "authors": "Xin Zhou, Zongchuang Zhao, Zhibo Yang, Mingsheng Li, Humen Zhong, Shuai Bai, Du Chu, Ruizhe Chen, Zhaohai Li, Jun Tang, Qiuyue Wang, Mingkun Yang, Jiazhao Zhang, Dayiheng Liu, Dingkang Liang, Xiang Bai", "venue": "arXiv", "year": 2026, "paper": "https://arxiv.org/abs/2609.00111", "code": "https://github.com/QwenLM/Qwen-Drive-1.0", "project": "https://huggingface.co/Qwen/Qwen-Drive-1.0-4B"},
+                {"title": "A Collaborative Multi-Modality Interaction for VLA-based End-to-End Autonomous Driving", "authors": "Jingtao Sun, Xiaohai He, Yike Zhang, Dong Huang, Yaonan Wang, Ajmal Mian, Mike Zheng Shou", "venue": "arXiv", "year": 2026, "paper": "https://arxiv.org/abs/2608.20890", "code": "#", "project": "#"},
+                {"title": "RedLight-VLA: Models for traffic-rule grounding and behavioral emphasis in driving policies", "authors": "Bala Murali Manoghar Sai Sudhakar, Sourab Bapu Sridhar, Sandipan Das, Rahul Ahuja, Meda Lazar, Ashish Garg, Pratik Likhar, Senthil Yogamani", "venue": "arXiv", "year": 2026, "paper": "https://arxiv.org/abs/2608.28656", "code": "#", "project": "#"},
+                {"title": "Geo-VLA: Geometry-Aware Vision-Language-Action Planning via Internalization of Map Semantics", "authors": "Ran Chen, Jiaxing Ren, Zhikun Zhang, Yunhao Hou, Junbao Zhuo, Bochao Zou", "venue": "arXiv", "year": 2026, "paper": "https://arxiv.org/abs/2608.21440", "code": "#", "project": "#"},
                 { title:"PixelPilot: Scalable Vision-Language-Action Models for End-to-End Autonomous Driving", authors:"", venue:"arXiv", year:2026, paper:"https://arxiv.org/abs/2607.04637", code:"#", project:"#"},
                 { title:"S-squared-VLA: Decoupling Semantic and Spatial Streams in Vision-Language-Action Models for Autonomous Driving", authors:"", venue:"arXiv", year:2026, paper:"https://arxiv.org/abs/2607.13926", code:"#", project:"#"},
                 { title:"WAM-Diff2: Hierarchical AR-to-Diffusion Distillation for Highly Efficient Autonomous Driving VLA", authors:"", venue:"arXiv", year:2026, paper:"https://arxiv.org/abs/2608.01035", code:"#", project:"#"},
@@ -1188,6 +1245,10 @@
                 { title:"OpenDriveVLA: Towards End-to-end Autonomous Driving with Large Vision Language Action Model", authors:"", venue:"AAAI", year:2026, paper:"https://arxiv.org/abs/2503.23463", code:"https://github.com/DriveVLA/OpenDriveVLA", project:"https://drivevla.github.io/"}
             ],
             C: [  // Explicit Action Guidance
+                {"title": "RCVLA: 4D Radar-Grounded Semantic Reasoning and Trajectory Arbitration for Autonomous Driving", "authors": "Lianqing Zheng, Xiaokai Bai, Yixuan Luo, Runwei Guan, Minghao Liu, Zhiqiang Wei, Hui-liang Shen, Xichan Zhu, Zhixiong Ma", "venue": "arXiv", "year": 2026, "paper": "https://arxiv.org/abs/2609.32681", "code": "#", "project": "#"},
+                {"title": "LADA: Less Language, More Latents: Annotation-Efficient VLAs for Driving", "authors": "Alexey Zakharov, Kemal Oksuz, Puneet K. Dokania", "venue": "arXiv", "year": 2026, "paper": "https://arxiv.org/abs/2609.27747", "code": "#", "project": "#"},
+                {"title": "GAPL: Grounded Action-effect Policy Learning for LLM-Based Trajectory Planning", "authors": "Zhihong Cui, Hengyu Liu, Zhangkai Wu, Yushuai Li, Tianyi Li, Peiyuan Guan, Amir Taherkordi, Tor Skeie", "venue": "arXiv", "year": 2026, "paper": "https://arxiv.org/abs/2608.18254", "code": "#", "project": "#"},
+                {"title": "Multi-Agent LLM Orchestration: Multi-Agent Orchestration with the Common-Sense Reasoning Capabilities of LLMs for Autonomous Driving", "authors": "Mehdi Azarafza, Faezeh Pasandideh, Ali Ehteshami Bejnordi, Stefan Henkler, Achim Rettberg", "venue": "arXiv", "year": 2026, "paper": "https://arxiv.org/abs/2608.20129", "code": "#", "project": "#"},
                 { title:"Think at 5 Hz, Act at 20 Hz: Asynchronous Fast-Slow Vision-Language-Action Inference for Closed-Loop Driving", authors:"", venue:"arXiv", year:2026, paper:"https://arxiv.org/abs/2607.15621", code:"#", project:"#"},
                 { title:"DriveVLA-M0: Failure-Aware Memory Augmentation for Autonomous Driving", authors:"", venue:"arXiv", year:2026, paper:"https://arxiv.org/abs/2608.10413", code:"#", project:"#"},
                 { title:"FIRE-VLA: Failure-Informed Self-Evolution for Vision-Language-Action Models in Autonomous Driving", authors:"", venue:"arXiv", year:2026, paper:"https://arxiv.org/abs/2608.13395", code:"#", project:"#"},
@@ -1205,6 +1266,7 @@
                 { title:"FASIONAD++: Integrating High-Level Instruction and Information Bottleneck in FAt-Slow fusION Systems for Enhanced Safety in Autonomous Driving with Adaptive Feedback", authors:"", venue:"arXiv", year:2025, paper:"https://arxiv.org/abs/2503.08162", code:"#", project:"#"}
             ],
             D: [  // Implicit Representations Transfer
+                {"title": "Relational Latent World Models: Relationally Grounded Latent World Models for Autonomous Driving", "authors": "Fabian Schmidt, Markus Enzweiler, Abhinav Valada", "venue": "arXiv", "year": 2026, "paper": "https://arxiv.org/abs/2609.24626", "code": "#", "project": "#"},
                 { title:"Outcome-Guided Distillation: A Teacher-Student Framework to Advance VLM Reasoning in Autonomous Driving", authors:"", venue:"arXiv", year:2026, paper:"https://arxiv.org/abs/2607.29052", code:"#", project:"#"},
                 { title:"VLP: Vision Language Planning for Autonomous Driving", authors:"", venue:"CVPR", year:2024, paper:"https://arxiv.org/abs/2401.05577", code:"#", project:"#"},
                 { title:"VLM-AD: End-to-End Autonomous Driving through Vision-Language Model Supervision", authors:"", venue:"CoRL", year:2025, paper:"https://arxiv.org/abs/2412.14446", code:"#", project:"#"},
@@ -1222,6 +1284,10 @@
             },
             dataset: {
                 A: [  // Vision-Action Datasets
+                {"title": "ExceptionDrive: A Planning-Oriented Counterfactual Corner-Case Benchmark for Autonomous Driving", "authors": "Ziyi Luo, Zhe Sun, Yehao Lu, Lei Zhou, Lisheng Wu, Xuewei Li, Zequn Qin, Xi Li", "venue": "arXiv", "year": 2026, "paper": "https://arxiv.org/abs/2609.37871", "code": "#", "project": "#"},
+                {"title": "VehDyn: A Driving World Model Benchmark for Vehicle Dynamics", "authors": "Tianyi Wang, Wangsheng Du, Jiazhou Chen, Tianyi Zeng, Xiangyu Li, Jiseop Byeon, Yujin Wang, Yiming Xu, Yangyang Wang, Bingzhao Gao, Sikai Chen, Zhaomiao Guo, Junfeng Jiao, Christian Claudel, Alexandre Bayen", "venue": "arXiv", "year": 2026, "paper": "https://arxiv.org/abs/2609.33264", "code": "#", "project": "#"},
+                {"title": "VIPS: Vehicle-Infrastructure Cooperative Planning Benchmark via Pseudo-Simulation", "authors": "Hoonhee Cho, Jae-Young Kang, Giwon Lee, Hyemin Yang, Heejun Park, Kuk-Jin Yoon", "venue": "arXiv", "year": 2026, "paper": "https://arxiv.org/abs/2609.02462", "code": "#", "project": "https://vips2026.github.io"},
+                {"title": "SkyDrive: Learning to Drive in a New City from Aerial Traffic Monitoring", "authors": "Weijiang Xiong, Lan Feng, Alexandre Alahi, Nikolas Geroliminis", "venue": "arXiv", "year": 2026, "paper": "https://arxiv.org/abs/2608.25142", "code": "#", "project": "#"},
                     { title:"BDD100K: A Diverse Driving Dataset for Heterogeneous Multitask Learning", authors:"", venue:"CVPR", year:2020, paper:"https://arxiv.org/abs/1805.04687", code:"https://github.com/bdd100k/bdd100k", project:"https://bair.berkeley.edu/blog/2018/05/30/bdd/"},
                     { title:"nuScenes: A Multimodal Dataset for Autonomous Driving", authors:"", venue:"CVPR", year:2020, paper:"https://arxiv.org/abs/1903.11027", code:"#", project:"https://www.nuscenes.org/"},
                     { title:"Scalability in Perception for Autonomous Driving: Waymo Open Dataset", authors:"", venue:"CVPR", year:2020, paper:"https://arxiv.org/abs/1912.04838", code:"https://github.com/waymo-research/waymo-open-dataset", project:"https://waymo.com/open/"},
@@ -1232,6 +1298,20 @@
                     { title:"WOD-E2E: Waymo Open Dataset for End-to-End Driving in Challenging Long-Tail Scenarios", authors:"", venue:"arXiv", year:2025, paper:"https://arxiv.org/abs/2510.26125", code:"https://github.com/waymo-research/waymo-open-dataset", project:"https://waymo.com/intl/jp/open/data/e2e/"}
                 ],
                 B: [  // Vision-Language-Action Datasets
+                {"title": "TrafficSignBench: Rule-Centric Closed-Loop Evaluation of Traffic-Sign Compliance in Autonomous Driving", "authors": "Victoria Smirnova, Viktoriia Zinkovich, Gregorii Bukhtuev, Artem Belyaev, Andrey Kuznetsov, Denis Shepelev, Vlad Shakhuro", "venue": "arXiv", "year": 2026, "paper": "https://arxiv.org/abs/2609.38463", "code": "https://github.com/emb-ai/traffic-sign-bench", "project": "https://huggingface.co/datasets/emb-ai/traffic-sign-bench"},
+                {"title": "doPlan: A Variable-Horizon Dataset for Multi-Stage Language-Conditioned Planning in Autonomous Driving", "authors": "Parthib Roy, Yash Tandon, Marcus Blennemann, Giovanni Tapia Lopez, Angel Martinez-Sanchez, Mohan M. Trivedi, Ross Greer", "venue": "arXiv", "year": 2026, "paper": "https://arxiv.org/abs/2609.38028", "code": "https://github.com/Mi3-Lab/doPlan", "project": "#"},
+                {"title": "CausalDriveBench: Evaluating Causal Reasoning in Vision-Language-Action Models for Autonomous Driving", "authors": "Narendiran Chembu, Navvrat Rao, Shreedhar Shreeshail Kodate, Gayatri Srujana Banda, Arko Sarkar, Abhinav Khanna, Rajarshee Das, Umesh Kanala, Siddarth Khandelwal, Kumar Aman, Aish Dubey, Kaustubh Beedkar, Arjun Jain", "venue": "arXiv", "year": 2026, "paper": "https://arxiv.org/abs/2609.32157", "code": "#", "project": "#"},
+                {"title": "DriveHierarchy: A Benchmark for Diagnosing VLM Driving Capabilities from Open-Loop Understanding to Closed-Loop Execution", "authors": "Chengkai Xu, Jiaqi Liu, Yicheng Guo, Peng Hang, Jian Sun", "venue": "arXiv", "year": 2026, "paper": "https://arxiv.org/abs/2609.31814", "code": "https://github.com/PerfectXu88/DriveHierarchy", "project": "#"},
+                {"title": "AnchorReasoning: A Visual Grounding and Causal Reasoning Dataset in Long-Tail Autonomous Driving Scenarios", "authors": "Zhipeng Bao, Wenjie Zhao, Tianle Zhu, Haohua Que, Chence Yang, Geng Yuan, Qianwen Li", "venue": "arXiv", "year": 2026, "paper": "https://arxiv.org/abs/2609.28366", "code": "#", "project": "#"},
+                {"title": "CoVLM-Bench: A Real-World Benchmark for Cooperative Driving Question Answering and Planning", "authors": "Kang Yang, Shuai Liu, Hang Li, Yance Fang, Deying Li, Yongcai Wang", "venue": "arXiv", "year": 2026, "paper": "https://arxiv.org/abs/2609.35823", "code": "#", "project": "#"},
+                {"title": "CASCADE: A Spatio-Temporal-Causal Reasoning Representation and Dataset for Driving", "authors": "Jenny Schmalfuss, Despoina Paschalidou, Simon Gerstenecker, German Ros, Jose M. Alvarez", "venue": "arXiv", "year": 2026, "paper": "https://arxiv.org/abs/2609.07094", "code": "#", "project": "https://huggingface.co/datasets/nvidia/cascade"},
+                {"title": "AD-DiffBench: Understanding Autonomous Driving Datasets by Describing Differences between Image Subsets in Natural Language", "authors": "Julian Truetsch, Felix Hauser, Christoph Stiller, Frank Bieder", "venue": "arXiv", "year": 2026, "paper": "https://arxiv.org/abs/2609.03677", "code": "https://github.com/KIT-MRT/AD-Diff", "project": "#"},
+                {"title": "Pedestrian Yielding Bias: LLM-Driven Autonomous Vehicles Inherit Human Driver Biases in Pedestrian Yielding: Results and Implications From A New Benchmark", "authors": "Irem Yoldas, Martim Brandão, Jie Zhang, Odinaldo Rodrigues", "venue": "arXiv", "year": 2026, "paper": "https://arxiv.org/abs/2609.00192", "code": "#", "project": "#"},
+                {"title": "V2XBench: Roadside-Cooperative Autonomous Driving: From Data Platform to Vision-Language End-to-End Reasoning", "authors": "Yitao Xu, Tong Wu, Yiyan Wu, Guoji Xu, Yanbo Jiang, Jiahao Wang, Zehong Ke, Junkai Jiang, Fang Zhang, Jianqiang Wang", "venue": "arXiv", "year": 2026, "paper": "https://arxiv.org/abs/2608.21032", "code": "#", "project": "#"},
+                {"title": "CAViAR: A Causal Video Dataset for Fine-Grained Accident Reasoning in Real-World Scenarios", "authors": "Sparsh Garg, Yi-Wen Chen, Vijay Kumar B G, Abhishek Aich", "venue": "arXiv", "year": 2026, "paper": "https://arxiv.org/abs/2608.19380", "code": "https://github.com/nec-labs-ma/CAViAR", "project": "#"},
+                {"title": "DriveDegrade: A Degradation-Tolerance Benchmark for Camera-Only End-to-End Driving", "authors": "Haohua Que, Handong Yao", "venue": "arXiv", "year": 2026, "paper": "https://arxiv.org/abs/2608.29005", "code": "#", "project": "#"},
+                {"title": "SIREN-Bench: Behavior-Driven Generation and Evaluation of Emergency-Vehicle Interactions", "authors": "Yicheng Zhu, Tianmu Zhao, Haoxin Leng, Fan Zuo, Tao Li, Zilin Bian", "venue": "arXiv", "year": 2026, "paper": "https://arxiv.org/abs/2608.24094", "code": "#", "project": "#"},
+                {"title": "DrivingBench: Can Vision-Language Models Drive a Toyota Corolla?", "authors": "Aditya Ramabadran, Simon Mahns, Tobias Gessler", "venue": "arXiv", "year": 2026, "paper": "https://arxiv.org/abs/2609.38948", "code": "https://github.com/aditya-ramabadran/drivingbench_harness_v1", "project": "https://drivingbench.com/"},
                 { title:"AUTOPILOT VQA: Benchmarking Vision-Language Models for Incident-Centric Dashcam Understanding", authors:"", venue:"arXiv", year:2026, paper:"https://arxiv.org/abs/2607.08745", code:"#", project:"#"},
                 { title:"ObsDriveBench: Benchmarking Multimodal Understanding under Adverse Weather with Observability Awareness", authors:"", venue:"arXiv", year:2026, paper:"https://arxiv.org/abs/2607.23537", code:"#", project:"#"},
                 { title:"CARA: Concept-Aware Risk Attention for Interpretable Collision Anticipation", authors:"", venue:"arXiv", year:2026, paper:"https://arxiv.org/abs/2607.22494", code:"#", project:"#"},
