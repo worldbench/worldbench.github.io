@@ -89,14 +89,14 @@
                 </h2>
 
 
-                <p class="wb-kicker" style="margin:0.5rem 0 1.2rem;">Manuscript and collection updated: October 11, 2026.</p>
+                <p class="wb-kicker" style="margin:0.5rem 0 1.2rem;">Manuscript and collection updated: October 14, 2026.</p>
                 <div class="button-container">
                     <a href="https://arxiv.org/abs/2512.16760" class="button paper-link" target="_blank">
                         <span class="icon is-small">
                             <i class="ai ai-arxiv "  style="height: 1.5em;"></i>
                         </span><span>arXiv</span>
                     </a>
-                    <a href="assets_common/papers/vla4ad.pdf?v=20261011" class="button paper-link" target="_blank">
+                    <a href="assets_common/papers/vla4ad.pdf?v=20261014" class="button paper-link" target="_blank">
                         <span class="icon is-small">
                             <img src="assets_common/icons/pdf.png" style="height: 1.4em;">
                         </span><span>PDF</span>
@@ -345,6 +345,16 @@
 
 
 
+
+            <section id="resource-papers" class="papers-section" data-section-key="resource" data-initial="3">
+              <h2>Supporting Resources</h2>
+              <div class="bar" aria-live="polite">
+                <div class="search">🔎 <input class="paper-search" type="search" placeholder="Search: Title / Venue" /></div>
+                <span class="count">0 items</span>
+              </div>
+              <div class="ctable-wrap"><table class="ctable"><tbody class="list"></tbody></table></div>
+              <div class="showmore-wrap"></div>
+            </section>
 
             <section id="citation">
                 <div class="wb-section">
@@ -1030,6 +1040,9 @@
         <script>
 
           const paperStore = {
+            resource: {
+              A: [{"title": "Drive3R: Block-wise Streaming Geometric Foundation Models for Autonomous Driving", "authors": "Tianyi Yang, Haojun Yang, Jipeng Xiao, Xuesong Chen, Shaoshuai Shi, Li Jiang, Zhipeng Zhang", "venue": "arXiv", "year": 2026, "paper": "https://arxiv.org/abs/2610.15112", "code": "https://github.com/AutoLab-SAI-SJTU/Drive3R", "project": "https://silence-ai423.github.io/Drive3R/"}]
+            },
             va: {
                 A: [  // Action-Only Models
                 {"title": "RADP: Learning to Explain While Planning: Rule-Aligned Diffusion Planning for Autonomous Driving", "authors": "Jiaxi Ye, Chunji Lv, Guoren Wang, Changsheng Li", "venue": "arXiv", "year": 2026, "paper": "https://arxiv.org/abs/2609.39995", "code": "#", "project": "#"},
@@ -1055,6 +1068,7 @@
                 { title:"TrajDiff: End-to-end Autonomous Driving without Perception Annotation", authors:"", venue:"arXiv", year:2025, paper:"https://arxiv.org/abs/2512.00723", code:"#", project:"#"},
                 ],
                 B: [  // Perception-Action Models
+                {"title": "ConDenseDrive: Knowledge-Dense, Token-Sparse Visual Encoder for End-to-End Autonomous Driving", "authors": "Shengzhen Li, Yongkang Li, Hao Gao, Chenxi Wu, Yajing Sun, Lu Hou, Wenyu Liu, Xinggang Wang", "venue": "arXiv", "year": 2026, "paper": "https://arxiv.org/abs/2610.16908", "code": "#", "project": "#"},
                 {"title": "VG-SAF: Variance-Guided Spatial Attention Fusion for Robust End-to-End Driving under Asymmetric Sensor Degradation", "authors": "Weizhi Tao, Zengwang Jin, Xiao Wang, Hailong Huang", "venue": "arXiv", "year": 2026, "paper": "https://arxiv.org/abs/2608.24366", "code": "#", "project": "#"},
                 {"title": "ViRA: Do Better Visual Representations Always Lead to Better End-to-End Autonomous Driving?", "authors": "Zihao Zhang, Haochen Tian, Tianyu Li, Changhui Jing, Jingliang He, Naisheng Ye, Ziyuan Pu, Zhenjie Yang", "venue": "arXiv", "year": 2026, "paper": "https://arxiv.org/abs/2610.09695", "code": "https://github.com/OpenDriveLab/ViRA", "project": "#"},
                 { title:"BeyondSight: Object Permanence for End-to-End Autonomous Driving", authors:"", venue:"arXiv", year:2026, paper:"https://arxiv.org/abs/2607.09138", code:"#", project:"#"},
@@ -1106,6 +1120,7 @@
                     { title:"VaViM and VaVAM: Autonomous driving through video generative modeling", authors:"", venue:"arXiv", year:2025, paper:"https://arxiv.org/abs/2502.15672", code:"https://github.com/valeoai/VideoActionModel", project:"https://valeoai.github.io/vavim-vavam/"}
                 ],
                 D: [  // Occupancy World Models
+                {"title": "OccWAM: Occupancy World-Action Models with Joint Scene-to-Ego Flow Matching", "authors": "Qihang Huang, Wenhui Huang, Collister Chua, Shiyu Fang, Zhan Chen, Songyan Zhang, Zhidong Wang, Daiying Tian, Chen Lv", "venue": "arXiv", "year": 2026, "paper": "https://arxiv.org/abs/2610.17688", "code": "#", "project": "#"},
                 {"title": "V2X-WAM: A Cooperative World Action Model for End-to-End Autonomous Driving", "authors": "Junwei You, Weizhe Tang, Can Wang, Yan Zhao, Jun Hua, Haotian Shi, Wei Zhang, Lin Wang, Bin Ran", "venue": "arXiv", "year": 2026, "paper": "https://arxiv.org/abs/2609.37098", "code": "#", "project": "#"},
                 { title:"OWMDrive: Causality-Aware End-to-End Autonomous Driving via 4D Occupancy World Model", authors:"", venue:"arXiv", year:2026, paper:"https://arxiv.org/abs/2606.30421", code:"#", project:"#"},
                 { title:"GaussianDWM++: Language-Grounded 3D Gaussian Driving World Model for Unified Scene Understanding, Editing, and Multi-Modal Generation", authors:"", venue:"arXiv", year:2026, paper:"https://arxiv.org/abs/2608.16234", code:"#", project:"#"},
@@ -1119,6 +1134,8 @@
                 { title:"AD-R1: Closed-loop reinforcement learning for end-to-end autonomous driving with impartial world models", authors:"", venue:"arXiv", year:2025, paper:"https://arxiv.org/abs/2511.20325", code:"#", project:"#"},  
                 ],
                 E: [  // Latent World Models
+                {"title": "MORE: Learning Motion-Oriented Registers for Driving World Models and Planning", "authors": "Yingdong Gu, Haoyu Wang, Shaocheng Yan, Zhenjun Zhao, Hao Han, Pengcheng Shi, Xianfei Li, Qinghua Tan, Wenlong Liao, Tao He, Jiayuan Li, Pai Peng", "venue": "arXiv", "year": 2026, "paper": "https://arxiv.org/abs/2610.14871", "code": "https://github.com/Cyril-gyd/MORE", "project": "#", "code_status": "pending"},
+                {"title": "PlanWAM: Planning-Shaped Future Representations for End-to-End Autonomous Driving", "authors": "Jinchang Xu, Hongda Yu, Fengwei Dong, Wenhui Huang, Xi Wei, Yongzhi Liu, Sunan Zhang, Jirao Wang, Chen Lv, Bingbing Li, Guodong Yin, Weichao Zhuang", "venue": "arXiv", "year": 2026, "paper": "https://arxiv.org/abs/2610.11382", "code": "https://github.com/jinchan9/PlanWAM", "project": "https://jinchan9.github.io/PlanWAM_project_page"},
                 {"title": "ReWAM: Reciprocal World Action Models for Interactive Autonomous Driving", "authors": "Benshan Ma, Pei Liu, Ruiguo Zhong, Lang Zhang, Mingyue Feng, Yaonong Wang, Jun Ma", "venue": "arXiv", "year": 2026, "paper": "https://arxiv.org/abs/2609.39245", "code": "https://github.com/LeapWM/rewam", "project": "#"},
                 {"title": "World4Scorer: Outcome-Grounded World Modeling for Autonomous Driving", "authors": "Jieyuan Pei, Meiyi Lu, Sining Ang, Yubo Zhao, Zhangyi Hu, Mingwei Xu, Haokai Ding, Wei Li, Zihan You, Jianwei Zheng, Li Yu, Yifeng Pan, Ji Tao, Rongjunchen Zhang, Yan Wang", "venue": "arXiv", "year": 2026, "paper": "https://arxiv.org/abs/2609.36438", "code": "https://github.com/GuobaPei/World4Scorer", "project": "https://guobapei.github.io/World4Scorer/"},
                 {"title": "AD-E2E-JEPA: A Joint-Embedding Predictive Architecture For End-to-End Autonomous Driving", "authors": "Haoran Zhu, Wancong Zhang, Yann LeCun, Anna Choromanska", "venue": "arXiv", "year": 2026, "paper": "https://arxiv.org/abs/2609.34085", "code": "https://github.com/HaoranZhuExplorer/AD-E2E-JEPA", "project": "#"},
@@ -1201,6 +1218,12 @@
                 { title:"CoReVLA: A dual-stage end-to-end autonomous driving framework for long-tail scenarios via collect-and-refine", authors:"", venue:"arXiv", year:2025, paper:"https://arxiv.org/abs/2503.07608", code:"https://github.com/FanGShiYuu/CoReVLA", project:"https://fangshiyuu.github.io/CoReVLA/"}
             ],
             B: [  // Numerical Action Generator
+                {"title": "AUGUstus: Autonomous Driving VLA Model with Unified Generation and Understanding", "authors": "Yuqi Ye, Caigao Jiang, Zhuonan Wang, Congyuan Pei, Chao Qu, Changhao Peng, Junhong Lin, Qize Yu, Zetian Song, Guangzhao Fu, Chongruo Wu, Shiyu Huang, Shuchang Zhou, Honggou Yang, Wei Gao", "venue": "arXiv", "year": 2026, "paper": "https://arxiv.org/abs/2610.16985", "code": "https://github.com/haha-yuki-haha/AUGUstus", "project": "https://augustus-ad.github.io/"},
+                {"title": "YOUDrive: Driving Style as a Composable Direction for End-to-End Autonomous Driving", "authors": "Guantian Zheng, Lidong Yu, Tianyu Gao, Jiaxing Chen, Jiashu Li, Chen Lv", "venue": "arXiv", "year": 2026, "paper": "https://arxiv.org/abs/2610.14802", "code": "#", "project": "#"},
+                {"title": "TacitVLA: Reasoning Vision-Language-Action Models Without Reasoning Latency", "authors": "Jack Lu, Yurong You, Boyi Li, Yulong Cao, Thomas Tian, Chaowei Xiao, Xiangyu Chen, Wenjie Luo, Boris Ivanovic, Marco Pavone, Yan Wang", "venue": "arXiv", "year": 2026, "paper": "https://arxiv.org/abs/2610.17540", "code": "#", "project": "https://tacitvla.github.io/"},
+                {"title": "DriveWLA: Unifying Future Dynamics and Scene Semantics through World-Language-Action Modeling for Autonomous Driving", "authors": "Shuzheng Wang, Haoxuan Li, Shengzhen Li, Chenxi Wu, Yajing Sun, Lu Hou, Wenyu Liu, Xinggang Wang", "venue": "arXiv", "year": 2026, "paper": "https://arxiv.org/abs/2610.17903", "code": "#", "project": "#"},
+                {"title": "Reflect-VLA: Internalizing Reflective Guidance via Dual-Path On-Policy Self-Distillation for Autonomous Driving", "authors": "Yuechen Luo, He Chong, Fang Li, Shaoqing Xu, Hexin Zhang, Ruiqi Zhang, Ziying Song, Lei Yang, Zhi-Xin Yang, Fuxi Wen", "venue": "arXiv", "year": 2026, "paper": "https://arxiv.org/abs/2610.13453", "code": "https://github.com/luo-yc17/Reflect-VLA", "project": "#"},
+                {"title": "AffordDrive3D: Affordance-Aware World-Action Modeling with Spatial Understanding", "authors": "Tianhui Cai, Xinglong Sun, Chao Fang, Zhenxin Li, Rui Song, Jose M. Alvarez, Yunxiang Mao, Jiaqi Ma, Langechuan Liu", "venue": "arXiv", "year": 2026, "paper": "https://arxiv.org/abs/2610.11060", "code": "#", "project": "https://afforddrive3d.github.io/"},
                 {"title": "AD-Memo: Vision-Language-Action Autonomous Driving Agent with Language-based Memory", "authors": "Kai Yan, Xiangyu Chen, Yulong Cao, Alex Naumann, Peter Karkus, Yan Wang, Jef Packer, Alex Schwing, Yuxiong Wang, Boris Ivanovic, Wenjie Luo, Marco Pavone", "venue": "arXiv", "year": 2026, "paper": "https://arxiv.org/abs/2609.38641", "code": "#", "project": "#"},
                 {"title": "RefineDrive: Reliable Failure-Guided Learning for Vision-Language-Action Driving", "authors": "Zhe Sun, Ziyi Luo, Yehao Lu, Lei Zhou, Xi Li", "venue": "arXiv", "year": 2026, "paper": "https://arxiv.org/abs/2609.35078", "code": "#", "project": "#"},
                 {"title": "CAR-VLA: Complexity-Aware and Risk-Adaptive Reasoning for Autonomous Driving", "authors": "Xiaolei Chen, Zhuolin He, Yuxuan Liang, Xu Li, Haotian Chen, Fan Shi, Mengyang Zhao, Wenjuan Meng, Zisheng Chen, Zhihao Zhu, Zhounan Jin, Hengli Wang, Qingfan Wang, Jiamei Liang, Bin Li, Xiangyang Xue", "venue": "arXiv", "year": 2026, "paper": "https://arxiv.org/abs/2609.34387", "code": "https://github.com/chenxl124578/CAR-VLA", "project": "#"},
@@ -1245,6 +1268,8 @@
                 { title:"OpenDriveVLA: Towards End-to-end Autonomous Driving with Large Vision Language Action Model", authors:"", venue:"AAAI", year:2026, paper:"https://arxiv.org/abs/2503.23463", code:"https://github.com/DriveVLA/OpenDriveVLA", project:"https://drivevla.github.io/"}
             ],
             C: [  // Explicit Action Guidance
+                {"title": "AutoAgent0: An Agentic Runtime for Safe Closed-Loop Driving", "authors": "Jiageng Liu, Seth Z. Zhao, Zewei Zhou, Alejandro Huerta, Aidan Bayer-Calvert, Yuxin Bao, Haotian Lin, Robert Spataru, Zijun Cui, Yining Hong, Bolei Zhou, Jiaqi Ma", "venue": "arXiv", "year": 2026, "paper": "https://arxiv.org/abs/2610.18866", "code": "#", "project": "https://jiagengliu02.github.io/AutoAgent0/"},
+                {"title": "Not All Uncertainty Matters: Simulation-in-the-Loop Fast-Slow Reasoning for Decision-Critical Autonomous Driving System", "authors": "Jiayi Chen, Shuai Wang, Guangxu Zhu, Derrick Wing Kwan Ng, Chengzhong Xu, Kaibin Huang", "venue": "arXiv", "year": 2026, "paper": "https://arxiv.org/abs/2610.09520", "code": "#", "project": "#"},
                 {"title": "RCVLA: 4D Radar-Grounded Semantic Reasoning and Trajectory Arbitration for Autonomous Driving", "authors": "Lianqing Zheng, Xiaokai Bai, Yixuan Luo, Runwei Guan, Minghao Liu, Zhiqiang Wei, Hui-liang Shen, Xichan Zhu, Zhixiong Ma", "venue": "arXiv", "year": 2026, "paper": "https://arxiv.org/abs/2609.32681", "code": "#", "project": "#"},
                 {"title": "LADA: Less Language, More Latents: Annotation-Efficient VLAs for Driving", "authors": "Alexey Zakharov, Kemal Oksuz, Puneet K. Dokania", "venue": "arXiv", "year": 2026, "paper": "https://arxiv.org/abs/2609.27747", "code": "#", "project": "#"},
                 {"title": "GAPL: Grounded Action-effect Policy Learning for LLM-Based Trajectory Planning", "authors": "Zhihong Cui, Hengyu Liu, Zhangkai Wu, Yushuai Li, Tianyi Li, Peiyuan Guan, Amir Taherkordi, Tor Skeie", "venue": "arXiv", "year": 2026, "paper": "https://arxiv.org/abs/2608.18254", "code": "#", "project": "#"},
@@ -1298,6 +1323,7 @@
                     { title:"WOD-E2E: Waymo Open Dataset for End-to-End Driving in Challenging Long-Tail Scenarios", authors:"", venue:"arXiv", year:2025, paper:"https://arxiv.org/abs/2510.26125", code:"https://github.com/waymo-research/waymo-open-dataset", project:"https://waymo.com/intl/jp/open/data/e2e/"}
                 ],
                 B: [  // Vision-Language-Action Datasets
+                {"title": "Language2Drive: Do Vision-Language-Action Models Really Follow the Instructions in Autonomous Driving?", "authors": "Zihan You, Zehua Fan, Wenqi Lyu, Aoqi Wang, Ni Wang, Yifei Yang, Linge Zhao, Huan Li, Sining Ang, Yuguang Yang, Jueyu Chen, Xiangyu Li, Qianshan Wei, Jieyuan Pei, Yuxin Wang, Zhiwen Chen, Jiaqi Li, Wenxuan Song, Yanyuan Qiao, Benjin Zhu, Haoang Li, Yan Wang", "venue": "arXiv", "year": 2026, "paper": "https://arxiv.org/abs/2610.16634", "code": "https://github.com/ZihanYou/Language2Drive", "project": "https://zihanyou.github.io/Language2Drive/"},
                 {"title": "TrafficSignBench: Rule-Centric Closed-Loop Evaluation of Traffic-Sign Compliance in Autonomous Driving", "authors": "Victoria Smirnova, Viktoriia Zinkovich, Gregorii Bukhtuev, Artem Belyaev, Andrey Kuznetsov, Denis Shepelev, Vlad Shakhuro", "venue": "arXiv", "year": 2026, "paper": "https://arxiv.org/abs/2609.38463", "code": "https://github.com/emb-ai/traffic-sign-bench", "project": "https://huggingface.co/datasets/emb-ai/traffic-sign-bench"},
                 {"title": "doPlan: A Variable-Horizon Dataset for Multi-Stage Language-Conditioned Planning in Autonomous Driving", "authors": "Parthib Roy, Yash Tandon, Marcus Blennemann, Giovanni Tapia Lopez, Angel Martinez-Sanchez, Mohan M. Trivedi, Ross Greer", "venue": "arXiv", "year": 2026, "paper": "https://arxiv.org/abs/2609.38028", "code": "https://github.com/Mi3-Lab/doPlan", "project": "#"},
                 {"title": "CausalDriveBench: Evaluating Causal Reasoning in Vision-Language-Action Models for Autonomous Driving", "authors": "Narendiran Chembu, Navvrat Rao, Shreedhar Shreeshail Kodate, Gayatri Srujana Banda, Arko Sarkar, Abhinav Khanna, Rajarshee Das, Umesh Kanala, Siddarth Khandelwal, Kumar Aman, Aish Dubey, Kaustubh Beedkar, Arjun Jain", "venue": "arXiv", "year": 2026, "paper": "https://arxiv.org/abs/2609.32157", "code": "#", "project": "#"},
@@ -1349,6 +1375,7 @@
     
 
           window.SECTION_CATS = {
+            resource: [['A','Geometric Reconstruction']],
             va: [['A','Action-Only Models'],['B','Perception-Action Models'],['C','Image-Based World Models'],['D','Occupancy-Based World Models'],['E','Latent-Based World Models']],
             vla: [['A','Textual Action Generator'],['B','Numerical Action Generator'],['C','Explicit Action Guidance'],['D','Implicit Representations Transfer']],
             dataset: [['A','Vision-Action Datasets'],['B','Vision-Language-Action Datasets']]
@@ -1372,12 +1399,12 @@
             function venueLabel(it){ const y=it.year?(" '"+String(it.year).slice(-2)):''; return esc((it.venue||'')+y); }
             function match(it,kw){ if(!kw) return true; return [it.title,it.authors,it.venue,it.year].map(x=>String(x==null?'':x)).join(' ').toLowerCase().indexOf(kw)>=0; }
             function linkIcons(it){
-              const defs=[['paper',it.paper,'fas fa-external-link-alt','Paper'],['code',it.code,'fab fa-github','Code'],['project',it.project,'fas fa-globe','Project']];
+              const defs=[['paper',it.paper,'fas fa-external-link-alt','Paper'],['code',it.code,'fab fa-github',it.code_status==='pending'?'Repository (release pending)':'Code'],['project',it.project,'fas fa-globe','Project']];
               return defs.filter(d=>d[1]&&d[1]!=='#').map(d=>'<a href="'+d[1]+'" target="_blank" rel="noopener noreferrer" aria-label="'+d[3]+'" title="'+d[3]+'"><i class="'+d[2]+'"></i></a>').join('');
             }
             function rowHTML(it,n){
               const title=(it.paper&&it.paper!=='#') ? '<a href="'+it.paper+'" target="_blank" rel="noopener noreferrer">'+esc(it.title)+'</a>' : esc(it.title);
-              return '<td class="col-num">'+n+'</td><td class="col-method">'+title+'</td><td class="col-venue"><span class="venue-pill '+pill(it.venue)+'">'+venueLabel(it)+'</span></td><td class="col-links">'+linkIcons(it)+'</td>';
+              return '<td class="col-num">'+n+'</td><td class="col-method">'+title+(it.code_status==='pending'?'<br><small>Code release pending</small>':'')+'</td><td class="col-venue"><span class="venue-pill '+pill(it.venue)+'">'+venueLabel(it)+'</span></td><td class="col-links">'+linkIcons(it)+'</td>';
             }
             function isArxiv(it){ return ((it.venue||'').toLowerCase().indexOf('arxiv')>=0) || !it.venue; }
             function cmp(a,b){ var ya=Number(a.year)||0, yb=Number(b.year)||0; if(yb!==ya) return yb-ya; return (isArxiv(a)?1:0)-(isArxiv(b)?1:0); }
