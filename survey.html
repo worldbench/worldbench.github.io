@@ -90,18 +90,19 @@
                 </h2>
 
 
+                <p class="wb-kicker" style="margin:0.5rem 0 1.2rem;">Manuscript and collection updated: October 11, 2026.</p>
                 <div class="button-container">
                     <a href="https://arxiv.org/abs/2509.07996" class="button paper-link" target="_blank">
                         <span class="icon is-small">
                             <i class="ai ai-arxiv "  style="height: 1.5em;"></i>
                         </span><span>arXiv</span>
                     </a>
-                    <a href="assets_common/papers/survey.pdf" class="button paper-link" target="_blank">
+                    <a href="assets_common/papers/survey.pdf?v=20261016" class="button paper-link" target="_blank">
                         <span class="icon is-small">
                             <img src="assets_common/icons/pdf.png" style="height: 1.4em;">
                         </span><span>PDF</span>
                     </a>
-                    <a href="https://github.com/worldbench/survey" class="button" target="_blank">
+                    <a href="https://github.com/worldbench/awesome-3d-4d-world-models" class="button" target="_blank">
                         <span class="icon is-small">
                             <img src="assets_common/icons/github.png" style="height: 1.4em;">
                         </span><span>GitHub</span>
@@ -130,6 +131,7 @@
                     <div><a href="#taxonomy">Taxonomy</a></div>
                     <div><a href="#examples">Examples</a></div>
                     <div><a href="#projects">Collections</a></div>
+                    <div><a href="#citation">Citation</a></div>
                     <div><a href="#contributors">Contributors</a></div>
                 </nav>
             </d-contents>
@@ -761,6 +763,19 @@
 
 
 
+            <section id="citation">
+                <div class="wb-section">
+                  <h2>Citation</h2>
+                  <p>If this survey is useful to your research, please cite:</p>
+                  <pre style="overflow-x:auto; padding:1.2rem; background:#f7f8fa; border-radius:8px;"><code>@article{survey_3d_4d_world_models,
+    title   = {{3D} and {4D} World Modeling: A Survey},
+    author  = {Lingdong Kong and Yu Yang and Jianbiao Mei and Youquan Liu and Ao Liang and Dekai Zhu and Dongyue Lu and Wei Yin and Xiaotao Hu and Mingkai Jia and Junyuan Deng and Kaiwen Zhang and Yang Wu and Tianyi Yan and Shenyuan Gao and Song Wang and Linfeng Li and Liang Pan and Yong Liu and Jianke Zhu and Wei Tsang Ooi and Steven C. H. Hoi and Ziwei Liu},
+    journal = {arXiv preprint arXiv:2509.07996},
+    year    = {2025}
+}</code></pre>
+                </div>
+            </section>
+
             <section id="contributors">
               <br><br>
               <div class="wb-section">
@@ -1207,13 +1222,36 @@
 
                 <div class="project-grid">
 
+                  <!-- Orbia: controlled exploration and 3D consistency -->
+                  <article class="wb-card project-card">
+                    <h3 class="project-title">Orbia: Do Generated Videos Form a Consistent 3D World?</h3>
+                    <p>Controlled exploration and revisits distinguish preservation of observed regions, persistence of newly generated content, and 3D self-consistency. Short and minute-long protocols combine reference checks with cross-view geometry and held-out reconstruction, while measuring camera control separately.</p>
+                    <div class="project-links">
+                      <a href="https://arxiv.org/abs/2610.20693" target="_blank" class="project-link" aria-label="Orbia paper"><i class="ai ai-arxiv"></i></a>
+                      <a href="https://orbia-bench.github.io/" target="_blank" class="project-link" aria-label="Orbia project"><i class="fas fa-globe"></i></a>
+                      <a href="https://github.com/worldbench/Orbia" target="_blank" class="project-link" aria-label="Orbia code"><img src="assets_common/icons/github.png" class="icon-img" loading="lazy" alt="GitHub"></a>
+                    </div>
+                  </article>
+
+                  <!-- VITAL: visual-motion supervision for driving actions -->
+                  <article class="wb-card project-card">
+                    <h3 class="project-title">VITAL: From Visual Motion to Precise Action</h3>
+                    <p>Visual-motion supervision and a compact metric residual connect future observations during training to precise driving trajectories. A one-step action expert predicts both components from current inputs without generating future images at inference.</p>
+                    <div class="project-links">
+                      <a href="https://arxiv.org/abs/2610.20604" target="_blank" class="project-link" aria-label="VITAL paper"><i class="ai ai-arxiv"></i></a>
+                      <a href="https://worldbench.github.io/vital" target="_blank" class="project-link" aria-label="VITAL project"><i class="fas fa-globe"></i></a>
+                      <a href="https://github.com/worldbench/VITAL" target="_blank" class="project-link" aria-label="VITAL code"><img src="assets_common/icons/github.png" class="icon-img" loading="lazy" alt="GitHub"></a>
+                    </div>
+                  </article>
+
                   <!-- Project -->
                   <article class="wb-card project-card">
                     <div class="project-thumb">
                       <img src="assets_common/teasers/worldlens.png"
                          loading="lazy">
                     </div>
-                    <h3 class="project-title">WorldLens: Full-Spectrum Evaluations of Driving World Models</h3>
+                    <h3 class="project-title">WorldLens: Full-Spectrum Evaluations of Driving World Models in Real World</h3>
+                    <p>Five complementary aspects connect video generation to 4D reconstruction, action-following, downstream perception, and human preference. Open- and closed-loop driving tests complement geometric checks and a learned evaluator trained on human scores and rationales.</p>
                     <div class="project-links">
                       <a href="https://arxiv.org/abs/2512.10958" target="_blank" class="project-link">
                         <i class="ai ai-arxiv"></i>
@@ -1284,7 +1322,7 @@
                     </div>
                     <h3 class="project-title">VLA for Autonomous Driving: Past, Present, and Future</h3>
                     <div class="project-links">
-                      <a href="https://worldbench.github.io/vla4ad.pdf" target="_blank" class="project-link">
+                      <a href="assets_common/papers/vla4ad.pdf?v=20261016" target="_blank" class="project-link">
                         <i class="ai ai-arxiv"></i>
                       </a>
                       <a href="https://worldbench.github.io/vla4ad" target="_blank" class="project-link">
