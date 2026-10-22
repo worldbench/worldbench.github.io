@@ -1,0 +1,118 @@
+[
+  {
+    "file": "vital_rollout_01.mp4",
+    "nfe": 1,
+    "fps": 5,
+    "duration_s": 12,
+    "independent_predictions": 24,
+    "source_fps": 2,
+    "mean_ade_m": 0.5826127659153236,
+    "bev_limits": [
+      -3.0,
+      50.0,
+      11.093873977661133
+    ]
+  },
+  {
+    "file": "vital_rollout_02.mp4",
+    "nfe": 1,
+    "fps": 5,
+    "duration_s": 12,
+    "independent_predictions": 24,
+    "source_fps": 2,
+    "mean_ade_m": 0.4998885385315787,
+    "bev_limits": [
+      -3.0,
+      50.0,
+      11.093873977661133
+    ]
+  },
+  {
+    "file": "vital_rollout_03.mp4",
+    "nfe": 1,
+    "fps": 5,
+    "duration_s": 12,
+    "independent_predictions": 24,
+    "source_fps": 2,
+    "mean_ade_m": 0.46163750951976007,
+    "bev_limits": [
+      -3.0,
+      50.0,
+      11.093873977661133
+    ]
+  },
+  {
+    "file": "vital_rollout_04.mp4",
+    "nfe": 1,
+    "fps": 5,
+    "duration_s": 12,
+    "independent_predictions": 24,
+    "source_fps": 2,
+    "mean_ade_m": 0.315713687618027,
+    "bev_limits": [
+      -3.0,
+      50.0,
+      11.093873977661133
+    ]
+  },
+  {
+    "file": "vital_rollout_05.mp4",
+    "nfe": 1,
+    "fps": 5,
+    "duration_s": 12,
+    "independent_predictions": 24,
+    "source_fps": 2,
+    "mean_ade_m": 0.4518753243750664,
+    "bev_limits": [
+      -3.0,
+      50.0,
+      11.093873977661133
+    ]
+  },
+  {
+    "file": "vital_rollout_06.mp4",
+    "nfe": 1,
+    "fps": 5,
+    "duration_s": 12,
+    "independent_predictions": 24,
+    "source_fps": 2,
+    "mean_ade_m": 0.3962746481234497,
+    "bev_limits": [
+      -3.0,
+      50.0,
+      11.093873977661133
+    ]
+  },
+  {
+    "file": "visual_scaffold.mp4",
+    "fps": 5,
+    "duration_s": 4.2,
+    "ade_m": 0.2414534947835886,
+    "source": "paired clean-code reconstruction",
+    "local_error_half_extent_m": 0.6
+  },
+  {
+    "file": "residual_closure.mp4",
+    "fps": 5,
+    "duration_s": 4.2,
+    "ade_m": 0.0005225650736910387,
+    "source": "paired clean-code reconstruction",
+    "local_error_half_extent_m": 0.6
+  },
+  {
+    "file": "visual_scaffold_b.mp4",
+    "fps": 5,
+    "duration_s": 4.2,
+    "ade_m": 0.10427211819339835,
+    "source": "paired clean-code reconstruction",
+    "local_error_half_extent_m": 0.6
+  },
+  {
+    "file": "residual_closure_b.mp4",
+    "fps": 5,
+    "duration_s": 4.2,
+    "ade_m": 0.0009041521210710245,
+    "source": "paired clean-code reconstruction",
+    "local_error_half_extent_m": 0.6
+  }
+]

@@ -1,0 +1,257 @@
+.publication-header {
+  padding: 50px 0 0;
+  text-align: center;
+}
+
+.publication-title {
+  max-width: 1050px;
+  margin: 16px auto 26px;
+  font-size: clamp(34px, 4.6vw, 58px);
+  line-height: 1.13;
+  letter-spacing: -.045em;
+}
+
+.publication-title span {
+  color: var(--purple);
+}
+
+.author-list,
+.affiliation-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  list-style: none;
+  padding: 0;
+}
+
+.author-list {
+  display: grid;
+  grid-template-columns: repeat(5, max-content);
+  max-width: 1010px;
+  gap: 8px 22px;
+  margin: 0 auto 18px;
+  font-size: 17px;
+}
+
+.author-list li {
+  white-space: nowrap;
+}
+
+.author-list a {
+  text-decoration-color: var(--purple);
+  text-underline-offset: 4px;
+}
+
+.author-list sup {
+  margin-left: 3px;
+  color: var(--purple);
+  font-size: 11px;
+}
+
+.author-list .author-marker {
+  margin-left: 0;
+}
+
+.affiliation-list {
+  max-width: 1000px;
+  gap: 4px 22px;
+  margin: 0 auto;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.affiliation-list sup {
+  color: var(--blue);
+}
+
+.affiliation-list::before {
+  content: "";
+  flex-basis: 100%;
+  order: 1;
+}
+
+.affiliation-list li:nth-child(n + 4) {
+  order: 2;
+}
+
+.author-notes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 4px 20px;
+  margin: 12px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.author-notes sup {
+  color: var(--purple);
+}
+
+.publication-actions {
+  justify-content: center;
+  margin-top: 25px;
+}
+
+.pending-resource {
+  color: var(--muted);
+  box-shadow: none;
+  cursor: default;
+}
+
+.pending-resource:hover {
+  transform: none;
+}
+
+.pending-resource .release-badge {
+  background: rgba(178, 211, 225, .08);
+  color: var(--muted);
+}
+
+.release-badge {
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: rgba(255, 177, 106, .12);
+  color: var(--orange);
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.release-note {
+  margin: 14px 0 0;
+  color: var(--dim);
+  font-size: 13px;
+}
+
+.release-note a {
+  color: var(--muted);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.project-overview {
+  padding: 34px 0 68px;
+}
+
+.overview-copy {
+  max-width: 920px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.overview-copy .lede {
+  max-width: none;
+  margin: 0;
+  color: #c7d7de;
+  font-size: 20px;
+  line-height: 1.6;
+}
+
+.overview-detail {
+  max-width: 800px;
+  margin: 12px auto 0;
+  font-size: 16px;
+}
+
+.project-overview .hero-art {
+  margin: 30px 0 0;
+}
+
+.journey > *,
+.journey-step > div {
+  min-width: 0;
+}
+
+.citation-code {
+  max-width: 100%;
+  padding: 24px;
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: var(--panel);
+  color: #c7d7de;
+  font: 13px/1.8 ui-monospace, SFMono-Regular, Consolas, monospace;
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 5px;
+}
+
+@media (max-width: 850px) {
+  nav {
+    gap: 18px;
+    align-items: flex-start;
+  }
+
+  nav div:last-child {
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: 8px 16px;
+  }
+
+  .publication-header {
+    padding-top: 40px;
+  }
+
+  .author-list {
+    display: flex;
+  }
+
+  .project-overview {
+    padding: 28px 0 50px;
+  }
+}
+
+@media (max-width: 480px) {
+  .publication-title {
+    font-size: 34px;
+  }
+
+  .author-list {
+    gap: 8px 16px;
+    font-size: 15px;
+  }
+
+  .affiliation-list {
+    gap: 4px 12px;
+    font-size: 12px;
+  }
+
+  .publication-actions {
+    gap: 9px;
+  }
+
+  .publication-actions .button {
+    justify-content: center;
+    max-width: 100%;
+    font-size: 13px;
+  }
+
+  .citation-code {
+    padding: 18px;
+    font-size: 12px;
+  }
+
+  .overview-copy .lede {
+    font-size: 18px;
+  }
+
+  .overview-detail {
+    font-size: 14px;
+  }
+
+  .project-overview .hero-art {
+    padding: 10px;
+    border-radius: 20px;
+  }
+
+  .journey-step {
+    grid-template-columns: 30px minmax(0, 1fr);
+    gap: 12px;
+    padding: 20px 16px;
+  }
+}
