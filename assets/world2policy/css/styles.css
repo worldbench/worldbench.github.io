@@ -40,6 +40,7 @@ h1 { max-width: 1800px; width: 100%; margin: 0 auto; color: var(--text); font-si
 .authors:focus-visible { outline: 2px solid var(--cyan); outline-offset: 2px; }
 .author-row { display: flex; gap: 18px; width: max-content; margin: 0 auto; padding: 0; list-style: none; }
 .author-row + .author-row { margin-top: 4px; }
+.author-row a:hover,.author-row a:focus-visible { color: var(--cyan); }
 .affiliations,.author-notes { display: flex; flex-wrap: wrap; justify-content: center; gap: 4px 18px; max-width: 64rem; margin-inline: auto; padding: 0; line-height: 1.55; }
 .affiliations { list-style: none; }
 .affiliations,.author-notes { margin-top: 10px; margin-bottom: 0; color: var(--muted); font-size: .875rem; }
